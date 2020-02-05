@@ -1,9 +1,22 @@
+buildscript {
+    ext {
+        springBootVersion = '2.2.2.RELEASE'
+    }
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    //id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'java'
     id 'war'
 }
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.wutong'
 version = '0.0.1-SNAPSHOT'
