@@ -8,7 +8,7 @@
 
 <!--[if lt IE 9]>
 <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/respond.min.js"></script>
-<script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/excanvas.min.js"></script> 
+<script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 
 <!-- BEGIN CORE PLUGINS -->
@@ -60,10 +60,10 @@
 <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/takin_theme/assets/pages/scripts/ui-tree.min.js" type="text/javascript"></script>
 <!-- 表格组件 -->
-<script src="<%=request.getContextPath()%>js/datatables.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>js/bootstrapValidator.min.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>js/jquery.form.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>common/js/datatables.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>common/js/bootstrapValidator.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>common/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>common/js/jquery.form.js" type="text/javascript"></script>
 
 <!-- jquery ui 和bootstrap datepicker样式冲突-->
 <%-- <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script> --%>

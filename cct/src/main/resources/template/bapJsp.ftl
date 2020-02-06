@@ -15,7 +15,7 @@
 <meta content="width=320, initial-scale=1" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="author" />
-<jsp:include page="../common/resource.jsp" flush="true" />
+<jsp:include page="common/resource.jsp" flush="true" />
 
 </head>
 
@@ -23,14 +23,14 @@
 <body class="iframe-body">
 
 	<!-- BEGIN HEADER -->
-	<jsp:include page="../common/header.jsp" flush="true" />
+	<jsp:include page="common/header.jsp" flush="true" />
 	<!-- END HEADER -->
 
 	<!-- BEGIN CONTAINER -->
 	<div class="clearfix"></div>
 	<div class="page-container">
 		<!-- BEGIN MENU -->
-		<%-- <jsp:include page="../common/menu.jsp" flush="true" /> --%>
+		<%-- <jsp:include page="common/menu.jsp" flush="true" /> --%>
 		<!-- END MENU -->
 
 		<!-- BEGIN CONTENT -->
@@ -647,7 +647,7 @@
 		</div>
 	</div>
 
-	<jsp:include page="../common/footer.jsp" flush="true" />
+	<jsp:include page="common/footer.jsp" flush="true" />
 
 	<script type="text/javascript">
 		//分页功能
@@ -859,7 +859,7 @@
 						var index = $(selectRocords[i]).attr("rownum");
 	        			record = tableData.items[index];
 	        			<#list tableCarrays as tableCarray>
-	        				<#if (tableCarray.isPrimaryKey??) && tableCarray.isPrimaryKey == "√">
+	        				<#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" ||tableCarray.isPrimaryKey == "PRI")>
 	        					uuids += record.${tableCarray.columnNameX}+",";
 	        				</#if>
 	        			</#list>
@@ -906,7 +906,7 @@
 			}else if("update" == type){
 				var param = {};
 				<#list tableCarrays as tableCarray>
-					<#if (tableCarray.isPrimaryKey??) && tableCarray.isPrimaryKey == "√">
+					<#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" || tableCarray.isPrimaryKey == "PRI")>
 						param.${tableCarray.columnNameX} = record.${tableCarray.columnNameX};
 					</#if>
 				</#list>
