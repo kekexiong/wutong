@@ -64,7 +64,7 @@ public class CodeController {
     @RequestMapping("/index")
     public ModelAndView couponRule(Model model) {
         System.out.println("进入````````````");
-        return new ModelAndView("code2");
+        return new ModelAndView("code");
     }
 
 
@@ -207,6 +207,7 @@ public class CodeController {
         table.setMapperPackage(classPackage + ".mapper");
         table.setServicePackage(classPackage + ".service");
         table.setControllerPackage(classPackage + ".controller");
+        table.setClassPackage(classPackage);
         table.setJspPackage("webapp.jsp");
         table.setMapperXmlPackage("resources.mapper");
         table.setExcelXmlPackage("resources.excel_config.excel_model");

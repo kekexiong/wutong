@@ -15,7 +15,7 @@
 <meta content="width=320, initial-scale=1" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="author" />
-<jsp:include page="../common/resource.jsp" flush="true" />
+<jsp:include page="common/resource.jsp" flush="true" />
 
 </head>
 
@@ -23,13 +23,14 @@
 <body class="iframe-body">
 
 	<!-- BEGIN HEADER -->
-		<!-- END HEADER -->
+	<jsp:include page="common/header.jsp" flush="true" />
+	<!-- END HEADER -->
 
 	<!-- BEGIN CONTAINER -->
 	<div class="clearfix"></div>
 	<div class="page-container">
 		<!-- BEGIN MENU -->
-		<%-- <jsp:include page="../common/menu.jsp" flush="true" /> --%>
+		<%-- <jsp:include page="common/menu.jsp" flush="true" /> --%>
 		<!-- END MENU -->
 
 		<!-- BEGIN CONTENT -->
@@ -45,7 +46,40 @@
 							<div class="portlet-body form">
 								<form action="<%=request.getContextPath()%>/mec/queryData" class="form-horizontal" id="queryMecPanel_Form">
 									<div class="row norow">
-									</div>
+																							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+														<div class="form-group">
+															<label for="span-medium-2"
+																class="control-label col-md-4 text-right">名字:</label>
+															<div class="col-md-8 paddingnone">
+																<input name="name"
+																	id="name" class="form-control"
+																	placeholder="名字">
+															</div>
+														</div>
+													</div>
+																									<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+														<div class="form-group">
+															<label for="span-medium-2"
+																class="control-label col-md-4 text-right">年龄:</label>
+															<div class="col-md-8 paddingnone">
+																<input name="age"
+																	id="age" class="form-control"
+																	placeholder="年龄">
+															</div>
+														</div>
+													</div>
+																									<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+														<div class="form-group">
+															<label for="span-medium-2"
+																class="control-label col-md-4 text-right">电话:</label>
+															<div class="col-md-8 paddingnone">
+																<input name="tel"
+																	id="tel" class="form-control"
+																	placeholder="电话">
+															</div>
+														</div>
+													</div>
+																					</div>
 									<div class="form-actions">
 										<div class="row">
 											<div class="col-md-12">
@@ -243,7 +277,43 @@
 		               <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="">
 		                   <div class="form-body">
 		                       <div class="row norow">
-		                           <div class="clearfix"></div>
+		                           					                           					                           					                           			<!-- 普通输入框 -->
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+												<div class="form-group">
+													<label for="span-medium-2"
+														class="control-label col-md-4 text-right">名字:</label>
+													<div class="col-md-8 paddingnone">
+														<input name="name"
+															id="name_VIEW" class="form-control" disabled="disabled"
+															placeholder="名字">
+													</div>
+												</div>
+											</div>
+		                           				                           					                           					                           					                           			<!-- 普通输入框 -->
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+												<div class="form-group">
+													<label for="span-medium-2"
+														class="control-label col-md-4 text-right">年龄:</label>
+													<div class="col-md-8 paddingnone">
+														<input name="age"
+															id="age_VIEW" class="form-control" disabled="disabled"
+															placeholder="年龄">
+													</div>
+												</div>
+											</div>
+		                           				                           					                           					                           					                           			<!-- 普通输入框 -->
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+												<div class="form-group">
+													<label for="span-medium-2"
+														class="control-label col-md-4 text-right">电话:</label>
+													<div class="col-md-8 paddingnone">
+														<input name="tel"
+															id="tel_VIEW" class="form-control" disabled="disabled"
+															placeholder="电话">
+													</div>
+												</div>
+											</div>
+		                           				                           <div class="clearfix"></div>
 		                       </div>
 		                   </div>
 		                   <div class="form-actions">
@@ -264,7 +334,7 @@
 		</div>
 	</div>
 
-	<jsp:include page="../common/footer.jsp" flush="true" />
+	<jsp:include page="common/footer.jsp" flush="true" />
 
 	<script type="text/javascript">
 		//分页功能
@@ -446,6 +516,7 @@
 					for(i=0; i < selectRocords.length; i++){
 						var index = $(selectRocords[i]).attr("rownum");
 	        			record = tableData.items[index];
+	        					uuids += record.uuid+",";
 					}
 					uuids = uuids.substring(0, uuids.lastIndexOf(","));
 					bootbox.confirm("选择了"+selectRocords.length+"条, 确认删除?", function(truthBeTold){
@@ -488,6 +559,7 @@
 				$("#addOrUpdateWin").modal('show');
 			}else if("update" == type){
 				var param = {};
+						param.uuid = record.uuid;
 				$.ajax({
 					type : "POST",
 					url : baseURL + "/demo/tUser/getDetail",
@@ -569,6 +641,9 @@
 			
 			//获取筛选条件输入值
 			var param = {page:page,start:start,limit:limit};
+						param.name = $("#name").val();
+						param.age = $("#age").val();
+						param.tel = $("#tel").val();
 			App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
 			$.ajax({
 				type: "POST",
@@ -655,6 +730,9 @@
 				contentType: "application/x-www-form-urlencoded;charset=utf-8",
 				dataType : "json",
 				success:function(data){
+							document.getElementById('name_VIEW').value=data.data.name;
+							document.getElementById('age_VIEW').value=data.data.age;
+							document.getElementById('tel_VIEW').value=data.data.tel;
 					$("#viewWin").modal('show');
 					
 				},

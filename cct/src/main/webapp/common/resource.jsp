@@ -16,7 +16,7 @@
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
-<link href="<%=request.getContextPath()%>/webPage/common/css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath()%>/webPage/jsp/common/css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
 <!-- tree -->

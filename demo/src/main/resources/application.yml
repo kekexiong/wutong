@@ -12,10 +12,12 @@ spring:
       #jsp 支持
       suffix: .jsp
       prefix: /jsp/
+  static-locations: classpath:jsp/
+
 #整合Mybatis
 mybatis:
 #  扫描数据持久对应的实体类 路径 Package级别
-  type-aliases-package: com.wutong.wsk.domain
+  type-aliases-package: com.wutong.demo.domain
 #  mybatis 对应的 .xml文件路径
   mapper-locations: classpath:mapper/*.xml
 #  多层级目录  mapper-locations: classpath:mapper/**/**.xml

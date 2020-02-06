@@ -30,7 +30,7 @@
 	
 	<#if isQuery == "01">
 	<select id="findByCondition" parameterType="java.util.Map" resultType="Map">
-		${stringCarrayNames7}
+		<#--${stringCarrayNames7}-->
 		SELECT
 			<#list tableCarrays as tableCarray> 
 				<#if (tableCarray.columnName??)>
@@ -77,8 +77,8 @@
 			<#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}
 		WHERE
 			<#list tableCarrays as tableCarray>
-  				<#if (tableCarray.isPrimaryKey??) && tableCarray.isPrimaryKey == "√">
-  					${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}
+				<#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" || tableCarray.isPrimaryKey == "PRI")>
+  			${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}
   				</#if>
   			</#list>
 	</select>
@@ -92,7 +92,7 @@
 			</#list>
 		WHERE
 			<#list tableCarrays as tableCarray>
-  				<#if (tableCarray.isPrimaryKey??) && tableCarray.isPrimaryKey == "√">
+  				<#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" ||tableCarray.isPrimaryKey == "PRI")>
   					${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}
   				</#if>
   			</#list>
@@ -104,7 +104,7 @@
  		delete from <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}
  		where 
 	 		<#list tableCarrays as tableCarray>
-  				<#if (tableCarray.isPrimaryKey??) && tableCarray.isPrimaryKey == "√">
+  				<#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" ||tableCarray.isPrimaryKey == "PRI")>
   					${tableCarray.columnName}
   				</#if>
   			</#list>

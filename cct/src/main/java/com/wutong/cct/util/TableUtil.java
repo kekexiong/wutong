@@ -54,7 +54,9 @@ public class TableUtil {
 			tableDomain.setStringCarrayNames5(stringCarrayNames5);
 			tableDomain.setStringCarrayNames6(stringCarrayNames6);
 			tableDomain.setStringCarrayNames7("select * from(select a.*,rownum rn from(");//<!-- 分页前缀  --> 
-			tableDomain.setStringCarrayNames8(") a where rownum &lt;= #{endRow}) where rn &gt;#{startRow}");//<!-- 分页后缀  -->	
+			//tableDomain.setStringCarrayNames8(") a where rownum &lt;= #{endRow}) where rn &gt;#{startRow}");//<!-- 分页后缀  -->	oracle
+			tableDomain.setStringCarrayNames8("limit #{startRow}, #{endRow}");//<!-- 分页后缀  -->
+
 		return tables;
 	}
 }
