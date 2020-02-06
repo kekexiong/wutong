@@ -23,7 +23,7 @@
 <body class="iframe-body">
 
 	<!-- BEGIN HEADER -->
-	<jsp:include page="../common/header.jsp" flush="true" />
+	<#--<jsp:include page="../common/header.jsp" flush="true" />-->
 	<!-- END HEADER -->
 
 	<!-- BEGIN CONTAINER -->

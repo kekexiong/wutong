@@ -39,7 +39,7 @@ public class CodeController {
     // 工程路径 ios 电脑/Users/zhaoqiugen/gitnew/wutong/demo
     //private final String PROJECT_PATH = "/Users/zhaoqiugen/git/cct";
 
-    private final String PROJECT_PATH = "/Users/zhaoqiugen/gitnew/wutong/demo";
+    private final String PROJECT_PATH = "/Users/zhaoqiugen/gituser/wutong/demo";
     // 工程路径 windows 电脑
     // private final String PROJECT_PATH="D:/workspaceCCT/cct";
     // 作者

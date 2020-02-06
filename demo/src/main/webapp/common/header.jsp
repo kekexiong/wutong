@@ -1,81 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%
-/* Principal principal=SysUtils.getSessionStoreRange();
-String name=principal!=null?principal.getName():"";
-String orgId=principal!=null?principal.getOrgId():"";
-String orgName=principal!=null?principal.getOrgName():"";
-String departMentId=principal!=null?principal.getDepartMentId():"";
-String deptName=principal!=null?principal.getDeptName():""; */
-String name="";
-String orgId="";
-String orgName="";
-String departMentId="";
-String deptName=""; 
-%>
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>js/constant.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>js/permisssionConstant.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>js/common.js"></script>
 <script type="text/javascript">
 	var baseURL = "<%=request.getContextPath()%>";
-	if (window == top) {
-		//子页面应该在iframe中打开，如果在top window打开则跳转到login页面
-		top.location.href = baseURL;
-	}
-	var sinfo = {
-		'userName' : '<%=name%>',
-		'orgId': '<%=orgId%>',
-		'orgName': '<%=orgName%>',
-		'departMentId': '<%=departMentId%>',
-		'deptName': '<%=deptName%>',
-		'acls':'<%=request.getSession().getAttribute("permissionList")%>'
-	};
-	
-	function logout(){
-		bootbox.confirm("确定退出系统吗?",function(tf) {
-			if(tf){
-				window.location.href = baseURL + '/logout.jsp';
-			}
-		});
-	}
+	// if (window == top) {
+	// 	//子页面应该在iframe中打开，如果在top window打开则跳转到login页面
+	// 	top.location.href = baseURL;
+	// }
 
-	/**
-	 * 判断当前用户是否具有当前应用模块的操作权限
-	 * modelId 当前应用模块代码
-	 */
-	function hasPermission(modelId) {
-         var flag = false;
-		var rocs = JSON.parse(sinfo.acls);
-		if (rocs) {
-			for (var i = 0; i < rocs.length; i++) {				 
-		         if(PERMISSSIONCONST.AIS915==modelId){
-		        	 //console.log(rocs[i].permission);
-		         }
-				if (modelId == rocs[i].permission) {
-					flag = true;
-					break;
-				} else {
-					flag = false;
-				}
-			}
-		}
-		return flag; 
-	}
-</script>
 
-<script type="text/javascript">
-	/**
-	 * ajax异步请求时，如果session超时，则跳转到登录页面
-	 */
-	$( document ).ajaxComplete(function( event, xhr, settings ) {
-		var result = xhr.responseText;
-        if(result.timeout){
-        	bootbox.alert("会话超时，系统将自动跳转到登录页面！", function() {
-        		top.location.href = baseURL + '/login.jsp';
-        	});
-        }
-	});
+
 </script>
 <%-- 
 <div class="page-header navbar navbar-fixed-top">

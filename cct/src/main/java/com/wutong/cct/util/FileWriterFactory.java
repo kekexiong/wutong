@@ -33,7 +33,7 @@ public class FileWriterFactory {
 		if (cfg == null) {
 			cfg = new Configuration();
 
-			url = FileWriterFactory.class.getResource("/").getPath().replace("classes","resources") + url;
+			url = FileWriterFactory.class.getResource("/").getPath() + url;
 			System.out.println(url);
 			File file = new File(url);
 			try {

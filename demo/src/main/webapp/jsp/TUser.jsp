@@ -23,13 +23,13 @@
 <body class="iframe-body">
 
 	<!-- BEGIN HEADER -->
-	<%--<jsp:include page="../common/header.jsp" flush="true" />--%>
-	<!-- END HEADER -->
+		<!-- END HEADER -->
 
 	<!-- BEGIN CONTAINER -->
 	<div class="clearfix"></div>
 	<div class="page-container">
-		<!-- BEGIN MENU -->
+        <jsp:include page="../common/header.jsp" flush="true" />
+        <!-- BEGIN MENU -->
 		<%-- <jsp:include page="../common/menu.jsp" flush="true" /> --%>
 		<!-- END MENU -->
 
@@ -46,29 +46,7 @@
 							<div class="portlet-body form">
 								<form action="<%=request.getContextPath()%>/mec/queryData" class="form-horizontal" id="queryMecPanel_Form">
 									<div class="row norow">
-																							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-														<div class="form-group">
-															<label for="span-medium-2"
-																class="control-label col-md-4 text-right">名字:</label>
-															<div class="col-md-8 paddingnone">
-																<input name="name"
-																	id="name" class="form-control"
-																	placeholder="名字">
-															</div>
-														</div>
-													</div>
-																									<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-														<div class="form-group">
-															<label for="span-medium-2"
-																class="control-label col-md-4 text-right">年龄:</label>
-															<div class="col-md-8 paddingnone">
-																<input name="age"
-																	id="age" class="form-control"
-																	placeholder="年龄">
-															</div>
-														</div>
-													</div>
-																					</div>
+									</div>
 									<div class="form-actions">
 										<div class="row">
 											<div class="col-md-12">
@@ -83,21 +61,9 @@
 														<button type="button" id="add_btn" class="btn btn-info"> 
 															<i class="fa fa-plus"></i> 添加
 														</button>
-														<button type="button" id="edit_btn" class="btn tn btn btn-primary"> 
-															<i class="fa fa-edit"></i> 修改
-														</button>
 														<button type="button" id="dele_btn" class="btn tn btn btn-primary"> 
 															<i class="fa fa-trash-o fa-lg"></i> 删除
 														</button>
-															<button type="button" id="isExport_btn" class="btn tn btn btn-primary"> 
-																<i class="fa fa-download"></i> 导出
-															</button>
-															<button type="button" id="download_template_btn" class="btn btn btn-primary">
-															 <i class="fa fa-download"></i>下载模板
-															</button>
-															<button type="button" id="isImport_btn" class="btn tn btn btn-primary"> 
-																<i class="fa fa-upload"></i> 导入
-															</button>
 													</div>
 												</div>
 											</div>
@@ -131,7 +97,6 @@
 															<th class="nowrap">名字</th> 
 															<th class="nowrap">年龄</th> 
 															<th class="nowrap">电话</th> 
-														<th class="nowrap">操作</th> 
 											</tr>
 										</thead>
 										<tbody>
@@ -262,196 +227,6 @@
 	        </div>
     	</div>
     	<!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-			<div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
-		        <div class="modal-header">
-		           <button type="button" class="close" 
-		              data-dismiss="modal" aria-hidden="true">
-		                 &times;
-		           </button>
-		           <h4 class="modal-title" >用户详情信息</h4>
-		        </div>
-		        <div class="modal-body">
-		           <div class="portlet-body form">
-		               <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="">
-		                   <div class="form-body">
-		                       <div class="row norow">
-		                           <div class="clearfix"></div>
-		                       </div>
-		                   </div>
-		                   <div class="form-actions">
-		                       <div class="row">
-		                           <div class="col-md-12">
-		                               <div class="row">
-		                                   <div class="col-md-12" style="text-align:center;">
-		                                       <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
-		                                   </div>
-		                               </div>
-		                           </div>
-		                       </div>
-		                   </div>
-		               </form>
-		           </div>
-		        </div>
-	    	</div>
-		<!-- ---------------------------------------------导出弹出页面----------------------------------------------------- -->
-		<div class="modal fade" id="importOpenWin" tabindex="-1"
-				role="dialog" data-backdrop="static" data-width="650px"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="Select_title">文件</h4>
-				</div>
-				<div class="modal-body">
-					<div class="portlet-body form">
-						<div class="form-body">
-							<div class="row norow">
-								<div class="panel panel-primary">
-									<form action="<%=request.getContextPath()%>/"
-										class="form-horizontal" id="importOpenWinform"
-										enctype="multipart/form-data">
-										<div class="panel-body">
-											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<div class="form-group">
-													<label class="control-label col-md-3 text-right">请选择文件:</label>
-													<div class="col-md-8 paddingnone">
-														<input id="importFile" name="file" type="file"
-															class="file"> <input type="hidden" id="type"
-															name="type">
-													</div>
-												</div>
-											</div>
-											<div class="form-actions">
-												<div class="row">
-													<div class="col-md-12">
-														<div class="row">
-															<div class="col-md-12" style="text-align: center;">
-																<button type="button" id="importOpenform_save_btn"
-																	class="btn btn-success">
-																	<i class="fa fa-save"></i> 确认
-																</button>
-																<button type="button" id="importOpenform_cancel_btn"
-																	class="btn red">
-																	<i class="fa fa-refresh"></i> 关闭
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- ----------------------------------------导入结果弹出框-------------------------------------------------- -->
-			<div class="modal fade" id="ResultWin" tabindex="-1" role="dialog"
-				data-backdrop="static" data-height="500px" data-width="750px"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="Resulttitle">批量导入操作结果</h4>
-				</div>
-				<div class="modal-body">
-					<div class="portlet-body form">
-						<div class="form-body">
-							<div class="row norow">
-								<div class="panel panel-primary">
-									<div class="row norow">
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-												<h4 class="panel-title" id="importResult"></h4>
-											</div>
-											<input type="hidden" name="errorCount" id="errorCount"
-												value="" />
-											<div class="portlet-body wheel">
-												<table
-													class="table table-striped table-bordered table-hover table-checkable order-column"
-													id="importResultPanel">
-													<thead style="font-size: 2px">
-														<tr>
-															<th>序号</th>
-															<th>主账号</th>
-															<th>错误原因</th>
-														</tr>
-													</thead>
-													<tbody>
-													</tbody>
-												</table>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-									<div class="form-actions">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="row">
-													<div class="col-md-12" style="text-align: center;">
-														<button type="button" id="errorImExcel" class="btn red">
-															<i class="fa fa-share"></i> 导出excel
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
-		<div class="modal fade" id="exportExcelWin" tabindex="-1"
-				role="dialog" data-backdrop="static" aria-labelledby="myModalLabel"
-				aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="">导出EXCEL</h4>
-				</div>
-				<div class="modal-body">
-					<div class="portlet-body form">
-						<form action="<%=request.getContextPath()%>/"
-							class="form-horizontal" id="exportform">
-							<div class="form-body">
-								<div class="row norow">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<div class="form-group">
-											<input name="innerExcelType" class="col-md-6 text-right"
-												id="innerExcelType">
-										</div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="form-actions">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="row">
-											<div class="col-md-12" style="text-align: center;">
-												<button type="button" id="exportform_save_btn"
-													class="btn btn-success">
-													<i class="fa fa-save"></i> 确认
-												</button>
-												<button type="button" id="exportform_cancel_btn"
-													class="btn red">
-													<i class="fa fa-share"></i> 取消
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -760,8 +535,6 @@
 			
 			//获取筛选条件输入值
 			var param = {page:page,start:start,limit:limit};
-						param.name = $("#name").val();
-						param.age = $("#age").val();
 			App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
 			$.ajax({
 				type: "POST",
@@ -791,7 +564,6 @@
     			    			trData.push(obj.name);
     			    			trData.push(obj.age);
     			    			trData.push(obj.tel);
-    			    		trData.push("<a href='javascript:void(0)'  onclick=view('"+obj.uuid+"')><i class='fa fa-search-plus'></i>查看</a>");
     			    	for(i=0; i < trData.length; i++){
     			    		if(trData[i] == undefined){
     			    			trData[i] = ''; 
@@ -837,137 +609,6 @@
 	        var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);   
 	        return Math.abs(cha);  
 	    }
-		<!--操作链接点击事件-->
-		function view(uuid){
-			var param = {};
-			param.uuid = uuid;
-			$.ajax({
-				type : "POST",
-				url : baseURL + "/demo/tUser/getDetail",
-				data :param,
-				contentType: "application/x-www-form-urlencoded;charset=utf-8",
-				dataType : "json",
-				success:function(data){
-					$("#viewWin").modal('show');
-					
-				},
-				error:function(){
-					alert("操作失败，请重新操作！")
-				}
-			});
-		}
-		//弹出页面取消按钮（详情）
-		$("#openform_cancel_btn").on('click',function(){
-			$("#viewWin").modal('hide');
-		});
-		//导入按钮
-		$("#isImport_btn").on('click', function(){
-			importOpen();
-		});
-		function importOpen(){
-			$("#importOpenWinform")[0].reset();
-			$("#importOpenWin").modal("show");
-		}
-		//导入弹出页面取消按钮
-		$("#importOpenform_cancel_btn").on('click', function(){
-			$("#importOpenWin").modal('hide');
-		});
-		//导入弹出页面确定按钮
-		$("#importOpenform_save_btn").on('click', function(){
-			var file=$("#importFile").val();
-			if(file != null && $.trim(file) != ''){
-				if (file.lastIndexOf('.') != -1) {
-					var index = file.lastIndexOf(".");
-					var ext = file.substring(index + 1, file.length);
-					if(ext =="xlsx"){
-						App.blockUI({target:"body",boxed:!0,message:"导入中，请稍后...",zIndex:12000});
-						$("#importOpenWinform").ajaxSubmit({
-			                type: 'post',
-						    url : baseURL +'/demo/tUser/importExcel',
-						    dataType: "json",
-			                success: function(data){
-			                	if (data.msgCd == 'MEC00000') {
-									var type = $("#type").val();
-									$('#importResultPanel > tbody').empty();
-									var successCount = data.successCount;
-									var failureCount = data.failureCount;
-									$("#ResultWin").modal('show');
-									if(data.errors == null){
-										$("#errorCount").val("1");
-									}
-									if(data.hasError == true) {
-										$("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-										$.each(data.errors, function(index, obj) {
-						                	var tr = $("<tr></tr>").append($("<td></td>").text(index + 1));
-						                	tr.append($("<td></td>").text(obj.bnkCd));
-						                	tr.append($("<td></td>").text(obj.failReason));
-						                	$("#importResultPanel > tbody").append(tr);
-						                });
-									}else{
-										$("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-									}
-								}else{
-									bootbox.alert("导入文件错误，原因："+data.msgInfo);
-								}
-			                	reloadGrid();
-								$("#importOpenWin").modal('hide');
-			                },  
-			                error: function(data){  
-			                    bootbox.alert( "导入失败..."+data.msgInfo);  
-			                }  
-			            });
-						
-					}else{
-						bootbox.alert("文件格式不正确，请使用07版的excel!");
-						return false;
-					}
-					
-				}else{
-					bootbox.alert("文件格式不正确，请使用07版的excel!");
-					return false;
-				}
-			}else{
-				bootbox.alert("文件格式不正确，请使用07版的excel!");
-				return false;
-			}
-		});
-		function getInfo(successCount,failureCount,msg) {
-			var info = "<font>本次批量导入操作共成功" +successCount + "条，失败" + failureCount + msg;
-	    	return info;
-	    }
-		//导入完毕之后弹出结果页面点击导入Excel按钮
-		$("#errorImExcel").off('click').on('click', function() {
-	    	var errorCount = $("#errorCount").val();
-	    	if(errorCount == '1'){
-	    		bootbox.alert("没数据要导出！");
-	    		return;
-	    	}
-			window.open(baseURL + "/demo/tUser/getFailExport");
-			$("#errorImExcel").modal('hide');
-		});
-		//下载模板按钮
-		$("#download_template_btn").on('click', function() {
-			window.open(baseURL +'/demo/tUser/downloadTemplate');
-		});
-		
-		//导出按钮
-		$("#isExport_btn").on('click', function() {
-			var totalCount = $("#itemCount").text();
-			if(totalCount==0){
-				bootbox.alert("没有数据可以导出，请筛选数据!");
-				return ;
-			}
-			$("#exportExcelWin").modal('show');
-			$("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
-			$("#innerExcelType").attr("disabled", "disabled");
-			$("#exportform_save_btn").off('click').on('click', function() {
-				window.open(baseURL +"/demo/tUser/export");
-				$("#exportExcelWin").modal('hide');
-			});
-			$("#exportform_cancel_btn").off('click').on('click', function() {
-				$("#exportExcelWin").modal('hide');
-			});
-		});
 	</script>
 
 </body>
