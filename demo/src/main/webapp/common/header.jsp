@@ -11,9 +11,6 @@
 	// 	//子页面应该在iframe中打开，如果在top window打开则跳转到login页面
 	// 	top.location.href = baseURL;
 	// }
-
-
-
 </script>
 <%-- 
 <div class="page-header navbar navbar-fixed-top">

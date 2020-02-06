@@ -28,8 +28,7 @@
 	<!-- BEGIN CONTAINER -->
 	<div class="clearfix"></div>
 	<div class="page-container">
-        <jsp:include page="../common/header.jsp" flush="true" />
-        <!-- BEGIN MENU -->
+		<!-- BEGIN MENU -->
 		<%-- <jsp:include page="../common/menu.jsp" flush="true" /> --%>
 		<!-- END MENU -->
 
@@ -60,6 +59,9 @@
 														</button>
 														<button type="button" id="add_btn" class="btn btn-info"> 
 															<i class="fa fa-plus"></i> 添加
+														</button>
+														<button type="button" id="edit_btn" class="btn tn btn btn-primary"> 
+															<i class="fa fa-edit"></i> 修改
 														</button>
 														<button type="button" id="dele_btn" class="btn tn btn btn-primary"> 
 															<i class="fa fa-trash-o fa-lg"></i> 删除
@@ -97,6 +99,7 @@
 															<th class="nowrap">名字</th> 
 															<th class="nowrap">年龄</th> 
 															<th class="nowrap">电话</th> 
+														<th class="nowrap">操作</th> 
 											</tr>
 										</thead>
 										<tbody>
@@ -227,6 +230,37 @@
 	        </div>
     	</div>
     	<!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
+			<div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+		        <div class="modal-header">
+		           <button type="button" class="close" 
+		              data-dismiss="modal" aria-hidden="true">
+		                 &times;
+		           </button>
+		           <h4 class="modal-title" >用户详情信息</h4>
+		        </div>
+		        <div class="modal-body">
+		           <div class="portlet-body form">
+		               <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="">
+		                   <div class="form-body">
+		                       <div class="row norow">
+		                           <div class="clearfix"></div>
+		                       </div>
+		                   </div>
+		                   <div class="form-actions">
+		                       <div class="row">
+		                           <div class="col-md-12">
+		                               <div class="row">
+		                                   <div class="col-md-12" style="text-align:center;">
+		                                       <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
+		                                   </div>
+		                               </div>
+		                           </div>
+		                       </div>
+		                   </div>
+		               </form>
+		           </div>
+		        </div>
+	    	</div>
 		</div>
 	</div>
 
@@ -564,6 +598,7 @@
     			    			trData.push(obj.name);
     			    			trData.push(obj.age);
     			    			trData.push(obj.tel);
+    			    		trData.push("<a href='javascript:void(0)'  onclick=view('"+obj.uuid+"')><i class='fa fa-search-plus'></i>查看</a>");
     			    	for(i=0; i < trData.length; i++){
     			    		if(trData[i] == undefined){
     			    			trData[i] = ''; 
@@ -609,6 +644,29 @@
 	        var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);   
 	        return Math.abs(cha);  
 	    }
+		<!--操作链接点击事件-->
+		function view(uuid){
+			var param = {};
+			param.uuid = uuid;
+			$.ajax({
+				type : "POST",
+				url : baseURL + "/demo/tUser/getDetail",
+				data :param,
+				contentType: "application/x-www-form-urlencoded;charset=utf-8",
+				dataType : "json",
+				success:function(data){
+					$("#viewWin").modal('show');
+					
+				},
+				error:function(){
+					alert("操作失败，请重新操作！")
+				}
+			});
+		}
+		//弹出页面取消按钮（详情）
+		$("#openform_cancel_btn").on('click',function(){
+			$("#viewWin").modal('hide');
+		});
 	</script>
 
 </body>
