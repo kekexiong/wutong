@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jquery.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>common/js/constant.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>common/js/permisssionConstant.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>common/js/common.js"></script>
+
 <script type="text/javascript">
 	var baseURL = "<%=request.getContextPath()%>";
 	// if (window == top) {
@@ -12,7 +9,6 @@
 	// 	top.location.href = baseURL;
 	// }
 </script>
-<%-- 
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNEoR -->
     <div class="page-header-inner">
@@ -43,4 +39,4 @@
         </div>
         
     </div>
-</div> --%>
+</div>

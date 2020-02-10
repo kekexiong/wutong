@@ -15,12 +15,12 @@ body.modal-open,
 }
 
 .modal {
-  left: 50%;
+  left: auto;
   bottom: auto;
   right: auto;
   padding: 0;
   width: 500px;
-  margin-left: -250px;
+  margin-left: 550px;
   background-color: #ffffff;
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);

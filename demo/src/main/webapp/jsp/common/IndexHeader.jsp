@@ -68,7 +68,6 @@ String deptName="";
         }
 	});
 </script>
-<%-- 
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNEoR -->
     <div class="page-header-inner">
@@ -99,4 +98,4 @@ String deptName="";
         </div>
         
     </div>
-</div> --%>
+</div>
