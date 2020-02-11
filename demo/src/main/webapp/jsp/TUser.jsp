@@ -62,6 +62,9 @@
                                                 <button type="button" id="dele_btn" class="btn tn btn btn-primary">
                                                     <i class="fa fa-trash-o fa-lg"></i> 删除
                                                 </button>
+                                                    <button type="button" id="isExport_btn" class="btn tn btn btn-primary">
+                                                        <i class="fa fa-download"></i> 导出
+                                                    </button>
                                             </div>
                                         </div>
                                     </div>
@@ -263,6 +266,45 @@
             </div>
         </div>
     </div>
+<!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
+<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">导出EXCEL</h4>
+    </div>
+    <div class="modal-body">
+        <div class="portlet-body form">
+            <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="exportform">
+                <div class="form-body">
+                    <div class="row norow">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input name="innerExcelType" class="col-md-6 text-right" id="innerExcelType">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12" style="text-align: center;">
+                                    <button type="button" id="exportform_save_btn" class="btn btn-success">
+                                        <i class="fa fa-save"></i> 确认
+                                    </button>
+                                    <button type="button" id="exportform_cancel_btn" class="btn red">
+                                        <i class="fa fa-share"></i> 取消
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </div>
 </div>
 
@@ -676,6 +718,29 @@
         //弹出页面取消按钮（详情）
         $("#openform_cancel_btn").on('click',function(){
             $("#viewWin").modal('hide');
+        });
+        //下载模板按钮
+        $("#download_template_btn").on('click', function() {
+            window.open(baseURL +'/demo/tUser/downloadTemplate');
+        });
+
+        //导出按钮
+        $("#isExport_btn").on('click', function() {
+            var totalCount = $("#itemCount").text();
+            if(totalCount==0){
+                bootbox.alert("没有数据可以导出，请筛选数据!");
+                return ;
+            }
+            $("#exportExcelWin").modal('show');
+            $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
+            $("#innerExcelType").attr("disabled", "disabled");
+            $("#exportform_save_btn").off('click').on('click', function() {
+                window.open(baseURL +"/demo/tUser/export");
+                $("#exportExcelWin").modal('hide');
+            });
+            $("#exportform_cancel_btn").off('click').on('click', function() {
+                $("#exportExcelWin").modal('hide');
+            });
         });
 </script>
 

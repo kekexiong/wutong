@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -346,18 +347,18 @@ public class ${classNameD}Controller extends BaseController {
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {
         String opNm = "${businessName}信息管理-导出";
-        @SuppressWarnings("unchecked")
+        String fileName = "${businessName}" + DateUtil.getCurDTTM() + ".xlsx";
         Map<String, Object> paraMap = (Map<String, Object>) session.getAttribute("queryMecTOneAcRateParam");
-        HSSFWorkbook hSSFWorkbook;
-        String fileName = null;
+        long startTime = System.currentTimeMillis();
+        Map<String, Object> paramsMap = (Map<String, Object>) session.getAttribute("queryParams");
         try {
-            hSSFWorkbook = ${classNameX}Service.export(paraMap);
-            fileName = "${businessName}表信息" + System.currentTimeMillis() + ".xls";
-            DownloadFileUtil.getInstance().downLoadExcel(hSSFWorkbook, fileName, response);
+            SXSSFWorkbook swb = ${classNameX}Service.export(paraMap);
+            DownloadFileUtil.getInstance().downLoadExcel(swb, fileName, response);
+            LOGGER.info("导出收支明细--end" + DateUtil.getHaoShiTimeMsg(startTime));
         } catch (Exception e) {
-            LOGGER.error(opNm,"异常：", e);
+            LOGGER.error("导出收支明细--exception", e);
         }
-        LOGGER.info(opNm,"导出完毕","fileName=" + fileName);
+        LOGGER.info(opNm, "导出完毕", "fileName=" + fileName);
     }
 </#if>
 }

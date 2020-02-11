@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ${domainPackage}.${classNameD};
 import ${mapperPackage}.${classNameD}Mapper;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -42,7 +46,7 @@ public class ${classNameD}Service {
 	}
 	</#if>
 	</#list>
-	
+
 	<#if isQuery == "01">
 	/**
 	 * 根据条件查询
@@ -79,7 +83,7 @@ public class ${classNameD}Service {
 		return  ${classNameX}Mapper.getByKey(paramVo);
 	}
 	</#if>
-	
+
 	<#if isUpdate=="01">
 	/**
 	 * 更新
@@ -173,8 +177,8 @@ public class ${classNameD}Service {
      * @author:${classAuthor}
      * @date:
      */
-	public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName,int[] sizeLimit, 
-			List<Map<String, Object>> reList, List<BnkRetPo> errors,List<Map<String, Object>> dataMaps, 
+	public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName,int[] sizeLimit,
+			List<Map<String, Object>> reList, List<BnkRetPo> errors,List<Map<String, Object>> dataMaps,
 			Map<String, Object> map){
 		//获取上传文件
 		FileUtils fileUtils = new FileUtils();
@@ -262,35 +266,50 @@ public class ${classNameD}Service {
 	}
 	</#if>
 	<#if isExport == "01" >
-	public HSSFWorkbook export(Map<String, Object> map) throws Exception{
-        try {
-            // 1.获取excel模版
-            ExcelTemplateType excelTemplate = ExcelXmlModelFactory.getInstance().getExcelInfo("${classNameX}ExportExcel");
-            // 2.创建excel工具对象
-            ExcelExportUtil excelExport = new ExcelExportUtil(excelTemplate);
-            // 3.根据模版创建HSSFWorkbook对象
-            excelExport.createWorkBookByTemplate();
-            // 参数map
-            // 查询付款单总数
-            int totalCount = this.findByConditionCount(map);
-            // 分页读数据
-            int BATCH_SIZE = 10000;
-            // 页数
-            int PAGE_COUNT = totalCount / BATCH_SIZE + 1;
-            for (int p = 0; p < PAGE_COUNT; p++) {
-                // 分页查询
-                map.put("startRow", p * BATCH_SIZE);
-                map.put("endRow", (p + 1) * BATCH_SIZE);
-                List<Map<String, Object>> items = this.findByCondition(map);
-                // 4.写数据
-                excelExport.writeQueryResult(items);
+	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
+        int count = findByConditionCount(paramMap);
+        int pageSize = 10000; //每次查询10000条
+        List<Map<String, Object>> infoList;
+        String[] tableName = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">"${tableCarray.comments}"<#if (tableCarray_has_next)>,</#if></#if></#list>};
+        String[] tableValue = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">"${tableCarray.columnNameX}"<#if (tableCarray_has_next)>,</#if></#if></#list>};
+        SXSSFWorkbook swb = new SXSSFWorkbook(10000);
+        int sheetContentCount = 1000000;
+        int sheetCount = 0 == count % sheetContentCount ? count / sheetContentCount : count / sheetContentCount + 1;
+
+        for (int i = 0; i < sheetCount; i++) {
+            Sheet sheet = swb.createSheet("Sheet" + (i + 1));
+            Row tableNameRow = sheet.createRow(0);
+            for (int j = 0; j < tableName.length; j++) {
+                tableNameRow.createCell(j).setCellValue(tableName[j]);
             }
-            // 返回内存中生成的HSSFWorkbook对象
-            return excelExport.getHSSFWorkbook();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
+
+            int queryCount = 0 == sheetContentCount % pageSize ? sheetContentCount / pageSize : sheetContentCount / pageSize + 1;
+            for (int k = 0; k < queryCount; k++) {
+                //循环查询
+                paramMap.put("pageNumber", i * queryCount + k + 1);
+                paramMap.put("pageSize", pageSize);
+                infoList = findByCondition(paramMap);
+                if (infoList.isEmpty()) {
+                    break;
+                }
+
+                for (int l = 0; l < infoList.size(); l++) {
+
+                    int curRows = k * pageSize + l + 1;
+                    Row row = sheet.createRow(curRows);
+                    Map<String, Object> content = infoList.get(l);
+
+                    for (int m = 0; m < tableValue.length; m++) {
+                        row.createCell(m).setCellValue(String.valueOf(content.get(tableValue[m])));
+                    }
+                    if (0 == curRows % pageSize) {
+                        LOGGER.info("SXSSF已处理数据条数" + (curRows + i * sheetContentCount));
+                    }
+                }
+                infoList.clear();
+            }
         }
+        return swb;
 	}
 	</#if>
 }

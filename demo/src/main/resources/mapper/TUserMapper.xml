@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wutong.demo.mapper.TUserMapper">
+    <resultMap id="tUserMap" type="com.wutong.demo.domain.TUser" >
+     <result column="name" property="name"/>
+     <result column="age" property="age"/>
+     <result column="tel" property="tel"/>
+     <result column="uuid" property="uuid"/>
+    </resultMap>
+    
+    <sql id="whereQueryCondition">
+        <where>
+            <if test="tUser.name!= null and tUser.name!= ''">
+                and name=#{tUser.name}
+            </if>
+            <if test="tUser.age!= null and tUser.age!= ''">
+                and age=#{tUser.age}
+            </if>
+            <if test="tUser.tel!= null and tUser.tel!= ''">
+                and tel=#{tUser.tel}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="findByCondition" parameterType="java.util.Map" resultType="Map">
+        SELECT
+                        t.name as "name",
+                        t.age as "age",
+                        t.tel as "tel",
+                        t.uuid as "uuid"
+            <!-- 请在此关联查询表 -->
+            FROM T_USER t
+            <include refid="whereQueryCondition"></include>
+            limit #{startRow}, #{endRow}
+    </select>
+    <select id="findByConditionCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*) 
+        FROM T_USER
+        <include refid="whereQueryCondition"></include>
+    </select>
+    <insert id="insert" parameterType="com.wutong.demo.domain.TUser">
+        INSERT INTO T_USER (
+                    name,
+                    age,
+                    tel,
+                    uuid
+        ) VALUES (
+                    #{name,jdbcType=VARCHAR},
+                    #{age,jdbcType=VARCHAR},
+                    #{tel,jdbcType=VARCHAR},
+                    #{uuid,jdbcType=VARCHAR}
+        )
+    </insert>
+    <select id="getByKey" parameterType="com.wutong.demo.domain.TUser" resultMap="tUserMap">
+        SELECT
+            name, age, tel, uuid
+        FROM 
+            T_USER
+        WHERE
+              uuid=#{uuid}
+    </select>
+    <update id="update" parameterType="com.wutong.demo.domain.TUser">
+        UPDATE T_USER
+        SET
+                    name=#{name},
+                    age=#{age},
+                    tel=#{tel}
+        WHERE
+                      uuid=#{uuid}
+            
+    </update>
+    <delete id="delete" parameterType="java.util.Map">
+         delete from T_USER
+         where 
+                      uuid
+           in 
+        <foreach item="item" index="index" collection="uuids" open="(" separator="," close=")">  
+              #{item}
+         </foreach>
+    </delete>
+</mapper>
