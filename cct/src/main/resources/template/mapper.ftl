@@ -86,4 +86,15 @@ public interface ${classNameD}Mapper {
 	 */
 	public int delete(Map<String,Object> map);
 	</#if>
+	<#if isImport=="01">
+	/**
+	 * 批量插入
+	 * @author ${classAuthor}
+ 	 * @date   ${classTime}
+	 * @param map
+	 * @return
+	 */
+	public int insertBatch(List<${classNameD}> list);
+	</#if>
+
 }

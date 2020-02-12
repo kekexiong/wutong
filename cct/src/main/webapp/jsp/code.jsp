@@ -150,6 +150,7 @@
 			<th data-options="field:'queryAdd',width:100,align:'center',editor:{type:'checkbox',options:{on:'√',off:''}}">添加(修改)字段</th>
 			<th data-options="field:'queryView',width:100,align:'center',editor:{type:'checkbox',options:{on:'√',off:''}}">详情字段</th>
 			<th data-options="field:'queryExport',width:100,align:'center',editor:{type:'checkbox',options:{on:'√',off:''}}">导出字段</th>
+			<th data-options="field:'queryImport',width:100,align:'center',editor:{type:'checkbox',options:{on:'√',off:''}}">导入字段</th>
 			</tr>
 			
 		</thead>

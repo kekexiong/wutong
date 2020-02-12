@@ -178,6 +178,11 @@ public class CodeController {
             } else {
                 item.setQueryExport("02");
             }
+            if ("√".equals(item.getQueryImport())) {
+                item.setQueryImport("01");
+            } else {
+                item.setQueryImport("02");
+            }
 
             if ("√".equals(item.getQueryShow())) {
                 item.setQueryShow("01");

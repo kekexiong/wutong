@@ -9,6 +9,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import com.wutong.demo.util.FileUtil;
+import com.wutong.demo.domain.ImportError;
+import com.wutong.demo.util.ExcelUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -135,23 +138,29 @@ public class ${classNameD}Service {
 		Map<String, Object> map = new HashMap<String, Object>();//返回结果map
 		List<ImportError> errors = new ArrayList<ImportError>();//存放错误信息list集合
 		//设置表头信息
-		String[] fields = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">"${tableCarray.comments}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
+		String[] fields = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">"${tableCarray.comments}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		//设置表头对应字段
-		String [] columnName = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">"${tableCarray.columnNameX}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
+		String [] columnName = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">"${tableCarray.columnNameX}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		//字段对应的长度限制
-		int [] sizeLimit = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">${tableCarray.dataLength}<#if (tableCarray_has_next)>, </#if></#if></#list>};
+		int [] sizeLimit = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">${tableCarray.dataLength}<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		List<Map<String, Object>> dataMaps = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
 		this.fileValid(request, fields,  columnName, sizeLimit, reList, errors, dataMaps, map);
 		if (!(Boolean) map.get("success")) {
             return map;
         }
-		//遍历读取数据
-		List<${classNameD}> payRefImpTmpList = organizeData(dataMaps);
-		//可以在次数对数据特定处理
-		//
-		//
-		//
-		map.put("msgCd", "MEC00000");
+        //遍历读取数据
+        List<TUser> insertList = organizeData(dataMaps);
+        List<TUser> subList;
+        int insertCount = 1000;
+        int result = 0;
+        int insertSum = (dataMaps.size() % insertCount == 0) ? (dataMaps.size() / insertCount) : (dataMaps.size() / insertCount + 1);
+        for (int i = 0; i < insertSum; i++) {
+            subList = ExcelUtils.getChildList(i, insertSum, insertCount, insertList);
+            result = i;
+            LOGGER.info("批量添加用户信息", "", "批量添加用户信息结束");
+		${classNameX}Mapper.insertBatch(subList);
+        }
+        map.put("msgCd", "MEC00000");
         map.put("msgInfo", "导入成功");
         /*map.put("successCount", succCount);
         map.put("failureCount", failCount);*/
@@ -223,10 +232,24 @@ public class ${classNameD}Service {
 		List<${classNameD}> ${classNameX}List = new ArrayList<${classNameD}>();
 		for(int i=0;i<dataMaps.size();i++){
 			Map<String,Object> dataMap = dataMaps.get(i);
-			//在此处手动添加要提取的值放入list中
-			//可以在次数对数据特定处理
 			${classNameD} po = new ${classNameD}();
-			${classNameX}List.add(po);
+        <#list insertCarrays as tableCarray>
+            <#if tableCarray.columnNameX == "uuid">
+            po.set${tableCarray.columnNameD}(UuidUtil.getUUID());
+            </#if>
+            <#if tableCarray.queryImport == "01">
+                <#if tableCarray.dataType == "String">
+            po.set${tableCarray.columnNameD}(String.valueOf(dataMap.get("${tableCarray.columnNameX}")));
+                </#if>
+                <#if tableCarray.dataType == "BigDecimal">
+            po.set${tableCarray.columnNameD}(BigDecimal.valueOf(dataMap.get("${tableCarray.columnNameX}")));
+                </#if>
+                <#if tableCarray.dataType == "int">
+            po.set${tableCarray.columnNameD}(Integer.valueOf(dataMap.geget("${tableCarray.columnNameX}")));
+                </#if>
+            </#if>
+         </#list>
+        ${classNameX}List.add(po);
 		}
 		return ${classNameX}List;
 	}

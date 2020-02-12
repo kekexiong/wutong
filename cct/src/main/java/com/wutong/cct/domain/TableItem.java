@@ -19,6 +19,7 @@ public class TableItem {
 	private String queryView;//详情页面展示字段
 	private String isAddColumnName;//是否是添加字段 0:不是；1：是
 	private String queryExport;//导出字段
+	private String queryImport; //导入字段
 	public String getColumnName() {
 		return columnName;
 	}
@@ -161,5 +162,13 @@ public class TableItem {
 
 	public void setQueryExport(String queryExport) {
 		this.queryExport = queryExport;
+	}
+
+	public String getQueryImport() {
+		return queryImport;
+	}
+
+	public void setQueryImport(String queryImport) {
+		this.queryImport = queryImport;
 	}
 }

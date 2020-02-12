@@ -40,19 +40,6 @@
         FROM T_USER
         <include refid="whereQueryCondition"></include>
     </select>
-    <insert id="insert" parameterType="com.wutong.demo.domain.TUser">
-        INSERT INTO T_USER (
-                    name,
-                    age,
-                    tel,
-                    uuid
-        ) VALUES (
-                    #{name,jdbcType=VARCHAR},
-                    #{age,jdbcType=VARCHAR},
-                    #{tel,jdbcType=VARCHAR},
-                    #{uuid,jdbcType=VARCHAR}
-        )
-    </insert>
     <select id="getByKey" parameterType="com.wutong.demo.domain.TUser" resultMap="tUserMap">
         SELECT
             name, age, tel, uuid
@@ -61,6 +48,35 @@
         WHERE
               uuid=#{uuid}
     </select>
+    <insert id="insert" parameterType="com.wutong.demo.domain.TUser">
+        INSERT INTO T_USER (
+                name,
+                age,
+                tel,
+                uuid
+        ) VALUES (
+                #{name,jdbcType=VARCHAR},
+                #{age,jdbcType=VARCHAR},
+                #{tel,jdbcType=VARCHAR},
+                #{uuid,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO T_USER(
+            name,
+                        age,
+                        tel,
+                        uuid
+            )
+        <foreach collection="list" item="item" index="index" separator="union all">
+            SELECT
+                #{item.name,jdbcType=VARCHAR},
+                #{item.age,jdbcType=VARCHAR},
+                #{item.tel,jdbcType=VARCHAR},
+                #{item.uuid,jdbcType=VARCHAR}
+            FROM DUAL
+        </foreach>
+    </insert>
     <update id="update" parameterType="com.wutong.demo.domain.TUser">
         UPDATE T_USER
         SET

@@ -31,6 +31,7 @@ public class TableService {
                 itemList.get(i).setQueryExport("√");
                 itemList.get(i).setQueryType("√");
                 itemList.get(i).setQueryView("√");
+                itemList.get(i).setQueryImport("√");
             }
             if ("VARCHAR2".equals(itemList.get(i).getColumnName())) {
 

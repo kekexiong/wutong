@@ -1,9 +1,7 @@
 package com.wutong.demo.service;
 import java.util.*;
 
-import com.wutong.demo.domain.ImportError;
-import com.wutong.demo.util.ExcelUtils;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import com.wutong.demo.util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.wutong.demo.domain.TUser;
@@ -13,6 +11,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import com.wutong.demo.util.FileUtil;
+import com.wutong.demo.domain.ImportError;
+import com.wutong.demo.util.ExcelUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  TUserService
  * @author zhao_qg
- * @date   20200212 09:43:50
+ * @date   20200212 17:24:43
  */
  @Service
 public class TUserService {
@@ -42,7 +43,7 @@ public class TUserService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200212 09:43:50
+ 	 * @date   20200212 17:24:43
 	 * @param map
 	 * @return
 	 */
@@ -52,7 +53,7 @@ public class TUserService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200212 09:43:50
+ 	 * @date   20200212 17:24:43
 	 * @param map
 	 * @return
 	 */
@@ -62,7 +63,7 @@ public class TUserService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200212 09:43:50
+ 	 * @date   20200212 17:24:43
 	 * @param paramVo
 	 * @return
 	 */
@@ -73,7 +74,7 @@ public class TUserService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200212 09:43:50
+ 	 * @date   20200212 17:24:43
 	 * @param tUser
 	 * @return
 	 */
@@ -83,7 +84,7 @@ public class TUserService {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200212 09:43:50
+ 	 * @date   20200212 17:24:43
 	 * @param tUser
 	 * @return
 	 */
@@ -93,7 +94,7 @@ public class TUserService {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200212 09:43:50
+ 	 * @date   20200212 17:24:43
 	 * @param map
 	 * @return
 	 */
@@ -123,13 +124,19 @@ public class TUserService {
 		if (!(Boolean) map.get("success")) {
             return map;
         }
-		//遍历读取数据
-		List<TUser> payRefImpTmpList = organizeData(dataMaps);
-		//可以在次数对数据特定处理
-		//
-		//
-		//
-		map.put("msgCd", "MEC00000");
+        //遍历读取数据
+        List<TUser> insertList = organizeData(dataMaps);
+        List<TUser> subList;
+        int insertCount = 1000;
+        int result = 0;
+        int insertSum = (dataMaps.size() % insertCount == 0) ? (dataMaps.size() / insertCount) : (dataMaps.size() / insertCount + 1);
+        for (int i = 0; i < insertSum; i++) {
+            subList = ExcelUtils.getChildList(i, insertSum, insertCount, insertList);
+            result = i;
+            LOGGER.info("批量添加用户信息", "", "批量添加用户信息结束");
+		tUserMapper.insertBatch(subList);
+        }
+        map.put("msgCd", "MEC00000");
         map.put("msgInfo", "导入成功");
         /*map.put("successCount", succCount);
         map.put("failureCount", failCount);*/
@@ -201,10 +208,12 @@ public class TUserService {
 		List<TUser> tUserList = new ArrayList<TUser>();
 		for(int i=0;i<dataMaps.size();i++){
 			Map<String,Object> dataMap = dataMaps.get(i);
-			//在此处手动添加要提取的值放入list中
-			//可以在次数对数据特定处理
 			TUser po = new TUser();
-			tUserList.add(po);
+            po.setName(String.valueOf(dataMap.get("name")));
+            po.setAge(String.valueOf(dataMap.get("age")));
+            po.setTel(String.valueOf(dataMap.get("tel")));
+            po.setUuid(UuidUtil.getUUID());
+        tUserList.add(po);
 		}
 		return tUserList;
 	}
@@ -220,7 +229,7 @@ public class TUserService {
 		int count = erroList.size();
         int pageSize = 10000;
         List<Map<String, Object>> infoList;
-        String[] tableName = {"错误位置","错误原因"};
+        String[] tableName = {"错误位置","年龄","电话"};
         String[] tableValue = {"position","failReason"};
         SXSSFWorkbook swb = new SXSSFWorkbook(10000);
             Sheet sheet = swb.createSheet("Sheet");

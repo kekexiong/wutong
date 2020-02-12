@@ -1,6 +1,7 @@
 package com.wutong.demo.util;
 
 import com.wutong.demo.domain.ImportError;
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -371,10 +372,33 @@ public class ExcelUtils {
                 }
             }
         }
-        logger.info("#批量导入操作卡BIN信息#遍历成功，有" + list.size() + "条数据！");
+        logger.info("#批量导入操作#遍历成功，有" + list.size() + "条数据！");
         msg.put("success", "true");
         return list;
 
+    }
+
+
+    /**
+     * 获取对应的子List
+     *
+     * @param i
+     * @param insertSum
+     * @param insertCount
+     * @param list
+     * @return
+     * @author liudong[liu_dong@suixingpay.com]
+     * @date 20180130
+     */
+    public static <T> List<T> getChildList(int i, int insertSum, int insertCount, List<T> list) {
+
+        List<T> childList = new ArrayList<T>();
+        if (i == (insertSum - 1)) {
+            childList = list.subList(i * insertCount, list.size());
+        } else {
+            childList = list.subList(i * insertCount, (i + 1) * insertCount);
+        }
+        return childList;
     }
 
 }

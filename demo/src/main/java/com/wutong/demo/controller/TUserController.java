@@ -1,9 +1,8 @@
 package com.wutong.demo.controller;
 import java.util.*;
-
-import com.wutong.demo.domain.ImportError;
 import com.wutong.demo.domain.TUser;
 import com.wutong.demo.service.TUserService;
+import com.wutong.demo.domain.ImportError;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +24,7 @@ import java.io.File;
 /**
  * @description  用户控制层
  * @author zhao_qg
- * @date   20200212 09:43:50
+ * @date   20200212 17:24:43
  */
 @Controller
 @RequestMapping("/demo/tUser")
@@ -43,7 +42,7 @@ public class TUserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -73,7 +72,7 @@ public class TUserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -97,7 +96,7 @@ public class TUserController extends BaseController {
      * @param tUser
      * @return map
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -124,7 +123,7 @@ public class TUserController extends BaseController {
      * @param tUser
      * @return map
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -150,7 +149,7 @@ public class TUserController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
     @ResponseBody
@@ -184,7 +183,7 @@ public class TUserController extends BaseController {
      * @param response
      * @return map
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "/downloadTemplate")
     public void downloadBatchTemplate(HttpServletRequest request, HttpServletResponse response) {
@@ -208,7 +207,7 @@ public class TUserController extends BaseController {
      * @param request
      * @return map
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "importExcel", method = RequestMethod.POST)
     @ResponseBody
@@ -239,7 +238,7 @@ public class TUserController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "getFailExport", method = RequestMethod.GET)
     @ResponseBody
@@ -253,7 +252,7 @@ public class TUserController extends BaseController {
                 for (int i = 0; i < erroList.size(); i++) {
                     Map<String, Object> map = new HashMap<String, Object>();
                     ImportError po = erroList.get(i);
-                    String bnkCd = po.getBnkCd();
+                    String bnkCd =  po.getPosition();
                     String failReason = po.getFailReason();
                     map.put("bnkCd", bnkCd);
                     map.put("failReason", failReason);
@@ -274,7 +273,7 @@ public class TUserController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200212 09:43:50
+     * @date 20200212 17:24:43
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {
