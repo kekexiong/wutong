@@ -20,7 +20,7 @@
 
 <%--弹框设置--%>
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
-<link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+<%--<link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />--%>
 <!-- tree -->
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
 
@@ -42,7 +42,7 @@
 <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+<%--<script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>--%>
 <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->

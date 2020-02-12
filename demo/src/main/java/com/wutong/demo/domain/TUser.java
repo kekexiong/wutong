@@ -4,7 +4,7 @@ import lombok.Data;
 /**
  * @description  TUserdomain
  * @author zhao_qg
- * @date   20200211 18:17:22
+ * @date   20200211 21:38:45
  * @review zhao_qg/2020-02-11
  */
 @Data

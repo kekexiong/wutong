@@ -1,12 +1,5 @@
 package com.wutong.demo.controller;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,58 +77,6 @@ public abstract class BaseController {
         rsMap.put("success", true);
         rsMap.put("msg", message);
         return rsMap;
-    }
-
-
-    /**
-     * 文件下载
-     * @param file
-     * @param response
-     */
-    protected void downloadFile(File file, HttpServletResponse response) {
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        // 设置被下载而不是被打开
-        response.setContentType("application/gorce-download");
-        //Content-disposition其实可以控制用户请求所得的内容存为一个文件的时候提供一个默认的文件名，文件直接在浏览器上显示或者在访问时弹出文件下载对话框。
-        response.addHeader("Content-disposition", "attachment;fileName=Delphine Mantoulet - Java.mp3");
-        //NIO 实现
-        int bufferSize = 1024 * 1024 * 2;
-        FileChannel fileChannel = fileInputStream.getChannel();
-        // 6x128 KB = 768KB byte buffer
-
-        ByteBuffer buff = ByteBuffer.allocateDirect(1024 * 1024 * 4);
-        byte[] byteArr = new byte[bufferSize];
-        int nRead, nGet;
-
-        try {
-            while ((nRead = fileChannel.read(buff)) != -1) {
-                if (nRead == 0) {
-                    continue;
-                }
-                buff.position(0);
-                buff.limit(nRead);
-                while (buff.hasRemaining()) {
-                    nGet = Math.min(buff.remaining(), bufferSize);
-                    // read bytes from disk
-                    buff.get(byteArr, 0, nGet);
-                    // write bytes to output
-                    response.getOutputStream().write(byteArr);
-                }
-                buff.clear();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            buff.clear();
-//                fileChannel.close();
-//                fileInputStream.close();
-        }
-
     }
 
 }

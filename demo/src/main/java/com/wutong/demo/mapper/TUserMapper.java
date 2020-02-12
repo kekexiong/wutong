@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @title  TUserMapper
  * @author zhao_qg
- * @date   20200211 18:17:22
+ * @date   20200211 21:38:45
  */
 @Component
 public interface TUserMapper {
@@ -16,7 +16,7 @@ public interface TUserMapper {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200211 18:17:22
+ 	 * @date   20200211 21:38:45
 	 * @param map
 	 * @return
 	 */
@@ -24,7 +24,7 @@ public interface TUserMapper {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200211 18:17:22
+ 	 * @date   20200211 21:38:45
 	 * @param map
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public interface TUserMapper {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200211 18:17:22
+ 	 * @date   20200211 21:38:45
 	 * @param paramVo
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public interface TUserMapper {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200211 18:17:22
+ 	 * @date   20200211 21:38:45
 	 * @param tUser
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public interface TUserMapper {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date 20200211 18:17:22
+ 	 * @date 20200211 21:38:45
 	 * @param tUser
 	 * @return
 	 */	public int insert(TUser tUser);
@@ -58,7 +58,7 @@ public interface TUserMapper {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200211 18:17:22
+ 	 * @date   20200211 21:38:45
 	 * @param map
 	 * @return
 	 */

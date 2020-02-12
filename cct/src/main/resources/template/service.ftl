@@ -8,6 +8,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import com.wutong.demo.util.FileUtil;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -132,19 +133,13 @@ public class ${classNameD}Service {
 		LOGGER.info("批量添加${businessName}信息", "", "批量添加${businessName}信息开始");
 		List<Map<String, Object>> reList = new ArrayList<Map<String, Object>>();//存放读取数据list
 		Map<String, Object> map = new HashMap<String, Object>();//返回结果map
-		List<BnkRetPo> errors = new ArrayList<BnkRetPo>();//存放错误信息list集合
+		List<ImportError> errors = new ArrayList<ImportError>();//存放错误信息list集合
 		//设置表头信息
-		String[] fields = {
-				//在此处手动添加导入文件的表头信息
-		};
+		String[] fields = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">"${tableCarray.comments}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		//设置表头对应字段
-		String [] columnName = {
-				//在此处手动添加导入文件的表头对应字段
-		};
+		String [] columnName = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">"${tableCarray.columnNameX}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		//字段对应的长度限制
-		int [] sizeLimit = {
-				//在此处手动添加导入文件的内容长度限制
-		};
+		int [] sizeLimit = {<#list exprotCarrays as tableCarray><#if tableCarray.queryExport == "01">${tableCarray.dataLength}<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		List<Map<String, Object>> dataMaps = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
 		this.fileValid(request, fields,  columnName, sizeLimit, reList, errors, dataMaps, map);
 		if (!(Boolean) map.get("success")) {
@@ -178,11 +173,11 @@ public class ${classNameD}Service {
      * @date:
      */
 	public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName,int[] sizeLimit,
-			List<Map<String, Object>> reList, List<BnkRetPo> errors,List<Map<String, Object>> dataMaps,
+			List<Map<String, Object>> reList, List<ImportError> errors,List<Map<String, Object>> dataMaps,
 			Map<String, Object> map){
 		//获取上传文件
-		FileUtils fileUtils = new FileUtils();
-		InputStream input = fileUtils.getUploadInputStream(request, map);
+		FileUtil fileUtil = new FileUtil();
+		InputStream input = fileUtil.getUploadInputStream(request, map);
 		if (input == null) {
             LOGGER.info("批量操作${businessName}信息", "", "获取上传的文件流失败");
             map.put("success", false);
@@ -193,16 +188,15 @@ public class ${classNameD}Service {
 		//检查文件是否超出范围
 		XSSFWorkbook xwb = ExcelUtils.checkUploadExcel(input, map);
 		if (xwb == null) {
-            LOGGER.info(LogUtils.genLogs(LogType.BAP, "批量操作${businessName}信息", "", "上传的文件有问题"));
+            LOGGER.info("批量操作${businessName}信息", "", "上传的文件有问题");
             map.put("success", false);
             map.put("msgCd", "MEC99999");
             map.put("msgInfo", map.get("msg"));
             return map;
         }
-		//调用ExcelUtils.readExcelForTSesBinUseful方法，要考虑这个方法是否满足读取需要，如果不满足   则需要自己拷贝并修改读取方法
-		ExcelUtils.readExcelForTSesBinUseful(xwb, fields, columnName, sizeLimit, reList, map, errors, dataMaps);
+		ExcelUtils.readExcel(xwb, fields, columnName, sizeLimit, reList, map, errors, dataMaps);
 		if (map.get("success").equals("false")) {
-            LOGGER.info(LogUtils.genLogs(LogType.BAP, "批量操作${businessName}信息", "", "上传的文件有问题"));
+            LOGGER.info("批量操作${businessName}信息", "", "上传的文件有问题");
             map.put("success", false);
             map.put("msgCd", "MEC99999");
             map.put("msgInfo", map.get("msg"));
@@ -244,28 +238,44 @@ public class ${classNameD}Service {
      * @author:${classAuthor}
      * @date:
      */
-	public File exportExcelFail (List<Map<String, Object>> erroList, String loginName) throws Exception{
-		String excelTemplateID = "${classNameX}FailExcel";
-        String filePath = FilePathConfigs.ses_file_path + File.separator + excelTemplateID + File.separator;
-        FileUtil.mkdirs(filePath);
-        String fileId = DateUtils.getCurTime(TimeFormater.yyyyMMddhhmmssSSS);
-        filePath = filePath + loginName + "_" + excelTemplateID + fileId + File.separator;
-        FileUtil.mkdirs(filePath);
-        // 1.获取excel模版
-        ExcelTemplateType excelTemplate = ExcelXmlModelFactory.getInstance().getExcelInfo(excelTemplateID);
-        // 2.创建excel工具对象
-        ExcelExportUtil excelExport = new ExcelExportUtil(excelTemplate);
-        // 3.根据模版创建HSSFWorkbook对象
-        excelExport.createWorkBookByTemplate();
-        // 4.写数据
-        excelExport.writeQueryResult(erroList);
-        // 5.生成excel文件
-        String fileName = "${classNameX}" + System.currentTimeMillis() + ".xls";
-        File excelFile = excelExport.genExcel(filePath + fileName);
-        return excelFile;
+	public SXSSFWorkbook exportExcelFail (List<Map<String, Object>> erroList, String loginName) throws Exception{
+		int count = erroList.size();
+        int pageSize = 10000;
+        List<Map<String, Object>> infoList;
+        String[] tableName = {"错误位置","年龄","电话"};
+        String[] tableValue = {"position","failReason"};
+        SXSSFWorkbook swb = new SXSSFWorkbook(10000);
+            Sheet sheet = swb.createSheet("Sheet");
+            Row tableNameRow = sheet.createRow(0);
+            for (int j = 0; j < tableName.length; j++) {
+                tableNameRow.createCell(j).setCellValue(tableName[j]);
+            }
+            for (int k = 0; k < count; k++) {
+                for (int l = 0; l < erroList.size(); l++) {
+
+                    int curRows = k + l + 1;
+                    Row row = sheet.createRow(curRows);
+                    Map<String, Object> content = erroList.get(l);
+
+                    for (int m = 0; m < tableValue.length; m++) {
+                        row.createCell(m).setCellValue(String.valueOf(content.get(tableValue[m])));
+                    }
+                    if (0 == curRows % pageSize) {
+                        LOGGER.info("SXSSF已处理数据条数" + erroList.size());
+                    }
+                }
+                erroList.clear();
+            }
+        return swb;
 	}
 	</#if>
 	<#if isExport == "01" >
+	/**
+	 * 导出
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);
         int pageSize = 10000; //每次查询10000条

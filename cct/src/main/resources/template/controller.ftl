@@ -287,7 +287,7 @@ public class ${classNameD}Controller extends BaseController {
             rsMap = ${classNameX}Service.batchOperate(request);
             if (rsMap.get("errors") != null) {
                 @SuppressWarnings("unchecked")
-                List<BnkRetPo> errlist = (List<BnkRetPo>) rsMap.get("errors");
+                List<ImportError> errlist = (List<ImportError>) rsMap.get("errors");
                 session.setAttribute("errlist", errlist);
             }
             return rsMap;
@@ -314,20 +314,21 @@ public class ${classNameD}Controller extends BaseController {
         try{
             //从session中获取错误信息list
             @SuppressWarnings("unchecked")
-            List<BnkRetPo> erroList = (List<BnkRetPo>) session.getAttribute("errlist");
+            List<ImportError> erroList = (List<ImportError>) session.getAttribute("errlist");
             List<Map<String, Object>> inList = null;
             if(erroList.size()>0){inList = new ArrayList<Map<String, Object>>();
                 for (int i = 0; i < erroList.size(); i++) {
                     Map<String, Object> map = new HashMap<String, Object>();
-                    BnkRetPo po = erroList.get(i);
+                    ImportError po = erroList.get(i);
                     String bnkCd = po.getBnkCd();
                     String failReason = po.getFailReason();
                     map.put("bnkCd", bnkCd);
                     map.put("failReason", failReason);
                     inList.add(map);
                 }
-                File file = ${classNameX}Service.exportExcelFail(inList, SysUtils.getLoginName());
-                downloadFile(file, response);
+                String fileName = "导入错误信息-" + DateUtil.getCurDTTM() + ".xlsx";
+                SXSSFWorkbook swb = ${classNameX}Service.exportExcelFail(inList, SysUtils.getLoginName());
+                DownloadFileUtil.getInstance().downLoadExcel(swb, fileName, response);
             }
         } catch (Exception e){
             LOGGER.error("验证失败结果导出异常，", e);

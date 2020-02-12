@@ -21,3 +21,5 @@ mybatis:
 #  mybatis 对应的 .xml文件路径
   mapper-locations: classpath:mapper/*.xml
 #  多层级目录  mapper-locations: classpath:mapper/**/**.xml
+file:
+  importpath: tmp/
