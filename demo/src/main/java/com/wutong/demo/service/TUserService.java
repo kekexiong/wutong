@@ -3,7 +3,6 @@ import java.util.*;
 
 import com.wutong.demo.domain.ImportError;
 import com.wutong.demo.util.ExcelUtils;
-import com.wutong.demo.util.FileUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import com.wutong.demo.util.FileUtil;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  TUserService
  * @author zhao_qg
- * @date   20200211 21:38:45
+ * @date   20200212 09:43:50
  */
  @Service
 public class TUserService {
@@ -42,7 +42,7 @@ public class TUserService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200211 21:38:45
+ 	 * @date   20200212 09:43:50
 	 * @param map
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class TUserService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200211 21:38:45
+ 	 * @date   20200212 09:43:50
 	 * @param map
 	 * @return
 	 */
@@ -62,7 +62,7 @@ public class TUserService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200211 21:38:45
+ 	 * @date   20200212 09:43:50
 	 * @param paramVo
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class TUserService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200211 21:38:45
+ 	 * @date   20200212 09:43:50
 	 * @param tUser
 	 * @return
 	 */
@@ -83,7 +83,7 @@ public class TUserService {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200211 21:38:45
+ 	 * @date   20200212 09:43:50
 	 * @param tUser
 	 * @return
 	 */
@@ -93,7 +93,7 @@ public class TUserService {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200211 21:38:45
+ 	 * @date   20200212 09:43:50
 	 * @param map
 	 * @return
 	 */
@@ -220,7 +220,7 @@ public class TUserService {
 		int count = erroList.size();
         int pageSize = 10000;
         List<Map<String, Object>> infoList;
-        String[] tableName = {"错误位置","年龄","电话"};
+        String[] tableName = {"错误位置","错误原因"};
         String[] tableValue = {"position","failReason"};
         SXSSFWorkbook swb = new SXSSFWorkbook(10000);
             Sheet sheet = swb.createSheet("Sheet");

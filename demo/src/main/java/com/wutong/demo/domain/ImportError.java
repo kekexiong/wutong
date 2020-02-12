@@ -1,20 +1,28 @@
 package com.wutong.demo.domain;
 
 /**
- * describe: BnkRetPo
+ * describe: ImportError
  * date 2019/2/26
  */
-
 public class ImportError {
-    private String bnkCd;
+    private String position;
+    private String importValue;
     private String failReason;
 
-    public String getBnkCd() {
-        return bnkCd;
+    public String getPosition() {
+        return position;
     }
 
-    public void setBnkCd(String bnkCd) {
-        this.bnkCd = bnkCd;
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getImportValue() {
+        return importValue;
+    }
+
+    public void setImportValue(String importValue) {
+        this.importValue = importValue;
     }
 
     public String getFailReason() {
@@ -25,14 +33,14 @@ public class ImportError {
         this.failReason = failReason;
     }
 
-    public ImportError(String bnkCd, String failReason) {
+    public ImportError(String position,String importValue, String failReason) {
         super();
-        this.bnkCd = bnkCd;
+        this.position = position;
         this.failReason = failReason;
     }
 
     @Override
     public String toString() {
-        return "BnkRetPo [bnkCd=" + bnkCd + ", failReason=" + failReason + "]";
+        return "[position=" + position + ",importValue=" + importValue + ", failReason=" + failReason + "]";
     }
 }

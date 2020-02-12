@@ -42,7 +42,6 @@ public class ExcelUtils {
     private static final Logger logger = LoggerFactory.getLogger(ExcelUtils.class);
 
     /**
-     *
      * @param input
      * @param msg
      * @return
@@ -298,29 +297,23 @@ public class ExcelUtils {
     }
 
     public static List<Map<String, Object>> readExcel(XSSFWorkbook xwb, String[] fields,
-                                                                      String[] columnName, int[] sizeLimit, List<Map<String, Object>> infos, Map<String, Object> msg,
-                                                                      List<ImportError> errors, List<Map<String, Object>> list) {
+                                                      String[] columnName, int[] sizeLimit, List<Map<String, Object>> infos, Map<String, Object> msg,
+                                                      List<ImportError> errors, List<Map<String, Object>> list) {
         List<String> cellNumlist = Arrays.asList(cellNum);
         msg.put("success", "false");
         logger.info("#批量导入操作，开始遍历数据表！");
         XSSFSheet sheet = xwb.getSheetAt(0); //  获得该工作区的第一个sheet
-        XSSFRow row = null;
         XSSFCell cell = null;
         Map<String, Object> map = null;
-        String tSesBin = (String) msg.get("tSesBin");
-        int num = 0;
-        if ("1".equals(tSesBin)) {
-            num = 2;
-        }
         // 循环输出表格中的内容
-        for (int i = num; i <= sheet.getLastRowNum(); i++) {
-            row = sheet.getRow(i);
+        for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+            XSSFRow row = sheet.getRow(i);
             // 防止excel文件有空行
             if (isBlankRow(row)) {
                 continue;
             }
             // 获得表头内容，并检查
-            if (i == num) {
+            if (i == 0) {
                 for (int j = 0; j < sizeLimit.length; j++) {
                     cell = row.getCell(j);
                     if (cell != null) {
@@ -340,19 +333,11 @@ public class ExcelUtils {
                 }
             } else {
                 map = new HashMap<String, Object>();
-                Map<String, Object> info = null;
                 for (int j = 0; j < sizeLimit.length; j++) {
-                    String crdNum = "";
-                    if ("1".equals(tSesBin) && row.getCell(9) != null) {
-                        crdNum = StringUtils.trim(row.getCell(9).getStringCellValue());
-                    }
                     cell = row.getCell(j);
-                    info = new HashMap<String, Object>();
                     if (cellNumlist.contains(String.valueOf(j))) {
                         if (cell == null) {
-                            info.put("cdeCd", crdNum);
-                            info.put("failReason", "excel文件里第" + (i + 1) + "行第" + (j + 1) + "列缺少必填项！");
-                            errors.add(new ImportError(crdNum, "excel文件里第" + (i + 1) + "行第" + (j + 1) + "列缺少必填项！"));
+                            errors.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", String.valueOf(j), "列缺少必填项！"));
                             break;
                         }
                     }
@@ -371,27 +356,18 @@ public class ExcelUtils {
                     }
                     if (cellNumlist.contains(String.valueOf(j))) {
                         if ("".equals(string.trim())) {
-                            info.put("cdeCd", crdNum);
-                            info.put("failReason", "excel文件里第" + (i + 1) + "行第" + (j + 1) + "列必填项未输入！");
-                            errors.add(new ImportError(crdNum, "excel文件里第" + (i + 1) + "行第" + (j + 1) + "列必填项未输入！"));
+                            errors.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", String.valueOf(j), "列必填项未输入！"));
                             break;
                         }
                     }
                     if (string.length() > sizeLimit[j]) {
-                        info.put("cdeCd", crdNum);
-                        info.put("failReason",
-                                "excel文件里第" + (i + 1) + "行第" + (j + 1) + "列输入值不在允许范围内,范围[" + sizeLimit[j] + "]");
-                        errors.add(new ImportError(crdNum,
-                                "excel文件里第" + (i + 1) + "行第" + (j + 1) + "列输入值不在允许范围内,范围[" + sizeLimit[j] + "]"));
+                        errors.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", String.valueOf(j), "列输入值不在允许范围内,范围[" + sizeLimit[j] + "]"));
                         break;
                     }
                     map.put(columnName[j], string.trim());
                 }
-                if (map != null && map.size() > 0 && !map.isEmpty() && info.isEmpty()) {
+                if (map != null && map.size() > 0 && !map.isEmpty() && errors.isEmpty()) {
                     list.add(map);
-                }
-                if (info != null && info.size() > 0 && !info.isEmpty()) {
-                    infos.add(info);
                 }
             }
         }
