@@ -80,7 +80,7 @@ public class ${classNameD}Controller extends BaseController {
                 LOGGER.info(opNm, paramVo.toString(), "--begin");
                 Map<String, Object> map = setParams(start, limit);
                 map.put("${classNameX}", paramVo);
-                session.setAttribute("queryMecTOneAcRateParam", map);
+                session.setAttribute("query${classNameD}Param", map);
                 List<Map<String, Object>> list = ${classNameX}Service.findByCondition(map);
                 int count = ${classNameX}Service.findByConditionCount(map);
                 LOGGER.info(opNm, count, "--end");
@@ -344,7 +344,7 @@ public class ${classNameD}Controller extends BaseController {
     public void export(HttpSession session, HttpServletResponse response) {
         String opNm = "${businessName}信息管理-导出";
         String fileName = "${businessName}" + DateUtil.getCurDTTM() + ".xlsx";
-        Map<String, Object> paraMap = (Map<String, Object>) session.getAttribute("queryMecTOneAcRateParam");
+        Map<String, Object> paraMap = (Map<String, Object>) session.getAttribute("query${classNameD}Param");
         long startTime = System.currentTimeMillis();
         Map<String, Object> paramsMap = (Map<String, Object>) session.getAttribute("queryParams");
         try {

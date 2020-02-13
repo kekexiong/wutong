@@ -13,6 +13,7 @@ import com.wutong.demo.domain.ImportError;
 import com.wutong.demo.util.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.wutong.demo.util.UuidUtil;
+import com.google.common.collect.Lists;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -135,90 +136,83 @@ public class ${classNameD}Service {
      */
 	public Map<String, Object> batchOperate (HttpServletRequest request){
 		LOGGER.info("批量添加${businessName}信息", "", "批量添加${businessName}信息开始");
-		List<Map<String, Object>> reList = new ArrayList<Map<String, Object>>();//存放读取数据list
-		Map<String, Object> map = new HashMap<String, Object>();//返回结果map
-		List<ImportError> errors = new ArrayList<ImportError>();//存放错误信息list集合
+		Map<String, Object> resultMap = new HashMap<String, Object>();//返回结果map
 		//设置表头信息
 		String[] fields = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">"${tableCarray.comments}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		//设置表头对应字段
 		String [] columnName = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">"${tableCarray.columnNameX}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		//字段对应的长度限制
 		int [] sizeLimit = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">${tableCarray.dataLength}<#if (tableCarray_has_next)>, </#if></#if></#list>};
-        List<Map<String, Object>> dataMaps = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
-        this.fileValid(request, fields, columnName, sizeLimit, dataMaps, map);
-        map.put("msgCd", "MEC00000");
-        if (!(Boolean) map.get("success")) {
-            return map;
+        List<Map<String, Object>> readDataList = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
+        resultMap.put("msgCd", "FILE0000");
+        this.fileValid(request, fields, columnName, sizeLimit, readDataList, resultMap);
+        resultMap.put("successCount", 0);
+        if (!resultMap.get("msgCd").equals("FILE0000") || !Lists.newArrayList(resultMap.get("errorList")).isEmpty()) {
+            return resultMap;
         }
         //遍历读取数据
-        List<TUser> insertList = organizeData(dataMaps);
+        List<TUser> insertList = organizeData(readDataList);
         List<TUser> subList;
         int insertCount = 1000;
         int result = 0;
-        int insertSum = (dataMaps.size() % insertCount == 0) ? (dataMaps.size() / insertCount) : (dataMaps.size() / insertCount + 1);
+        int insertSum = (readDataList.size() % insertCount == 0) ? (readDataList.size() / insertCount) : (readDataList.size() / insertCount + 1);
         for (int i = 0; i < insertSum; i++) {
             subList = ExcelUtils.getChildList(i, insertSum, insertCount, insertList);
             result = i;
             LOGGER.info("批量添加${businessName}信息", "", "批量添加用户信息结束");
             result = result + ${classNameX}Mapper.insertBatch(subList);
         }
-        map.put("msgCd", "MEC00000");
-        map.put("msgInfo", "导入成功");
-        map.put("successCount", result);
-        LOGGER.info("#批量添加${businessName}信息#批量导入添加成功#map:{}", map);
-        return map;
+        resultMap.put("msgInfo", "导入成功");
+        resultMap.put("successCount", result);
+        LOGGER.info("#批量添加${businessName}信息#批量导入添加成功#map:{}", resultMap);
+        return resultMap;
     }
 
     /**
-     * @param dataMaps
      * @description:读取Excel
+     * @param request
      * @return:List<TUser>
      * @author:zhao_qg
      * @date:${classTime}
      */
-    public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName, int[] sizeLimit, List<Map<String, Object>> dataMaps,
-                                         Map<String, Object> map) {
+    public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName, int[] sizeLimit, List<Map<String, Object>> readDataList,
+                                         Map<String, Object> resultMap) {
         //获取上传文件
         FileUtil fileUtil = new FileUtil();
-        InputStream input = fileUtil.getUploadInputStream(request, map);
+        InputStream input = fileUtil.getUploadInputStream(request, resultMap);
         if (input == null) {
             LOGGER.info("批量操作${businessName}信息", "", "获取上传的文件流失败");
-            map.put("success", false);
-            map.put("msgCd", "MEC99999");
-            map.put("msgInfo", map.get("msg"));
-            return map;
+            resultMap.put("msgCd", "FILE9901");
+            resultMap.put("msgInfo", resultMap.get("msg"));
+            return resultMap;
         }
         //检查文件是否超出范围
-        XSSFWorkbook xwb = ExcelUtils.checkUploadExcel(input, map);
+        XSSFWorkbook xwb = ExcelUtils.checkUploadExcel(input, resultMap);
         if (xwb == null) {
             LOGGER.info("批量操作${businessName}信息", "", "上传的文件有问题");
-            map.put("success", false);
-            map.put("msgCd", "MEC99999");
-            map.put("msgInfo", map.get("msg"));
-            return map;
+            resultMap.put("msgCd", "FILE9902");
+            resultMap.put("msgInfo", resultMap.get("msg"));
+            return resultMap;
         }
 
         // 读取excel
-        List<ImportError> errorList = ExcelUtils.readExcel(xwb, fields, columnName, sizeLimit, dataMaps);
+        List<ImportError> errorList = ExcelUtils.readExcel(xwb, fields, columnName, sizeLimit, readDataList);
         if (errorList.size() > 0) {
-            LOGGER.info("批量操作${businessName}信息", "", "上传的文件有问题");
-            map.put("success", false);
-            map.put("msgCd", "MEC99999");
-            map.put("msgInfo", "读取文件错误");
+            resultMap.put("msgCd", "FILE0000");
+            resultMap.put("msgInfo", "读取文件错误");
             if (!errorList.isEmpty()) {
-                map.put("errorList", errorList);
-                map.put("hasError", true);
+                resultMap.put("errorList", errorList);
+                resultMap.put("failureCount", errorList.size());
+                resultMap.put("hasError", true);
             }
-            return map;
+            return resultMap;
         }
-        if (dataMaps.size() == 0) {
-            map.put("success", false);
-            map.put("msgCd", "MEC99999");
-            map.put("msgInfo", "导入excel文件无数据，请核对后再做操作！");
-            return map;
+        if (readDataList.size() == 0) {
+            resultMap.put("msgCd", "FILE9904");
+            resultMap.put("msgInfo", "导入excel文件无数据，请核对后再做操作！");
+            return resultMap;
         }
-        map.put("success", true);
-        return map;
+        return resultMap;
     }
 	/**
      * @description:读取Excel之后，保存数据

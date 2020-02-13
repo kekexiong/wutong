@@ -1106,13 +1106,13 @@
                             url : baseURL +'/${urlPackage}/${classNameX}/importExcel',
                             dataType: "json",
                             success: function(data){
-                                if (data.msgCd == 'MEC00000') {
+                                if (data.msgCd == 'FILE0000') {
                                     var type = $("#type").val();
                                     $('#importResultPanel > tbody').empty();
                                     var successCount = data.successCount;
                                     var failureCount = data.failureCount;
                                     $("#ResultWin").modal('show');
-                                    if(data.errors == null){
+                                    if(data.errorList == null){
                                         $("#errorCount").val("1");
                                     }
                                     if(data.hasError == true) {

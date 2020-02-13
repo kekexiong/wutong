@@ -5,10 +5,9 @@ import ${importPackage};
 import lombok.Data;
 
 /**
- * @description  ${classNameD}domain
+ * @description ${classNameD}domain
  * @author ${classAuthor}
- * @date   ${classTime}
- * @review ${reviewAuthor}/${reviewDate}
+ * @date ${classTime}
  */
 @Data
 public class ${classNameD} {

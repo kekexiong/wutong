@@ -852,18 +852,18 @@
                             url : baseURL +'/demo/tUser/importExcel',
                             dataType: "json",
                             success: function(data){
-                                if (data.msgCd == 'MEC00000') {
+                                if (data.msgCd == 'FILE0000') {
                                     var type = $("#type").val();
                                     $('#importResultPanel > tbody').empty();
                                     var successCount = data.successCount;
                                     var failureCount = data.failureCount;
                                     $("#ResultWin").modal('show');
-                                    if(data.errors == null){
+                                    if(data.errorList == null){
                                         $("#errorCount").val("1");
                                     }
                                     if(data.hasError == true) {
                                         $("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-                                        $.each(data.errors, function(index, obj) {
+                                        $.each(data.errorList, function(index, obj) {
                                             var tr = $("<tr></tr>").append($("<td></td>").text(index + 1));
                                             tr.append($("<td></td>").text(obj.position));
                                             tr.append($("<td></td>").text(obj.importValue));
