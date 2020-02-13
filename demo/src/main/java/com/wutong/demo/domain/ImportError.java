@@ -36,6 +36,7 @@ public class ImportError {
     public ImportError(String position,String importValue, String failReason) {
         super();
         this.position = position;
+        this.importValue = importValue;
         this.failReason = failReason;
     }
 

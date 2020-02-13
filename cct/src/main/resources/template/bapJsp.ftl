@@ -465,7 +465,8 @@
                                             <thead style="font-size: 2px">
                                             <tr>
                                                 <th>序号</th>
-                                                <th>主账号</th>
+                                                <th>错误位置</th>
+                                                <th>导入值</th>
                                                 <th>错误原因</th>
                                             </tr>
                                             </thead>
@@ -1116,9 +1117,10 @@
                                     }
                                     if(data.hasError == true) {
                                         $("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-                                        $.each(data.errors, function(index, obj) {
+                                        $.each(data.errorList, function(index, obj) {
                                             var tr = $("<tr></tr>").append($("<td></td>").text(index + 1));
-                                            tr.append($("<td></td>").text(obj.bnkCd));
+                                            tr.append($("<td></td>").text(obj.position));
+                                            tr.append($("<td></td>").text(obj.importValue));
                                             tr.append($("<td></td>").text(obj.failReason));
                                             $("#importResultPanel > tbody").append(tr);
                                         });

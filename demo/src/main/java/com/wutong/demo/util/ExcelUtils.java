@@ -1,7 +1,6 @@
 package com.wutong.demo.util;
 
 import com.wutong.demo.domain.ImportError;
-import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -297,11 +296,9 @@ public class ExcelUtils {
         return false;
     }
 
-    public static List<Map<String, Object>> readExcel(XSSFWorkbook xwb, String[] fields,
-                                                      String[] columnName, int[] sizeLimit, List<Map<String, Object>> infos, Map<String, Object> msg,
-                                                      List<ImportError> errors, List<Map<String, Object>> list) {
+    public static List<ImportError> readExcel(XSSFWorkbook xwb, String[] fields, String[] columnName, int[] sizeLimit, List<Map<String, Object>> list) {
+        List<ImportError> errorList = new ArrayList<ImportError>();//存放错误信息list集合
         List<String> cellNumlist = Arrays.asList(cellNum);
-        msg.put("success", "false");
         logger.info("#批量导入操作，开始遍历数据表！");
         XSSFSheet sheet = xwb.getSheetAt(0); //  获得该工作区的第一个sheet
         XSSFCell cell = null;
@@ -320,15 +317,15 @@ public class ExcelUtils {
                     if (cell != null) {
                         if (XSSFCell.CELL_TYPE_STRING == cell.getCellType()) {
                             if (!cell.getStringCellValue().trim().equals(fields[j])) {
-                                msg.put("msg", "第" + (j + 1) + "列excel文件表头信息不符！");
+                                errorList.add(new ImportError(+(1) + "行第" + (j + 1) + "列", String.valueOf(j), "列excel文件表头信息不符！"));
                                 return null;
                             }
                         } else {
-                            msg.put("msg", "第" + (i + 1) + "行第" + (j + 1) + "列单元格类型不是字符型！");
+                            errorList.add(new ImportError(+(1) + "行第" + (j + 1) + "列", String.valueOf(j), "列单元格类型不是字符型！"));
                             return null;
                         }
                     } else {
-                        msg.put("msg", "excel文件表头信息缺少！");
+                        errorList.add(new ImportError(+(1) + "行第" + (j + 1) + "列", String.valueOf(j), "excel文件表头信息缺少！"));
                         return null;
                     }
                 }
@@ -338,43 +335,42 @@ public class ExcelUtils {
                     cell = row.getCell(j);
                     if (cellNumlist.contains(String.valueOf(j))) {
                         if (cell == null) {
-                            errors.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", String.valueOf(j), "列缺少必填项！"));
+                            errorList.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", String.valueOf(j), "列缺少必填项！"));
                             break;
                         }
                     }
                     // 获取单元格内容
-                    String string = "";
+                    String strValue = "";
                     if (cell != null) {
                         if (XSSFCell.CELL_TYPE_STRING == cell.getCellType()) {
-                            string = StringUtils.trim(cell.getStringCellValue());
+                            strValue = StringUtils.trim(cell.getStringCellValue());
                         } else if (XSSFCell.CELL_TYPE_NUMERIC == cell.getCellType()) {
                             Double val = cell.getNumericCellValue();
                             DecimalFormat myformat = new DecimalFormat("0");
-                            string = (val != null) ? myformat.format(val) : "";
+                            strValue = (val != null) ? myformat.format(val) : "";
                         } else {
-                            string = StringUtils.trim(cell.getStringCellValue());
+                            strValue = StringUtils.trim(cell.getStringCellValue());
                         }
                     }
                     if (cellNumlist.contains(String.valueOf(j))) {
-                        if ("".equals(string.trim())) {
-                            errors.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", String.valueOf(j), "列必填项未输入！"));
+                        if ("".equals(strValue.trim())) {
+                            errorList.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", strValue, "列必填项未输入！"));
                             break;
                         }
                     }
-                    if (string.length() > sizeLimit[j]) {
-                        errors.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", String.valueOf(j), "列输入值不在允许范围内,范围[" + sizeLimit[j] + "]"));
+                    if (strValue.length() > sizeLimit[j]) {
+                        errorList.add(new ImportError(+(i + 1) + "行第" + (j + 1) + "列", strValue, "列输入值不在允许范围内,范围[" + sizeLimit[j] + "]"));
                         break;
                     }
-                    map.put(columnName[j], string.trim());
+                    map.put(columnName[j], strValue.trim());
                 }
-                if (map != null && map.size() > 0 && !map.isEmpty() && errors.isEmpty()) {
+                if (map != null && map.size() > 0 && !map.isEmpty() && errorList.isEmpty()) {
                     list.add(map);
                 }
             }
         }
         logger.info("#批量导入操作#遍历成功，有" + list.size() + "条数据！");
-        msg.put("success", "true");
-        return list;
+        return errorList;
 
     }
 

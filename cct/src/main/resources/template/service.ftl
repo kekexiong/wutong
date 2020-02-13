@@ -12,6 +12,7 @@ import com.wutong.demo.util.FileUtil;
 import com.wutong.demo.domain.ImportError;
 import com.wutong.demo.util.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import com.wutong.demo.util.UuidUtil;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -130,7 +131,7 @@ public class ${classNameD}Service {
      * @param request
      * @return:Map<String, Object>
      * @author:${classAuthor}
-     * @date:
+     * @date:${classTime}
      */
 	public Map<String, Object> batchOperate (HttpServletRequest request){
 		LOGGER.info("批量添加${businessName}信息", "", "批量添加${businessName}信息开始");
@@ -143,9 +144,10 @@ public class ${classNameD}Service {
 		String [] columnName = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">"${tableCarray.columnNameX}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
 		//字段对应的长度限制
 		int [] sizeLimit = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">${tableCarray.dataLength}<#if (tableCarray_has_next)>, </#if></#if></#list>};
-		List<Map<String, Object>> dataMaps = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
-		this.fileValid(request, fields,  columnName, sizeLimit, reList, errors, dataMaps, map);
-		if (!(Boolean) map.get("success")) {
+        List<Map<String, Object>> dataMaps = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
+        this.fileValid(request, fields, columnName, sizeLimit, dataMaps, map);
+        map.put("msgCd", "MEC00000");
+        if (!(Boolean) map.get("success")) {
             return map;
         }
         //遍历读取数据
@@ -157,75 +159,73 @@ public class ${classNameD}Service {
         for (int i = 0; i < insertSum; i++) {
             subList = ExcelUtils.getChildList(i, insertSum, insertCount, insertList);
             result = i;
-            LOGGER.info("批量添加用户信息", "", "批量添加用户信息结束");
-		${classNameX}Mapper.insertBatch(subList);
+            LOGGER.info("批量添加${businessName}信息", "", "批量添加用户信息结束");
+            result = result + ${classNameX}Mapper.insertBatch(subList);
         }
         map.put("msgCd", "MEC00000");
         map.put("msgInfo", "导入成功");
-        /*map.put("successCount", succCount);
-        map.put("failureCount", failCount);*/
-        if (errors.size() > 0) {
-            map.put("hasError", true);
-            map.put("errors", errors);
-        } else {
-            map.put("hasError", false);
-            map.put("errors", null);
-        }
+        map.put("successCount", result);
         LOGGER.info("#批量添加${businessName}信息#批量导入添加成功#map:{}", map);
         return map;
-	}
-	/**
-     * @description:读取Excel
+    }
+
+    /**
      * @param dataMaps
-     * @return:List<${classNameD}>
-     * @author:${classAuthor}
-     * @date:
+     * @description:读取Excel
+     * @return:List<TUser>
+     * @author:zhao_qg
+     * @date:${classTime}
      */
-	public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName,int[] sizeLimit,
-			List<Map<String, Object>> reList, List<ImportError> errors,List<Map<String, Object>> dataMaps,
-			Map<String, Object> map){
-		//获取上传文件
-		FileUtil fileUtil = new FileUtil();
-		InputStream input = fileUtil.getUploadInputStream(request, map);
-		if (input == null) {
+    public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName, int[] sizeLimit, List<Map<String, Object>> dataMaps,
+                                         Map<String, Object> map) {
+        //获取上传文件
+        FileUtil fileUtil = new FileUtil();
+        InputStream input = fileUtil.getUploadInputStream(request, map);
+        if (input == null) {
             LOGGER.info("批量操作${businessName}信息", "", "获取上传的文件流失败");
             map.put("success", false);
             map.put("msgCd", "MEC99999");
             map.put("msgInfo", map.get("msg"));
             return map;
         }
-		//检查文件是否超出范围
-		XSSFWorkbook xwb = ExcelUtils.checkUploadExcel(input, map);
-		if (xwb == null) {
+        //检查文件是否超出范围
+        XSSFWorkbook xwb = ExcelUtils.checkUploadExcel(input, map);
+        if (xwb == null) {
             LOGGER.info("批量操作${businessName}信息", "", "上传的文件有问题");
             map.put("success", false);
             map.put("msgCd", "MEC99999");
             map.put("msgInfo", map.get("msg"));
             return map;
         }
-		ExcelUtils.readExcel(xwb, fields, columnName, sizeLimit, reList, map, errors, dataMaps);
-		if (map.get("success").equals("false")) {
+
+        // 读取excel
+        List<ImportError> errorList = ExcelUtils.readExcel(xwb, fields, columnName, sizeLimit, dataMaps);
+        if (errorList.size() > 0) {
             LOGGER.info("批量操作${businessName}信息", "", "上传的文件有问题");
             map.put("success", false);
             map.put("msgCd", "MEC99999");
-            map.put("msgInfo", map.get("msg"));
+            map.put("msgInfo", "读取文件错误");
+            if (!errorList.isEmpty()) {
+                map.put("errorList", errorList);
+                map.put("hasError", true);
+            }
             return map;
         }
-		if (dataMaps.size() == 0 && reList.size() == 0) {
+        if (dataMaps.size() == 0) {
             map.put("success", false);
             map.put("msgCd", "MEC99999");
             map.put("msgInfo", "导入excel文件无数据，请核对后再做操作！");
             return map;
         }
-		map.put("success", true);
+        map.put("success", true);
         return map;
-	}
+    }
 	/**
      * @description:读取Excel之后，保存数据
      * @param dataMaps
      * @return:List<${classNameD}>
      * @author:${classAuthor}
-     * @date:
+     * @date:${classTime}
      */
 	public List<${classNameD}> organizeData(List<Map<String, Object>> dataMaps){
 		//返回list集合数据
@@ -256,17 +256,18 @@ public class ${classNameD}Service {
 	
 	/**
      * @description:导入之后导出错误信息
-     * @param dataMaps
+     * @param erroList
+     * @param loginName
      * @return:List<${classNameD}>
      * @author:${classAuthor}
-     * @date:
+     * @date:${classTime}
      */
 	public SXSSFWorkbook exportExcelFail (List<Map<String, Object>> erroList, String loginName) throws Exception{
 		int count = erroList.size();
         int pageSize = 10000;
         List<Map<String, Object>> infoList;
-        String[] tableName = {"错误位置","年龄","电话"};
-        String[] tableValue = {"position","failReason"};
+        String[] tableName = {"错误位置","插入值","错误原因"};
+        String[] tableValue = {"position","importValue","failReason"};
         SXSSFWorkbook swb = new SXSSFWorkbook(10000);
             Sheet sheet = swb.createSheet("Sheet");
             Row tableNameRow = sheet.createRow(0);
@@ -296,8 +297,9 @@ public class ${classNameD}Service {
 	/**
 	 * 导出
 	 * @param paramMap
-	 * @return
+	 * @return SXSSFWorkbook
 	 * @throws Exception
+     * @date:${classTime}
 	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-
+import com.wutong.demo.domain.ImportError;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -260,9 +260,9 @@ public class ${classNameD}Controller extends BaseController {
         String    fileName = "${classNameX}Template.xlsx";
         try {
             LOGGER.info(opNm, fileName, "begin");
-            String path = request.getSession().getServletContext().getRealPath("") + "/download/bap/" + fileName;
+            String path = TUserController.class.getResource("/").getPath()+ "/template/" + fileName;
             File file = new File(path);
-            downloadFile(file, response);
+            DownloadFileUtil.getInstance().downLoad(file, response);
             LOGGER.info(opNm, fileName, "end");
         } catch (Exception e) {
             LOGGER.error(opNm, fileName, e);
@@ -285,11 +285,7 @@ public class ${classNameD}Controller extends BaseController {
         Map<String, Object> rsMap = null;
         try {
             rsMap = ${classNameX}Service.batchOperate(request);
-            if (rsMap.get("errors") != null) {
-                @SuppressWarnings("unchecked")
-                List<ImportError> errlist = (List<ImportError>) rsMap.get("errors");
-                session.setAttribute("errlist", errlist);
-            }
+            session.setAttribute("${classNameX}+Errlist", rsMap.get("errorList"));
             return rsMap;
         } catch (Exception e) {
             LOGGER.error(opNm, "异常原因是：", e);
@@ -314,16 +310,15 @@ public class ${classNameD}Controller extends BaseController {
         try{
             //从session中获取错误信息list
             @SuppressWarnings("unchecked")
-            List<ImportError> erroList = (List<ImportError>) session.getAttribute("errlist");
+            List<ImportError> erroList = (List<ImportError>) session.getAttribute("${classNameX}+Errlist");
             List<Map<String, Object>> inList = null;
             if(erroList.size()>0){inList = new ArrayList<Map<String, Object>>();
                 for (int i = 0; i < erroList.size(); i++) {
                     Map<String, Object> map = new HashMap<String, Object>();
                     ImportError po = erroList.get(i);
-                    String bnkCd = po.getBnkCd();
-                    String failReason = po.getFailReason();
-                    map.put("bnkCd", bnkCd);
-                    map.put("failReason", failReason);
+                    map.put("position", po.getPosition());
+                    map.put("importValue", po.getImportValue());
+                    map.put("failReason", po.getFailReason());
                     inList.add(map);
                 }
                 String fileName = "导入错误信息-" + DateUtil.getCurDTTM() + ".xlsx";

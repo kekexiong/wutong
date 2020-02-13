@@ -2,7 +2,6 @@ package com.wutong.demo.controller;
 import java.util.*;
 import com.wutong.demo.domain.TUser;
 import com.wutong.demo.service.TUserService;
-import com.wutong.demo.domain.ImportError;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-
+import com.wutong.demo.domain.ImportError;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +23,7 @@ import java.io.File;
 /**
  * @description  用户控制层
  * @author zhao_qg
- * @date   20200212 17:24:43
+ * @date   20200212 18:19:54
  */
 @Controller
 @RequestMapping("/demo/tUser")
@@ -42,7 +41,7 @@ public class TUserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -72,7 +71,7 @@ public class TUserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -96,7 +95,7 @@ public class TUserController extends BaseController {
      * @param tUser
      * @return map
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -123,7 +122,7 @@ public class TUserController extends BaseController {
      * @param tUser
      * @return map
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -149,7 +148,7 @@ public class TUserController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
     @ResponseBody
@@ -183,7 +182,7 @@ public class TUserController extends BaseController {
      * @param response
      * @return map
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "/downloadTemplate")
     public void downloadBatchTemplate(HttpServletRequest request, HttpServletResponse response) {
@@ -192,9 +191,9 @@ public class TUserController extends BaseController {
         String    fileName = "tUserTemplate.xlsx";
         try {
             LOGGER.info(opNm, fileName, "begin");
-            String path = request.getSession().getServletContext().getRealPath("") + "/download/bap/" + fileName;
+            String path = TUserController.class.getResource("/").getPath()+ "/template/" + fileName;
             File file = new File(path);
-            DownloadFileUtil.getInstance().downLoad(file, fileName, response);
+            DownloadFileUtil.getInstance().downLoad(file, response);
             LOGGER.info(opNm, fileName, "end");
         } catch (Exception e) {
             LOGGER.error(opNm, fileName, e);
@@ -207,7 +206,7 @@ public class TUserController extends BaseController {
      * @param request
      * @return map
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "importExcel", method = RequestMethod.POST)
     @ResponseBody
@@ -219,7 +218,7 @@ public class TUserController extends BaseController {
             rsMap = tUserService.batchOperate(request);
             if (rsMap.get("errors") != null) {
                 @SuppressWarnings("unchecked")
-                List<ImportError> errlist = (List<ImportError>) rsMap.get("errors");
+                List<ImportError> errlist = (List<ImportError>) rsMap.get("errlist");
                 session.setAttribute("errlist", errlist);
             }
             return rsMap;
@@ -238,7 +237,7 @@ public class TUserController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "getFailExport", method = RequestMethod.GET)
     @ResponseBody
@@ -252,10 +251,9 @@ public class TUserController extends BaseController {
                 for (int i = 0; i < erroList.size(); i++) {
                     Map<String, Object> map = new HashMap<String, Object>();
                     ImportError po = erroList.get(i);
-                    String bnkCd =  po.getPosition();
-                    String failReason = po.getFailReason();
-                    map.put("bnkCd", bnkCd);
-                    map.put("failReason", failReason);
+                    map.put("position", po.getPosition());
+                    map.put("importValue", po.getImportValue());
+                    map.put("failReason", po.getFailReason());
                     inList.add(map);
                 }
                 String fileName = "导入错误信息-" + DateUtil.getCurDTTM() + ".xlsx";
@@ -273,7 +271,7 @@ public class TUserController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200212 17:24:43
+     * @date 20200212 18:19:54
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {
