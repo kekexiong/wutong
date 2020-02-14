@@ -7,6 +7,11 @@ spring:
     password: rootroot
     url: jdbc:mysql://localhost:3306/wsk?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    view:
+      #jsp 支持
+      suffix: .jsp
+      prefix: /jsp/
 
 #整合Mybatis
 mybatis:

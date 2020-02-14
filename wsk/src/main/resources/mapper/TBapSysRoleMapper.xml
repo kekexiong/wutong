@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wutong.wsk.mapper.TBapSysRoleMapper">
+	<resultMap id="tBapSysRoleResult" type="com.wutong.wsk.domain.TBapSysRole">
+		<result column="uuid" property="uuid" />
+		<result column="role_id" property="roleId" />
+		<result column="role_name" property="roleName" />
+		<result column="data_scope" property="dataScope" />
+		<result column="cte_utff_no" property="cteUtffNo" />
+		<result column="dt_cte" property="dtCte" />
+		<result column="ute_utff_no" property="uteUtffNo" />
+		<result column="dt_ute" property="dtUte" />
+		<result column="remarks" property="remarks" />
+		<result column="atv_flg" property="atvFlg" />
+		<result column="org_id" property="orgId" />
+	</resultMap>
+	<insert id="addTBapSysRole" parameterType="java.util.Map">
+		insert into SYS_ROLE (
+		<trim suffixOverrides=",">
+			<if test="uuid != null">
+				uuid,
+			</if>
+			<if test="roleId != null">
+				role_id,
+			</if>
+			<if test="roleName != null">
+				role_name,
+			</if>
+			<if test="dataScope != null">
+				data_scope,
+			</if>
+			<if test="cteUtffNo != null">
+				cte_utff_no,
+			</if>
+			<if test="dtCte != null">
+				dt_cte,
+			</if>
+			<if test="uteUtffNo != null">
+				ute_utff_no,
+			</if>
+			<if test="dtUte != null">
+				dt_ute,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="atvFlg != null">
+				atv_flg,
+			</if>
+
+			<if test="orgId != null">
+				org_id,
+			</if>
+			   CREAT_TIME
+		</trim>
+		)values(
+		<trim suffixOverrides=",">
+			<if test="uuid != null">
+				#{uuid},
+			</if>
+			<if test="roleId != null">
+				#{roleId},
+			</if>
+			<if test="roleName != null">
+				#{roleName},
+			</if>
+			<if test="dataScope != null">
+				#{dataScope},
+			</if>
+			<if test="cteUtffNo != null">
+				#{cteUtffNo},
+			</if>
+			<if test="dtCte != null">
+				#{dtCte},
+			</if>
+			<if test="uteUtffNo != null">
+				#{uteUtffNo},
+			</if>
+			<if test="dtUte != null">
+				#{dtUte},
+			</if>
+			<if test="remarks != null">
+				#{remarks},
+			</if>
+			<if test="atvFlg != null">
+				#{atvFlg},
+			</if>
+			<if test="orgId != null">
+				#{orgId},
+			</if>
+			   sysdate
+		</trim>
+		)
+	</insert>
+
+
+	<update id="updateTBapSysRole" parameterType="java.util.Map">
+		update SYS_ROLE
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="roleName != null">
+				role_name= #{roleName},
+			</if>
+			<if test="dataScope != null">
+				data_scope= #{dataScope},
+			</if>
+			<if test="cteUtffno != null">
+				cte_utff_no= #{cteUtffno},
+			</if>
+			<if test="dtCte != null">
+				dt_cte= #{dtCte},
+			</if>
+			<if test="uteUtffno != null">
+				ute_utff_no= #{uteUtffno},
+			</if>
+			<if test="dtUte != null">
+				dt_ute= #{dtUte},
+			</if>
+			<if test="remarks != null">
+				remarks= #{remarks},
+			</if>
+			<if test="atvFlg != null">
+				atv_flg= #{atvFlg},
+			</if>
+			<if test="orgId != null">
+				org_id= #{orgId},
+			</if>
+				CREAT_TIME=sysdate
+		</trim>
+		<trim prefix="WHERE" prefixOverrides="AND">
+
+			<if test="roleId != null">
+				AND role_id= #{roleId}
+			</if>
+
+		</trim>
+	</update>
+
+
+	<delete id="deleteTBapSysRole" parameterType="java.util.Map">
+		delete from SYS_ROLE
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="uuid != null">
+				uuid= #{uuid}
+			</if>
+			<if test="roleid != null">
+				AND role_id= #{roleid}
+			</if>
+			<if test="rolename != null">
+				AND role_name= #{rolename}
+			</if>
+			<if test="datascope != null">
+				AND data_scope= #{datascope}
+			</if>
+			<if test="cteutffno != null">
+				AND cte_utff_no= #{cteutffno}
+			</if>
+			<if test="dtcte != null">
+				AND dt_cte= #{dtcte}
+			</if>
+			<if test="uteutffno != null">
+				AND ute_utff_no= #{uteutffno}
+			</if>
+			<if test="dtute != null">
+				AND dt_ute= #{dtute}
+			</if>
+			<if test="remarks != null">
+				AND remarks= #{remarks}
+			</if>
+			<if test="atvflg != null">
+				AND atv_flg= #{atvflg}
+			</if>
+			<if test="orgid != null">
+				AND org_id= #{orgid}
+			</if>
+		</trim>
+	</delete>
+
+	<select id="queryTBapSysRole" parameterType="java.util.Map"
+		resultMap="tBapSysRoleResult">
+		select
+		uuid,role_id,role_name,data_scope,cte_utff_no,dt_cte,ute_utff_no,dt_ute,remarks,atv_flg,org_id
+		from SYS_ROLE
+		<where>
+			<if test="uuid != null">
+				uuid= #{uuid}
+			</if>
+			<if test="roleid != null">
+				AND role_id= #{roleid}
+			</if>
+			<if test="rolename != null">
+				AND role_name= #{rolename}
+			</if>
+			<if test="datascope != null">
+				AND data_scope= #{datascope}
+			</if>
+			<if test="cteutffno != null">
+				AND cte_utff_no= #{cteutffno}
+			</if>
+			<if test="dtcte != null">
+				AND dt_cte= #{dtcte}
+			</if>
+			<if test="uteutffno != null">
+				AND ute_utff_no= #{uteutffno}
+			</if>
+			<if test="dtute != null">
+				AND dt_ute= #{dtute}
+			</if>
+			<if test="remarks != null">
+				AND remarks= #{remarks}
+			</if>
+			<if test="orgid != null">
+				AND org_id= #{orgid}
+			</if>
+			AND atv_flg not in '3'
+		</where>
+	</select>
+	<select id="countTBapSysRole" parameterType="java.util.Map"
+		resultType="Integer">
+		select count(1) from SYS_ROLE
+		<where>
+			<![CDATA[ 
+				atv_flg<>3
+			]]>
+			<if test="uuid != null">
+				uuid= #{uuid}
+			</if>
+			<if test="roleid != null">
+				AND role_id= #{roleid}
+			</if>
+			<if test="rolename != null">
+				AND role_name like #{rolename}
+			</if>
+			<if test="datascope != null">
+				AND data_scope= #{datascope}
+			</if>
+			<if test="cteutffno != null">
+				AND cte_utff_no= #{cteutffno}
+			</if>
+			<if test="dtcte != null">
+				AND dt_cte= #{dtcte}
+			</if>
+			<if test="uteutffno != null">
+				AND ute_utff_no= #{uteutffno}
+			</if>
+			<if test="dtute != null">
+				AND dt_ute= #{dtute}
+			</if>
+			<if test="remarks != null">
+				AND remarks= #{remarks}
+			</if>
+			<if test="atvflg != null">
+				AND atv_flg= #{atvflg}
+			</if>
+			<if test="orgid != null">
+				AND org_id= #{orgid}
+			</if>
+		</where>
+	</select>
+
+	<!-- 分页前缀 -->
+	<sql id="pagePrefix">
+		select * from(select a.*,rownum rn from(
+	</sql>
+	<!-- 分页后缀 -->
+	<sql id="pageSuffix">
+		) a where rownum &lt;= #{page}) where rn &gt;#{currentpage}
+	</sql>
+
+	<select id="findRole" parameterType="java.util.Map" resultMap="tBapSysRoleResult">
+		<include refid="pagePrefix" />
+		select
+		uuid,role_id,role_name,data_scope,cte_utff_no,dt_cte,ute_utff_no,dt_ute,remarks,atv_flg,org_id
+		from SYS_ROLE
+		<where>
+			<![CDATA[ 
+				atv_flg<>3
+			]]>
+			<if test="uuid != null">
+				uuid= #{uuid}
+			</if>
+			<if test="roleid != null">
+				AND role_id= #{roleid}
+			</if>
+			<if test="rolename != null">
+				AND role_name like #{rolename}
+			</if>
+			<if test="datascope != null">
+				AND data_scope= #{datascope}
+			</if>
+			<if test="cteutffno != null">
+				AND cte_utff_no= #{cteutffno}
+			</if>
+			<if test="dtcte != null">
+				AND dt_cte= #{dtcte}
+			</if>
+			<if test="uteutffno != null">
+				AND ute_utff_no= #{uteutffno}
+			</if>
+			<if test="dtute != null">
+				AND dt_ute= #{dtute}
+			</if>
+			<if test="remarks != null">
+				AND remarks= #{remarks}
+			</if>
+			<if test="orgid != null">
+				AND org_id= #{orgid}
+			</if>
+			order  by CREAT_TIME desc
+		</where>
+		<include refid="pageSuffix" />
+	</select>
+
+	<select id="getChildsByRoleId" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		select t.uuid,
+		t.role_id,
+		t.role_name,
+		t.data_scope,
+		t.cte_utff_no,
+		t.dt_cte,
+		t.ute_utff_no,
+		t.dt_ute,
+		t.remarks,
+		t.atv_flg,
+		t.org_id,
+		c.user_id
+		from SYS_ROLE t left join BAP.t_Bap_Sys_User_Role c on 
+		t.role_id=c.role_id 
+		<if test="userId!=null">
+			and c.user_id=#{userId}
+		</if>
+		<where>
+			<![CDATA[ 
+					t.atv_flg<>3
+			]]>
+		</where>
+		
+	</select>
+</mapper>

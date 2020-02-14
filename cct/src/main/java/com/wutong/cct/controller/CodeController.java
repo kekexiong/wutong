@@ -39,7 +39,7 @@ public class CodeController {
     // 工程路径 ios 电脑/Users/zhaoqiugen/gitnew/wutong/demo
     //private final String PROJECT_PATH = "/Users/zhaoqiugen/git/cct";
 
-    private final String PROJECT_PATH = "/Users/zhaoqiugen/gituser/wutong/demo";
+    private final String PROJECT_PATH = "/Users/zhaoqiugen/gituser/wutong/wsk";
     // 工程路径 windows 电脑
     // private final String PROJECT_PATH="D:/workspaceCCT/cct";
     // 作者
@@ -47,7 +47,7 @@ public class CodeController {
     // 业务名称
     private final String BUSINESS_NAME = "用户";
     // 代码目录
-    private final String CLASS_PACKAGE = "com.wutong.demo";
+    private final String CLASS_PACKAGE = "com.wutong.wsk";
     // 代码目录
     private final String DB_USER = "root";
     // 编辑器类型 0:eclipse 1:idea(idea编辑器需要配置com.zqg.cct.template为资源文件)
