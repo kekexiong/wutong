@@ -12,9 +12,9 @@ String deptName=principal!=null?principal.getDeptName():"";
 
 %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jquery.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>common/js/constant.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>common/js/permisssionConstant.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>common/js/common.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/constant.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/permisssionConstant.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/common.js"></script>
 <script type="text/javascript">
 	var baseURL = "<%=request.getContextPath()%>";
 	var sinfo = {

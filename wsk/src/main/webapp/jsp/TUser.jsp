@@ -443,8 +443,6 @@
 </div>
 </div>
 </div>
-</div>
-</div>
 
 <jsp:include page="common/footer.jsp" flush="true" />
 

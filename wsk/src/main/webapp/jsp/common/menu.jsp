@@ -46,10 +46,6 @@ function openTab(link, href, title) {
 		}
 		/*打开新tab*/
 		var a = $("<a href=\"#tab_"+menuID+"\" data-href=\"tab_"+menuID+"\" data-toggle=\"tab\"> "+title+" </a>");
-		if (menuID == '030202') {
-			//切换到付款审批页面时，执行查询方法一次
-			a = $("<a href=\"#tab_"+menuID+"\" data-href=\"tab_"+menuID+"\" data-toggle=\"tab\" onclick=\"refreshPayCheck();\"> "+title+" </a>");
-		}
 		var close_button = $("<button type=\"button\" class=\"close\" data-dismiss=\"alert\"></button>");
 		$(close_button).on("click", function(e){
 		    // FIXME check weather needs show others.
@@ -60,7 +56,7 @@ function openTab(link, href, title) {
 		    $(this).parent().remove();
 		    //$($("#tab-bar li a")[0]).click();
 		    //$($("#tab-bar li")[0]).addClass('active');
-		    //$("#tab_0").addClass("active in");
+		    //$("#tab_0").addClass("active in");in
 		});
 		var tab_li = $('<li class="active"></li>').append(a).append(close_button);
 		$("#tab-bar").append(tab_li);
@@ -185,7 +181,7 @@ function renderMenuLeafLevel3(parentId,menuId,title,path) {
 /*---------------------------------------------用户体系------------------------------------------------------*/
 if(true) {
     renderMenuLevel1('用户体系', 'menuUsr');
-    renderMenuLeafLevel2('menuUsr', '010101', '内部用户管理', '/jsp/Tuser.jsp');
+    renderMenuLeafLevel2('menuUsr', '010101', '内部用户管理', '/jsp/TUser.jsp');
     renderMenuLeafLevel2('menuUsr', '010201', '商户信息查询', '/usr/QueryMecPanel.jsp');
     renderMenuLeafLevel3('menuAms_tiaozhang', '020501', '调账类型管理', '/ams/AmsAdjustTypePanel.jsp');
 }

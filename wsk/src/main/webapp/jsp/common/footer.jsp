@@ -60,10 +60,10 @@
 <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/takin_theme/assets/pages/scripts/ui-tree.min.js" type="text/javascript"></script>
 <!-- 表格组件 -->
-<script src="<%=request.getContextPath()%>common/js/datatables.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>common/js/bootstrapValidator.min.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>common/js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>common/js/jquery.form.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/jsp/common/js/datatables.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/jsp/common/js/bootstrapValidator.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/jsp/common/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/jsp/common/js/jquery.form.js" type="text/javascript"></script>
 
 <!-- jquery ui 和bootstrap datepicker样式冲突-->
 <%-- <script src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script> --%>

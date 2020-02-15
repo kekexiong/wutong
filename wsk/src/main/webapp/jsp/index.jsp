@@ -61,7 +61,7 @@
     <!-- BEGIN CONTAINER -->
     <div class="clearfix"> </div>
     <div class="page-container">
-    
+
     	<!-- BEGIN MENU -->
         <jsp:include page="common/menu.jsp" flush="true"/>
         <!-- END MENU -->
