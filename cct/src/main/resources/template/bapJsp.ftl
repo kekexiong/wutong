@@ -1,14 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<jsp:include page="resource.jsp" flush="true" />
-<jsp:include page="common/resource2.jsp" flush="true" />
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
 
-<body>
-<jsp:include page="head.jsp" flush="true" />
-<jsp:include page="menu.jsp" flush="true" />
-<div id="page-wrapper" >
-    <div id="page-inner">
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zh-hans">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>梧桐管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=320, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <jsp:include page="common/resource.jsp" flush="true"/>
+</head>
+
+<!-- <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md"> -->
+<body class="iframe-body">
+
+<!-- BEGIN HEADER -->
+<jsp:include page="common/header.jsp" flush="true"/>
+<!-- END HEADER -->
+
+<!-- BEGIN CONTAINER -->
+<div class="clearfix"> </div>
+<div class="page-container">
+
+    <!-- BEGIN MENU -->
+    <%-- <jsp:include page="../common/menu.jsp" flush="true"/> --%>
+    <!-- END MENU -->
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- 主体-->
+        <!-- <div class="page-content"> -->
+        <div class="">
         <!-- 右边开始 -->
         <div class="row">
             <div class="col-md-12">

@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>随行付收单管理系统</title>
+    <title>梧桐管理系统</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=320, initial-scale=1" name="viewport" />
     <meta content="" name="description" />

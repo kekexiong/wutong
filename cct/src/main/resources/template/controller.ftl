@@ -185,7 +185,7 @@ public class ${classNameD}Controller extends BaseController {
         try{
     <#list updateCarrays as tableCarray>
         <#if tableCarray.columnNameD == "OpId">
-                paramVo.set${tableCarray.columnNameD}(SysUtils.getLoginName());
+                paramVo.set${tableCarray.columnNameD}(LoginUtils.getLoginName());
         </#if>
         <#if tableCarray.columnNameD == "OpDt">
                 paramVo.set${tableCarray.columnNameD}(DateUtils.getCurDT());
@@ -322,7 +322,7 @@ public class ${classNameD}Controller extends BaseController {
                     inList.add(map);
                 }
                 String fileName = "导入错误信息-" + DateUtil.getCurDTTM() + ".xlsx";
-                SXSSFWorkbook swb = ${classNameX}Service.exportExcelFail(inList, SysUtils.getLoginName());
+                SXSSFWorkbook swb = ${classNameX}Service.exportExcelFail(inList, LoginUtils.getLoginName());
                 DownloadFileUtil.getInstance().downLoadExcel(swb, fileName, response);
             }
         } catch (Exception e){
