@@ -241,11 +241,11 @@ body {
          margin-right: -100%;
      }
  }
- 
+ /* 2020-02-18 修改
  .page-header-fixed .page-container {
      margin-top: 33px;
  }
- 
+ */
  .form-control {
      height: 26px;
  }
@@ -257,188 +257,188 @@ body {
  .input-daterange .input-group-addon {
      padding: 0 9px;
  }
- 
+ /* 2020-02-17 样式调整
  .form-group {
      margin-bottom: 2px;
  }
- 
+ */
  .portlet.light .portlet-body {
      padding-top: 0;
  }
- 
- .portlet.light {
-     padding: 4px 20px 15px;
- }
- 
- .util-btn-group-margin-bottom-5 .btn-group,
- .util-btn-margin-bottom-5 .btn {
-     margin-bottom: 0;
- }
- 
- .btn:not(.md-skip) {
-     padding: 5px 14px 3px;
- }
- 
- .portlet.light>.portlet-title {
-     min-height: 38px;
-     margin-bottom: 0px;
- }
- 
- .btn:not(.md-skip).btn-sm {
-     padding: 4px 18px;
- }
- 
- .select2-container--bootstrap .select2-selection--multiple {
-     min-height: 28px;
- }
- 
- .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
-     height: 28px;
- }
- 
- .form-control,
- output {
-     font-size: 1em;
- }
- 
- #sample_2_filter {
-     display: none;
- }
- 
- .portlet.light.show-page {
-     position: relative;
- }
- 
- #search_result_table_length {
-     margin-left: 12%;
-     z-index: 2;
-     white-space: nowrap;
- }
- 
- .paging_bootstrap_extended {
-     margin: 0px 0 0!important;
-     font-size: 1em;
- }
- 
- @media (max-width: 1199px) and (min-width: 992px) {
-     #search_result_table_info {
-         margin-left: -8%;
-         line-height: 26px;
-     }
- }
- 
- @media (min-width: 1199px) {
-     #search_result_table_length {
-         margin-left: 16%;
-         z-index: 2;
-     }
-     #search_result_table_info {
-         margin-left: -6%;
-         line-height: 26px;
-     }
-      #search_result_table_paginate {
-         text-align: right;
-         margin-right: 5%;
-     }
- }
- 
- @media (max-width: 1199px) and (min-width: 768px) {
-     #search_result_table_length {
-         margin-left: 22%;
-         z-index: 2;
-         white-space: nowrap;
-     }
-     #search_result_table_info {
-         margin-left: 6%;
-         line-height: 26px;
-     }
-      #search_result_table_paginate {
-         text-align: right;
-         margin-right: 7%;
-     }
- }
+/* 2020-02-17 样式调整
+.portlet.light {
+    padding: 4px 20px 15px;
+}
+*/
+.util-btn-group-margin-bottom-5 .btn-group,
+.util-btn-margin-bottom-5 .btn {
+    margin-bottom: 0;
+}
 
- .pagination { margin:0;}
- #pagination-bar {
- 	display: block;line-height: 25px;font-size: small;
- }
- @media (min-width: 1200px){
- #search_result_table_info, #search_result_table_length { margin-top: 4px;}}
- #search_result_table_info { white-space: nowrap;}
- #search_result_table_paginate {
-    font-size: 1em;padding: 0!important;
-    float: none!important;}
- 
- @media (max-width: 997px) and (min-width: 850px) {
-     #search_result_table_info {
-         margin-left: 4%;
-         line-height: 26px;
-     }
-      #search_result_table_paginate {
-         text-align: right;
-         margin-right: 9%;
-     }
- }
- 
- @media (max-width: 849px) and (min-width: 768px) {
-     #search_result_table_info {
-         margin-left: 3%;
-         line-height: 26px;
-     }
-      #search_result_table_paginate {
-         text-align: right;
-         margin-right: 8%;
-     }
- }
- 
- @media (max-width: 767px) and (min-width: 321px) {
-     #search_result_table_length {
-         margin-left: 4%;
-         z-index: 2;
-     }
-     #search_result_table_info {
-         margin-left: 4%;
-         line-height: 26px;
-     }
-      #search_result_table_paginate {
-         margin-left: 4%;
-     }
- }
- 
- @media (max-width: 420px) and (min-width: 321px) {
-     #search_result_table_length {
-         margin-left: 8%;
-         z-index: 2;
-     }
-     #search_result_table_info {
-         margin-left: 8%;
-         line-height: 26px;
-     }
-      #search_result_table_paginate {
-         margin-left: 8%;
-     }
- }
- 
- @media (max-width: 320px) {
-     #search_result_table_length {
-         margin-left: 7%;
-         z-index: 2;
-     }
-     #search_result_table_info {
-         margin-left: 7%;
-         line-height: 26px;
-     }
-      #search_result_table_paginate {
-         margin-left: 7%;
-     }
- }
- 
- @media (max-width:1200px) and (min-width: 767px) {
-     .portlet.light .paddingt-eight {
-         padding-top: 8px;
-     }
- }
- /*@media (min-width: 1400px) {
+.btn:not(.md-skip) {
+    padding: 5px 14px 3px;
+}
+
+.portlet.light>.portlet-title {
+    min-height: 38px;
+    margin-bottom: 0px;
+}
+
+.btn:not(.md-skip).btn-sm {
+    padding: 4px 18px;
+}
+
+.select2-container--bootstrap .select2-selection--multiple {
+    min-height: 28px;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
+    height: 28px;
+}
+
+.form-control,
+output {
+    font-size: 1em;
+}
+
+#sample_2_filter {
+    display: none;
+}
+
+.portlet.light.show-page {
+    position: relative;
+}
+
+#search_result_table_length {
+    margin-left: 12%;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.paging_bootstrap_extended {
+    margin: 0px 0 0!important;
+    font-size: 1em;
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    #search_result_table_info {
+        margin-left: -8%;
+        line-height: 26px;
+    }
+}
+
+@media (min-width: 1199px) {
+    #search_result_table_length {
+        margin-left: 16%;
+        z-index: 2;
+    }
+    #search_result_table_info {
+        margin-left: -6%;
+        line-height: 26px;
+    }
+     #search_result_table_paginate {
+        text-align: right;
+        margin-right: 5%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    #search_result_table_length {
+        margin-left: 22%;
+        z-index: 2;
+        white-space: nowrap;
+    }
+    #search_result_table_info {
+        margin-left: 6%;
+        line-height: 26px;
+    }
+     #search_result_table_paginate {
+        text-align: right;
+        margin-right: 7%;
+    }
+}
+
+.pagination { margin:0;}
+#pagination-bar {
+    display: block;line-height: 25px;font-size: small;
+}
+@media (min-width: 1200px){
+#search_result_table_info, #search_result_table_length { margin-top: 4px;}}
+#search_result_table_info { white-space: nowrap;}
+#search_result_table_paginate {
+   font-size: 1em;padding: 0!important;
+   float: none!important;}
+
+@media (max-width: 997px) and (min-width: 850px) {
+    #search_result_table_info {
+        margin-left: 4%;
+        line-height: 26px;
+    }
+     #search_result_table_paginate {
+        text-align: right;
+        margin-right: 9%;
+    }
+}
+
+@media (max-width: 849px) and (min-width: 768px) {
+    #search_result_table_info {
+        margin-left: 3%;
+        line-height: 26px;
+    }
+     #search_result_table_paginate {
+        text-align: right;
+        margin-right: 8%;
+    }
+}
+
+@media (max-width: 767px) and (min-width: 321px) {
+    #search_result_table_length {
+        margin-left: 4%;
+        z-index: 2;
+    }
+    #search_result_table_info {
+        margin-left: 4%;
+        line-height: 26px;
+    }
+     #search_result_table_paginate {
+        margin-left: 4%;
+    }
+}
+
+@media (max-width: 420px) and (min-width: 321px) {
+    #search_result_table_length {
+        margin-left: 8%;
+        z-index: 2;
+    }
+    #search_result_table_info {
+        margin-left: 8%;
+        line-height: 26px;
+    }
+     #search_result_table_paginate {
+        margin-left: 8%;
+    }
+}
+
+@media (max-width: 320px) {
+    #search_result_table_length {
+        margin-left: 7%;
+        z-index: 2;
+    }
+    #search_result_table_info {
+        margin-left: 7%;
+        line-height: 26px;
+    }
+     #search_result_table_paginate {
+        margin-left: 7%;
+    }
+}
+
+@media (max-width:1200px) and (min-width: 767px) {
+    .portlet.light .paddingt-eight {
+        padding-top: 8px;
+    }
+}
+/*@media (min-width: 1400px) {
 .select2-container--bootstrap .select2-selection { width: 98.22%;}
 
 }*/
@@ -622,15 +622,15 @@ body {
      content: " ";
      display: inline-block;
  }
- 
+ /* 2020-02-17 样式调整
  .portlet.light {
      padding: 4px 20px 10px;
  }
- 
+
  .out-margin-top {
      margin-top: 10px;
  }
- 
+ */
  .row {
      margin-left: -15px;
      margin-right: -15px;
@@ -750,7 +750,7 @@ body {
  }
  
  .md-checkbox label>span.inc-none {
-     -webkit-border-radius: none;
+     -webkit-border-radius: 0;
      -webkit-animation: none;
      -moz-animation: none;
      animation: none
@@ -933,7 +933,6 @@ body {
          margin: 0!important;
      }
  }
-}
 
 .input-group .input-icon>.form-control { border-radius: 4px 0 0 4px;}
 
@@ -1083,7 +1082,7 @@ body {
                       .table-bordered, .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {border: 1px solid #e7ecf1!important;
 }
                         
-                        ::-webkit-scrollbar {
+                        /*::-webkit-scrollbar {
                             width: 10px;
                         }
                         
@@ -1091,42 +1090,89 @@ body {
                             background-color: #fff;
                             -webkit-border-radius: 10px;
                         }
-                        /* 婊氬姩鏉＄殑婊戣建鑳屾櫙棰滆壊 */
+                        !* 婊氬姩鏉＄殑婊戣建鑳屾櫙棰滆壊 *!
                         
                         ::-webkit-scrollbar-thumb {
                             background-color: #DEDEDE;
                         }
-                        /* 婊戝潡棰滆壊 */
+                        !* 婊戝潡棰滆壊 *!
                         
                         ::-webkit-scrollbar-button {
                             background-color: #E1E6ED;
                         }
-                        /* 婊戣建涓ゅご鐨勭洃鍚寜閽鑹� */
+                        !* 婊戣建涓ゅご鐨勭洃鍚寜閽鑹� *!
                         
                         ::-webkit-scrollbar-corner {
                             background-color: #E1E6ED;
-                        }
+                        }*/
+::-webkit-scrollbar{ //先改变body的滚动条宽度
 
+width: 8px;
+
+}
+
+::-webkit-scrollbar-track{//再改变body的滚动条轨道颜色
+
+background: rgb(200, 200, 200);
+
+    border-radius: 5px;
+
+}
+
+::-webkit-scrollbar-thumb{//最后改变body的滚动条滑轨相关的样式
+
+background: rgb(120, 120, 120);
+
+    border-radius: 5px;
+
+}
 .portlet.portlet-fullscreen>.portlet-body {
     overflow-x: scroll; 
     padding: 0 10px;
 }
 
- @media (min-width:1050px) and (max-width:1399px) {
-	                  .wheel {
-                        
-                            min-height: 70%;
-                            overflow: scroll;
-                        } 
+@media (min-width:1050px) and (max-width:1399px) {
+    .wheel {
+
+        min-height: 70%;
+        overflow: scroll;
+    }
 } 
+@media (min-width:1400px)  {
+    .wheel {
 
-
-
- @media (min-width:1400px)  {
-	                  .wheel {
-                        
-                            min-height: 90%;
-                            overflow: scroll;
-                        } 
+        min-height: 90%;
+        overflow: scroll;
+    }
 } 
 iframe { width:100%;}
+
+/* 2020-02-17 样式调整*/
+.margin20-0-15{margin: 20px 0px 15px;}
+.nav-pills, .nav-tabs{margin: 10px 0 20px;}
+.portlet{box-shadow:none}
+.portlet.light>.portlet-title{margin-bottom: 10px;}
+/*.page-container{min-height: 680px;}*/
+.wheel{min-height: 300px;height: 460px;max-height: none;}
+.page-header.navbar .menu-toggler.sidebar-toggler{margin: 9px 0 0;}
+.page-header.navbar .page-logo .logo-default{line-height: 35px;}
+
+.form .form-actions, .portlet-form .form-actions{padding: 10px 20px;margin: 0;background-color:#fff; }
+.page-header.navbar .top-menu {
+    margin-right: 0;
+}
+.page-sidebar .page-sidebar-menu>li>a>i{color: #c6cfda;}
+.norow{margin-top: 10px;}
+.btn-group>.btn:not(.md-skip), .btn:not(.md-skip) {margin: 0 0.15rem;}
+@media (max-width: 979px) {
+    .modal, .modal.container, .modal.modal-overflow 	{
+        top: 1% !important;
+        right: 1% !important;
+        left: 1% !important;
+    }
+}
+/* 更改 bootstrap-modal-bs3patch.css 样式*/
+.modal {
+    left: 50%;
+    margin-left: -250px;
+}

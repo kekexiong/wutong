@@ -4,7 +4,7 @@ import lombok.Data;
 /**
  * @description TUserdomain
  * @author zhao_qg
- * @date 20200217 10:28:05
+ * @date 20200218 10:54:12
  */
 @Data
 public class TUser {

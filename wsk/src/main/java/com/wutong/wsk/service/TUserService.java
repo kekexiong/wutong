@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  TUserService
  * @author zhao_qg
- * @date   20200217 10:28:05
+ * @date   20200218 10:54:12
  */
  @Service
 public class TUserService {
@@ -43,7 +43,7 @@ public class TUserService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200217 10:28:05
+ 	 * @date   20200218 10:54:12
 	 * @param map
 	 * @return
 	 */
@@ -53,7 +53,7 @@ public class TUserService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200217 10:28:05
+ 	 * @date   20200218 10:54:12
 	 * @param map
 	 * @return
 	 */
@@ -63,7 +63,7 @@ public class TUserService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200217 10:28:05
+ 	 * @date   20200218 10:54:12
 	 * @param paramVo
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class TUserService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200217 10:28:05
+ 	 * @date   20200218 10:54:12
 	 * @param tUser
 	 * @return
 	 */
@@ -84,7 +84,7 @@ public class TUserService {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200217 10:28:05
+ 	 * @date   20200218 10:54:12
 	 * @param tUser
 	 * @return
 	 */
@@ -94,7 +94,7 @@ public class TUserService {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200217 10:28:05
+ 	 * @date   20200218 10:54:12
 	 * @param map
 	 * @return
 	 */
@@ -106,7 +106,7 @@ public class TUserService {
      * @param request
      * @return:Map<String, Object>
      * @author:zhao_qg
-     * @date:20200217 10:28:05
+     * @date:20200218 10:54:12
      */
 	public Map<String, Object> batchOperate (HttpServletRequest request){
 		LOGGER.info("批量添加用户信息", "", "批量添加用户信息开始");
@@ -147,7 +147,7 @@ public class TUserService {
      * @param request
      * @return:List<TUser>
      * @author:zhao_qg
-     * @date:20200217 10:28:05
+     * @date:20200218 10:54:12
      */
     public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName, int[] sizeLimit, List<Map<String, Object>> readDataList,
                                          Map<String, Object> resultMap) {
@@ -193,7 +193,7 @@ public class TUserService {
      * @param dataMaps
      * @return:List<TUser>
      * @author:zhao_qg
-     * @date:20200217 10:28:05
+     * @date:20200218 10:54:12
      */
 	public List<TUser> organizeData(List<Map<String, Object>> dataMaps){
 		//返回list集合数据
@@ -216,7 +216,7 @@ public class TUserService {
      * @param loginName
      * @return:List<TUser>
      * @author:zhao_qg
-     * @date:20200217 10:28:05
+     * @date:20200218 10:54:12
      */
 	public SXSSFWorkbook exportExcelFail (List<Map<String, Object>> erroList, String loginName) throws Exception{
 		int count = erroList.size();
@@ -253,7 +253,7 @@ public class TUserService {
 	 * @param paramMap
 	 * @return SXSSFWorkbook
 	 * @throws Exception
-     * @date:20200217 10:28:05
+     * @date:20200218 10:54:12
 	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);

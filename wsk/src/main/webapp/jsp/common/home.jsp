@@ -42,11 +42,7 @@
 											<tbody>
 											</tbody>
 										</table>
-									</div>
-								</div>
-								<div class="portlet light padding-btn scaffold-create">
-									<div class="portlet-body">
-										<div class="row">
+										<div class="row margin20-0-15">
 											<div class="col-md-12 text-center">
 												<div class="row">
 													<button type="button" class="btn btn-info btn-sm "><i class="fa fa-list-alt"></i> 详情</button>
@@ -56,6 +52,11 @@
 										</div>
 									</div>
 								</div>
+								<%--<div class="portlet light padding-btn scaffold-create">
+									<div class="portlet-body">
+
+									</div>
+								</div>--%>
 							</div>
 							<!-- 公告 -->
 							<div class="col-lg-4 col-md-4">
@@ -78,11 +79,7 @@
 											<tbody>
 											</tbody>
 										</table>
-									</div>
-								</div>
-								<div class="portlet light padding-btn scaffold-create">
-									<div class="portlet-body">
-										<div class="row">
+										<div class="row margin20-0-15">
 											<div class="col-md-12 text-center">
 												<div class="row">
 													<button type="button" class="btn btn-info btn-sm "><i class="fa fa-list-alt"></i> 详情</button>
@@ -114,11 +111,7 @@
 											<tbody>
 											</tbody>
 										</table>
-									</div>
-								</div>
-								<div class="portlet light padding-btn scaffold-create">
-									<div class="portlet-body">
-										<div class="row">
+										<div class="row margin20-0-15">
 											<div class="col-md-12 text-center">
 												<div class="row">
 													<button type="button" class="btn btn-info btn-sm "><i class="fa fa-list-alt"></i> 详情</button>

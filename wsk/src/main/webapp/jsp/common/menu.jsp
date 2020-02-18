@@ -42,6 +42,9 @@ function openTab(link, href, title) {
 					$(div).removeClass("active in");
 				}
 			});
+            if (menuID != 0) {
+                $(link).parent().addClass("active").siblings().removeClass('active');
+            }
 			return;
 		}
 		/*打开新tab*/
@@ -72,6 +75,8 @@ function openTab(link, href, title) {
 				$(div).removeClass("active in");
 			}
 		});
+        // 点击当前菜单的样式
+        $(link).parent().addClass("active").siblings().removeClass('active');
 	}
 
 }

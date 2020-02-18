@@ -303,7 +303,7 @@
     </div>
 <!-- ---------------------------------------------导出弹出页面----------------------------------------------------- -->
 <div class="modal fade" id="importOpenWin" tabindex="-1"
-     role="dialog" data-backdrop="static" data-width="650px"
+     role="dialog" data-backdrop="static" data-height="200px" data-width="500px"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -403,7 +403,8 @@
         </div>
     </div>
 <!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
-<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px"
+     data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="">导出EXCEL</h4>
@@ -415,7 +416,7 @@
                     <div class="row norow">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <input name="innerExcelType" class="col-md-6 text-right" id="innerExcelType">
+                                <input name="innerExcelType" class="col-md-12 text-center" id="innerExcelType">
                             </div>
                         </div>
                         <div class="clearfix"></div>

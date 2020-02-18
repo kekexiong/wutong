@@ -190,7 +190,7 @@
         }
         var modalHeight = height.replace('px','');
         var modalWidth = $(this).css('width').replace('px','');
-        $(this).css('top','50%');
+        $(this).css({'top':'50%','left':'50%'});
         var scrollHeight = $(window.document).height();// + $(window.top.document).find('#tab-bar').height() + $(window.top.document).find('.navbar-fixed-top').height();
         console.log('iframe={height:'+scrollHeight+',width:'+$(window.top).width()+'}');
         var mt = (scrollHeight / 2 - (modalHeight / 2));
