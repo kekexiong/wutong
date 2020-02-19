@@ -10,7 +10,7 @@
 <link href="<%=request.getContextPath()%>/jsp/common/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <!-- 主题 -->
 <link href="<%=request.getContextPath()%>/takin_theme/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-<link href="<%=request.getContextPath()%>/takin_theme/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+<link href="<%=request.getContextPath()%>/takin_theme/assets/layouts/layout/css/themes/light.min.css" rel="stylesheet" type="text/css" id="style_color" />
 <!-- 页面插件 -->
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />

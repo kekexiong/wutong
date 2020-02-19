@@ -116,7 +116,7 @@ public class LoginUtils {
     public static String getLoginName() {
         try {
             Principal principal = getSessionStoreRange();
-            return principal.getLoginName();//操作员帐号
+            return "admin";//操作员帐号
         } catch (Exception e) {
             return null;
         }

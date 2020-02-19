@@ -302,9 +302,7 @@
         </div>
     </div>
 <!-- ---------------------------------------------导出弹出页面----------------------------------------------------- -->
-<div class="modal fade" id="importOpenWin" tabindex="-1"
-     role="dialog" data-backdrop="static" data-height="200px" data-width="500px"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="importOpenWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="Select_title">文件</h4>
@@ -366,7 +364,7 @@
                                         <h4 class="panel-title" id="importResult"></h4>
                                     </div>
                                     <input type="hidden" name="errorCount" id="errorCount" value="" />
-                                    <div class="portlet-body wheel">
+                                    <div class="portlet-body wheel height-auto">
                                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="importResultPanel">
                                             <thead style="font-size: 2px">
                                             <tr>
@@ -403,8 +401,7 @@
         </div>
     </div>
 <!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
-<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px"
-     data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="">导出EXCEL</h4>

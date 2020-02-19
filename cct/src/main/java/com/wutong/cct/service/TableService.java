@@ -45,8 +45,8 @@ public class TableService {
         return itemList;
     }
 
-    private String[] updateArray = new String[]{"opId", "opDt", "opTm"};
-    private String[] insertArray = new String[]{"uuid", "opId", "opDt", "opTm", "ctId", "ctDt", "ctTm"};
+    private String[] updateArray = new String[]{"uteUserNo", "uteDt", "uteTm"};
+    private String[] insertArray = new String[]{"uuid", "cteUserNo", "cteDt", "cteTm"};
 
     // 判断集合是否存在
     public boolean hasThis(String[] arr, String targetValue) {
@@ -96,7 +96,7 @@ public class TableService {
         FileWriterFactory.dataSourceOut("controller.ftl", table, table.getClassNameD() + "Controller.java",
                 FileWriterFactory.CONTROLLER);
 
-        FileWriterFactory.dataSourceOut("bapJsp.ftl", table, table.getClassNameD() + ".jsp", FileWriterFactory.JSP);
+        FileWriterFactory.dataSourceOut("bapJsp.ftl", table, table.getClassNameX() + ".jsp", FileWriterFactory.JSP);
         FileWriterFactory.dataSourceOut("excel-templateXml.ftl", table, "excel-templateXml.xml",
                 FileWriterFactory.EXCELTEMPLATE_XML);
 
@@ -107,6 +107,9 @@ public class TableService {
     private String swtichType(TableItem item, TableDomain table) {
         String bigDecimalImprot = "java.math.BigDecimal";
         if ("VARCHAR2".equals(item.getDataType()) || "varchar".equals(item.getDataType()) || "CHAR".equals(item.getDataType())) {
+            item.setDataType("String");
+        }
+        if ("datetime".equals(item.getDataType())) {
             item.setDataType("String");
         }
         if ("NUMBER".equals(item.getDataType())) {

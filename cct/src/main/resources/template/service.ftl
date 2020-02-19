@@ -14,6 +14,8 @@ import ${classPackage}.util.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import ${classPackage}.util.UuidUtil;
 import com.google.common.collect.Lists;
+import ${classPackage}.util.DateUtil;
+import ${classPackage}.util.LoginUtils;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -99,6 +101,17 @@ public class ${classNameD}Service {
 	 * @return
 	 */
 	public int update(${classNameD} ${classNameX}) {
+        <#list tableCarrays as tableCarray>
+            <#if tableCarray.columnNameX == "uteDt">
+        ${classNameX}.setUteDt(DateUtil.getCurDT());
+            </#if>
+            <#if tableCarray.columnNameX == "uteTm">
+        ${classNameX}.setUteDt(DateUtil.getCurTM());
+            </#if>
+            <#if tableCarray.columnNameX == "uteUserNo">
+        ${classNameX}.setUteUserNo(LoginUtils.getLoginName());
+            </#if>
+        </#list>
 		return  ${classNameX}Mapper.update(${classNameX});
 	}
 	</#if>
@@ -111,6 +124,17 @@ public class ${classNameD}Service {
 	 * @return
 	 */
 	public int insert(${classNameD} ${classNameX}) {
+        <#list tableCarrays as tableCarray>
+            <#if tableCarray.columnNameX == "cteDt">
+                ${classNameX}.setCteDt(DateUtil.getCurDT());
+            </#if>
+            <#if tableCarray.columnNameX == "cteTm">
+                ${classNameX}.setCteDt(DateUtil.getCurTM());
+            </#if>
+            <#if tableCarray.columnNameX == "cteUserNo">
+                ${classNameX}.setCteUserNo(LoginUtils.getLoginName());
+            </#if>
+        </#list>
 		return  ${classNameX}Mapper.insert(${classNameX});
 	}
 	</#if>
@@ -151,8 +175,8 @@ public class ${classNameD}Service {
             return resultMap;
         }
         //遍历读取数据
-        List<TUser> insertList = organizeData(readDataList);
-        List<TUser> subList;
+        List<${classNameD}> insertList = organizeData(readDataList);
+        List<${classNameD}> subList;
         int insertCount = 1000;
         int result = 0;
         int insertSum = (readDataList.size() % insertCount == 0) ? (readDataList.size() / insertCount) : (readDataList.size() / insertCount + 1);

@@ -196,12 +196,10 @@
                     <div class="row no-margin" id="pagination-bar">
                         <div class="col-sm-12 left no-padding">
                             <div class="inline fl">
-                                记录数共:<span id="itemCount"></span>条 当前第<span id="nowpage"></span>/<span
-                                    id="toalPage"></span>页 每页显示:
+                                记录数共:<span id="itemCount"></span>条 当前第<span id="nowpage"></span>/<span id="toalPage"></span>页 每页显示:
                             </div>
                             <div class="inline fl">
-                                <select id="limit" class=" form-control "
-                                        onchange="onChange4PageSize(this)">
+                                <select id="limit" class="form-control" onchange="onChange4PageSize(this)">
                                     <option value="10">10</option>
                                     <option value="20" selected="selected">20</option>
                                     <option value="30">30</option>
@@ -213,8 +211,7 @@
                             <div class="inline fl">条</div>
 
                             <div class="col-sm-6 pull-right no-padding">
-                                <div id="pagination"
-                                     class="dataTables_paginate paging_simple_numbers clearfix pull-right">
+                                <div id="pagination" class="dataTables_paginate paging_simple_numbers clearfix pull-right">
                                     <nobr>
                                         <ul class="pagination no-padding" style="float: left">
                                             <li class="prev "><a href="javascript:;" onclick="javascript:pageing(1)"> 首页</a></li>
@@ -240,8 +237,7 @@
     <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
         <div class="modal-header">
             <button type="button" class="close"
-                    data-dismiss="modal" aria-hidden="true">
-                &times;
+                    data-dismiss="modal" aria-hidden="true">&times;
             </button>
             <h4 class="modal-title" id="addOrUpdateWin_title"></h4>
         </div>
@@ -487,7 +483,7 @@
                                         <h4 class="panel-title" id="importResult"></h4>
                                     </div>
                                     <input type="hidden" name="errorCount" id="errorCount" value="" />
-                                    <div class="portlet-body wheel">
+                                    <div class="portlet-body wheel height-auto">
                                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="importResultPanel">
                                             <thead style="font-size: 2px">
                                             <tr>

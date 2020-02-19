@@ -1130,22 +1130,22 @@ background: rgb(120, 120, 120);
     overflow-x: scroll; 
     padding: 0 10px;
 }
-
 @media (min-width:1050px) and (max-width:1399px) {
     .wheel {
 
         min-height: 70%;
         overflow: scroll;
     }
-} 
+}
 @media (min-width:1400px)  {
     .wheel {
 
         min-height: 90%;
         overflow: scroll;
     }
-} 
+}
 iframe { width:100%;}
+
 
 /* 2020-02-17 样式调整*/
 .margin20-0-15{margin: 20px 0px 15px;}
@@ -1154,9 +1154,9 @@ iframe { width:100%;}
 .portlet.light>.portlet-title{margin-bottom: 10px;}
 /*.page-container{min-height: 680px;}*/
 .wheel{min-height: 300px;height: 460px;max-height: none;}
+.wheel.height-auto{min-height: 200px;height: auto;}
 .page-header.navbar .menu-toggler.sidebar-toggler{margin: 9px 0 0;}
 .page-header.navbar .page-logo .logo-default{line-height: 35px;}
-
 .form .form-actions, .portlet-form .form-actions{padding: 10px 20px;margin: 0;background-color:#fff; }
 .page-header.navbar .top-menu {
     margin-right: 0;
@@ -1171,8 +1171,13 @@ iframe { width:100%;}
         left: 1% !important;
     }
 }
+
 /* 更改 bootstrap-modal-bs3patch.css 样式*/
 .modal {
     left: 50%;
     margin-left: -250px;
 }
+
+/* 2020-02-17 样式调整结束*/
+
+

@@ -187,8 +187,12 @@ function renderMenuLeafLevel3(parentId,menuId,title,path) {
 if(true) {
     renderMenuLevel1('用户体系', 'menuUsr');
     renderMenuLeafLevel2('menuUsr', '010101', '内部用户管理', '/jsp/TUser.jsp');
-    renderMenuLeafLevel2('menuUsr', '010201', '商户信息查询', '/usr/QueryMecPanel.jsp');
+    renderMenuLeafLevel2('menuUsr', '010201', '商户信息查询', '/jsp/user.jsp');
     renderMenuLeafLevel3('menuAms_tiaozhang', '020501', '调账类型管理', '/ams/AmsAdjustTypePanel.jsp');
+    renderMenuLevel1('系统管理', 'menuSys');
+    renderMenuLeafLevel2('menuSys', '020101', '字典管理', '/jsp/dicCode.jsp');
+    renderMenuLeafLevel2('menuSys', '020201', '菜单管理', '/jsp/menu.jsp');
+    renderMenuLeafLevel3('menuSys', '020501', '调账类型管理', '/ams/AmsAdjustTypePanel.jsp');
 }
 /*初始化菜单权限end*/
 </script>

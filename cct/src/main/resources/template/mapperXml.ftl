@@ -73,11 +73,11 @@
    <#if isAdd == "01">
     <insert id="insert" parameterType="${domainPackage}.${classNameD}">
         INSERT INTO <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName} (
-            <#list insertCarrays as tableCarray>
+            <#list tableCarrays as tableCarray>
                 ${tableCarray.columnName}<#if (tableCarray_has_next)>,</#if>
             </#list>
         ) VALUES (
-            <#list insertCarrays as tableCarray>
+            <#list tableCarrays as tableCarray>
                 ${specific}{${tableCarray.columnNameX},jdbcType=VARCHAR}<#if (tableCarray_has_next)>,</#if>
             </#list>
         )
@@ -86,12 +86,12 @@
     <#if isImport == "01">
     <insert id="insertBatch" parameterType="java.util.List">
         INSERT INTO <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}(
-            <#list insertCarrays as tableCarray>
+            <#list tableCarrays as tableCarray>
             ${tableCarray.columnName}<#if (tableCarray_has_next)>,</#if>
             </#list>)
         <foreach collection="list" item="item" index="index" separator="union all">
             SELECT
-            <#list insertCarrays as tableCarray>
+            <#list tableCarrays as tableCarray>
                 ${specific}{item.${tableCarray.columnNameX},jdbcType=VARCHAR}<#if (tableCarray_has_next)>,</#if>
             </#list>
             FROM DUAL

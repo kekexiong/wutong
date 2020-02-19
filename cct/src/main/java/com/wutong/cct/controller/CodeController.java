@@ -32,7 +32,7 @@ public class CodeController {
     @Resource
     private TableService tableService;
     // 表名
-    private final String TABLE_NAME = "T_USER";
+    private final String TABLE_NAME = "MENU";
 
     // 表名
     private final String TABLE_SCHEMA = "wsk";
