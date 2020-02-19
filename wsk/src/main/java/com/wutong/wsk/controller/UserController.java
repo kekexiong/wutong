@@ -23,7 +23,7 @@ import java.io.File;
 /**
  * @description  用户控制层
  * @author zhao_qg
- * @date   20200218 18:07:40
+ * @date   20200219 10:22:43
  */
 @Controller
 @RequestMapping("/wsk/user")
@@ -41,7 +41,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -71,7 +71,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -95,7 +95,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -121,7 +121,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -147,7 +147,7 @@ public class UserController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
     @ResponseBody
@@ -181,7 +181,7 @@ public class UserController extends BaseController {
      * @param response
      * @return map
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "/downloadTemplate")
     public void downloadBatchTemplate(HttpServletRequest request, HttpServletResponse response) {
@@ -205,7 +205,7 @@ public class UserController extends BaseController {
      * @param request
      * @return map
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "importExcel", method = RequestMethod.POST)
     @ResponseBody
@@ -232,7 +232,7 @@ public class UserController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "getFailExport", method = RequestMethod.GET)
     @ResponseBody
@@ -266,7 +266,7 @@ public class UserController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200218 18:07:40
+     * @date 20200219 10:22:43
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {

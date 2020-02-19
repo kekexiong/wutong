@@ -4,7 +4,7 @@
 <mapper namespace="com.wutong.wsk.mapper.UserMapper">
     <resultMap id="userMap" type="com.wutong.wsk.domain.User" >
      <result column="USER_ID" property="userId"/>
-     <result column="NAME" property="name"/>
+     <result column="USER_NAME" property="userName"/>
      <result column="REAL_NAME" property="realName"/>
      <result column="SEX" property="sex"/>
      <result column="BIRTHDAY" property="birthday"/>
@@ -33,8 +33,8 @@
             <if test="user.userId!= null and user.userId!= ''">
                 and USER_ID=#{user.userId}
             </if>
-            <if test="user.name!= null and user.name!= ''">
-                and NAME=#{user.name}
+            <if test="user.userName!= null and user.userName!= ''">
+                and USER_NAME=#{user.userName}
             </if>
             <if test="user.realName!= null and user.realName!= ''">
                 and REAL_NAME=#{user.realName}
@@ -105,7 +105,7 @@
     <select id="findByCondition" parameterType="java.util.Map" resultType="Map">
         SELECT
                         t.USER_ID as "userId",
-                        t.NAME as "name",
+                        t.USER_NAME as "userName",
                         t.REAL_NAME as "realName",
                         t.SEX as "sex",
                         t.BIRTHDAY as "birthday",
@@ -140,7 +140,7 @@
     </select>
     <select id="getByKey" parameterType="com.wutong.wsk.domain.User" resultMap="userMap">
         SELECT
-            USER_ID, NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_ID, UTE_USER_ID, UTE_DT, UTE_TM, CTE_DT, CTE_TM
+            USER_ID, USER_NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_ID, UTE_USER_ID, UTE_DT, UTE_TM, CTE_DT, CTE_TM
         FROM 
             USER
         WHERE
@@ -149,7 +149,7 @@
     <insert id="insert" parameterType="com.wutong.wsk.domain.User">
         INSERT INTO USER (
                 USER_ID,
-                NAME,
+                USER_NAME,
                 REAL_NAME,
                 SEX,
                 BIRTHDAY,
@@ -173,7 +173,7 @@
                 CTE_TM
         ) VALUES (
                 #{userId,jdbcType=VARCHAR},
-                #{name,jdbcType=VARCHAR},
+                #{userName,jdbcType=VARCHAR},
                 #{realName,jdbcType=VARCHAR},
                 #{sex,jdbcType=VARCHAR},
                 #{birthday,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
     <insert id="insertBatch" parameterType="java.util.List">
         INSERT INTO USER(
             USER_ID,
-                        NAME,
+                        USER_NAME,
                         REAL_NAME,
                         SEX,
                         BIRTHDAY,
@@ -226,7 +226,7 @@
         <foreach collection="list" item="item" index="index" separator="union all">
             SELECT
                 #{item.userId,jdbcType=VARCHAR},
-                #{item.name,jdbcType=VARCHAR},
+                #{item.userName,jdbcType=VARCHAR},
                 #{item.realName,jdbcType=VARCHAR},
                 #{item.sex,jdbcType=VARCHAR},
                 #{item.birthday,jdbcType=VARCHAR},
@@ -255,7 +255,7 @@
         UPDATE USER
         SET
                     USER_ID=#{userId},
-                    NAME=#{name},
+                    USER_NAME=#{userName},
                     REAL_NAME=#{realName},
                     SEX=#{sex},
                     BIRTHDAY=#{birthday},
@@ -271,12 +271,8 @@
                     IS_ALLOW_LOGIN=#{isAllowLogin},
                     PWD_ERR_CUNT=#{pwdErrCunt},
                     LAST_UPT_PWD_TIME=#{lastUptPwdTime},
-                    CTE_USER_ID=#{cteUserId},
-                    UTE_USER_ID=#{uteUserId},
                     UTE_DT=#{uteDt},
-                    UTE_TM=#{uteTm},
-                    CTE_DT=#{cteDt},
-                    CTE_TM=#{cteTm}
+                    UTE_TM=#{uteTm}
         WHERE
                       USER_ID=#{userId}
             

@@ -14,6 +14,8 @@ import com.wutong.wsk.util.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.wutong.wsk.util.UuidUtil;
 import com.google.common.collect.Lists;
+import com.wutong.wsk.util.DateUtil;
+import com.wutong.wsk.util.LoginUtils;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  UserService
  * @author zhao_qg
- * @date   20200218 18:07:40
+ * @date   20200219 10:22:43
  */
  @Service
 public class UserService {
@@ -43,7 +45,7 @@ public class UserService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param map
 	 * @return
 	 */
@@ -53,7 +55,7 @@ public class UserService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param map
 	 * @return
 	 */
@@ -63,7 +65,7 @@ public class UserService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param paramVo
 	 * @return
 	 */
@@ -74,27 +76,31 @@ public class UserService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param user
 	 * @return
 	 */
 	public int update(User user) {
+        user.setUteDt(DateUtil.getCurDT());
+        user.setUteDt(DateUtil.getCurTM());
 		return  userMapper.update(user);
 	}
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param user
 	 * @return
 	 */
 	public int insert(User user) {
+                user.setCteDt(DateUtil.getCurDT());
+                user.setCteDt(DateUtil.getCurTM());
 		return  userMapper.insert(user);
 	}
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param map
 	 * @return
 	 */
@@ -106,15 +112,15 @@ public class UserService {
      * @param request
      * @return:Map<String, Object>
      * @author:zhao_qg
-     * @date:20200218 18:07:40
+     * @date:20200219 10:22:43
      */
 	public Map<String, Object> batchOperate (HttpServletRequest request){
 		LOGGER.info("批量添加用户信息", "", "批量添加用户信息开始");
 		Map<String, Object> resultMap = new HashMap<String, Object>();//返回结果map
 		//设置表头信息
-		String[] fields = {"编号", "昵称", "真实姓名", "性别 1：男 2：女", "出生年月日 8位 yyyyMMdd", "电话号码", "邮箱", "身份证号", "部门编号", "状态 0：冻结 1 ：正常  2：删除'", "登录密码", "登录时间", "登录IP", "授权角色 0: 所有 ", "是否允许登录 1:允许 0;不允许", "密码输入错误次数", "密码最后修改时间", "创建人", "更新人", "更新日期", "更新时间", "创建日期", "创建时间"};
+		String[] fields = {"用户ID", "昵称", "真实姓名", "性别", "出生年月日", "电话号码", "邮箱", "身份证号", "部门编号", "状态", "登录密码", "登录时间", "登录IP", "授权角色 ", "是否允许登录", "密码输入错误次数", "密码最后修改时间", "创建人", "更新人", "更新日期", "更新时间", "创建日期", "创建时间"};
 		//设置表头对应字段
-		String [] columnName = {"userId", "name", "realName", "sex", "birthday", "telNo", "mail", "idNumber", "deptNo", "userSts", "loginPwd", "loginTime", "loginIp", "empowerRoles", "isAllowLogin", "pwdErrCunt", "lastUptPwdTime", "cteUserId", "uteUserId", "uteDt", "uteTm", "cteDt", "cteTm"};
+		String [] columnName = {"userId", "userName", "realName", "sex", "birthday", "telNo", "mail", "idNumber", "deptNo", "userSts", "loginPwd", "loginTime", "loginIp", "empowerRoles", "isAllowLogin", "pwdErrCunt", "lastUptPwdTime", "cteUserId", "uteUserId", "uteDt", "uteTm", "cteDt", "cteTm"};
 		//字段对应的长度限制
 		int [] sizeLimit = {10, 20, 100, 1, 8, 13, 30, 18, 10, 2, 255, 14, 20, 20, 1, 3, 14, 0, 0, 8, 6, 8, 6};
         List<Map<String, Object>> readDataList = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
@@ -147,7 +153,7 @@ public class UserService {
      * @param request
      * @return:List<TUser>
      * @author:zhao_qg
-     * @date:20200218 18:07:40
+     * @date:20200219 10:22:43
      */
     public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName, int[] sizeLimit, List<Map<String, Object>> readDataList,
                                          Map<String, Object> resultMap) {
@@ -193,7 +199,7 @@ public class UserService {
      * @param dataMaps
      * @return:List<User>
      * @author:zhao_qg
-     * @date:20200218 18:07:40
+     * @date:20200219 10:22:43
      */
 	public List<User> organizeData(List<Map<String, Object>> dataMaps){
 		//返回list集合数据
@@ -202,7 +208,7 @@ public class UserService {
 			Map<String,Object> dataMap = dataMaps.get(i);
 			User po = new User();
             po.setUserId(String.valueOf(dataMap.get("userId")));
-            po.setName(String.valueOf(dataMap.get("name")));
+            po.setUserName(String.valueOf(dataMap.get("userName")));
             po.setRealName(String.valueOf(dataMap.get("realName")));
             po.setSex(String.valueOf(dataMap.get("sex")));
             po.setBirthday(String.valueOf(dataMap.get("birthday")));
@@ -218,10 +224,6 @@ public class UserService {
             po.setIsAllowLogin(String.valueOf(dataMap.get("isAllowLogin")));
             po.setPwdErrCunt(String.valueOf(dataMap.get("pwdErrCunt")));
             po.setLastUptPwdTime(String.valueOf(dataMap.get("lastUptPwdTime")));
-            po.setCteUserId(String.valueOf(dataMap.get("cteUserId")));
-            po.setUteUserId(String.valueOf(dataMap.get("uteUserId")));
-            po.setUteDt(String.valueOf(dataMap.get("uteDt")));
-            po.setUteTm(String.valueOf(dataMap.get("uteTm")));
             po.setCteDt(String.valueOf(dataMap.get("cteDt")));
             po.setCteTm(String.valueOf(dataMap.get("cteTm")));
         userList.add(po);
@@ -235,7 +237,7 @@ public class UserService {
      * @param loginName
      * @return:List<User>
      * @author:zhao_qg
-     * @date:20200218 18:07:40
+     * @date:20200219 10:22:43
      */
 	public SXSSFWorkbook exportExcelFail (List<Map<String, Object>> erroList, String loginName) throws Exception{
 		int count = erroList.size();
@@ -272,14 +274,14 @@ public class UserService {
 	 * @param paramMap
 	 * @return SXSSFWorkbook
 	 * @throws Exception
-     * @date:20200218 18:07:40
+     * @date:20200219 10:22:43
 	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);
         int pageSize = 10000; //每次查询10000条
         List<Map<String, Object>> infoList;
-        String[] tableName = {"编号","昵称","真实姓名","性别 1：男 2：女","出生年月日 8位 yyyyMMdd","电话号码","邮箱","身份证号","部门编号","状态 0：冻结 1 ：正常  2：删除'","登录密码","登录时间","登录IP","授权角色 0: 所有 ","是否允许登录 1:允许 0;不允许","密码输入错误次数","密码最后修改时间","创建人","更新人","更新日期","更新时间","创建日期","创建时间"};
-        String[] tableValue = {"userId","name","realName","sex","birthday","telNo","mail","idNumber","deptNo","userSts","loginPwd","loginTime","loginIp","empowerRoles","isAllowLogin","pwdErrCunt","lastUptPwdTime","cteUserId","uteUserId","uteDt","uteTm","cteDt","cteTm"};
+        String[] tableName = {"用户ID","昵称","真实姓名","性别","出生年月日","电话号码","邮箱","身份证号","部门编号","状态","登录密码","登录时间","登录IP","授权角色 ","是否允许登录","密码输入错误次数","密码最后修改时间","创建人","更新人","更新日期","更新时间","创建日期","创建时间"};
+        String[] tableValue = {"userId","userName","realName","sex","birthday","telNo","mail","idNumber","deptNo","userSts","loginPwd","loginTime","loginIp","empowerRoles","isAllowLogin","pwdErrCunt","lastUptPwdTime","cteUserId","uteUserId","uteDt","uteTm","cteDt","cteTm"};
         SXSSFWorkbook swb = new SXSSFWorkbook(10000);
         int sheetContentCount = 1000000;
         int sheetCount = 0 == count % sheetContentCount ? count / sheetContentCount : count / sheetContentCount + 1;

@@ -4,28 +4,28 @@ import lombok.Data;
 /**
  * @description Userdomain
  * @author zhao_qg
- * @date 20200218 18:07:40
+ * @date 20200219 10:22:43
  */
 @Data
 public class User {
     /**
-     * 编号
+     * 用户ID
      */
     private String userId;
     /**
      * 昵称
      */
-    private String name;
+    private String userName;
     /**
      * 真实姓名
      */
     private String realName;
     /**
-     * 性别 1：男 2：女
+     * 性别
      */
     private String sex;
     /**
-     * 出生年月日 8位 yyyyMMdd
+     * 出生年月日
      */
     private String birthday;
     /**
@@ -45,7 +45,7 @@ public class User {
      */
     private String deptNo;
     /**
-     * 状态 0：冻结 1 ：正常  2：删除'
+     * 状态
      */
     private String userSts;
     /**
@@ -61,11 +61,11 @@ public class User {
      */
     private String loginIp;
     /**
-     * 授权角色 0: 所有 
+     * 授权角色 
      */
     private String empowerRoles;
     /**
-     * 是否允许登录 1:允许 0;不允许
+     * 是否允许登录
      */
     private String isAllowLogin;
     /**

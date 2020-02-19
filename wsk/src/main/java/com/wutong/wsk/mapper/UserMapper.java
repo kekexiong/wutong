@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @title  UserMapper
  * @author zhao_qg
- * @date   20200218 18:07:40
+ * @date   20200219 10:22:43
  */
 @Component
 public interface UserMapper {
@@ -16,7 +16,7 @@ public interface UserMapper {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param map
 	 * @return
 	 */
@@ -24,7 +24,7 @@ public interface UserMapper {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param map
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public interface UserMapper {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param paramVo
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public interface UserMapper {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param user
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public interface UserMapper {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date 20200218 18:07:40
+ 	 * @date 20200219 10:22:43
 	 * @param user
 	 * @return
 	 */	public int insert(User user);
@@ -58,7 +58,7 @@ public interface UserMapper {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param map
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public interface UserMapper {
 	/**
 	 * 批量插入
 	 * @author zhao_qg
- 	 * @date   20200218 18:07:40
+ 	 * @date   20200219 10:22:43
 	 * @param map
 	 * @return
 	 */
