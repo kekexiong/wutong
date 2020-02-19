@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wutong.wsk.mapper.DicCodeMapper">
+    <resultMap id="dicCodeMap" type="com.wutong.wsk.domain.DicCode" >
+     <result column="UUID" property="uuid"/>
+     <result column="CODE_KEY" property="codeKey"/>
+     <result column="CODE_VALUE" property="codeValue"/>
+     <result column="CODE_NAME" property="codeName"/>
+     <result column="UTE_USER_NO" property="uteUserNo"/>
+     <result column="UTE_DT" property="uteDt"/>
+     <result column="CTE_USER_NO" property="cteUserNo"/>
+     <result column="CTE_DT" property="cteDt"/>
+    </resultMap>
+    
+    <sql id="whereQueryCondition">
+        <where>
+            <if test="dicCode.codeKey!= null and dicCode.codeKey!= ''">
+                and CODE_KEY=#{dicCode.codeKey}
+            </if>
+            <if test="dicCode.codeValue!= null and dicCode.codeValue!= ''">
+                and CODE_VALUE=#{dicCode.codeValue}
+            </if>
+            <if test="dicCode.codeName!= null and dicCode.codeName!= ''">
+                and CODE_NAME=#{dicCode.codeName}
+            </if>
+            <if test="dicCode.uteDt!= null and dicCode.uteDt!= ''">
+                and UTE_DT=#{dicCode.uteDt}
+            </if>
+            <if test="dicCode.cteDt!= null and dicCode.cteDt!= ''">
+                and CTE_DT=#{dicCode.cteDt}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="findByCondition" parameterType="java.util.Map" resultType="Map">
+        SELECT
+                        t.UUID as "uuid",
+                        t.CODE_KEY as "codeKey",
+                        t.CODE_VALUE as "codeValue",
+                        t.CODE_NAME as "codeName",
+                        t.UTE_USER_NO as "uteUserNo",
+                        t.UTE_DT as "uteDt",
+                        t.CTE_USER_NO as "cteUserNo",
+                        t.CTE_DT as "cteDt"
+            <!-- 请在此关联查询表 -->
+            FROM DIC_CODE t
+            <include refid="whereQueryCondition"></include>
+            limit #{startRow}, #{endRow}
+    </select>
+    <select id="findByConditionCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*) 
+        FROM DIC_CODE
+        <include refid="whereQueryCondition"></include>
+    </select>
+    <select id="getByKey" parameterType="com.wutong.wsk.domain.DicCode" resultMap="dicCodeMap">
+        SELECT
+            UUID, CODE_KEY, CODE_VALUE, CODE_NAME, UTE_USER_NO, UTE_DT, CTE_USER_NO, CTE_DT
+        FROM 
+            DIC_CODE
+        WHERE
+              UUID=#{uuid}
+    </select>
+    <insert id="insert" parameterType="com.wutong.wsk.domain.DicCode">
+        INSERT INTO DIC_CODE (
+                UUID,
+                CODE_KEY,
+                CODE_VALUE,
+                CODE_NAME,
+                UTE_USER_NO,
+                UTE_DT,
+                CTE_USER_NO,
+                CTE_DT
+        ) VALUES (
+                #{uuid,jdbcType=VARCHAR},
+                #{codeKey,jdbcType=VARCHAR},
+                #{codeValue,jdbcType=VARCHAR},
+                #{codeName,jdbcType=VARCHAR},
+                #{uteUserNo,jdbcType=VARCHAR},
+                #{uteDt,jdbcType=VARCHAR},
+                #{cteUserNo,jdbcType=VARCHAR},
+                #{cteDt,jdbcType=VARCHAR}
+        )
+    </insert>
+    <update id="update" parameterType="com.wutong.wsk.domain.DicCode">
+        UPDATE DIC_CODE
+        SET
+                    CODE_KEY=#{codeKey},
+                    CODE_VALUE=#{codeValue},
+                    CODE_NAME=#{codeName},
+                    UTE_USER_NO=#{uteUserNo},
+                    UTE_DT=#{uteDt}
+        WHERE
+                      UUID=#{uuid}
+            
+    </update>
+    <delete id="delete" parameterType="java.util.Map">
+         delete from DIC_CODE
+         where 
+                      UUID
+           in 
+        <foreach item="item" index="index" collection="uuids" open="(" separator="," close=")">  
+              #{item}
+         </foreach>
+    </delete>
+</mapper>
