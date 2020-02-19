@@ -26,16 +26,19 @@ public class CodeController {
     /**
      * 使用说明  使用前请修改 表名：TABLE_NAME  和  工程路劲：PROJECT_PATH
      * <p>
-     * 注意：  SES  BAP 的表 需要用不同的数据源  需要手动修改（bap_sit ses_sit）
      */
-
     @Resource
     private TableService tableService;
-    // 表名
-    private final String TABLE_NAME = "USER";
-
-    // 表名
+    // mysql数据库
     private final String TABLE_SCHEMA = "wsk";
+
+    // oracle 数据库用户
+    private final String DB_USER = "wsk";
+
+    // 编辑器类型 0:eclipse 1:idea(idea编辑器需要配置com.zqg.cct.template为资源文件)
+    private final String EDIT_TYPE = "1";
+    // MYSQL ORACLE
+    private final String DB_TYPE = "MYSQL";
     // 工程路径 ios 电脑/Users/zhaoqiugen/gitnew/wutong/demo
     //private final String PROJECT_PATH = "/Users/zhaoqiugen/git/cct";
 
@@ -44,16 +47,13 @@ public class CodeController {
     // private final String PROJECT_PATH="D:/workspaceCCT/cct";
     // 作者
     private final String CLASS_AUTHOR = "zhao_qg";
+    // 表名
+    private final String TABLE_NAME = "MENU";
     // 业务名称
-    private final String BUSINESS_NAME = "用户";
-    // 代码目录
+    private final String BUSINESS_NAME = "菜单";
+    // 工程目录
     private final String CLASS_PACKAGE = "com.wutong.wsk";
-    // 代码目录
-    private final String DB_USER = "root";
-    // 编辑器类型 0:eclipse 1:idea(idea编辑器需要配置com.zqg.cct.template为资源文件)
-    private final String EDIT_TYPE = "1";
-    // MYSQL ORACLE
-    private final String DB_TYPE = "MYSQL";
+
 
     /**
      * 首页
@@ -66,20 +66,6 @@ public class CodeController {
         System.out.println("进入````````````");
         return new ModelAndView("code");
     }
-
-
-    /**
-     * 首页
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping("/index2")
-    public String couponRule2() {
-        System.out.println("进入`2222222```````````");
-        return "code2";
-    }
-
 
     /**
      * 查询表结构

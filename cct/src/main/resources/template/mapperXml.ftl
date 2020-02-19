@@ -74,11 +74,15 @@
     <insert id="insert" parameterType="${domainPackage}.${classNameD}">
         INSERT INTO <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName} (
             <#list tableCarrays as tableCarray>
+                <#if tableCarray.isAddColumnName == "0">
                 ${tableCarray.columnName}<#if (tableCarray_has_next)>,</#if>
+                </#if>
             </#list>
         ) VALUES (
             <#list tableCarrays as tableCarray>
+                <#if tableCarray.isAddColumnName == "0">
                 ${specific}{${tableCarray.columnNameX},jdbcType=VARCHAR}<#if (tableCarray_has_next)>,</#if>
+                </#if>
             </#list>
         )
     </insert>
@@ -87,12 +91,16 @@
     <insert id="insertBatch" parameterType="java.util.List">
         INSERT INTO <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}(
             <#list tableCarrays as tableCarray>
-            ${tableCarray.columnName}<#if (tableCarray_has_next)>,</#if>
+                <#if tableCarray.isAddColumnName == "0">
+                    ${tableCarray.columnName}<#if (tableCarray_has_next)>,</#if>
+                </#if>
             </#list>)
         <foreach collection="list" item="item" index="index" separator="union all">
             SELECT
             <#list tableCarrays as tableCarray>
-                ${specific}{item.${tableCarray.columnNameX},jdbcType=VARCHAR}<#if (tableCarray_has_next)>,</#if>
+                <#if tableCarray.isAddColumnName == "0">
+                    ${specific}{item.${tableCarray.columnNameX},jdbcType=VARCHAR}<#if (tableCarray_has_next)>,</#if>
+                </#if>
             </#list>
             FROM DUAL
         </foreach>

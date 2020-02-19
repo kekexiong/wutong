@@ -72,25 +72,18 @@
                                             </div>
                                                                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">图标:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="icon" id="ICON" class="form-control" placeholder="图标">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
                                                     <label class="control-label col-md-4 text-right">排序:</label>
                                                     <div class="col-md-8 paddingnone">
                                                         <input name="sort" id="SORT" class="form-control" placeholder="排序">
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4 text-right">是否显示:</label>
                                                     <div class="col-md-8 paddingnone">
-                                                        <input name="isShow" id="IS_SHOW" class="form-control" placeholder="是否显示">
+                                                        <select name="isShow" id="IS_SHOW" class="bs-select form-control" data-show-subtext="true">
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,49 +97,9 @@
                                             </div>
                                                                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">状态:0:无效  1:有效:</label>
+                                                    <label class="control-label col-md-4 text-right">状态:</label>
                                                     <div class="col-md-8 paddingnone">
-                                                        <input name="sts" id="STS" class="form-control" placeholder="状态:0:无效  1:有效">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">备注:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="remarks" id="REMARKS" class="form-control" placeholder="备注">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">更新人:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="uteUserNo" id="UTE_USER_NO" class="form-control" placeholder="更新人">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">更新日期:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="uteDt" id="UTE_DT" class="form-control" placeholder="更新日期">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">创建人:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="cteUserNo" id="CTE_USER_NO" class="form-control" placeholder="创建人">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">创建日期:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="cteDt" id="CTE_DT" class="form-control" placeholder="创建日期">
+                                                        <input name="sts" id="STS" class="form-control" placeholder="状态">
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,7 +142,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-search font-blue"></i>
-                            <span class="caption-subject font-blue bold uppercase">用户信息列表</span>
+                            <span class="caption-subject font-blue bold uppercase">菜单信息列表</span>
                         </div>
                         <div class="tools">
                             <a href="" class="fullscreen" data-original-title="全屏" title=""></a>
@@ -208,8 +161,9 @@
                                                     <th class="nowrap">图标</th>
                                                     <th class="nowrap">排序</th>
                                                     <th class="nowrap">是否显示</th>
+                                                    <th class="nowrap">是否显示</th>
                                                     <th class="nowrap">权限码</th>
-                                                    <th class="nowrap">状态:0:无效  1:有效</th>
+                                                    <th class="nowrap">状态</th>
                                                     <th class="nowrap">备注</th>
                                                     <th class="nowrap">更新人</th>
                                                     <th class="nowrap">更新日期</th>
@@ -265,7 +219,7 @@
         </div>
     </div>
     <!----------------------------------- 添加(修改)功能弹出页面（获取输入值的输入框后缀统一增加_SHOW标识符） ------------------------------------------>
-    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close"
                     data-dismiss="modal" aria-hidden="true">&times;
@@ -324,16 +278,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                                                                  <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">是否显示:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="isShow" id="IS_SHOW_SHOW" class="form-control" placeholder="是否显示">
+                                            <select name="isShow" id="IS_SHOW_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                            <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">权限码:</label>
@@ -345,9 +299,9 @@
                                                                                                                                                                                <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">状态:0:无效  1:有效:</label>
+                                        <label class="control-label col-md-4 text-right">状态:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="sts" id="STS_SHOW" class="form-control" placeholder="状态:0:无效  1:有效">
+                                            <input name="sts" id="STS_SHOW" class="form-control" placeholder="状态">
                                         </div>
                                     </div>
                                 </div>
@@ -380,10 +334,10 @@
         </div>
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
-            <h4 class="modal-title" >用户详情信息</h4>
+            <h4 class="modal-title" >菜单详情信息</h4>
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
@@ -435,16 +389,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                                                                                                          <!-- 下拉框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">是否显示:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="isShow" id="IS_SHOW_VIEW" class="form-control" disabled="disabled" placeholder="是否显示">
+                                                <select name="isShow" id="IS_SHOW_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                            <!-- 普通输入框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">权限码:</label>
@@ -456,9 +411,9 @@
                                                                                                                                                                                                    <!-- 普通输入框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">状态:0:无效  1:有效:</label>
+                                            <label class="control-label col-md-4 text-right">状态:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="sts" id="STS_VIEW" class="form-control" disabled="disabled" placeholder="状态:0:无效  1:有效">
+                                                <input name="sts" id="STS_VIEW" class="form-control" disabled="disabled" placeholder="状态">
                                             </div>
                                         </div>
                                     </div>
@@ -661,6 +616,10 @@
     <!--getComboStore系统表生成下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入key值，4传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--getCustomStore自定义下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--如果不需要回显第一个参数传入""，如果不需要设定disabled属性传入FALSE-->
+                    <!--列表下拉框-->
+                        getComboStore("","IS_SHOW", "MENU-IS_SHOW","");
+                    <!--添加获取修改下拉框-->
+                        getComboStore("","IS_SHOW_SHOW", "MENU-IS_SHOW","");
         //初始化输入框时间默认值方法
         initDefaultDate();
         //重置按钮
@@ -681,7 +640,7 @@
             $("#addOrUpdateform .bs-select").selectpicker('val','');
             document.getElementById("hiddenType").value = "1";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "用户添加信息";
+            title.innerHTML = "菜单添加信息";
             addOrUpdate("add","");
         });
         //修改按钮
@@ -696,7 +655,7 @@
             }
             document.getElementById("hiddenType").value = "2";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "用户修改信息";
+            title.innerHTML = "菜单修改信息";
             addOrUpdate("update",record);
         });
         //添加保存按钮
@@ -812,7 +771,7 @@
                                 document.getElementById('PARENT_ID_SHOW').value=data.data.parentId;
                                 document.getElementById('ICON_SHOW').value=data.data.icon;
                                 document.getElementById('SORT_SHOW').value=data.data.sort;
-                                document.getElementById('IS_SHOW_SHOW').value=data.data.isShow;
+                                getComboStore(data.data.isShow,"IS_SHOW_SHOW", "IS_SHOW",false);
                                 document.getElementById('PERMISSSION_SHOW').value=data.data.permisssion;
                                 document.getElementById('STS_SHOW').value=data.data.sts;
                                 document.getElementById('REMARKS_SHOW').value=data.data.remarks;
@@ -829,11 +788,15 @@
         }
     }
     //下拉框码表中加载数据(使用系统表)
-    function getComboStore(value,element,type_code,isdisabled) {
+    function getComboStore(codeValue,element,codeKey,isdisabled) {
+        var param = {page:1,start:0,limit:1000};
+        param.codeKey = codeKey;
+        param.codeValue = codeValue;
         $.ajax({
-            type: "GET",
-            url: baseURL+"/code/query/typ/" + type_code,
-            contentType: "application/json;charset=utf-8",
+            type: "POST",
+            url: baseURL+"/wsk/dicCode/query",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            data: param,
             dataType: "json",
             success: function(data) {
                 if(data.timeout){
@@ -841,8 +804,8 @@
                 }
                 $("#" + element).empty();
                 $("#" + element).append($("<option></option>").val("").text("全部"));
-                $.each(data, function(index, obj) {
-                    $("#" + element).append($("<option></option>").val(obj.cdVl).text(obj.cdNm));
+                $.each(data.items, function(index, obj) {
+                    $("#" + element).append($("<option></option>").val(obj.codeValue).text(obj.codeName));
                 });
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
@@ -889,16 +852,10 @@
                         param.menuId = $("#MENU_ID").val();
                         param.menuName = $("#MENU_NAME").val();
                         param.parentId = $("#PARENT_ID").val();
-                        param.icon = $("#ICON").val();
                         param.sort = $("#SORT").val();
                         param.isShow = $("#IS_SHOW").val();
                         param.permisssion = $("#PERMISSSION").val();
                         param.sts = $("#STS").val();
-                        param.remarks = $("#REMARKS").val();
-                        param.uteUserNo = $("#UTE_USER_NO").val();
-                        param.uteDt = $("#UTE_DT").val();
-                        param.cteUserNo = $("#CTE_USER_NO").val();
-                        param.cteDt = $("#CTE_DT").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -931,6 +888,7 @@
                                 trData.push(obj.icon);
                                 trData.push(obj.sort);
                                 trData.push(obj.isShow);
+                                trData.push(obj.isShowName);
                                 trData.push(obj.permisssion);
                                 trData.push(obj.sts);
                                 trData.push(obj.remarks);
@@ -1000,7 +958,7 @@
                             document.getElementById('PARENT_ID_VIEW').value=data.data.parentId;
                             document.getElementById('ICON_VIEW').value=data.data.icon;
                             document.getElementById('SORT_VIEW').value=data.data.sort;
-                            document.getElementById('IS_SHOW_VIEW').value=data.data.isShow;
+                            getComboStore(data.data.isShow,"IS_SHOW_VIEW", "IS_SHOW",true);
                             document.getElementById('PERMISSSION_VIEW').value=data.data.permisssion;
                             document.getElementById('STS_VIEW').value=data.data.sts;
                             document.getElementById('REMARKS_VIEW').value=data.data.remarks;

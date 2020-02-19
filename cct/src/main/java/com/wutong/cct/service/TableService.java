@@ -36,11 +36,14 @@ public class TableService {
             if ("VARCHAR2".equals(itemList.get(i).getColumnName())) {
 
             }
-            // 如果备注为空  字段名字天剑
+
+            // 如果备注为空  字段名字
             if (StringUtils.isEmpty(itemList.get(i).getComments())) {
                 itemList.get(i).setComments(itemList.get(i).getColumnName());
             }
-
+            if (itemList.get(i).getComments().contains(" ")) {
+                itemList.get(i).setComments(itemList.get(i).getComments().substring(0, itemList.get(i).getComments().indexOf(" ")));
+            }
         }
         return itemList;
     }

@@ -234,7 +234,7 @@
         </div>
     </div>
     <!----------------------------------- 添加(修改)功能弹出页面（获取输入值的输入框后缀统一增加_SHOW标识符） ------------------------------------------>
-    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close"
                     data-dismiss="modal" aria-hidden="true">&times;
@@ -329,7 +329,7 @@
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
 <#if isOperation == "01">
-    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
             <h4 class="modal-title" >${businessName}详情信息</h4>
@@ -661,18 +661,18 @@
             <#list tableCarrays as tableCarray>
                 <#if (tableCarray.queryRule??) && tableCarray.queryRule == "04">
                     <#if (tableCarray.queryType??) && tableCarray.queryType == "01"><!--列表下拉框-->
-                        getComboStore("","${tableCarray.columnName}", "${tableCarray.columnName}","");
+                        getComboStore("","${tableCarray.columnName}", "${tableName}-${tableCarray.columnName}","");
                     </#if>
                     <#if tableCarray.queryAdd?? && tableCarray.queryAdd == "01"><!--添加获取修改下拉框-->
-                        getComboStore("","${tableCarray.columnName}_SHOW", "${tableCarray.columnName}","");
+                        getComboStore("","${tableCarray.columnName}_SHOW", "${tableName}-${tableCarray.columnName}","");
                     </#if>
                 </#if>
                 <#if (tableCarray.queryRule??) && tableCarray.queryRule == "05">
                     <#if (tableCarray.queryType??) && tableCarray.queryType == "01"><!--列表下拉框-->
-                        get${tableCarray.columnNameD}("","${tableCarray.columnName}","");
+                        get${tableCarray.columnNameD}("","${tableName}-${tableCarray.columnName}","");
                     </#if>
                     <#if tableCarray.queryAdd?? && tableCarray.queryAdd == "01">
-                        get${tableCarray.columnNameD}("","${tableCarray.columnName}_SHOW","");
+                        get${tableCarray.columnNameD}("","${tableName}-${tableCarray.columnName}_SHOW","");
                     </#if>
                 </#if>
             </#list>
@@ -860,11 +860,15 @@
         }
     }
     //下拉框码表中加载数据(使用系统表)
-    function getComboStore(value,element,type_code,isdisabled) {
+    function getComboStore(codeValue,element,codeKey,isdisabled) {
+        var param = {page:1,start:0,limit:1000};
+        param.codeKey = codeKey;
+        param.codeValue = codeValue;
         $.ajax({
-            type: "GET",
-            url: baseURL+"/code/query/typ/" + type_code,
-            contentType: "application/json;charset=utf-8",
+            type: "POST",
+            url: baseURL+"/wsk/dicCode/query",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            data: param,
             dataType: "json",
             success: function(data) {
                 if(data.timeout){
@@ -872,8 +876,8 @@
                 }
                 $("#" + element).empty();
                 $("#" + element).append($("<option></option>").val("").text("全部"));
-                $.each(data, function(index, obj) {
-                    $("#" + element).append($("<option></option>").val(obj.cdVl).text(obj.cdNm));
+                $.each(data.items, function(index, obj) {
+                    $("#" + element).append($("<option></option>").val(obj.codeValue).text(obj.codeName));
                 });
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');

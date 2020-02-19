@@ -4,7 +4,7 @@ import lombok.Data;
 /**
  * @description Menudomain
  * @author zhao_qg
- * @date 20200218 20:37:11
+ * @date 20200219 21:24:59
  */
 @Data
 public class Menu {
@@ -33,11 +33,15 @@ public class Menu {
      */
     private String isShow;
     /**
+     * 是否显示
+     */
+    private String isShowName;
+    /**
      * 权限码
      */
     private String permisssion;
     /**
-     * 状态:0:无效  1:有效
+     * 状态
      */
     private String sts;
     /**
