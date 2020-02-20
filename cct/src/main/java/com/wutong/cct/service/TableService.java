@@ -1,5 +1,7 @@
 package com.wutong.cct.service;
 
+import com.sun.deploy.util.ArrayUtil;
+import com.sun.tools.javac.util.ArrayUtils;
 import com.wutong.cct.domain.TableDomain;
 import com.wutong.cct.domain.TableItem;
 import com.wutong.cct.mapper.TableMapper;
@@ -19,6 +21,14 @@ public class TableService {
     @Autowired
     private TableMapper tableMapper;
 
+
+    public String[] updateArray = new String[]{"uteUserNo", "uteDt", "uteTm"};
+    public String[] innt_selectArray = new String[]{ "UUID", "CTE_USER_NO", "CTE_DT", "CTE_TM", "UTE_USER_NO", "UTE_DT", "UTE_TM", "REMARKS"};
+
+    public String[] insertArray = new String[]{"uuid", "cteUserNo", "cteDt", "cteTm"};
+    public String[] innt_insertArray = new String[]{"UUID", "CTE_USER_NO", "CTE_DT", "CTE_TM","UTE_USER_NO", "UTE_DT", "UTE_TM"};
+
+
     public List<TableItem> getTableItem(TableDomain param) {
         List<TableItem> itemList = tableMapper.getTableItemForMysql(param);
         for (int i = 0; i < itemList.size(); i++) {
@@ -27,9 +37,13 @@ public class TableService {
             }else{
                 itemList.get(i).setQueryRule("03");//默认输入框
                 itemList.get(i).setQueryShow("√");
-                itemList.get(i).setQueryAdd("√");
+                if(!hasThis(innt_selectArray, itemList.get(i).getColumnName())){
+                    itemList.get(i).setQueryType("√");
+                }
+                if(!hasThis(innt_insertArray, itemList.get(i).getColumnName())){
+                    itemList.get(i).setQueryAdd("√");
+                }
                 itemList.get(i).setQueryExport("√");
-                itemList.get(i).setQueryType("√");
                 itemList.get(i).setQueryView("√");
                 itemList.get(i).setQueryImport("√");
             }
@@ -43,13 +57,12 @@ public class TableService {
             }
             if (itemList.get(i).getComments().contains(" ")) {
                 itemList.get(i).setComments(itemList.get(i).getComments().substring(0, itemList.get(i).getComments().indexOf(" ")));
+                itemList.get(i).setQueryRule("04");
             }
         }
         return itemList;
     }
 
-    private String[] updateArray = new String[]{"uteUserNo", "uteDt", "uteTm"};
-    private String[] insertArray = new String[]{"uuid", "cteUserNo", "cteDt", "cteTm"};
 
     // 判断集合是否存在
     public boolean hasThis(String[] arr, String targetValue) {

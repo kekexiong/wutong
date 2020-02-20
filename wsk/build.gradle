@@ -67,6 +67,8 @@ dependencies {
     compile 'org.apache.shiro:shiro-web:1.2.2'
     compile 'org.apache.shiro:shiro-ehcache:1.2.2'
     compile 'org.apache.shiro:shiro-core:1.2.2'
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.2.RELEASE'
 }
 
 test {

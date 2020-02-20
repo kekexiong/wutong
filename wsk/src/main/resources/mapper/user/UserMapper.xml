@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wutong.wsk.mapper.user.UserMapper">
+    <resultMap id="userMap" type="com.wutong.wsk.domain.user.User" >
+     <result column="USER_ID" property="userId"/>
+     <result column="USER_NAME" property="userName"/>
+     <result column="REAL_NAME" property="realName"/>
+     <result column="SEX" property="sex"/>
+     <result column="SEX_NAME" property="sexName"/>
+     <result column="BIRTHDAY" property="birthday"/>
+     <result column="TEL_NO" property="telNo"/>
+     <result column="MAIL" property="mail"/>
+     <result column="ID_NUMBER" property="idNumber"/>
+     <result column="DEPT_NO" property="deptNo"/>
+     <result column="USER_STS" property="userSts"/>
+     <result column="USER_STS_NAME" property="userStsName"/>
+     <result column="LOGIN_PWD" property="loginPwd"/>
+     <result column="LOGIN_TIME" property="loginTime"/>
+     <result column="LOGIN_IP" property="loginIp"/>
+     <result column="EMPOWER_ROLES" property="empowerRoles"/>
+     <result column="EMPOWER_ROLES_NAME" property="empowerRolesName"/>
+     <result column="IS_ALLOW_LOGIN" property="isAllowLogin"/>
+     <result column="IS_ALLOW_LOGIN_NAME" property="isAllowLoginName"/>
+     <result column="PWD_ERR_CUNT" property="pwdErrCunt"/>
+     <result column="LAST_UPT_PWD_TIME" property="lastUptPwdTime"/>
+     <result column="CTE_USER_NO" property="cteUserNo"/>
+     <result column="UTE_USER_NO" property="uteUserNo"/>
+     <result column="UTE_DT" property="uteDt"/>
+     <result column="UTE_TM" property="uteTm"/>
+     <result column="CTE_DT" property="cteDt"/>
+     <result column="CTE_TM" property="cteTm"/>
+    </resultMap>
+    
+    <sql id="whereQueryCondition">
+        <where>
+            <if test="user.userId!= null and user.userId!= ''">
+                and USER_ID=#{user.userId}
+            </if>
+            <if test="user.userName!= null and user.userName!= ''">
+                and USER_NAME=#{user.userName}
+            </if>
+            <if test="user.realName!= null and user.realName!= ''">
+                and REAL_NAME=#{user.realName}
+            </if>
+            <if test="user.birthdaybeginDt!= null and user.birthdaybeginDt!= ''">
+                and BIRTHDAY&gt;=#{user.birthdaybeginDt}
+            </if>
+            <if test="user.birthdayendDt!= null and user.birthdayendDt!= ''">
+                and BIRTHDAY&lt;=#{user.birthdayendDt}
+            </if>
+            <if test="user.telNo!= null and user.telNo!= ''">
+                and TEL_NO=#{user.telNo}
+            </if>
+            <if test="user.mail!= null and user.mail!= ''">
+                and MAIL=#{user.mail}
+            </if>
+            <if test="user.idNumber!= null and user.idNumber!= ''">
+                and ID_NUMBER=#{user.idNumber}
+            </if>
+            <if test="user.deptNo!= null and user.deptNo!= ''">
+                and DEPT_NO=#{user.deptNo}
+            </if>
+            <if test="user.userSts!= null and user.userSts!= ''">
+                and USER_STS=#{user.userSts}
+            </if>
+            <if test="user.empowerRoles!= null and user.empowerRoles!= ''">
+                and EMPOWER_ROLES=#{user.empowerRoles}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="findByCondition" parameterType="java.util.Map" resultType="Map">
+        SELECT
+                        t.USER_ID as "userId",
+                        t.USER_NAME as "userName",
+                        t.REAL_NAME as "realName",
+                        t.SEX as "sex",
+                        '' as "sexName",
+                        t.BIRTHDAY as "birthday",
+                        t.TEL_NO as "telNo",
+                        t.MAIL as "mail",
+                        t.ID_NUMBER as "idNumber",
+                        t.DEPT_NO as "deptNo",
+                        t.USER_STS as "userSts",
+                        '' as "userStsName",
+                        t.LOGIN_PWD as "loginPwd",
+                        t.LOGIN_TIME as "loginTime",
+                        t.LOGIN_IP as "loginIp",
+                        t.EMPOWER_ROLES as "empowerRoles",
+                        '' as "empowerRolesName",
+                        t.IS_ALLOW_LOGIN as "isAllowLogin",
+                        '' as "isAllowLoginName",
+                        t.PWD_ERR_CUNT as "pwdErrCunt",
+                        t.LAST_UPT_PWD_TIME as "lastUptPwdTime",
+                        t.CTE_USER_NO as "cteUserNo",
+                        t.UTE_USER_NO as "uteUserNo",
+                        t.UTE_DT as "uteDt",
+                        t.UTE_TM as "uteTm",
+                        t.CTE_DT as "cteDt",
+                        t.CTE_TM as "cteTm"
+            <!-- 请在此关联查询表 -->
+            FROM USER t
+            <include refid="whereQueryCondition"></include>
+            limit #{startRow}, #{endRow}
+    </select>
+    <select id="findByConditionCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*) 
+        FROM USER
+        <include refid="whereQueryCondition"></include>
+    </select>
+    <select id="getByKey" parameterType="com.wutong.wsk.domain.user.User" resultMap="userMap">
+        SELECT
+            USER_ID, USER_NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_NO, UTE_USER_NO, UTE_DT, UTE_TM, CTE_DT, CTE_TM
+        FROM 
+            USER
+        WHERE
+              USER_ID=#{userId}
+    </select>
+    <insert id="insert" parameterType="com.wutong.wsk.domain.user.User">
+        INSERT INTO USER (
+                USER_ID,
+                USER_NAME,
+                REAL_NAME,
+                SEX,
+                BIRTHDAY,
+                TEL_NO,
+                MAIL,
+                ID_NUMBER,
+                DEPT_NO,
+                USER_STS,
+                LOGIN_PWD,
+                LOGIN_TIME,
+                LOGIN_IP,
+                EMPOWER_ROLES,
+                IS_ALLOW_LOGIN,
+                PWD_ERR_CUNT,
+                LAST_UPT_PWD_TIME,
+                CTE_USER_NO,
+                UTE_USER_NO,
+                UTE_DT,
+                UTE_TM,
+                CTE_DT,
+                CTE_TM
+        ) VALUES (
+                #{userId,jdbcType=VARCHAR},
+                #{userName,jdbcType=VARCHAR},
+                #{realName,jdbcType=VARCHAR},
+                #{sex,jdbcType=VARCHAR},
+                #{birthday,jdbcType=VARCHAR},
+                #{telNo,jdbcType=VARCHAR},
+                #{mail,jdbcType=VARCHAR},
+                #{idNumber,jdbcType=VARCHAR},
+                #{deptNo,jdbcType=VARCHAR},
+                #{userSts,jdbcType=VARCHAR},
+                #{loginPwd,jdbcType=VARCHAR},
+                #{loginTime,jdbcType=VARCHAR},
+                #{loginIp,jdbcType=VARCHAR},
+                #{empowerRoles,jdbcType=VARCHAR},
+                #{isAllowLogin,jdbcType=VARCHAR},
+                #{pwdErrCunt,jdbcType=VARCHAR},
+                #{lastUptPwdTime,jdbcType=VARCHAR},
+                #{cteUserNo,jdbcType=VARCHAR},
+                #{uteUserNo,jdbcType=VARCHAR},
+                #{uteDt,jdbcType=VARCHAR},
+                #{uteTm,jdbcType=VARCHAR},
+                #{cteDt,jdbcType=VARCHAR},
+                #{cteTm,jdbcType=VARCHAR}
+        )
+    </insert>
+    <update id="update" parameterType="com.wutong.wsk.domain.user.User">
+        UPDATE USER
+        SET
+                    USER_ID=#{userId},
+                    USER_NAME=#{userName},
+                    REAL_NAME=#{realName},
+                    SEX=#{sex},
+                    BIRTHDAY=#{birthday},
+                    TEL_NO=#{telNo},
+                    MAIL=#{mail},
+                    ID_NUMBER=#{idNumber},
+                    DEPT_NO=#{deptNo},
+                    USER_STS=#{userSts},
+                    LOGIN_PWD=#{loginPwd},
+                    UTE_USER_NO=#{uteUserNo},
+                    UTE_DT=#{uteDt},
+                    UTE_TM=#{uteTm}
+        WHERE
+                      USER_ID=#{userId}
+            
+    </update>
+    <delete id="delete" parameterType="java.util.Map">
+         delete from USER
+         where 
+                      USER_ID
+           in 
+        <foreach item="item" index="index" collection="uuids" open="(" separator="," close=")">  
+              #{item}
+         </foreach>
+    </delete>
+
+    <select id="getByName" parameterType="com.wutong.wsk.domain.user.User" resultMap="userMap">
+        SELECT
+            USER_ID, USER_NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_ID, UTE_USER_ID, UTE_DT, UTE_TM, CTE_DT, CTE_TM
+        FROM
+            USER
+        WHERE
+            USER_NAME=#{userName}
+    </select>
+</mapper>

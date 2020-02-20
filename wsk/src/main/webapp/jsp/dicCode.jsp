@@ -70,22 +70,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">更新日期:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="uteDt" id="UTE_DT" class="form-control" placeholder="更新日期">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">创建日期:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="cteDt" id="CTE_DT" class="form-control" placeholder="创建日期">
-                                                    </div>
-                                                </div>
-                                            </div>
                                                                         </div>
                             <div class="form-actions">
                                 <div class="row">
@@ -125,7 +109,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-search font-blue"></i>
-                            <span class="caption-subject font-blue bold uppercase">用户信息列表</span>
+                            <span class="caption-subject font-blue bold uppercase">菜单信息列表</span>
                         </div>
                         <div class="tools">
                             <a href="" class="fullscreen" data-original-title="全屏" title=""></a>
@@ -195,7 +179,7 @@
         </div>
     </div>
     <!----------------------------------- 添加(修改)功能弹出页面（获取输入值的输入框后缀统一增加_SHOW标识符） ------------------------------------------>
-    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close"
                     data-dismiss="modal" aria-hidden="true">&times;
@@ -256,10 +240,10 @@
         </div>
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
-            <h4 class="modal-title" >用户详情信息</h4>
+            <h4 class="modal-title" >菜单详情信息</h4>
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
@@ -503,7 +487,7 @@
             $("#addOrUpdateform .bs-select").selectpicker('val','');
             document.getElementById("hiddenType").value = "1";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "用户添加信息";
+            title.innerHTML = "菜单添加信息";
             addOrUpdate("add","");
         });
         //修改按钮
@@ -518,7 +502,7 @@
             }
             document.getElementById("hiddenType").value = "2";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "用户修改信息";
+            title.innerHTML = "菜单修改信息";
             addOrUpdate("update",record);
         });
         //添加保存按钮
@@ -530,9 +514,9 @@
             var hiddenType = $("#hiddenType").val();
             var url = "";
             if("1" == hiddenType){
-                url = baseURL + "/wsk/dicCode/save";
+                url = baseURL + "/system/dicCode/save";
             }else if ("2" == hiddenType){
-                url = baseURL + "/wsk/dicCode/update";
+                url = baseURL + "/system/dicCode/update";
                 param.uuid = $("#hiddenUUid").val();
             }else{
                 url = "";
@@ -578,7 +562,7 @@
                     if(truthBeTold){
                         $.ajax({
                             type: "POST",
-                            url: baseURL + "/wsk/dicCode/deleteByUuid",
+                            url: baseURL + "/system/dicCode/deleteByUuid",
                             data:{
                                 uuids:uuids
                             },
@@ -617,7 +601,7 @@
                         param.uuid = record.uuid;
             $.ajax({
                 type : "POST",
-                url : baseURL + "/wsk/dicCode/getDetail",
+                url : baseURL + "/system/dicCode/getDetail",
                 data :param,
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 dataType : "json",
@@ -639,11 +623,15 @@
         }
     }
     //下拉框码表中加载数据(使用系统表)
-    function getComboStore(value,element,type_code,isdisabled) {
+    function getComboStore(codeValue,element,codeKey,isdisabled) {
+        var param = {page:1,start:0,limit:1000};
+        param.codeKey = codeKey;
+        param.codeValue = codeValue;
         $.ajax({
-            type: "GET",
-            url: baseURL+"/code/query/typ/" + type_code,
-            contentType: "application/json;charset=utf-8",
+            type: "POST",
+            url: baseURL+"/wsk/dicCode/query",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            data: param,
             dataType: "json",
             success: function(data) {
                 if(data.timeout){
@@ -651,8 +639,8 @@
                 }
                 $("#" + element).empty();
                 $("#" + element).append($("<option></option>").val("").text("全部"));
-                $.each(data, function(index, obj) {
-                    $("#" + element).append($("<option></option>").val(obj.cdVl).text(obj.cdNm));
+                $.each(data.items, function(index, obj) {
+                    $("#" + element).append($("<option></option>").val(obj.codeValue).text(obj.codeName));
                 });
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
@@ -684,7 +672,7 @@
     }
 
 
-    var queryInner_Path = baseURL + "/wsk/dicCode/query";
+    var queryInner_Path = baseURL + "/system/dicCode/query";
     //实现查询按钮方法
     function reloadGrid(){
         $('#queryMecGrid > tbody').empty();
@@ -699,8 +687,6 @@
                         param.codeKey = $("#CODE_KEY").val();
                         param.codeValue = $("#CODE_VALUE").val();
                         param.codeName = $("#CODE_NAME").val();
-                        param.uteDt = $("#UTE_DT").val();
-                        param.cteDt = $("#CTE_DT").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -786,7 +772,7 @@
             param.uuid = uuid;
             $.ajax({
                 type : "POST",
-                url : baseURL + "/wsk/dicCode/getDetail",
+                url : baseURL + "/system/dicCode/getDetail",
                 data :param,
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 dataType : "json",
@@ -812,7 +798,7 @@
         });
         //下载模板按钮
         $("#download_template_btn").on('click', function() {
-            window.open(baseURL +'/wsk/dicCode/downloadTemplate');
+            window.open(baseURL +'/system/dicCode/downloadTemplate');
         });
 
         //导出按钮
@@ -826,7 +812,7 @@
             $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
             $("#innerExcelType").attr("disabled", "disabled");
             $("#exportform_save_btn").off('click').on('click', function() {
-                window.open(baseURL +"/wsk/dicCode/export");
+                window.open(baseURL +"/system/dicCode/export");
                 $("#exportExcelWin").modal('hide');
             });
             $("#exportform_cancel_btn").off('click').on('click', function() {

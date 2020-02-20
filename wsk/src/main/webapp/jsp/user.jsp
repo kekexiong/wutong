@@ -70,19 +70,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">性别:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="sex" id="SEX" class="form-control" placeholder="性别">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4 text-right">出生年月日:</label>
                                                     <div class="col-md-8 paddingnone">
-                                                        <input name="birthday" id="BIRTHDAY" class="form-control" placeholder="出生年月日">
+                                                        <div class="input-group input-daterange">
+                                                            <input type="text" class="form-control col-md-3" name="birthdaybeginDt" id="BIRTHDAY_beginDt">
+                                                            <span class="input-group-addon"> <i class="fa fa-exchange"></i></span>
+                                                            <input type="text" class="form-control" name="birthdayendDt" id="BIRTHDAY_endDt">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,115 +114,21 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4 text-right">状态:</label>
                                                     <div class="col-md-8 paddingnone">
-                                                        <input name="userSts" id="USER_STS" class="form-control" placeholder="状态">
+                                                        <select name="userSts" id="USER_STS" class="bs-select form-control" data-show-subtext="true">
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">登录密码:</label>
+                                                    <label class="control-label col-md-4 text-right">授权角色:</label>
                                                     <div class="col-md-8 paddingnone">
-                                                        <input name="loginPwd" id="LOGIN_PWD" class="form-control" placeholder="登录密码">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">登录时间:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="loginTime" id="LOGIN_TIME" class="form-control" placeholder="登录时间">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">登录IP:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="loginIp" id="LOGIN_IP" class="form-control" placeholder="登录IP">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">授权角色 :</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="empowerRoles" id="EMPOWER_ROLES" class="form-control" placeholder="授权角色 ">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">是否允许登录:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="isAllowLogin" id="IS_ALLOW_LOGIN" class="form-control" placeholder="是否允许登录">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">密码输入错误次数:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="pwdErrCunt" id="PWD_ERR_CUNT" class="form-control" placeholder="密码输入错误次数">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">密码最后修改时间:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="lastUptPwdTime" id="LAST_UPT_PWD_TIME" class="form-control" placeholder="密码最后修改时间">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">创建人:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="cteUserId" id="CTE_USER_ID" class="form-control" placeholder="创建人">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">更新人:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="uteUserId" id="UTE_USER_ID" class="form-control" placeholder="更新人">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">更新日期:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="uteDt" id="UTE_DT" class="form-control" placeholder="更新日期">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">更新时间:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="uteTm" id="UTE_TM" class="form-control" placeholder="更新时间">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">创建日期:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="cteDt" id="CTE_DT" class="form-control" placeholder="创建日期">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">创建时间:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="cteTm" id="CTE_TM" class="form-control" placeholder="创建时间">
+                                                        <select name="empowerRoles" id="EMPOWER_ROLES" class="bs-select form-control" data-show-subtext="true">
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,12 +156,6 @@
                                                     <button type="button" id="isExport_btn" class="btn tn btn btn-primary">
                                                         <i class="fa fa-download"></i> 导出
                                                     </button>
-                                                    <button type="button" id="download_template_btn" class="btn btn btn-primary">
-                                                        <i class="fa fa-download"></i>下载模板
-                                                    </button>
-                                                    <button type="button" id="isImport_btn" class="btn tn btn btn-primary">
-                                                        <i class="fa fa-upload"></i> 导入
-                                                    </button>
                                             </div>
                                         </div>
                                     </div>
@@ -275,7 +171,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-search font-blue"></i>
-                            <span class="caption-subject font-blue bold uppercase">用户信息列表</span>
+                            <span class="caption-subject font-blue bold uppercase">菜单信息列表</span>
                         </div>
                         <div class="tools">
                             <a href="" class="fullscreen" data-original-title="全屏" title=""></a>
@@ -292,16 +188,20 @@
                                                     <th class="nowrap">昵称</th>
                                                     <th class="nowrap">真实姓名</th>
                                                     <th class="nowrap">性别</th>
+                                                    <th class="nowrap">性别</th>
                                                     <th class="nowrap">出生年月日</th>
                                                     <th class="nowrap">电话号码</th>
                                                     <th class="nowrap">邮箱</th>
                                                     <th class="nowrap">身份证号</th>
                                                     <th class="nowrap">部门编号</th>
                                                     <th class="nowrap">状态</th>
+                                                    <th class="nowrap">状态</th>
                                                     <th class="nowrap">登录密码</th>
                                                     <th class="nowrap">登录时间</th>
                                                     <th class="nowrap">登录IP</th>
-                                                    <th class="nowrap">授权角色 </th>
+                                                    <th class="nowrap">授权角色</th>
+                                                    <th class="nowrap">授权角色</th>
+                                                    <th class="nowrap">是否允许登录</th>
                                                     <th class="nowrap">是否允许登录</th>
                                                     <th class="nowrap">密码输入错误次数</th>
                                                     <th class="nowrap">密码最后修改时间</th>
@@ -361,7 +261,7 @@
         </div>
     </div>
     <!----------------------------------- 添加(修改)功能弹出页面（获取输入值的输入框后缀统一增加_SHOW标识符） ------------------------------------------>
-    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="addOrUpdateWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close"
                     data-dismiss="modal" aria-hidden="true">&times;
@@ -402,25 +302,29 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                                                                  <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">性别:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="sex" id="SEX_SHOW" class="form-control" placeholder="性别">
+                                            <select name="sex" id="SEX_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">出生年月日:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="birthday" id="BIRTHDAY_SHOW" class="form-control" placeholder="出生年月日">
+                                                                                                         <!-- 时间区间值输入 -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4 text-right">出生年月日:</label>
+                                            <div class="col-md-8 paddingnone">
+                                                <div class="input-group input-daterange">
+                                                    <input type="text" class="form-control col-md-3" name="birthdaybeginDt" id="BIRTHDAY_beginDt_SHOW">
+                                                    <span class="input-group-addon"> <i class="fa fa-exchange"></i></span>
+                                                    <input type="text" class="form-control" name="birthdayendDt" id="BIRTHDAY_endDt_SHOW">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                                                                  <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">电话号码:</label>
@@ -456,75 +360,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                                                                  <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">状态:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="userSts" id="USER_STS_SHOW" class="form-control" placeholder="状态">
+                                            <select name="userSts" id="USER_STS_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                            <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">登录密码:</label>
                                         <div class="col-md-8 paddingnone">
                                             <input name="loginPwd" id="LOGIN_PWD_SHOW" class="form-control" placeholder="登录密码">
-                                        </div>
-                                    </div>
-                                </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">登录时间:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="loginTime" id="LOGIN_TIME_SHOW" class="form-control" placeholder="登录时间">
-                                        </div>
-                                    </div>
-                                </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">登录IP:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="loginIp" id="LOGIN_IP_SHOW" class="form-control" placeholder="登录IP">
-                                        </div>
-                                    </div>
-                                </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">授权角色 :</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="empowerRoles" id="EMPOWER_ROLES_SHOW" class="form-control" placeholder="授权角色 ">
-                                        </div>
-                                    </div>
-                                </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">是否允许登录:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="isAllowLogin" id="IS_ALLOW_LOGIN_SHOW" class="form-control" placeholder="是否允许登录">
-                                        </div>
-                                    </div>
-                                </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">密码输入错误次数:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="pwdErrCunt" id="PWD_ERR_CUNT_SHOW" class="form-control" placeholder="密码输入错误次数">
-                                        </div>
-                                    </div>
-                                </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">密码最后修改时间:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="lastUptPwdTime" id="LAST_UPT_PWD_TIME_SHOW" class="form-control" placeholder="密码最后修改时间">
                                         </div>
                                     </div>
                                 </div>
@@ -548,10 +398,10 @@
         </div>
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="300px">
+    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
-            <h4 class="modal-title" >用户详情信息</h4>
+            <h4 class="modal-title" >菜单详情信息</h4>
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
@@ -585,25 +435,30 @@
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                                                                                                          <!-- 下拉框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">性别:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="sex" id="SEX_VIEW" class="form-control" disabled="disabled" placeholder="性别">
+                                                <select name="sex" id="SEX_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">出生年月日:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="birthday" id="BIRTHDAY_VIEW" class="form-control" disabled="disabled" placeholder="出生年月日">
+                                                                              <!-- 时间区间值输入 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">出生年月日:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <div class="input-group input-daterange">
+                                                        <input type="text" class="form-control col-md-3" disabled="disabled" name="birthdaybeginDt" id="BIRTHDAY_beginDt_VIEW">
+                                                        <span class="input-group-addon"> <iclass="fa fa-exchange"></i> </span>
+                                                        <input type="text" class="form-control" disabled="disabled" name="birthdayendDt" id="BIRTHDAY_endDt_VIEW">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                                                                                                                                                 <!-- 普通输入框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">电话号码:</label>
@@ -639,16 +494,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                                                                                                          <!-- 下拉框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">状态:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="userSts" id="USER_STS_VIEW" class="form-control" disabled="disabled" placeholder="状态">
+                                                <select name="userSts" id="USER_STS_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                            <!-- 普通输入框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">登录密码:</label>
@@ -675,25 +531,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                                                                                                          <!-- 下拉框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">授权角色 :</label>
+                                            <label class="control-label col-md-4 text-right">授权角色:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="empowerRoles" id="EMPOWER_ROLES_VIEW" class="form-control" disabled="disabled" placeholder="授权角色 ">
+                                                <select name="empowerRoles" id="EMPOWER_ROLES_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                                                                   <!-- 下拉框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">是否允许登录:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="isAllowLogin" id="IS_ALLOW_LOGIN_VIEW" class="form-control" disabled="disabled" placeholder="是否允许登录">
+                                                <select name="isAllowLogin" id="IS_ALLOW_LOGIN_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                            <!-- 普通输入框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">密码输入错误次数:</label>
@@ -716,7 +574,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">创建人:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="cteUserId" id="CTE_USER_ID_VIEW" class="form-control" disabled="disabled" placeholder="创建人">
+                                                <input name="cteUserNo" id="CTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="创建人">
                                             </div>
                                         </div>
                                     </div>
@@ -725,7 +583,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">更新人:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="uteUserId" id="UTE_USER_ID_VIEW" class="form-control" disabled="disabled" placeholder="更新人">
+                                                <input name="uteUserNo" id="UTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="更新人">
                                             </div>
                                         </div>
                                     </div>
@@ -780,105 +638,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-<!-- ---------------------------------------------导出弹出页面----------------------------------------------------- -->
-<div class="modal fade" id="importOpenWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="Select_title">文件</h4>
-    </div>
-    <div class="modal-body">
-        <div class="portlet-body form">
-            <div class="form-body">
-                <div class="row norow">
-                    <div class="panel panel-primary">
-                        <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="importOpenWinform" enctype="multipart/form-data">
-                            <div class="panel-body">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 text-right">请选择文件:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input id="importFile" name="file" type="file" class="file"> <input type="hidden" id="type" name="type">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-actions">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12" style="text-align: center;">
-                                                    <button type="button" id="importOpenform_save_btn" class="btn btn-success">
-                                                        <i class="fa fa-save"></i> 确认
-                                                    </button>
-                                                    <button type="button" id="importOpenform_cancel_btn" class="btn red">
-                                                        <i class="fa fa-refresh"></i> 关闭
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <!-- ----------------------------------------导入结果弹出框-------------------------------------------------- -->
-    <div class="modal fade" id="ResultWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="500px" data-width="750px" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="Resulttitle">批量导入操作结果</h4>
-        </div>
-        <div class="modal-body">
-            <div class="portlet-body form">
-                <div class="form-body">
-                    <div class="row norow">
-                        <div class="panel panel-primary">
-                            <div class="row norow">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title" id="importResult"></h4>
-                                    </div>
-                                    <input type="hidden" name="errorCount" id="errorCount" value="" />
-                                    <div class="portlet-body wheel height-auto">
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="importResultPanel">
-                                            <thead style="font-size: 2px">
-                                            <tr>
-                                                <th>序号</th>
-                                                <th>错误位置</th>
-                                                <th>导入值</th>
-                                                <th>错误原因</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <div class="form-actions">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-12" style="text-align: center;">
-                                                <button type="button" id="errorImExcel" class="btn red">
-                                                    <i class="fa fa-share"></i> 导出excel
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1018,7 +777,15 @@
     <!--getComboStore系统表生成下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入key值，4传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--getCustomStore自定义下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--如果不需要回显第一个参数传入""，如果不需要设定disabled属性传入FALSE-->
-        //初始化输入框时间默认值方法
+                                        <!--添加获取修改下拉框-->
+                        getComboStore("","SEX_SHOW", "USER-SEX","");
+                    <!--列表下拉框-->
+                        getComboStore("","USER_STS", "USER-USER_STS","");
+                    <!--添加获取修改下拉框-->
+                        getComboStore("","USER_STS_SHOW", "USER-USER_STS","");
+                    <!--列表下拉框-->
+                        getComboStore("","EMPOWER_ROLES", "USER-EMPOWER_ROLES","");
+                                                                    //初始化输入框时间默认值方法
         initDefaultDate();
         //重置按钮
         $("#reset_btn").on('click', function() {
@@ -1038,7 +805,7 @@
             $("#addOrUpdateform .bs-select").selectpicker('val','');
             document.getElementById("hiddenType").value = "1";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "用户添加信息";
+            title.innerHTML = "菜单添加信息";
             addOrUpdate("add","");
         });
         //修改按钮
@@ -1053,7 +820,7 @@
             }
             document.getElementById("hiddenType").value = "2";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "用户修改信息";
+            title.innerHTML = "菜单修改信息";
             addOrUpdate("update",record);
         });
         //添加保存按钮
@@ -1063,25 +830,20 @@
                             param.userName = $("#USER_NAME_SHOW").val();
                             param.realName = $("#REAL_NAME_SHOW").val();
                             param.sex = $("#SEX_SHOW").val();
-                            param.birthday = $("#BIRTHDAY_SHOW").val();
+                            param.birthdaybeginDt = $("#BIRTHDAY_beginDt_SHOW").val().replace('/', '').replace('/', '');
+                            param.birthdayendDt = $("#BIRTHDAY_endDt_SHOW").val().replace('/', '').replace('/', '');
                             param.telNo = $("#TEL_NO_SHOW").val();
                             param.mail = $("#MAIL_SHOW").val();
                             param.idNumber = $("#ID_NUMBER_SHOW").val();
                             param.deptNo = $("#DEPT_NO_SHOW").val();
                             param.userSts = $("#USER_STS_SHOW").val();
                             param.loginPwd = $("#LOGIN_PWD_SHOW").val();
-                            param.loginTime = $("#LOGIN_TIME_SHOW").val();
-                            param.loginIp = $("#LOGIN_IP_SHOW").val();
-                            param.empowerRoles = $("#EMPOWER_ROLES_SHOW").val();
-                            param.isAllowLogin = $("#IS_ALLOW_LOGIN_SHOW").val();
-                            param.pwdErrCunt = $("#PWD_ERR_CUNT_SHOW").val();
-                            param.lastUptPwdTime = $("#LAST_UPT_PWD_TIME_SHOW").val();
             var hiddenType = $("#hiddenType").val();
             var url = "";
             if("1" == hiddenType){
-                url = baseURL + "/wsk/user/save";
+                url = baseURL + "/user/user/save";
             }else if ("2" == hiddenType){
-                url = baseURL + "/wsk/user/update";
+                url = baseURL + "/user/user/update";
                 param.uuid = $("#hiddenUUid").val();
             }else{
                 url = "";
@@ -1127,7 +889,7 @@
                     if(truthBeTold){
                         $.ajax({
                             type: "POST",
-                            url: baseURL + "/wsk/user/deleteByUuid",
+                            url: baseURL + "/user/user/deleteByUuid",
                             data:{
                                 uuids:uuids
                             },
@@ -1166,7 +928,7 @@
                         param.userId = record.userId;
             $.ajax({
                 type : "POST",
-                url : baseURL + "/wsk/user/getDetail",
+                url : baseURL + "/user/user/getDetail",
                 data :param,
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 dataType : "json",
@@ -1175,20 +937,14 @@
                                 document.getElementById('USER_ID_SHOW').value=data.data.userId;
                                 document.getElementById('USER_NAME_SHOW').value=data.data.userName;
                                 document.getElementById('REAL_NAME_SHOW').value=data.data.realName;
-                                document.getElementById('SEX_SHOW').value=data.data.sex;
+                                getComboStore(data.data.sex,"SEX_SHOW", "SEX",false);
                                 document.getElementById('BIRTHDAY_SHOW').value=data.data.birthday;
                                 document.getElementById('TEL_NO_SHOW').value=data.data.telNo;
                                 document.getElementById('MAIL_SHOW').value=data.data.mail;
                                 document.getElementById('ID_NUMBER_SHOW').value=data.data.idNumber;
                                 document.getElementById('DEPT_NO_SHOW').value=data.data.deptNo;
-                                document.getElementById('USER_STS_SHOW').value=data.data.userSts;
+                                getComboStore(data.data.userSts,"USER_STS_SHOW", "USER_STS",false);
                                 document.getElementById('LOGIN_PWD_SHOW').value=data.data.loginPwd;
-                                document.getElementById('LOGIN_TIME_SHOW').value=data.data.loginTime;
-                                document.getElementById('LOGIN_IP_SHOW').value=data.data.loginIp;
-                                document.getElementById('EMPOWER_ROLES_SHOW').value=data.data.empowerRoles;
-                                document.getElementById('IS_ALLOW_LOGIN_SHOW').value=data.data.isAllowLogin;
-                                document.getElementById('PWD_ERR_CUNT_SHOW').value=data.data.pwdErrCunt;
-                                document.getElementById('LAST_UPT_PWD_TIME_SHOW').value=data.data.lastUptPwdTime;
                     document.getElementById('hiddenUUid').value=data.data.uuid;
                     $("#addOrUpdateWin").modal('show');
                 },
@@ -1202,11 +958,15 @@
         }
     }
     //下拉框码表中加载数据(使用系统表)
-    function getComboStore(value,element,type_code,isdisabled) {
+    function getComboStore(codeValue,element,codeKey,isdisabled) {
+        var param = {page:1,start:0,limit:1000};
+        param.codeKey = codeKey;
+        param.codeValue = codeValue;
         $.ajax({
-            type: "GET",
-            url: baseURL+"/code/query/typ/" + type_code,
-            contentType: "application/json;charset=utf-8",
+            type: "POST",
+            url: baseURL+"/wsk/dicCode/query",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            data: param,
             dataType: "json",
             success: function(data) {
                 if(data.timeout){
@@ -1214,8 +974,8 @@
                 }
                 $("#" + element).empty();
                 $("#" + element).append($("<option></option>").val("").text("全部"));
-                $.each(data, function(index, obj) {
-                    $("#" + element).append($("<option></option>").val(obj.cdVl).text(obj.cdNm));
+                $.each(data.items, function(index, obj) {
+                    $("#" + element).append($("<option></option>").val(obj.codeValue).text(obj.codeName));
                 });
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
@@ -1244,10 +1004,14 @@
             tempDay = myDate.getDate();
         }
         var dateString = myDate.getFullYear()+"/"+tempMonth+"/"+tempDay;
+                        $("#BIRTHDAY_beginDt").datepicker('setStartDate', null);
+                        $("#BIRTHDAY_endDt").datepicker('setEndDate', null);
+                        $("#BIRTHDAY_beginDt").datepicker('update', dateString);
+                        $("#BIRTHDAY_endDt").datepicker('update', dateString);
     }
 
 
-    var queryInner_Path = baseURL + "/wsk/user/query";
+    var queryInner_Path = baseURL + "/user/user/query";
     //实现查询按钮方法
     function reloadGrid(){
         $('#queryMecGrid > tbody').empty();
@@ -1256,32 +1020,26 @@
             limit=$("#limit").val();
         }
         start=(page-1)*limit;
+                    var beginDt = $("#BIRTHDAY_beginDt").val();
+                    var endDt = $("#BIRTHDAY_endDt").val();
+                    if(daysBetween(beginDt, endDt) > 30){
+                        bootbox.alert("起止时间的最大间隔为1个月");
+                        return;
+                    }
 
         //获取筛选条件输入值
         var param = {page:page,start:start,limit:limit};
                         param.userId = $("#USER_ID").val();
                         param.userName = $("#USER_NAME").val();
                         param.realName = $("#REAL_NAME").val();
-                        param.sex = $("#SEX").val();
-                        param.birthday = $("#BIRTHDAY").val();
+                        param.birthdaybeginDt = $("#BIRTHDAY_beginDt").val().replace('/', '').replace('/', '');
+                        param.birthdayendDt = $("#BIRTHDAY_endDt").val().replace('/', '').replace('/', '');
                         param.telNo = $("#TEL_NO").val();
                         param.mail = $("#MAIL").val();
                         param.idNumber = $("#ID_NUMBER").val();
                         param.deptNo = $("#DEPT_NO").val();
                         param.userSts = $("#USER_STS").val();
-                        param.loginPwd = $("#LOGIN_PWD").val();
-                        param.loginTime = $("#LOGIN_TIME").val();
-                        param.loginIp = $("#LOGIN_IP").val();
                         param.empowerRoles = $("#EMPOWER_ROLES").val();
-                        param.isAllowLogin = $("#IS_ALLOW_LOGIN").val();
-                        param.pwdErrCunt = $("#PWD_ERR_CUNT").val();
-                        param.lastUptPwdTime = $("#LAST_UPT_PWD_TIME").val();
-                        param.cteUserId = $("#CTE_USER_ID").val();
-                        param.uteUserId = $("#UTE_USER_ID").val();
-                        param.uteDt = $("#UTE_DT").val();
-                        param.uteTm = $("#UTE_TM").val();
-                        param.cteDt = $("#CTE_DT").val();
-                        param.cteTm = $("#CTE_TM").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -1312,21 +1070,25 @@
                                 trData.push(obj.userName);
                                 trData.push(obj.realName);
                                 trData.push(obj.sex);
+                                trData.push(obj.sexName);
                                 trData.push(obj.birthday);
                                 trData.push(obj.telNo);
                                 trData.push(obj.mail);
                                 trData.push(obj.idNumber);
                                 trData.push(obj.deptNo);
                                 trData.push(obj.userSts);
+                                trData.push(obj.userStsName);
                                 trData.push(obj.loginPwd);
                                 trData.push(obj.loginTime);
                                 trData.push(obj.loginIp);
                                 trData.push(obj.empowerRoles);
+                                trData.push(obj.empowerRolesName);
                                 trData.push(obj.isAllowLogin);
+                                trData.push(obj.isAllowLoginName);
                                 trData.push(obj.pwdErrCunt);
                                 trData.push(obj.lastUptPwdTime);
-                                trData.push(obj.cteUserId);
-                                trData.push(obj.uteUserId);
+                                trData.push(obj.cteUserNo);
+                                trData.push(obj.uteUserNo);
                                 trData.push(obj.uteDt);
                                 trData.push(obj.uteTm);
                                 trData.push(obj.cteDt);
@@ -1383,7 +1145,7 @@
             param.uuid = uuid;
             $.ajax({
                 type : "POST",
-                url : baseURL + "/wsk/user/getDetail",
+                url : baseURL + "/user/user/getDetail",
                 data :param,
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 dataType : "json",
@@ -1391,22 +1153,22 @@
                             document.getElementById('USER_ID_VIEW').value=data.data.userId;
                             document.getElementById('USER_NAME_VIEW').value=data.data.userName;
                             document.getElementById('REAL_NAME_VIEW').value=data.data.realName;
-                            document.getElementById('SEX_VIEW').value=data.data.sex;
+                            getComboStore(data.data.sex,"SEX_VIEW", "SEX",true);
                             document.getElementById('BIRTHDAY_VIEW').value=data.data.birthday;
                             document.getElementById('TEL_NO_VIEW').value=data.data.telNo;
                             document.getElementById('MAIL_VIEW').value=data.data.mail;
                             document.getElementById('ID_NUMBER_VIEW').value=data.data.idNumber;
                             document.getElementById('DEPT_NO_VIEW').value=data.data.deptNo;
-                            document.getElementById('USER_STS_VIEW').value=data.data.userSts;
+                            getComboStore(data.data.userSts,"USER_STS_VIEW", "USER_STS",true);
                             document.getElementById('LOGIN_PWD_VIEW').value=data.data.loginPwd;
                             document.getElementById('LOGIN_TIME_VIEW').value=data.data.loginTime;
                             document.getElementById('LOGIN_IP_VIEW').value=data.data.loginIp;
-                            document.getElementById('EMPOWER_ROLES_VIEW').value=data.data.empowerRoles;
-                            document.getElementById('IS_ALLOW_LOGIN_VIEW').value=data.data.isAllowLogin;
+                            getComboStore(data.data.empowerRoles,"EMPOWER_ROLES_VIEW", "EMPOWER_ROLES",true);
+                            getComboStore(data.data.isAllowLogin,"IS_ALLOW_LOGIN_VIEW", "IS_ALLOW_LOGIN",true);
                             document.getElementById('PWD_ERR_CUNT_VIEW').value=data.data.pwdErrCunt;
                             document.getElementById('LAST_UPT_PWD_TIME_VIEW').value=data.data.lastUptPwdTime;
-                            document.getElementById('CTE_USER_ID_VIEW').value=data.data.cteUserId;
-                            document.getElementById('UTE_USER_ID_VIEW').value=data.data.uteUserId;
+                            document.getElementById('CTE_USER_NO_VIEW').value=data.data.cteUserNo;
+                            document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
                             document.getElementById('UTE_DT_VIEW').value=data.data.uteDt;
                             document.getElementById('UTE_TM_VIEW').value=data.data.uteTm;
                             document.getElementById('CTE_DT_VIEW').value=data.data.cteDt;
@@ -1423,95 +1185,9 @@
         $("#openform_cancel_btn").on('click',function(){
             $("#viewWin").modal('hide');
         });
-        //导入按钮
-        $("#isImport_btn").on('click', function(){
-            importOpen();
-        });
-        function importOpen(){
-            $("#importOpenWinform")[0].reset();
-            $("#importOpenWin").modal("show");
-        }
-        //导入弹出页面取消按钮
-        $("#importOpenform_cancel_btn").on('click', function(){
-            $("#importOpenWin").modal('hide');
-        });
-        //导入弹出页面确定按钮
-        $("#importOpenform_save_btn").on('click', function(){
-            var file=$("#importFile").val();
-            if(file != null && $.trim(file) != ''){
-                if (file.lastIndexOf('.') != -1) {
-                    var index = file.lastIndexOf(".");
-                    var ext = file.substring(index + 1, file.length);
-                    if(ext =="xlsx"){
-                        App.blockUI({target:"body",boxed:!0,message:"导入中，请稍后...",zIndex:12000});
-                        $("#importOpenWinform").ajaxSubmit({
-                            type: 'post',
-                            url : baseURL +'/wsk/user/importExcel',
-                            dataType: "json",
-                            success: function(data){
-                                if (data.msgCd == 'FILE0000') {
-                                    var type = $("#type").val();
-                                    $('#importResultPanel > tbody').empty();
-                                    var successCount = data.successCount;
-                                    var failureCount = data.failureCount;
-                                    $("#ResultWin").modal('show');
-                                    if(data.errorList == null){
-                                        $("#errorCount").val("1");
-                                    }
-                                    if(data.hasError == true) {
-                                        $("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-                                        $.each(data.errorList, function(index, obj) {
-                                            var tr = $("<tr></tr>").append($("<td></td>").text(index + 1));
-                                            tr.append($("<td></td>").text(obj.position));
-                                            tr.append($("<td></td>").text(obj.importValue));
-                                            tr.append($("<td></td>").text(obj.failReason));
-                                            $("#importResultPanel > tbody").append(tr);
-                                        });
-                                    }else{
-                                        $("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-                                    }
-                                }else{
-                                    bootbox.alert("导入文件错误，原因："+data.msgInfo);
-                                }
-                                reloadGrid();
-                                $("#importOpenWin").modal('hide');
-                            },
-                            error: function(data){
-                                bootbox.alert( "导入失败..."+data.msgInfo);
-                            }
-                        });
-
-                    }else{
-                        bootbox.alert("文件格式不正确，请使用07版的excel!");
-                        return false;
-                    }
-
-                }else{
-                    bootbox.alert("文件格式不正确，请使用07版的excel!");
-                    return false;
-                }
-            }else{
-                bootbox.alert("文件格式不正确，请使用07版的excel!");
-                return false;
-            }
-        });
-        function getInfo(successCount,failureCount,msg) {
-            var info = "<font>本次批量导入操作共成功" +successCount + "条，失败" + failureCount + msg;
-            return info;
-        }
-        //导入完毕之后弹出结果页面点击导入Excel按钮
-        $("#errorImExcel").off('click').on('click', function() {
-            var errorCount = $("#errorCount").val();
-            if(errorCount == '1'){
-                bootbox.alert("没数据要导出！");
-                return;
-            }
-            window.open(baseURL + "/wsk/user/getFailExport");
-            $("#errorImExcel").modal('hide');
-        });
         //下载模板按钮
         $("#download_template_btn").on('click', function() {
-            window.open(baseURL +'/wsk/user/downloadTemplate');
+            window.open(baseURL +'/user/user/downloadTemplate');
         });
 
         //导出按钮
@@ -1525,7 +1201,7 @@
             $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
             $("#innerExcelType").attr("disabled", "disabled");
             $("#exportform_save_btn").off('click').on('click', function() {
-                window.open(baseURL +"/wsk/user/export");
+                window.open(baseURL +"/user/user/export");
                 $("#exportExcelWin").modal('hide');
             });
             $("#exportform_cancel_btn").off('click').on('click', function() {

@@ -1,5 +1,5 @@
 body{
-    background: url("./1.jpg")  ;
+    background: url("./4.jpg");
     background-size: cover;
     /*animation-name:myfirst;*/
     /*animation-duration:12s;*/
@@ -13,10 +13,10 @@ body{
 }
 @keyframes myfirst
 {
-    0%   {background:url("./1.jpg"); background-size: cover;}
-    34%  {background:url("./1.jpg"); background-size: cover;}
-    67%  {background:url("./1.jpg"); background-size: cover;}
-    100% {background:url("./1.jpg"); background-size: cover;}
+    0%   {background:url("./4.jpg"); background-size: cover;}
+    34%  {background:url("./4.jpg"); background-size: cover;}
+    67%  {background:url("./4.jpg"); background-size: cover;}
+    100% {background:url("./4.jpg"); background-size: cover;}
 }
 .form{background: rgba(255,255,255,0.2);width:400px;margin:120px auto;}
 /*阴影*/

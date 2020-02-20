@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ${classPackage}.util.*;
+import com.wutong.wsk.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import ${domainPackage}.ImportError;
+import ${classPackage}.domain.ImportError;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,7 +27,7 @@ import java.io.File;
  * @date   ${classTime}
  */
 @Controller
-@RequestMapping("/${urlPackage}/${classNameX}")
+@RequestMapping("/${busPackage}/${classNameX}")
 public class ${classNameD}Controller extends BaseController {
 
     @Autowired

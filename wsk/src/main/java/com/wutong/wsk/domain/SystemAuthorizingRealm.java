@@ -1,20 +1,7 @@
 package com.wutong.wsk.domain;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-
-
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.wutong.wsk.domain.TBapSysUser;
-import com.wutong.wsk.mapper.TBapSysMenuMapper;
-import com.wutong.wsk.mapper.TBapSysUserMapper;
-import com.wutong.wsk.service.ShiroService;
 import com.wutong.wsk.util.Encodes;
-import com.wutong.wsk.util.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -33,6 +20,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * 系统安全认证实现类
@@ -44,14 +36,6 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
     static final Logger logger = LoggerFactory.getLogger(SystemAuthorizingRealm.class);
 
-    @Autowired
-    private TBapSysUserMapper tBapSysUserMapper;
-
-    @Autowired
-    private TBapSysMenuMapper tBapSysMenuMapper;
-
-    @Autowired
-    private ShiroService shiroService;
     /**
      * 认证回调函数, 登录时调用
      */
@@ -61,11 +45,8 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         Map<String,String> map=new HashMap<String, String>();
         map.put("loginid", token.getUsername());
         map.put("rownum", "2");
-        TBapSysUser user=shiroService.queryTBapSysUser(map);
-        if(user==null){
-            //throw new CaptchaException("此用户不存在");
-        }
-        Principal principal=new Principal(user);
+
+        Principal principal=new Principal();
         String pwd="31980e35db2fa0d42de68e6c32883b871c890b2b17c38783f279ed29";
         byte[] salt = Encodes.decodeHex(pwd.substring(0,16));
         return new SimpleAuthenticationInfo(principal, pwd.substring(16), ByteSource.Util.bytes(salt), getName());
@@ -82,24 +63,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         JSONArray jsonarray=null;
         map.put("loginid", principal.getLoginName());
         map.put("rownum", "2");
-        TBapSysUser user1 = shiroService.queryTBapSysUser(map);
-        if(user1!=null){
-            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            if(!"admin".equals(user1.getLoginId())){
-                jsonarray=shiroService.getMenuList(user1.getEmpNo());
-            }else{
-                jsonarray=shiroService.queryTBapSysMenu(new HashMap<String, String>());
-            }
-
-            for(int i=0;i<jsonarray.size();i++){
-                JSONObject jb=(JSONObject)jsonarray.get(i);
-                if (StringUtils.getStringValue(jb, "MENU_ID")!=null && StringUtils.getStringValue(jb, "MENU_ID").length()>0 && StringUtils.getStringValue(jb, "PERMISSSION").length()>0){
-                    info.addStringPermission(StringUtils.getStringValue(jb, "PERMISSSION"));
-                }
-            }
-            return info;
-        }
-        return null;
+        return new SimpleAuthorizationInfo();
     }
 
     /**
@@ -149,16 +113,16 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         private String deptName; //add by zhangkai 2014-10-23
         private Map<String, Object> cacheMap;
 
-        public Principal(TBapSysUser user) {
-            this.id = user.getEmpNo();
-            this.loginName = user.getLoginId();
-            this.name = user.getEmpNm();
-            this.orgName=user.getOrgNm();
-            this.orgId=user.getOrgUuid();
-            this.operator=user.getEmpNo();
-            this.departMentId=user.getDeptUuid();
-            this.deptName=user.getDeptNm();
-        }
+//        public Principal(TBapSysUser user) {
+//            this.id = user.getEmpNo();
+//            this.loginName = user.getLoginId();
+//            this.name = user.getEmpNm();
+//            this.orgName=user.getOrgNm();
+//            this.orgId=user.getOrgUuid();
+//            this.operator=user.getEmpNo();
+//            this.departMentId=user.getDeptUuid();
+//            this.deptName=user.getDeptNm();
+//        }
 
         public String getOrgName() {
             return orgName;

@@ -48,11 +48,13 @@ public class CodeController {
     // 作者
     private final String CLASS_AUTHOR = "zhao_qg";
     // 表名
-    private final String TABLE_NAME = "MENU";
+    private final String TABLE_NAME = "USER";
     // 业务名称
     private final String BUSINESS_NAME = "菜单";
-    // 工程目录
+    // 工程目录 com.wutong.wsk.controller
     private final String CLASS_PACKAGE = "com.wutong.wsk";
+    // 业务包 com.wutong.wsk.controller.BUS_PACKAGE
+    private final String BUS_PACKAGE = "user";
 
 
     /**
@@ -193,14 +195,14 @@ public class CodeController {
         table.setTableName(tableName);
         table.setTableSchema(TABLE_SCHEMA);
         table.setDbType(DB_TYPE);
-        table.setUrlPackage(classPackage.substring(classPackage.lastIndexOf(".") + 1, classPackage.length()));
-        table.setDomainPackage(classPackage + ".domain");
-        table.setMapperPackage(classPackage + ".mapper");
-        table.setServicePackage(classPackage + ".service");
-        table.setControllerPackage(classPackage + ".controller");
+        table.setBusPackage(BUS_PACKAGE);
+        table.setDomainPackage(classPackage + ".domain." + BUS_PACKAGE);
+        table.setMapperPackage(classPackage + ".mapper." + BUS_PACKAGE);
+        table.setServicePackage(classPackage + ".service." + BUS_PACKAGE);
+        table.setControllerPackage(classPackage + ".controller." + BUS_PACKAGE);
         table.setClassPackage(classPackage);
         table.setJspPackage("webapp.jsp");
-        table.setMapperXmlPackage("resources.mapper");
+        table.setMapperXmlPackage("resources.mapper." + BUS_PACKAGE);
         table.setExcelXmlPackage("resources.excel_config.excel_model");
         table.setDbUser(dbUser);
         table.setBasePath(PROJECT_PATH); // 工程路径

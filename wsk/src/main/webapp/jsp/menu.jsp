@@ -95,11 +95,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4 text-right">状态:</label>
                                                     <div class="col-md-8 paddingnone">
-                                                        <input name="sts" id="STS" class="form-control" placeholder="状态">
+                                                        <select name="sts" id="STS" class="bs-select form-control" data-show-subtext="true">
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,6 +164,7 @@
                                                     <th class="nowrap">是否显示</th>
                                                     <th class="nowrap">是否显示</th>
                                                     <th class="nowrap">权限码</th>
+                                                    <th class="nowrap">状态</th>
                                                     <th class="nowrap">状态</th>
                                                     <th class="nowrap">备注</th>
                                                     <th class="nowrap">更新人</th>
@@ -296,16 +298,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                                                                  <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">状态:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="sts" id="STS_SHOW" class="form-control" placeholder="状态">
+                                            <select name="sts" id="STS_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                            <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">备注:</label>
@@ -408,16 +410,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                                                                                                          <!-- 下拉框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">状态:</label>
                                             <div class="col-md-8 paddingnone">
-                                                <input name="sts" id="STS_VIEW" class="form-control" disabled="disabled" placeholder="状态">
+                                                <select name="sts" id="STS_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                                                                                                                                            <!-- 普通输入框 -->
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-4 text-right">备注:</label>
@@ -620,6 +623,10 @@
                         getComboStore("","IS_SHOW", "MENU-IS_SHOW","");
                     <!--添加获取修改下拉框-->
                         getComboStore("","IS_SHOW_SHOW", "MENU-IS_SHOW","");
+                    <!--列表下拉框-->
+                        getComboStore("","STS", "MENU-STS","");
+                    <!--添加获取修改下拉框-->
+                        getComboStore("","STS_SHOW", "MENU-STS","");
         //初始化输入框时间默认值方法
         initDefaultDate();
         //重置按钮
@@ -673,9 +680,9 @@
             var hiddenType = $("#hiddenType").val();
             var url = "";
             if("1" == hiddenType){
-                url = baseURL + "/wsk/menu/save";
+                url = baseURL + "/system/menu/save";
             }else if ("2" == hiddenType){
-                url = baseURL + "/wsk/menu/update";
+                url = baseURL + "/system/menu/update";
                 param.uuid = $("#hiddenUUid").val();
             }else{
                 url = "";
@@ -721,7 +728,7 @@
                     if(truthBeTold){
                         $.ajax({
                             type: "POST",
-                            url: baseURL + "/wsk/menu/deleteByUuid",
+                            url: baseURL + "/system/menu/deleteByUuid",
                             data:{
                                 uuids:uuids
                             },
@@ -760,7 +767,7 @@
                         param.menuId = record.menuId;
             $.ajax({
                 type : "POST",
-                url : baseURL + "/wsk/menu/getDetail",
+                url : baseURL + "/system/menu/getDetail",
                 data :param,
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 dataType : "json",
@@ -773,7 +780,7 @@
                                 document.getElementById('SORT_SHOW').value=data.data.sort;
                                 getComboStore(data.data.isShow,"IS_SHOW_SHOW", "IS_SHOW",false);
                                 document.getElementById('PERMISSSION_SHOW').value=data.data.permisssion;
-                                document.getElementById('STS_SHOW').value=data.data.sts;
+                                getComboStore(data.data.sts,"STS_SHOW", "STS",false);
                                 document.getElementById('REMARKS_SHOW').value=data.data.remarks;
                     document.getElementById('hiddenUUid').value=data.data.uuid;
                     $("#addOrUpdateWin").modal('show');
@@ -837,7 +844,7 @@
     }
 
 
-    var queryInner_Path = baseURL + "/wsk/menu/query";
+    var queryInner_Path = baseURL + "/system/menu/query";
     //实现查询按钮方法
     function reloadGrid(){
         $('#queryMecGrid > tbody').empty();
@@ -891,6 +898,7 @@
                                 trData.push(obj.isShowName);
                                 trData.push(obj.permisssion);
                                 trData.push(obj.sts);
+                                trData.push(obj.stsName);
                                 trData.push(obj.remarks);
                                 trData.push(obj.uteUserNo);
                                 trData.push(obj.uteDt);
@@ -948,7 +956,7 @@
             param.uuid = uuid;
             $.ajax({
                 type : "POST",
-                url : baseURL + "/wsk/menu/getDetail",
+                url : baseURL + "/system/menu/getDetail",
                 data :param,
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 dataType : "json",
@@ -960,7 +968,7 @@
                             document.getElementById('SORT_VIEW').value=data.data.sort;
                             getComboStore(data.data.isShow,"IS_SHOW_VIEW", "IS_SHOW",true);
                             document.getElementById('PERMISSSION_VIEW').value=data.data.permisssion;
-                            document.getElementById('STS_VIEW').value=data.data.sts;
+                            getComboStore(data.data.sts,"STS_VIEW", "STS",true);
                             document.getElementById('REMARKS_VIEW').value=data.data.remarks;
                             document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
                             document.getElementById('UTE_DT_VIEW').value=data.data.uteDt;
@@ -980,7 +988,7 @@
         });
         //下载模板按钮
         $("#download_template_btn").on('click', function() {
-            window.open(baseURL +'/wsk/menu/downloadTemplate');
+            window.open(baseURL +'/system/menu/downloadTemplate');
         });
 
         //导出按钮
@@ -994,7 +1002,7 @@
             $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
             $("#innerExcelType").attr("disabled", "disabled");
             $("#exportform_save_btn").off('click').on('click', function() {
-                window.open(baseURL +"/wsk/menu/export");
+                window.open(baseURL +"/system/menu/export");
                 $("#exportExcelWin").modal('hide');
             });
             $("#exportform_cancel_btn").off('click').on('click', function() {
