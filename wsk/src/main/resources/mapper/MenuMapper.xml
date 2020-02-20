@@ -9,6 +9,7 @@
      <result column="ICON" property="icon"/>
      <result column="SORT" property="sort"/>
      <result column="IS_SHOW" property="isShow"/>
+     <result column="IS_SHOW_NAME" property="isShowName"/>
      <result column="PERMISSSION" property="permisssion"/>
      <result column="STS" property="sts"/>
      <result column="REMARKS" property="remarks"/>
@@ -29,9 +30,6 @@
             <if test="menu.parentId!= null and menu.parentId!= ''">
                 and PARENT_ID=#{menu.parentId}
             </if>
-            <if test="menu.icon!= null and menu.icon!= ''">
-                and ICON=#{menu.icon}
-            </if>
             <if test="menu.sort!= null and menu.sort!= ''">
                 and SORT=#{menu.sort}
             </if>
@@ -44,21 +42,6 @@
             <if test="menu.sts!= null and menu.sts!= ''">
                 and STS=#{menu.sts}
             </if>
-            <if test="menu.remarks!= null and menu.remarks!= ''">
-                and REMARKS=#{menu.remarks}
-            </if>
-            <if test="menu.uteUserNo!= null and menu.uteUserNo!= ''">
-                and UTE_USER_NO=#{menu.uteUserNo}
-            </if>
-            <if test="menu.uteDt!= null and menu.uteDt!= ''">
-                and UTE_DT=#{menu.uteDt}
-            </if>
-            <if test="menu.cteUserNo!= null and menu.cteUserNo!= ''">
-                and CTE_USER_NO=#{menu.cteUserNo}
-            </if>
-            <if test="menu.cteDt!= null and menu.cteDt!= ''">
-                and CTE_DT=#{menu.cteDt}
-            </if>
         </where>
     </sql>
     
@@ -70,6 +53,7 @@
                         t.ICON as "icon",
                         t.SORT as "sort",
                         t.IS_SHOW as "isShow",
+                        '' as "isShowName",
                         t.PERMISSSION as "permisssion",
                         t.STS as "sts",
                         t.REMARKS as "remarks",

@@ -21,9 +21,9 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 
 /**
- * @description  用户控制层
+ * @description  菜单控制层
  * @author zhao_qg
- * @date   20200218 20:37:11
+ * @date   20200219 21:24:59
  */
 @Controller
 @RequestMapping("/wsk/menu")
@@ -41,7 +41,7 @@ public class MenuController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200218 20:37:11
+     * @date 20200219 21:24:59
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -49,7 +49,7 @@ public class MenuController extends BaseController {
             @RequestParam(value = "start", defaultValue = START) int start,
             @RequestParam(value = "limit", defaultValue = LIMIT) int limit,
             @ModelAttribute Menu paramVo) {
-        String opNm = "用户-查询";
+        String opNm = "菜单-查询";
             try {
                 LOGGER.info(opNm, paramVo.toString(), "--begin");
                 Map<String, Object> map = setParams(start, limit);
@@ -71,12 +71,12 @@ public class MenuController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200218 20:37:11
+     * @date 20200219 21:24:59
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> getByKey(HttpSession session, @ModelAttribute Menu paramVo) {
-        String opNm = "用户-详细";
+        String opNm = "菜单-详细";
             try {
                 LOGGER.info(opNm, paramVo.toString(), "--begin");
     Menu detail= menuService.getByKey(paramVo);
@@ -95,12 +95,12 @@ public class MenuController extends BaseController {
      * @param menu
      * @return map
      * @author zhao_qg
-     * @date 20200218 20:37:11
+     * @date 20200219 21:24:59
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> save( @ModelAttribute Menu menu) {
-        String opNm = "用户-保存";
+        String opNm = "菜单-保存";
         try{
             LOGGER.info(opNm, menu.toString(), "--begin");
             int num = menuService.insert(menu);
@@ -121,12 +121,12 @@ public class MenuController extends BaseController {
      * @param menu
      * @return map
      * @author zhao_qg
-     * @date 20200218 20:37:11
+     * @date 20200219 21:24:59
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> udpate( @ModelAttribute Menu menu) {
-        String opNm = "用户-更新";
+        String opNm = "菜单-更新";
         try{
             LOGGER.info(opNm, menu.toString(), "--begin");
             int num = menuService.update(menu);
@@ -147,12 +147,12 @@ public class MenuController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200218 20:37:11
+     * @date 20200219 21:24:59
      */
     @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> deleteByUuid(HttpSession session, @RequestParam(value = "uuids") String uuids) {
-        String opNm = "用户-删除";
+        String opNm = "菜单-删除";
         if(uuids==null|| "".equals(uuids)){
             return super.setFailure("错误：付款单号参数为空");
         }
@@ -181,12 +181,12 @@ public class MenuController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200218 20:37:11
+     * @date 20200219 21:24:59
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {
-        String opNm = "用户信息管理-导出";
-        String fileName = "用户" + DateUtil.getCurDTTM() + ".xlsx";
+        String opNm = "菜单信息管理-导出";
+        String fileName = "菜单" + DateUtil.getCurDTTM() + ".xlsx";
         Map<String, Object> paraMap = (Map<String, Object>) session.getAttribute("queryMenuParam");
         long startTime = System.currentTimeMillis();
         Map<String, Object> paramsMap = (Map<String, Object>) session.getAttribute("queryParams");
