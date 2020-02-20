@@ -321,4 +321,12 @@ public class UserService {
         }
         return swb;
 	}
+    /**
+     * 根据昵称查询密码
+     * @param paramVo
+     * @return
+     */
+    public User getByName(User paramVo) {
+        return  userMapper.getByName(paramVo);
+    }
 }

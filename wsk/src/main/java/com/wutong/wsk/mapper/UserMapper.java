@@ -36,8 +36,8 @@ public interface UserMapper {
 	 * @param paramVo
 	 * @return
 	 */
-	public User getByKey(User paramVo); 
-	
+	public User getByKey(User paramVo);
+
 	/**
 	 * 更新
 	 * @author zhao_qg
@@ -72,4 +72,10 @@ public interface UserMapper {
 	 */
 	public int insertBatch(List<User> list);
 
+    /**
+     * 根据昵称查询密码
+     * @param paramVo
+     * @return
+     */
+    public User getByName(User paramVo);
 }

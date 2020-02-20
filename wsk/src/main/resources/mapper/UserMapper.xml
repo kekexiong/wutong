@@ -286,4 +286,12 @@
               #{item}
          </foreach>
     </delete>
+    <select id="getByName" parameterType="com.wutong.wsk.domain.User" resultMap="userMap">
+        SELECT
+            USER_ID, USER_NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_ID, UTE_USER_ID, UTE_DT, UTE_TM, CTE_DT, CTE_TM
+        FROM
+            USER
+        WHERE
+            USER_NAME=#{userName}
+    </select>
 </mapper>
