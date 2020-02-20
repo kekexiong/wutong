@@ -188,20 +188,16 @@
                                                     <th class="nowrap">昵称</th>
                                                     <th class="nowrap">真实姓名</th>
                                                     <th class="nowrap">性别</th>
-                                                    <th class="nowrap">性别</th>
                                                     <th class="nowrap">出生年月日</th>
                                                     <th class="nowrap">电话号码</th>
                                                     <th class="nowrap">邮箱</th>
                                                     <th class="nowrap">身份证号</th>
                                                     <th class="nowrap">部门编号</th>
                                                     <th class="nowrap">状态</th>
-                                                    <th class="nowrap">状态</th>
                                                     <th class="nowrap">登录密码</th>
                                                     <th class="nowrap">登录时间</th>
                                                     <th class="nowrap">登录IP</th>
                                                     <th class="nowrap">授权角色</th>
-                                                    <th class="nowrap">授权角色</th>
-                                                    <th class="nowrap">是否允许登录</th>
                                                     <th class="nowrap">是否允许登录</th>
                                                     <th class="nowrap">密码输入错误次数</th>
                                                     <th class="nowrap">密码最后修改时间</th>
@@ -964,7 +960,7 @@
         param.codeValue = codeValue;
         $.ajax({
             type: "POST",
-            url: baseURL+"/wsk/dicCode/query",
+            url: baseURL+"/system/dicCode/query",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -980,7 +976,7 @@
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
                 $("#" + element).selectpicker('refresh');
-                $("#" + element).selectpicker('val', value);
+                $("#" + element).selectpicker('val', codeValue);
                 if(isdisabled){
                     $("#" + element).attr('disabled', true);
                 }
@@ -1070,21 +1066,17 @@
                                 trData.push(obj.userName);
                                 trData.push(obj.realName);
                                 trData.push(obj.sex);
-                                trData.push(obj.sexName);
                                 trData.push(obj.birthday);
                                 trData.push(obj.telNo);
                                 trData.push(obj.mail);
                                 trData.push(obj.idNumber);
                                 trData.push(obj.deptNo);
                                 trData.push(obj.userSts);
-                                trData.push(obj.userStsName);
                                 trData.push(obj.loginPwd);
                                 trData.push(obj.loginTime);
                                 trData.push(obj.loginIp);
                                 trData.push(obj.empowerRoles);
-                                trData.push(obj.empowerRolesName);
                                 trData.push(obj.isAllowLogin);
-                                trData.push(obj.isAllowLoginName);
                                 trData.push(obj.pwdErrCunt);
                                 trData.push(obj.lastUptPwdTime);
                                 trData.push(obj.cteUserNo);

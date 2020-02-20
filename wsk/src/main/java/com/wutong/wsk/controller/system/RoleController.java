@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * @description  菜单控制层
  * @author zhao_qg
- * @date   20200220 19:01:00
+ * @date   20200220 21:17:11
  */
 @Controller
 @RequestMapping("/system/role")
@@ -42,7 +42,7 @@ public class RoleController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:01:00
+     * @date 20200220 21:17:11
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -72,7 +72,7 @@ public class RoleController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:01:00
+     * @date 20200220 21:17:11
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -96,7 +96,7 @@ public class RoleController extends BaseController {
      * @param role
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:01:00
+     * @date 20200220 21:17:11
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -122,7 +122,7 @@ public class RoleController extends BaseController {
      * @param role
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:01:00
+     * @date 20200220 21:17:11
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -148,7 +148,7 @@ public class RoleController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:01:00
+     * @date 20200220 21:17:11
      */
     @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
     @ResponseBody
@@ -182,7 +182,7 @@ public class RoleController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200220 19:01:00
+     * @date 20200220 21:17:11
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {

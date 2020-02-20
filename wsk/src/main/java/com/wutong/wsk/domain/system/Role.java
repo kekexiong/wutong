@@ -4,7 +4,7 @@ import lombok.Data;
 /**
  * @description Roledomain
  * @author zhao_qg
- * @date 20200220 19:01:00
+ * @date 20200220 21:17:11
  */
 @Data
 public class Role {

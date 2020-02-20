@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @title  RoleMapper
  * @author zhao_qg
- * @date   20200220 19:01:00
+ * @date   20200220 21:17:11
  */
 @Component
 public interface RoleMapper {
@@ -16,7 +16,7 @@ public interface RoleMapper {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200220 19:01:00
+ 	 * @date   20200220 21:17:11
 	 * @param map
 	 * @return
 	 */
@@ -24,7 +24,7 @@ public interface RoleMapper {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200220 19:01:00
+ 	 * @date   20200220 21:17:11
 	 * @param map
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public interface RoleMapper {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200220 19:01:00
+ 	 * @date   20200220 21:17:11
 	 * @param paramVo
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public interface RoleMapper {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200220 19:01:00
+ 	 * @date   20200220 21:17:11
 	 * @param role
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public interface RoleMapper {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date 20200220 19:01:00
+ 	 * @date 20200220 21:17:11
 	 * @param role
 	 * @return
 	 */	public int insert(Role role);
@@ -58,7 +58,7 @@ public interface RoleMapper {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200220 19:01:00
+ 	 * @date   20200220 21:17:11
 	 * @param map
 	 * @return
 	 */

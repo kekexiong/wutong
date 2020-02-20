@@ -178,7 +178,7 @@
                                     <th><input type="checkbox" class="group-checkable" onclick="checkAll(this.checked)" /></th>
                                     <th class="nowrap">序号</th>
                                             <#list tableCarrays as tableCarray>
-                                                <#if (tableCarray.queryShow??) && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "3">
+                                                <#if (tableCarray.queryShow??) && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "1">
                                                     <th class="nowrap">${tableCarray.comments}</th>
                                                 </#if>
                                             </#list>
@@ -866,7 +866,7 @@
         param.codeValue = codeValue;
         $.ajax({
             type: "POST",
-            url: baseURL+"/wsk/dicCode/query",
+            url: baseURL+"/system/dicCode/query",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -882,7 +882,7 @@
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
                 $("#" + element).selectpicker('refresh');
-                $("#" + element).selectpicker('val', value);
+                $("#" + element).selectpicker('val', codeValue);
                 if(isdisabled){
                     $("#" + element).attr('disabled', true);
                 }
@@ -1017,7 +1017,7 @@
                     trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
                     trData.push(start + index + 1);
                         <#list tableCarrays as tableCarray>
-                            <#if tableCarray.queryShow?? && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "3">
+                            <#if tableCarray.queryShow?? && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "1">
                                 trData.push(obj.${tableCarray.columnNameX});
                             </#if>
                         </#list>

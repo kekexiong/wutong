@@ -70,28 +70,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">排序:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="sort" id="SORT" class="form-control" placeholder="排序">
-                                                    </div>
-                                                </div>
-                                            </div>
                                                                                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4 text-right">是否显示:</label>
                                                     <div class="col-md-8 paddingnone">
                                                         <select name="isShow" id="IS_SHOW" class="bs-select form-control" data-show-subtext="true">
                                                         </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">权限码:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="permisssion" id="PERMISSSION" class="form-control" placeholder="权限码">
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,9 +146,7 @@
                                                     <th class="nowrap">图标</th>
                                                     <th class="nowrap">排序</th>
                                                     <th class="nowrap">是否显示</th>
-                                                    <th class="nowrap">是否显示</th>
                                                     <th class="nowrap">权限码</th>
-                                                    <th class="nowrap">状态</th>
                                                     <th class="nowrap">状态</th>
                                                     <th class="nowrap">备注</th>
                                                     <th class="nowrap">更新人</th>
@@ -801,7 +783,7 @@
         param.codeValue = codeValue;
         $.ajax({
             type: "POST",
-            url: baseURL+"/wsk/dicCode/query",
+            url: baseURL+"/system/dicCode/query",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -817,7 +799,7 @@
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
                 $("#" + element).selectpicker('refresh');
-                $("#" + element).selectpicker('val', value);
+                $("#" + element).selectpicker('val', codeValue);
                 if(isdisabled){
                     $("#" + element).attr('disabled', true);
                 }
@@ -859,9 +841,7 @@
                         param.menuId = $("#MENU_ID").val();
                         param.menuName = $("#MENU_NAME").val();
                         param.parentId = $("#PARENT_ID").val();
-                        param.sort = $("#SORT").val();
                         param.isShow = $("#IS_SHOW").val();
-                        param.permisssion = $("#PERMISSSION").val();
                         param.sts = $("#STS").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
@@ -895,10 +875,8 @@
                                 trData.push(obj.icon);
                                 trData.push(obj.sort);
                                 trData.push(obj.isShow);
-                                trData.push(obj.isShowName);
                                 trData.push(obj.permisssion);
                                 trData.push(obj.sts);
-                                trData.push(obj.stsName);
                                 trData.push(obj.remarks);
                                 trData.push(obj.uteUserNo);
                                 trData.push(obj.uteDt);

@@ -7,21 +7,17 @@
      <result column="USER_NAME" property="userName"/>
      <result column="REAL_NAME" property="realName"/>
      <result column="SEX" property="sex"/>
-     <result column="SEX_NAME" property="sexName"/>
      <result column="BIRTHDAY" property="birthday"/>
      <result column="TEL_NO" property="telNo"/>
      <result column="MAIL" property="mail"/>
      <result column="ID_NUMBER" property="idNumber"/>
      <result column="DEPT_NO" property="deptNo"/>
      <result column="USER_STS" property="userSts"/>
-     <result column="USER_STS_NAME" property="userStsName"/>
      <result column="LOGIN_PWD" property="loginPwd"/>
      <result column="LOGIN_TIME" property="loginTime"/>
      <result column="LOGIN_IP" property="loginIp"/>
      <result column="EMPOWER_ROLES" property="empowerRoles"/>
-     <result column="EMPOWER_ROLES_NAME" property="empowerRolesName"/>
      <result column="IS_ALLOW_LOGIN" property="isAllowLogin"/>
-     <result column="IS_ALLOW_LOGIN_NAME" property="isAllowLoginName"/>
      <result column="PWD_ERR_CUNT" property="pwdErrCunt"/>
      <result column="LAST_UPT_PWD_TIME" property="lastUptPwdTime"/>
      <result column="CTE_USER_NO" property="cteUserNo"/>
@@ -76,21 +72,17 @@
                         t.USER_NAME as "userName",
                         t.REAL_NAME as "realName",
                         t.SEX as "sex",
-                        '' as "sexName",
                         t.BIRTHDAY as "birthday",
                         t.TEL_NO as "telNo",
                         t.MAIL as "mail",
                         t.ID_NUMBER as "idNumber",
                         t.DEPT_NO as "deptNo",
                         t.USER_STS as "userSts",
-                        '' as "userStsName",
                         t.LOGIN_PWD as "loginPwd",
                         t.LOGIN_TIME as "loginTime",
                         t.LOGIN_IP as "loginIp",
                         t.EMPOWER_ROLES as "empowerRoles",
-                        '' as "empowerRolesName",
                         t.IS_ALLOW_LOGIN as "isAllowLogin",
-                        '' as "isAllowLoginName",
                         t.PWD_ERR_CUNT as "pwdErrCunt",
                         t.LAST_UPT_PWD_TIME as "lastUptPwdTime",
                         t.CTE_USER_NO as "cteUserNo",

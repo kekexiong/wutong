@@ -1,18 +1,13 @@
 package com.wutong.wsk.controller.user;
-import java.security.SecureRandom;
-import java.util.*;
+
+import com.wutong.wsk.controller.BaseController;
 import com.wutong.wsk.domain.user.User;
 import com.wutong.wsk.service.user.UserService;
-
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
-import javax.servlet.http.HttpSession;
+import com.wutong.wsk.util.DateUtil;
+import com.wutong.wsk.util.DownloadFileUtil;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.wutong.wsk.util.*;
-import com.wutong.wsk.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,17 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import com.wutong.wsk.domain.ImportError;
-import javax.servlet.http.HttpServletRequest;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
+import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @description  菜单控制层
  * @author zhao_qg
- * @date   20200220 19:07:15
+ * @date   20200220 20:30:17
  */
 @Controller
 @RequestMapping("/user/user")
@@ -48,7 +48,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:07:15
+     * @date 20200220 20:30:17
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -78,7 +78,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:07:15
+     * @date 20200220 20:30:17
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -102,7 +102,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:07:15
+     * @date 20200220 20:30:17
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -128,7 +128,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:07:15
+     * @date 20200220 20:30:17
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -154,7 +154,7 @@ public class UserController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200220 19:07:15
+     * @date 20200220 20:30:17
      */
     @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
     @ResponseBody
@@ -188,7 +188,7 @@ public class UserController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200220 19:07:15
+     * @date 20200220 20:30:17
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {

@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  UserService
  * @author zhao_qg
- * @date   20200220 19:07:15
+ * @date   20200220 20:30:17
  */
  @Service
 public class UserService {
@@ -45,7 +45,7 @@ public class UserService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200220 19:07:15
+ 	 * @date   20200220 20:30:17
 	 * @param map
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public class UserService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200220 19:07:15
+ 	 * @date   20200220 20:30:17
 	 * @param map
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class UserService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200220 19:07:15
+ 	 * @date   20200220 20:30:17
 	 * @param paramVo
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class UserService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200220 19:07:15
+ 	 * @date   20200220 20:30:17
 	 * @param user
 	 * @return
 	 */
@@ -89,7 +89,7 @@ public class UserService {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200220 19:07:15
+ 	 * @date   20200220 20:30:17
 	 * @param user
 	 * @return
 	 */
@@ -102,7 +102,7 @@ public class UserService {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200220 19:07:15
+ 	 * @date   20200220 20:30:17
 	 * @param map
 	 * @return
 	 */
@@ -114,7 +114,7 @@ public class UserService {
 	 * @param paramMap
 	 * @return SXSSFWorkbook
 	 * @throws Exception
-     * @date:20200220 19:07:15
+     * @date:20200220 20:30:17
 	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);
@@ -161,6 +161,7 @@ public class UserService {
         }
         return swb;
 	}
+
 
 	/**
 	 * 根据昵称查询密码

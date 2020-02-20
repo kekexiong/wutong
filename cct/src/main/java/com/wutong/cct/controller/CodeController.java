@@ -48,13 +48,13 @@ public class CodeController {
     // 作者
     private final String CLASS_AUTHOR = "zhao_qg";
     // 表名
-    private final String TABLE_NAME = "USER";
+    private final String TABLE_NAME = "ROLE";
     // 业务名称
     private final String BUSINESS_NAME = "菜单";
     // 工程目录 com.wutong.wsk.controller
     private final String CLASS_PACKAGE = "com.wutong.wsk";
     // 业务包 com.wutong.wsk.controller.BUS_PACKAGE
-    private final String BUS_PACKAGE = "user";
+    private final String BUS_PACKAGE = "system";
 
 
     /**
@@ -147,12 +147,11 @@ public class CodeController {
             newList.add(item);
             String queryRule = item.getQueryRule();
             if (!"".equals(queryRule) && ("04".equals(queryRule) || "05".equals(queryRule))) {
-                item.setIsAddColumnName("3");
                 TableItem item1 = new TableItem();
                 item1.setComments(item.getComments());
                 item1.setColumnName(item.getColumnName() + "_NAME");
                 item1.setDataType("VARCHAR2");
-                item1.setIsAddColumnName("1");
+                item1.setIsAddColumnName("1"); // 下拉菜单 描述
                 item1.setQueryShow("01");
                 newList.add(item1);
             }

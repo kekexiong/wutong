@@ -629,7 +629,7 @@
         param.codeValue = codeValue;
         $.ajax({
             type: "POST",
-            url: baseURL+"/wsk/dicCode/query",
+            url: baseURL+"/system/dicCode/query",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -645,7 +645,7 @@
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
                 $("#" + element).selectpicker('refresh');
-                $("#" + element).selectpicker('val', value);
+                $("#" + element).selectpicker('val', codeValue);
                 if(isdisabled){
                     $("#" + element).attr('disabled', true);
                 }
