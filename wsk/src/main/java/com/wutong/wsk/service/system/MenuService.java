@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  MenuService
  * @author zhao_qg
- * @date   20200221 16:23:20
+ * @date   20200221 21:58:07
  */
  @Service
 public class MenuService {
@@ -45,7 +45,7 @@ public class MenuService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param map
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public class MenuService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param map
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class MenuService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param paramVo
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class MenuService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param menu
 	 * @return
 	 */
@@ -88,7 +88,7 @@ public class MenuService {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param menu
 	 * @return
 	 */
@@ -100,7 +100,7 @@ public class MenuService {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param map
 	 * @return
 	 */

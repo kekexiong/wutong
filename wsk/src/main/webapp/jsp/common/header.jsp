@@ -2,6 +2,9 @@
 		 pageEncoding="utf-8"%>
 <%@ page import="com.wutong.wsk.*"%>
 <%@ page import="com.wutong.wsk.domain.SystemAuthorizingRealm.Principal"%>
+<%@ page import="com.wutong.wsk.service.system.DicCodeUtils" %>
+<%@ page import="java.util.Map" %>
+
 <%
 	Principal principal=null;
 	String name=principal!=null?principal.getName():"";
@@ -9,10 +12,9 @@
 	String orgName=principal!=null?principal.getOrgName():"";
 	String departMentId=principal!=null?principal.getDepartMentId():"";
 	String deptName=principal!=null?principal.getDeptName():"";
-
+	String dicCodeMap=DicCodeUtils.getCodeMap();
 %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jquery.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/constant.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/permisssionConstant.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/common.js"></script>
 <script type="text/javascript">
@@ -91,6 +93,17 @@
      */
     function fromatDateTM(val){
         return new Date(val).Format("yyyy-MM-dd HH-mm-ss");
+    }
+    /**
+     * 获取字典名称
+     */
+    function getCodeName(val){
+       var dicCodeMap='<%=dicCodeMap%>';
+        var json = JSON.parse(dicCodeMap);
+       if(json[val]!=undefined){
+			return json[val]
+	   }
+        return "补充字典数据" + val;
     }
 </script>
 <%-- 

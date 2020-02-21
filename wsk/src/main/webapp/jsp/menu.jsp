@@ -762,7 +762,7 @@
     function getComboStore(codeValue,element,codeKey,isdisabled) {
         var param = {page:1,start:0,limit:1000};
         param.codeKey = codeKey;
-        param.codeValue = codeValue;
+        //param.codeValue = codeValue;
         $.ajax({
             type: "POST",
             url: baseURL+"/system/dicCode/query",
@@ -854,21 +854,20 @@
                     var trData = [];
                     trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
                     trData.push(start + index + 1);
-                                trData.push(obj.menuId);
-                                trData.push(obj.menuName);
-                                trData.push(obj.parentId);
-                                trData.push(obj.icon);
-                                trData.push(obj.sort);
-                                trData.push(obj.isShow);
-                                trData.push(obj.permisssion);
-                                trData.push(obj.sts);
-                                trData.push(obj.remarks);
-                                trData.push(obj.uteUserNo);
+                                        trData.push(obj.menuId);
+                                        trData.push(obj.menuName);
+                                        trData.push(obj.parentId);
+                                        trData.push(obj.icon);
+                                        trData.push(obj.sort);
+                                        trData.push(getCodeName("MENU-IS_SHOW"+ obj.isShow));
+                                        trData.push(obj.permisssion);
+                                        trData.push(getCodeName("MENU-STS"+ obj.sts));
+                                        trData.push(obj.remarks);
+                                        trData.push(obj.uteUserNo);
                                 trData.push(fromatDateYMDHMS(obj.uteDt));
-                                trData.push(obj.cteUserNo);
+                                        trData.push(obj.cteUserNo);
                                 trData.push(fromatDateYMDHMS(obj.cteDt));
-                                var info = JSON.stringify(obj);
-                            trData.push("<a href='javascript:void(0)'  onclick="view('+ info.replace(/"/g, '&quot;')" + ')'><i class='fa fa-search-plus'></i>查看</a>");
+                            trData.push("<a href='javascript:void(0)'  onclick=view('"+JSON.stringify(obj)+"')><i class='fa fa-search-plus'></i>查看</a>");
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
                             trData[i] = '';
@@ -915,8 +914,9 @@
         return Math.abs(cha);
     }
         <!--操作链接点击事件-->
-        function view(obj){
+        function view(info){
             var param = {};
+            var obj= JSON.parse(info);
              param.menuId = obj.menuId;
             $.ajax({
                 type : "POST",
@@ -935,9 +935,9 @@
                             getComboStore(data.data.sts,"STS_VIEW", "MENU-STS",true);
                             document.getElementById('REMARKS_VIEW').value=data.data.remarks;
                             document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
-                            document.getElementById('UTE_DT_VIEW').value=data.data.uteDt;
+                            document.getElementById('UTE_DT_VIEW').value=fromatDateYMDHMS(data.data.uteDt);
                             document.getElementById('CTE_USER_NO_VIEW').value=data.data.cteUserNo;
-                            document.getElementById('CTE_DT_VIEW').value=data.data.cteDt;
+                            document.getElementById('CTE_DT_VIEW').value=fromatDateYMDHMS(data.data.cteDt);
                     $("#viewWin").modal('show');
 
                 },

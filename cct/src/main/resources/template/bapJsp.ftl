@@ -863,7 +863,7 @@
     function getComboStore(codeValue,element,codeKey,isdisabled) {
         var param = {page:1,start:0,limit:1000};
         param.codeKey = codeKey;
-        param.codeValue = codeValue;
+        //param.codeValue = codeValue;
         $.ajax({
             type: "POST",
             url: baseURL+"/system/dicCode/query",
@@ -1022,12 +1022,17 @@
                                 trData.push(fromatDateYMDHMS(obj.${tableCarray.columnNameX}));
                                 </#if>
                                 <#if tableCarray.dataType != "Date">
-                                trData.push(obj.${tableCarray.columnNameX});
+                                    <#if tableCarray.queryRule == "04">
+                                        trData.push(getCodeName("${tableName}-${tableCarray.columnName}"+ obj.${tableCarray.columnNameX}));
+                                    </#if>
+                                    <#if tableCarray.queryRule != "04">
+                                        trData.push(obj.${tableCarray.columnNameX});
+                                    </#if>
                                 </#if>
                             </#if>
                         </#list>
                         <#if isOperation == "01">
-                            trData.push("<a href='javascript:void(0)'  onclick=view('"+obj+"')><i class='fa fa-search-plus'></i>查看</a>");
+                            trData.push("<a href='javascript:void(0)'  onclick=view('"+JSON.stringify(obj)+"')><i class='fa fa-search-plus'></i>查看</a>");
                         </#if>
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
@@ -1076,8 +1081,9 @@
     }
         <#if isOperation == "01">
         <!--操作链接点击事件-->
-        function view(obj){
+        function view(info){
             var param = {};
+            var obj= JSON.parse(info);
              <#list tableCarrays as tableCarray>
                  <#if tableCarray.isPrimaryKey?? && tableCarray.isPrimaryKey == "√">
              param.${tableCarray.columnNameX} = obj.${tableCarray.columnNameX};
@@ -1097,6 +1103,8 @@
                             getComboStore(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_VIEW", "${tableName}-${tableCarray.columnName}",true);
                             <#elseif (tableCarray.queryRule??) && tableCarray.queryRule == "05">
                             get${tableCarray.columnNameD}(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_VIEW",true);
+                            <#elseif tableCarray.dataType == "Date">
+                            document.getElementById('${tableCarray.columnName}_VIEW').value=fromatDateYMDHMS(data.data.${tableCarray.columnNameX});
                             <#else>
                             document.getElementById('${tableCarray.columnName}_VIEW').value=data.data.${tableCarray.columnNameX};
                             </#if>

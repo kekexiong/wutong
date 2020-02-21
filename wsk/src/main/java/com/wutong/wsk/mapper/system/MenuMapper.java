@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @title  MenuMapper
  * @author zhao_qg
- * @date   20200221 16:23:20
+ * @date   20200221 21:58:07
  */
 @Component
 public interface MenuMapper {
@@ -16,7 +16,7 @@ public interface MenuMapper {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param map
 	 * @return
 	 */
@@ -24,7 +24,7 @@ public interface MenuMapper {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param map
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public interface MenuMapper {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param paramVo
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public interface MenuMapper {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param menu
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public interface MenuMapper {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date 20200221 16:23:20
+ 	 * @date 20200221 21:58:07
 	 * @param menu
 	 * @return
 	 */	public int insert(Menu menu);
@@ -58,7 +58,7 @@ public interface MenuMapper {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200221 16:23:20
+ 	 * @date   20200221 21:58:07
 	 * @param map
 	 * @return
 	 */

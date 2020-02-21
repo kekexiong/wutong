@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @description Menudomain
  * @author zhao_qg
- * @date 20200221 16:23:20
+ * @date 20200221 21:58:07
  */
 @Data
 public class Menu {

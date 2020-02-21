@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * @description  菜单控制层
  * @author zhao_qg
- * @date   20200221 16:23:20
+ * @date   20200221 21:58:07
  */
 @Controller
 @RequestMapping("/system/menu")
@@ -42,7 +42,7 @@ public class MenuController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200221 16:23:20
+     * @date 20200221 21:58:07
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -72,7 +72,7 @@ public class MenuController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200221 16:23:20
+     * @date 20200221 21:58:07
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -96,7 +96,7 @@ public class MenuController extends BaseController {
      * @param menu
      * @return map
      * @author zhao_qg
-     * @date 20200221 16:23:20
+     * @date 20200221 21:58:07
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -122,7 +122,7 @@ public class MenuController extends BaseController {
      * @param menu
      * @return map
      * @author zhao_qg
-     * @date 20200221 16:23:20
+     * @date 20200221 21:58:07
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -148,7 +148,7 @@ public class MenuController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200221 16:23:20
+     * @date 20200221 21:58:07
      */
     @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
     @ResponseBody
