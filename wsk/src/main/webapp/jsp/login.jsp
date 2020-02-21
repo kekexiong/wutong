@@ -20,21 +20,42 @@
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
                     <input class="form-control required" type="text" placeholder="Username" id="username"
-                           name="username" autofocus="autofocus" maxlength="20"/>
+                           name="username" autofocus="autofocus" maxlength="20" value="${cookie.userName.value}"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>
                     <input class="form-control required" type="password" placeholder="Password" id="password"
-                           name="password" maxlength="9"/>
+                           name="password" maxlength="9" value="${cookie.password.value}"/>
+                </div>
+                <div class="form-group">
+                    <i></i>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-5 pull_left">
+                        <div class="form-group">
+                            <input class="form-control" type="tel" id="verify_input" placeholder="输入验证码" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="col-xs-7 pull_left">
+                        <a href="javascript:void(0);" title="点击更换验证码">
+                            <img id="imgVerify" class="preview" src="" alt="获取验证码" height="36" width="100%"
+                                 onclick="getVerify(this);">
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <i></i>
+                    <span id="tiShi"></span>
                 </div>
                 <div class="form-group">
                     <label class="checkbox">
-                        <input type="checkbox" name="remember" value="1"/>记住我
+                        <input type="checkbox" id="remember" name="remember" value="1"/>记住我
                     </label>
                 </div>
                 <div class="form-inline">
                     <ul class="nav navbar-nav pull-right">
-                        <li class="active"><a href="retrieve_pwd.jsp">忘记密码 <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="retrieve_pwd.jsp">忘记密码 <span class="sr-only">(current)</span></a>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <li class="active"><a href="#">注册 <span class="sr-only">(current)</span></a></li>
@@ -53,26 +74,61 @@
         //跳转到注册界面register.html进行注册
         window.open("register.html", "_blank");  //_self,_parent,_top,_blank
     }
+
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    my$("username").onclick = function () {
+        document.getElementById("tiShi").innerText = ""
+    }
+    my$("password").onclick = function () {
+        document.getElementById("tiShi").innerText = ""
+    }
+    my$("verify_input").onclick = function () {
+        document.getElementById("tiShi").innerText = ""
+    }
+
+    //当验证码输入错误，自动刷新验证码
+    function getVerifySec() {
+        $("#imgVerify").attr("src", baseURL + "/getVerify?" + Math.random());
+        //$("img[class='preview']").removeAttr("hidden")
+    }
+
+    //获取验证码
+    function getVerify(obj) {
+        //$("img[class='preview']").removeAttr("hidden")
+        obj.src = baseURL + "/getVerify?" + Math.random();
+    }
+
     var baseURL = "<%=request.getContextPath()%>";
+
     function login() {
         //登录逻辑
         //jQuery写法
         var username = $('#username').val();
         var password = $('#password').val();
+        var verifyinput = $('#verify_input').val();
+        var remember = $('#remember').val();
         $.ajax({
             type: "post",  //post put get 等等
-            url: baseURL+ "/login",
+            url: baseURL + "/login",
             async: false,
             data: {  //要传入ashx文件的数据
                 "username": username,
-                "password": password
+                "password": password,
+                "verifyInput": verifyinput,
+                "remember": remember
             },
             success: function (data) {
                 if (data.success) {
                     window.open("index.jsp", "_blank");
-                }
-                else {
-                    alert("a"+data.msg);  //这里data是从ashx文件返回的“账户名或密码不存在..
+                } else {
+                    document.getElementById("tiShi").style.color = "red";
+                    document.getElementById("tiShi").innerText = data.msg
+                    //alert("a"+data.msg);  //这里data是从ashx文件返回的“账户名或密码不存在..
+                    getVerifySec();
+
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {  //连接至ashx文件失败时，执行函数

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wutong.wsk.mapper.system.LoginValidMapper">
+    <resultMap id="userMap" type="com.wutong.wsk.domain.user.User">
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="REAL_NAME" property="realName"/>
+        <result column="SEX" property="sex"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="TEL_NO" property="telNo"/>
+        <result column="MAIL" property="mail"/>
+        <result column="ID_NUMBER" property="idNumber"/>
+        <result column="DEPT_NO" property="deptNo"/>
+        <result column="USER_STS" property="userSts"/>
+        <result column="LOGIN_PWD" property="loginPwd"/>
+        <result column="LOGIN_TIME" property="loginTime"/>
+        <result column="LOGIN_IP" property="loginIp"/>
+        <result column="EMPOWER_ROLES" property="empowerRoles"/>
+        <result column="IS_ALLOW_LOGIN" property="isAllowLogin"/>
+        <result column="PWD_ERR_CUNT" property="pwdErrCunt"/>
+        <result column="LAST_UPT_PWD_TIME" property="lastUptPwdTime"/>
+        <result column="UTE_USER_NO" property="uteUserNo"/>
+        <result column="UTE_DT" property="uteDt"/>
+        <result column="UTE_TM" property="uteTm"/>
+        <result column="CTE_DT" property="cteDt"/>
+        <result column="CTE_TM" property="cteTm"/>
+    </resultMap>
+
+    <select id="getByName" parameterType="com.wutong.wsk.domain.user.User" resultMap="userMap">
+        SELECT
+            USER_ID,
+            USER_NAME,
+            REAL_NAME,
+            SEX,
+            BIRTHDAY,
+            TEL_NO,
+            MAIL,
+            ID_NUMBER,
+            DEPT_NO,
+            USER_STS,
+            LOGIN_PWD,
+            LOGIN_TIME,
+            LOGIN_IP,
+            EMPOWER_ROLES,
+            IS_ALLOW_LOGIN,
+            PWD_ERR_CUNT,
+            LAST_UPT_PWD_TIME,
+            UTE_DT,
+            UTE_TM,
+            CTE_DT,
+            CTE_TM
+        FROM
+            USER
+        WHERE
+            USER_NAME = #{userName}
+    </select>
+    <update id="updateById" parameterType="com.wutong.wsk.domain.user.User">
+        UPDATE USER
+        SET
+            LOGIN_TIME=#{loginTime},
+            LOGIN_IP=#{loginIp},
+            PWD_ERR_CUNT=#{pwdErrCunt}
+        WHERE
+            USER_ID = #{userId}
+    </update>
+    <update id="updatePwdErrById" parameterType="com.wutong.wsk.domain.user.User">
+        UPDATE USER
+        SET
+            PWD_ERR_CUNT=#{pwdErrCunt}
+        WHERE
+            USER_ID = #{userId}
+    </update>
+</mapper>
