@@ -1,7 +1,5 @@
 package com.wutong.cct.service;
 
-import com.sun.deploy.util.ArrayUtil;
-import com.sun.tools.javac.util.ArrayUtils;
 import com.wutong.cct.domain.TableDomain;
 import com.wutong.cct.domain.TableItem;
 import com.wutong.cct.mapper.TableMapper;
@@ -23,10 +21,10 @@ public class TableService {
 
 
     public String[] updateArray = new String[]{"uteUserNo", "uteDt", "uteTm"};
-    public String[] innt_selectArray = new String[]{ "UUID", "CTE_USER_NO", "CTE_DT", "CTE_TM", "UTE_USER_NO", "UTE_DT", "UTE_TM", "REMARKS"};
+    public String[] innt_selectArray = new String[]{"UUID", "CTE_USER_NO", "CTE_DT", "CTE_TM", "UTE_USER_NO", "UTE_DT", "UTE_TM", "REMARKS"};
 
     public String[] insertArray = new String[]{"uuid", "cteUserNo", "cteDt", "cteTm"};
-    public String[] innt_insertArray = new String[]{"UUID", "CTE_USER_NO", "CTE_DT", "CTE_TM","UTE_USER_NO", "UTE_DT", "UTE_TM"};
+    public String[] innt_insertArray = new String[]{"UUID", "CTE_USER_NO", "CTE_DT", "CTE_TM", "UTE_USER_NO", "UTE_DT", "UTE_TM"};
 
 
     public List<TableItem> getTableItem(TableDomain param) {
@@ -34,21 +32,34 @@ public class TableService {
         for (int i = 0; i < itemList.size(); i++) {
             if ("UUID".equals(itemList.get(i).getColumnName()) || "uuid".equals(itemList.get(i).getColumnName())) {
                 itemList.get(i).setIsPrimaryKey("√");
-            }else{
+            } else {
                 itemList.get(i).setQueryRule("03");//默认输入框
                 itemList.get(i).setQueryShow("√");
-                if(!hasThis(innt_selectArray, itemList.get(i).getColumnName())){
+                if (!hasThis(innt_selectArray, itemList.get(i).getColumnName())) {
                     itemList.get(i).setQueryType("√");
                 }
-                if(!hasThis(innt_insertArray, itemList.get(i).getColumnName())){
+                if (!hasThis(innt_insertArray, itemList.get(i).getColumnName())) {
                     itemList.get(i).setQueryAdd("√");
                 }
                 itemList.get(i).setQueryExport("√");
                 itemList.get(i).setQueryView("√");
                 itemList.get(i).setQueryImport("√");
             }
-            if ("VARCHAR2".equals(itemList.get(i).getColumnName())) {
-
+            if ("PRI".equals(itemList.get(i).getIsPrimaryKey())){
+                itemList.get(i).setIsPrimaryKey("√");
+            }
+            if ("VARCHAR2".equals(itemList.get(i).getDataType()) || "varchar".equals(itemList.get(i).getDataType()) || "CHAR".equals(itemList.get(i).getDataType())) {
+                itemList.get(i).setDataType("String");
+            }
+            if ("datetime".equals(itemList.get(i).getDataType())) {
+                itemList.get(i).setDataType("Date");
+            }
+            if ("NUMBER".equals(itemList.get(i).getDataType())) {
+                if ("0".equals(itemList.get(i).getDataScale())) {
+                    itemList.get(i).setDataType("int");
+                } else {
+                    itemList.get(i).setDataType("BigDecimal");
+                }
             }
 
             // 如果备注为空  字段名字
@@ -122,19 +133,13 @@ public class TableService {
 
     private String swtichType(TableItem item, TableDomain table) {
         String bigDecimalImprot = "java.math.BigDecimal";
-        if ("VARCHAR2".equals(item.getDataType()) || "varchar".equals(item.getDataType()) || "CHAR".equals(item.getDataType())) {
-            item.setDataType("String");
+        String dateImprot = "java.util.Date";
+        if ("Date".equals(item.getDataType())) {
+            existImprot(table.getDomainImportPackageList(), dateImprot);
         }
-        if ("datetime".equals(item.getDataType())) {
-            item.setDataType("String");
-        }
-        if ("NUMBER".equals(item.getDataType())) {
-            if ("0".equals(item.getDataScale())) {
-                item.setDataType("int");
-            } else {
-                item.setDataType("BigDecimal");
-                existImprot(table.getDomainImportPackageList(), bigDecimalImprot);
-            }
+        if ("BigDecimal".equals(item.getDataType())) {
+
+            existImprot(table.getDomainImportPackageList(), bigDecimalImprot);
         }
         return item.getDataType();
     }

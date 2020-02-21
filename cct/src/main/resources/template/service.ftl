@@ -103,7 +103,12 @@ public class ${classNameD}Service {
 	public int update(${classNameD} ${classNameX}) {
         <#list tableCarrays as tableCarray>
             <#if tableCarray.columnNameX == "uteDt">
-        ${classNameX}.setUteDt(DateUtil.getCurDT());
+                <#if tableCarray.dataType == "String">
+            ${classNameX}.setUteDt(DateUtil.getCurDT());
+                </#if>
+                <#if tableCarray.dataType == "Date">
+            ${classNameX}.setUteDt(DateUtil.getDate());
+                </#if>
             </#if>
             <#if tableCarray.columnNameX == "uteTm">
         ${classNameX}.setUteDt(DateUtil.getCurTM());
@@ -126,7 +131,12 @@ public class ${classNameD}Service {
 	public int insert(${classNameD} ${classNameX}) {
         <#list tableCarrays as tableCarray>
             <#if tableCarray.columnNameX == "cteDt">
-                ${classNameX}.setCteDt(DateUtil.getCurDT());
+                <#if tableCarray.dataType == "String">
+                    ${classNameX}.setCteDt(DateUtil.getCurDT());
+                </#if>
+                <#if tableCarray.dataType == "Date">
+                    ${classNameX}.setCteDt(DateUtil.getDate());
+                </#if>
             </#if>
             <#if tableCarray.columnNameX == "cteTm">
                 ${classNameX}.setCteDt(DateUtil.getCurTM());

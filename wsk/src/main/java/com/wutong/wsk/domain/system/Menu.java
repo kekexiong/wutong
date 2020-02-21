@@ -1,10 +1,11 @@
 package com.wutong.wsk.domain.system;
+import java.util.Date;
 import lombok.Data;
 
 /**
  * @description Menudomain
  * @author zhao_qg
- * @date 20200220 20:38:51
+ * @date 20200221 16:23:20
  */
 @Data
 public class Menu {
@@ -59,7 +60,7 @@ public class Menu {
     /**
      * 更新日期
      */
-    private String uteDt;
+    private Date uteDt;
     /**
      * 创建人
      */
@@ -67,5 +68,5 @@ public class Menu {
     /**
      * 创建日期
      */
-    private String cteDt;
+    private Date cteDt;
 }

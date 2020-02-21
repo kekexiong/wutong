@@ -193,6 +193,8 @@ if(true) {
     renderMenuLeafLevel2('menuSys', '020201', '菜单管理', '/jsp/menu.jsp');
     renderMenuLeafLevel2('menuSys', '020301', '角色管理', '/jsp/role.jsp');
     renderMenuLeafLevel2('menuSys', '020401', '部门管理', '/jsp/dept.jsp');
+    renderMenuLeafLevel2('menuSys', '020501', '数', '/jsp/tree.jsp');
+
 
 }
 /*初始化菜单权限end*/

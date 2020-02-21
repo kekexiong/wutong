@@ -70,12 +70,36 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 text-right">图标:</label>
+                                                    <div class="col-md-8 paddingnone">
+                                                        <input name="icon" id="ICON" class="form-control" placeholder="图标">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 text-right">排序:</label>
+                                                    <div class="col-md-8 paddingnone">
+                                                        <input name="sort" id="SORT" class="form-control" placeholder="排序">
+                                                    </div>
+                                                </div>
+                                            </div>
                                                                                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4 text-right">是否显示:</label>
                                                     <div class="col-md-8 paddingnone">
                                                         <select name="isShow" id="IS_SHOW" class="bs-select form-control" data-show-subtext="true">
                                                         </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 text-right">权限码:</label>
+                                                    <div class="col-md-8 paddingnone">
+                                                        <input name="permisssion" id="PERMISSSION" class="form-control" placeholder="权限码">
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,9 +133,6 @@
                                                 <button type="button" id="dele_btn" class="btn tn btn btn-primary">
                                                     <i class="fa fa-trash-o fa-lg"></i> 删除
                                                 </button>
-                                                    <button type="button" id="isExport_btn" class="btn tn btn btn-primary">
-                                                        <i class="fa fa-download"></i> 导出
-                                                    </button>
                                             </div>
                                         </div>
                                     </div>
@@ -465,45 +486,6 @@
             </div>
         </div>
     </div>
-<!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
-<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">导出EXCEL</h4>
-    </div>
-    <div class="modal-body">
-        <div class="portlet-body form">
-            <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="exportform">
-                <div class="form-body">
-                    <div class="row norow">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <input name="innerExcelType" class="col-md-12 text-center" id="innerExcelType">
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12" style="text-align: center;">
-                                    <button type="button" id="exportform_save_btn" class="btn btn-success">
-                                        <i class="fa fa-save"></i> 确认
-                                    </button>
-                                    <button type="button" id="exportform_cancel_btn" class="btn red">
-                                        <i class="fa fa-share"></i> 取消
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 </div>
 </div>
 
@@ -760,9 +742,9 @@
                                 document.getElementById('PARENT_ID_SHOW').value=data.data.parentId;
                                 document.getElementById('ICON_SHOW').value=data.data.icon;
                                 document.getElementById('SORT_SHOW').value=data.data.sort;
-                                getComboStore(data.data.isShow,"IS_SHOW_SHOW", "IS_SHOW",false);
+                                getComboStore(data.data.isShow,"IS_SHOW_SHOW", "MENU-IS_SHOW",false);
                                 document.getElementById('PERMISSSION_SHOW').value=data.data.permisssion;
-                                getComboStore(data.data.sts,"STS_SHOW", "STS",false);
+                                getComboStore(data.data.sts,"STS_SHOW", "MENU-STS",false);
                                 document.getElementById('REMARKS_SHOW').value=data.data.remarks;
                     document.getElementById('hiddenUUid').value=data.data.uuid;
                     $("#addOrUpdateWin").modal('show');
@@ -841,7 +823,10 @@
                         param.menuId = $("#MENU_ID").val();
                         param.menuName = $("#MENU_NAME").val();
                         param.parentId = $("#PARENT_ID").val();
+                        param.icon = $("#ICON").val();
+                        param.sort = $("#SORT").val();
                         param.isShow = $("#IS_SHOW").val();
+                        param.permisssion = $("#PERMISSSION").val();
                         param.sts = $("#STS").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
@@ -879,10 +864,11 @@
                                 trData.push(obj.sts);
                                 trData.push(obj.remarks);
                                 trData.push(obj.uteUserNo);
-                                trData.push(obj.uteDt);
+                                trData.push(fromatDateYMDHMS(obj.uteDt));
                                 trData.push(obj.cteUserNo);
-                                trData.push(obj.cteDt);
-                            trData.push("<a href='javascript:void(0)'  onclick=view('"+obj.uuid+"')><i class='fa fa-search-plus'></i>查看</a>");
+                                trData.push(fromatDateYMDHMS(obj.cteDt));
+                                var info = JSON.stringify(obj);
+                            trData.push("<a href='javascript:void(0)'  onclick="view('+ info.replace(/"/g, '&quot;')" + ')'><i class='fa fa-search-plus'></i>查看</a>");
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
                             trData[i] = '';
@@ -929,9 +915,9 @@
         return Math.abs(cha);
     }
         <!--操作链接点击事件-->
-        function view(uuid){
+        function view(obj){
             var param = {};
-            param.uuid = uuid;
+             param.menuId = obj.menuId;
             $.ajax({
                 type : "POST",
                 url : baseURL + "/system/menu/getDetail",
@@ -944,9 +930,9 @@
                             document.getElementById('PARENT_ID_VIEW').value=data.data.parentId;
                             document.getElementById('ICON_VIEW').value=data.data.icon;
                             document.getElementById('SORT_VIEW').value=data.data.sort;
-                            getComboStore(data.data.isShow,"IS_SHOW_VIEW", "IS_SHOW",true);
+                            getComboStore(data.data.isShow,"IS_SHOW_VIEW", "MENU-IS_SHOW",true);
                             document.getElementById('PERMISSSION_VIEW').value=data.data.permisssion;
-                            getComboStore(data.data.sts,"STS_VIEW", "STS",true);
+                            getComboStore(data.data.sts,"STS_VIEW", "MENU-STS",true);
                             document.getElementById('REMARKS_VIEW').value=data.data.remarks;
                             document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
                             document.getElementById('UTE_DT_VIEW').value=data.data.uteDt;
@@ -963,29 +949,6 @@
         //弹出页面取消按钮（详情）
         $("#openform_cancel_btn").on('click',function(){
             $("#viewWin").modal('hide');
-        });
-        //下载模板按钮
-        $("#download_template_btn").on('click', function() {
-            window.open(baseURL +'/system/menu/downloadTemplate');
-        });
-
-        //导出按钮
-        $("#isExport_btn").on('click', function() {
-            var totalCount = $("#itemCount").text();
-            if(totalCount==0){
-                bootbox.alert("没有数据可以导出，请筛选数据!");
-                return ;
-            }
-            $("#exportExcelWin").modal('show');
-            $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
-            $("#innerExcelType").attr("disabled", "disabled");
-            $("#exportform_save_btn").off('click').on('click', function() {
-                window.open(baseURL +"/system/menu/export");
-                $("#exportExcelWin").modal('hide');
-            });
-            $("#exportform_cancel_btn").off('click').on('click', function() {
-                $("#exportExcelWin").modal('hide');
-            });
         });
 </script>
 

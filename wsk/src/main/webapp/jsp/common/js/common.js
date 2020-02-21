@@ -96,39 +96,23 @@ SXF.apply(SXF, {
 	},
 
 	/**
-	 * Number类型相减
-	 */
-	sub:function(num1,num2){ 
-		var baseNum,baseNum1,baseNum2; 
-		var precision;//精度   
-		if(num1=='-'||num1=='-.'||num1=='-0'||num1=='-0.'){
-			num1=0;
-		}
-		if(num2=='-'||num2=='-.'||num2=='-0'||num2=='-0.'){
-			num2=0;
-		}
-		try { 
-			baseNum1 = num1.toString().split(".")[1].length;     
-		} catch(e){ 
-			baseNum1 = 0;     
-		} 
-	    try { 
-		   baseNum2 = num2.toString().split(".")[1].length;  
-		} catch(e){ 
-		      baseNum2 = 0;     
-		} 
-	    baseNum = Math.pow(10,Math.max(baseNum1,baseNum2));    
-	    precision = (baseNum1>=baseNum2)?baseNum1:baseNum2;     
-	   var r= ((num1*baseNum-num2*baseNum)/baseNum);
-	   return r; 
-	},
-	
-	/**
 	 * 日期转换
 	 */
 	dateTransful:function(val){ 
 		var dt=val.substring(0,4)+"-"+val.substring(4,6)+"-"+val.substring(6,8);
 		return dt;
-	}
+	},
 
+    /**
+     * 日期转换
+     */
+    fromatDate:function(val){
+        return new Date(val).Format("yyyy-MM-dd HH-mm-ss");
+    },
+    /**
+     * 日期转换
+     */
+    fromatDateTM:function(val){
+        return new Date(val).Format("yyyy-MM-dd HH-mm-ss");
+    }
 })

@@ -1,0 +1,81 @@
+[
+	{
+		"id": "A01",
+		"text": "系统管理",
+		"icon": "fa fa-folder icon-state-warning icon-lg",
+		"state": {
+			"opened": false,
+			"disabled": 0,
+			"selected": false,
+			"loaded": true
+		},
+		"children": [
+			{
+				"id": "A01_1",
+				"text": "字典管理",
+				"icon": "fa fa-file icon-state-warning icon-lg",
+				"state": {
+					"opened": true,
+					"disabled": 0,
+					"selected": false,
+					"loaded": true
+				},
+				"children": [],
+				"li_attr": {},
+				"a_attr": {},
+				"type": "file"
+			},
+			{
+				"id": "A01_2",
+				"text": "菜单管理",
+				"icon": "fa fa-file icon-state-warning icon-lg",
+				"state": {
+					"opened": true,
+					"disabled": 0,
+					"selected": true,
+					"loaded": true
+				},
+				"children": [],
+				"li_attr": {},
+				"a_attr": {},
+				"type": "file"
+			}
+		],
+		"li_attr": {},
+		"a_attr": {},
+		"type": "root"
+	},
+	{
+		"id": "A02",
+		"text": "用户管理",
+		"icon": "fa fa-folder icon-state-warning icon-lg",
+		"state": {
+			"opened": false,
+			"disabled": 0,
+			"selected": false,
+			"loaded": true
+		},
+		"children": [
+			{
+				"id": "A02_2",
+				"text": "用户菜单管理",
+				"icon": "fa fa-file icon-state-warning icon-lg",
+				"state": {
+					"opened": true,
+					"disabled": 0,
+					"selected": false,
+					"loaded": true
+				},
+				"children": [],
+				"li_attr": {},
+				"a_attr": {},
+				"type": "file"
+			}
+		],
+		"li_attr": {},
+		"a_attr": {},
+		"type": "root"
+	}
+
+]
+

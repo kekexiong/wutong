@@ -31,8 +31,17 @@
             <if test="menu.parentId!= null and menu.parentId!= ''">
                 and PARENT_ID=#{menu.parentId}
             </if>
+            <if test="menu.icon!= null and menu.icon!= ''">
+                and ICON=#{menu.icon}
+            </if>
+            <if test="menu.sort!= null and menu.sort!= ''">
+                and SORT=#{menu.sort}
+            </if>
             <if test="menu.isShow!= null and menu.isShow!= ''">
                 and IS_SHOW=#{menu.isShow}
+            </if>
+            <if test="menu.permisssion!= null and menu.permisssion!= ''">
+                and PERMISSSION=#{menu.permisssion}
             </if>
             <if test="menu.sts!= null and menu.sts!= ''">
                 and STS=#{menu.sts}
@@ -48,8 +57,10 @@
                         t.ICON as "icon",
                         t.SORT as "sort",
                         t.IS_SHOW as "isShow",
+                        '' as "isShowName",
                         t.PERMISSSION as "permisssion",
                         t.STS as "sts",
+                        '' as "stsName",
                         t.REMARKS as "remarks",
                         t.UTE_USER_NO as "uteUserNo",
                         t.UTE_DT as "uteDt",
@@ -68,7 +79,7 @@
     </select>
     <select id="getByKey" parameterType="com.wutong.wsk.domain.system.Menu" resultMap="menuMap">
         SELECT
-            MENU_ID, MENU_NAME, PARENT_ID, ICON, SORT, IS_SHOW, IS_SHOW_NAME, PERMISSSION, STS, STS_NAME, REMARKS, UTE_USER_NO, UTE_DT, CTE_USER_NO, CTE_DT
+            MENU_ID, MENU_NAME, PARENT_ID, ICON, SORT, IS_SHOW, PERMISSSION, STS, REMARKS, UTE_USER_NO, UTE_DT, CTE_USER_NO, CTE_DT
         FROM 
             MENU
         WHERE

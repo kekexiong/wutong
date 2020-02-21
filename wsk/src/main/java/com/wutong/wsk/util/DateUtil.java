@@ -47,6 +47,10 @@ public class DateUtil {
         return getCurTime("HHmmss");
     }
 
+    public static Date getDate() {
+        return new Date();
+    }
+
     /**
      * 当前时间
      * 创 建 人:  wenc

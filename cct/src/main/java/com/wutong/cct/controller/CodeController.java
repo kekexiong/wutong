@@ -48,7 +48,7 @@ public class CodeController {
     // 作者
     private final String CLASS_AUTHOR = "zhao_qg";
     // 表名
-    private final String TABLE_NAME = "ROLE";
+    private final String TABLE_NAME = "MENU";
     // 业务名称
     private final String BUSINESS_NAME = "菜单";
     // 工程目录 com.wutong.wsk.controller
@@ -150,7 +150,7 @@ public class CodeController {
                 TableItem item1 = new TableItem();
                 item1.setComments(item.getComments());
                 item1.setColumnName(item.getColumnName() + "_NAME");
-                item1.setDataType("VARCHAR2");
+                item1.setDataType("String");
                 item1.setIsAddColumnName("1"); // 下拉菜单 描述
                 item1.setQueryShow("01");
                 newList.add(item1);

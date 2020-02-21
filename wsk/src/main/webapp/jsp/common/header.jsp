@@ -77,6 +77,21 @@
             });
         }
     });
+    /**
+     * 日期转换
+     */
+    function  fromatDateYMDHMS(val){
+        if(val == null){
+            return "";
+		}
+        return new Date(val).Format("yyyy-MM-dd hh:mm:ss");
+    }
+    /**
+     * 日期转换
+     */
+    function fromatDateTM(val){
+        return new Date(val).Format("yyyy-MM-dd HH-mm-ss");
+    }
 </script>
 <%-- 
 <div class="page-header navbar navbar-fixed-top">

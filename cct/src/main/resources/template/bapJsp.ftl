@@ -776,7 +776,7 @@
                     var index = $(selectRocords[i]).attr("rownum");
                     record = tableData.items[index];
                         <#list tableCarrays as tableCarray>
-                            <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" ||tableCarray.isPrimaryKey == "PRI")>
+                            <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√")>
                                 uuids += record.${tableCarray.columnNameX}+",";
                             </#if>
                         </#list>
@@ -823,7 +823,7 @@
         }else if("update" == type){
             var param = {};
                 <#list tableCarrays as tableCarray>
-                    <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" || tableCarray.isPrimaryKey == "PRI")>
+                    <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√")>
                         param.${tableCarray.columnNameX} = record.${tableCarray.columnNameX};
                     </#if>
                 </#list>
@@ -839,7 +839,7 @@
                         <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01"&&
                         (tableCarray.queryRule=="01"||tableCarray.queryRule=="02"||tableCarray.queryRule=="03"||tableCarray.queryRule=="04" ||tableCarray.queryRule=="05")>
                             <#if (tableCarray.queryRule??) && tableCarray.queryRule == "04">
-                                getComboStore(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_SHOW", "${tableCarray.columnName}",false);
+                                getComboStore(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_SHOW", "${tableName}-${tableCarray.columnName}",false);
                             <#elseif (tableCarray.queryRule??) && tableCarray.queryRule == "05">
                                 get${tableCarray.columnNameD}(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_SHOW",false);
                             <#else>
@@ -1018,11 +1018,16 @@
                     trData.push(start + index + 1);
                         <#list tableCarrays as tableCarray>
                             <#if tableCarray.queryShow?? && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "1">
+                                <#if tableCarray.dataType == "Date">
+                                trData.push(fromatDateYMDHMS(obj.${tableCarray.columnNameX}));
+                                </#if>
+                                <#if tableCarray.dataType != "Date">
                                 trData.push(obj.${tableCarray.columnNameX});
+                                </#if>
                             </#if>
                         </#list>
                         <#if isOperation == "01">
-                            trData.push("<a href='javascript:void(0)'  onclick=view('"+obj.uuid+"')><i class='fa fa-search-plus'></i>查看</a>");
+                            trData.push("<a href='javascript:void(0)'  onclick=view('"+obj+"')><i class='fa fa-search-plus'></i>查看</a>");
                         </#if>
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
@@ -1071,9 +1076,13 @@
     }
         <#if isOperation == "01">
         <!--操作链接点击事件-->
-        function view(uuid){
+        function view(obj){
             var param = {};
-            param.uuid = uuid;
+             <#list tableCarrays as tableCarray>
+                 <#if tableCarray.isPrimaryKey?? && tableCarray.isPrimaryKey == "√">
+             param.${tableCarray.columnNameX} = obj.${tableCarray.columnNameX};
+                 </#if>
+             </#list>
             $.ajax({
                 type : "POST",
                 url : baseURL + "/${busPackage}/${classNameX}/getDetail",
@@ -1085,7 +1094,7 @@
                         <#if (tableCarray.queryView??) && tableCarray.queryView == "01" &&
                         (tableCarray.queryRule=="01"||tableCarray.queryRule=="02"||tableCarray.queryRule=="03"||tableCarray.queryRule=="04" ||tableCarray.queryRule=="05")>
                             <#if (tableCarray.queryRule??) && tableCarray.queryRule == "04">
-                            getComboStore(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_VIEW", "${tableCarray.columnName}",true);
+                            getComboStore(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_VIEW", "${tableName}-${tableCarray.columnName}",true);
                             <#elseif (tableCarray.queryRule??) && tableCarray.queryRule == "05">
                             get${tableCarray.columnNameD}(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_VIEW",true);
                             <#else>
