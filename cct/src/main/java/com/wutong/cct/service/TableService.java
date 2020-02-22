@@ -40,10 +40,10 @@ public class TableService {
                 }
                 if (!hasThis(innt_insertArray, itemList.get(i).getColumnName())) {
                     itemList.get(i).setQueryAdd("√");
+                    itemList.get(i).setQueryImport("√");
                 }
                 itemList.get(i).setQueryExport("√");
                 itemList.get(i).setQueryView("√");
-                itemList.get(i).setQueryImport("√");
             }
             if ("PRI".equals(itemList.get(i).getIsPrimaryKey())){
                 itemList.get(i).setIsPrimaryKey("√");
@@ -53,6 +53,7 @@ public class TableService {
             }
             if ("datetime".equals(itemList.get(i).getDataType())) {
                 itemList.get(i).setDataType("Date");
+                itemList.get(i).setDataLength("20");
             }
             if ("NUMBER".equals(itemList.get(i).getDataType())) {
                 if ("0".equals(itemList.get(i).getDataScale())) {

@@ -20,6 +20,7 @@ public class TableDomain {
 	private String jspPackage;// 生成包
 	private String classNameD;// 大写
 	private String classNameX;// 小写
+	private TableItem primaryKey;// 表主键
 	private List<TableItem> tableCarrays;// 字段集合
 	private List<TableItem> updateCarrays;// 更新集合
 	private List<TableItem> insertCarrays;// 插入集合
@@ -398,5 +399,13 @@ public class TableDomain {
 
 	public void setDbType(String dbType) {
 		this.dbType = dbType;
+	}
+
+	public TableItem getPrimaryKey() {
+		return primaryKey;
+	}
+
+	public void setPrimaryKey(TableItem primaryKey) {
+		this.primaryKey = primaryKey;
 	}
 }

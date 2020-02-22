@@ -97,13 +97,16 @@
     /**
      * 获取字典名称
      */
-    function getCodeName(val){
+    function getCodeName(key, val){
+        if(val==null){
+            return "";
+		}
        var dicCodeMap='<%=dicCodeMap%>';
         var json = JSON.parse(dicCodeMap);
-       if(json[val]!=undefined){
-			return json[val]
+       if(json[key + val]!=undefined){
+			return json[key + val]
 	   }
-        return "补充字典数据" + val;
+        return val;
     }
 </script>
 <%-- 

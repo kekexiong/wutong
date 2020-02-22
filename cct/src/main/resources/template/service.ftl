@@ -361,7 +361,11 @@ public class ${classNameD}Service {
                     int curRows = k * pageSize + l + 1;
                     Row row = sheet.createRow(curRows);
                     Map<String, Object> content = infoList.get(l);
-
+                <#list exprotCarrays as tableCarray>
+                    <#if tableCarray.queryRule == "04">
+                    content.put("${tableCarray.columnNameX}", DicCodeUtils.DIC_CODE_MAP.get("${tableName}-${tableCarray.columnName}" + content.get("${tableCarray.columnNameX}")));
+                    </#if>
+                </#list>
                     for (int m = 0; m < tableValue.length; m++) {
                         row.createCell(m).setCellValue(String.valueOf(content.get(tableValue[m])));
                     }

@@ -110,31 +110,22 @@
     <update id="update" parameterType="${domainPackage}.${classNameD}">
         UPDATE <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}
         SET
-            <#list updateCarrays as tableCarray>
-                    ${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}<#if (tableCarray_has_next)>,</#if>
-            </#list>
+        <#list updateCarrays as tableCarray>
+            ${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}<#if (tableCarray_has_next)>,</#if>
+        </#list>
         WHERE
-            <#list tableCarrays as tableCarray>
-                  <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" ||tableCarray.isPrimaryKey == "PRI")>
-                      ${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}
-                  </#if>
-              </#list>
-            
+            ${primaryKey.columnName}=${specific}{${primaryKey.columnNameX}}
     </update>
     </#if>
     <#if isDetele=="01">
     <delete id="delete" parameterType="java.util.Map">
          delete from <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}
-         where 
-             <#list tableCarrays as tableCarray>
-                  <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" ||tableCarray.isPrimaryKey == "PRI")>
-                      ${tableCarray.columnName}
-                  </#if>
-              </#list>
+         where
+            ${primaryKey.columnName}
            in 
-        <foreach item="item" index="index" collection="uuids" open="(" separator="," close=")">  
+        <foreach item="item" index="index" collection="keys" open="(" separator="," close=")">
               ${specific}{item}
-         </foreach>
+        </foreach>
     </delete>
     </#if>
     <#list tableCarrays as tableCarray>

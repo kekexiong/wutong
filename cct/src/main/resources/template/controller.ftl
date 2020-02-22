@@ -218,18 +218,18 @@ public class ${classNameD}Controller extends BaseController {
      * @author ${classAuthor}
      * @date ${classTime}
      */
-    @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteByKey", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> deleteByUuid(HttpSession session, @RequestParam(value = "uuids") String uuids) {
+    public Map<String, Object> deleteByKey(HttpSession session, @RequestParam(value = "keys") String keys) {
         String opNm = "${businessName}-删除";
-        if(uuids==null|| "".equals(uuids)){
-            return super.setFailure("错误：付款单号参数为空");
+        if(keys==null|| "".equals(keys)){
+            return super.setFailure("错误：主键参数为空");
         }
         // 参数map
         Map<String, Object> paramsMap = new HashMap<String, Object>();
-        paramsMap.put("uuids", uuids.split(","));//付款单号数组
+        paramsMap.put("keys", keys.split(","));//主键组
         try{
-            LOGGER.info(opNm, uuids, "--begin");
+            LOGGER.info(opNm, keys, "--begin");
             int num = ${classNameX}Service.delete(paramsMap);
             LOGGER.info(opNm, num, "--end");
             if(num>0){
@@ -261,7 +261,7 @@ public class ${classNameD}Controller extends BaseController {
         String    fileName = "${classNameX}Template.xlsx";
         try {
             LOGGER.info(opNm, fileName, "begin");
-            String path = TUserController.class.getResource("/").getPath()+ "/template/" + fileName;
+            String path = ${classNameD}Controller.class.getResource("/").getPath()+ "/template/" + fileName;
             File file = new File(path);
             DownloadFileUtil.getInstance().downLoad(file, response);
             LOGGER.info(opNm, fileName, "end");

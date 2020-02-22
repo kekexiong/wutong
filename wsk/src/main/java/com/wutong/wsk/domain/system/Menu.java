@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @description Menudomain
  * @author zhao_qg
- * @date 20200221 21:58:07
+ * @date 20200222 23:16:53
  */
 @Data
 public class Menu {
@@ -22,33 +22,25 @@ public class Menu {
      */
     private String parentId;
     /**
-     * 图标
+     * 目录类型
      */
-    private String icon;
+    private String type;
     /**
      * 排序
      */
-    private String sort;
+    private int sort;
+    /**
+     * 图标
+     */
+    private String icon;
     /**
      * 是否显示
      */
     private String isShow;
     /**
-     * 是否显示
-     */
-    private String isShowName;
-    /**
-     * 权限码
-     */
-    private String permisssion;
-    /**
      * 状态
      */
     private String sts;
-    /**
-     * 状态
-     */
-    private String stsName;
     /**
      * 备注
      */

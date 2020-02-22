@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class DicCodeUtils implements CommandLineRunner {
      * 基于模式记账的tcd码值集合
      */
     public static HashMap<String, String> DIC_CODE_MAP = new HashMap<>();
+    public static HashMap<String, List<Map<String, Object>>> DIC_CODE_MAP_KEY = new HashMap<>();
     private static Lock lock = new ReentrantLock();
     private static String upFlg = "";
     @Autowired
@@ -102,6 +104,15 @@ public class DicCodeUtils implements CommandLineRunner {
                 String codeValue = String.valueOf(tb.get("codeValue"));
                 String codeName = String.valueOf(tb.get("codeName"));
                 tempMap.put(codeKey+codeValue, codeName);
+                if (DIC_CODE_MAP_KEY.get(codeKey)==null){
+                    List<Map<String, Object>>  tempList = new ArrayList<>();
+                    tempList.add(tb);
+                    DIC_CODE_MAP_KEY.put(codeKey, tempList);
+                }else{
+                    List<Map<String, Object>>  tempList = DIC_CODE_MAP_KEY.get(codeKey);
+                    tempList.add(tb);
+                    DIC_CODE_MAP_KEY.put(codeKey, tempList);
+                }
             });
             DIC_CODE_MAP = tempMap;
         } else {

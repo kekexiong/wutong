@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
+<html lang="en" class="ie8 no-js">
+<html lang="en" class="ie9 no-js">
 <html lang="zh-hans">
-<!--<![endif]-->
-
 <head>
     <meta charset="utf-8" />
     <title>梧桐管理系统</title>
@@ -17,26 +12,12 @@
     <meta content="" name="author" />
     <jsp:include page="common/resource.jsp" flush="true"/>
 </head>
-
-<!-- <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md"> -->
 <body class="iframe-body">
-
-<!-- BEGIN HEADER -->
 <jsp:include page="common/header.jsp" flush="true"/>
-<!-- END HEADER -->
-
-<!-- BEGIN CONTAINER -->
 <div class="clearfix"> </div>
 <div class="page-container">
-
-    <!-- BEGIN MENU -->
     <%-- <jsp:include page="../common/menu.jsp" flush="true"/> --%>
-    <!-- END MENU -->
-
-    <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
-        <!-- 主体-->
-        <!-- <div class="page-content"> -->
         <div class="">
         <!-- 右边开始 -->
         <div class="row">
@@ -44,75 +25,33 @@
                 <div class="portlet light bordered scaffold-list">
                     <!-- 查询信息 -->
                     <div class="portlet-body form">
-                        <form action="<%=request.getContextPath()%>/mec/queryData" class="form-horizontal" id="queryMecPanel_Form">
+                        <form action="" class="form-horizontal" id="queryForm">
                             <div class="row norow">
-                                                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">菜单ID:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="menuId" id="MENU_ID" class="form-control" placeholder="菜单ID">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">菜单名称:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="menuName" id="MENU_NAME" class="form-control" placeholder="菜单名称">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">父节点:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="parentId" id="PARENT_ID" class="form-control" placeholder="父节点">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">图标:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="icon" id="ICON" class="form-control" placeholder="图标">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">排序:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="sort" id="SORT" class="form-control" placeholder="排序">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">是否显示:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <select name="isShow" id="IS_SHOW" class="bs-select form-control" data-show-subtext="true">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">权限码:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="permisssion" id="PERMISSSION" class="form-control" placeholder="权限码">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">状态:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <select name="sts" id="STS" class="bs-select form-control" data-show-subtext="true">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                        </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">菜单ID:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="menuId" id="MENU_ID" class="form-control" placeholder="菜单ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">菜单名称:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="menuName" id="MENU_NAME" class="form-control" placeholder="菜单名称">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">父节点:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="parentId" id="PARENT_ID" class="form-control" placeholder="父节点">
+                                        </div>
+                                    </div>
+                                </div>
+                                                        </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -133,6 +72,9 @@
                                                 <button type="button" id="dele_btn" class="btn tn btn btn-primary">
                                                     <i class="fa fa-trash-o fa-lg"></i> 删除
                                                 </button>
+                                                <button type="button" id="isExport_btn" class="btn tn btn btn-primary">
+                                                    <i class="fa fa-download"></i> 导出
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -140,8 +82,6 @@
                             </div>
                         </form>
                     </div>
-
-
                 </div>
                 <div class="clearfix"></div>
                 <div class="portlet light bordered scaffold-list">
@@ -164,17 +104,16 @@
                                                     <th class="nowrap">菜单ID</th>
                                                     <th class="nowrap">菜单名称</th>
                                                     <th class="nowrap">父节点</th>
-                                                    <th class="nowrap">图标</th>
+                                                    <th class="nowrap">目录类型</th>
                                                     <th class="nowrap">排序</th>
+                                                    <th class="nowrap">图标</th>
                                                     <th class="nowrap">是否显示</th>
-                                                    <th class="nowrap">权限码</th>
                                                     <th class="nowrap">状态</th>
                                                     <th class="nowrap">备注</th>
                                                     <th class="nowrap">更新人</th>
                                                     <th class="nowrap">更新日期</th>
                                                     <th class="nowrap">创建人</th>
                                                     <th class="nowrap">创建日期</th>
-                                                <th class="nowrap">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -211,8 +150,7 @@
                                         </ul>
                                         <div class="input-group pull-right col-sm-2"  style="float: left;">
                                             <input min="1" class="form-control p" style="height: 31px; width: 80px;" type="number">
-                                            <a href="javascript:;" class="input-group-addon" onclick="javascript:pageing($('.p').val())">
-                                                <i class="fa fa-mail-forward brown"></i></a>
+                                            <a href="javascript:;" class="input-group-addon" onclick="javascript:pageing($('.p').val())"><i class="fa fa-mail-forward brown"></i></a>
                                         </div>
                                     </nobr>
                                 </div>
@@ -233,12 +171,12 @@
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
-                <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="addOrUpdateform">
+                <form action="" class="form-horizontal" id="addOrUpdateform">
                     <div class="form-body">
                         <div class="row norow">
                             <input type="hidden" value = "" id = "hiddenType"/>
-                            <input type="hidden" value = "" id = "hiddenUUid"/>
-                                                                                                         <!-- 普通输入框 -->
+                            <input type="hidden" value = "" id = "hiddenKey"/>
+                                                                                                     <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">菜单ID:</label>
@@ -247,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                    <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">菜单名称:</label>
@@ -256,7 +194,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                    <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">父节点:</label>
@@ -265,16 +203,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                                                                                   <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">图标:</label>
+                                        <label class="control-label col-md-4 text-right">目录类型:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="icon" id="ICON_SHOW" class="form-control" placeholder="图标">
+                                            <select name="type" id="TYPE_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                                     <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">排序:</label>
@@ -283,7 +221,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                                                                  <!-- 下拉框 -->
+                                                                                                                                                                    <!-- 普通输入框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">图标:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="icon" id="ICON_SHOW" class="form-control" placeholder="图标">
+                                        </div>
+                                    </div>
+                                </div>
+                                                                                                                                                                                                   <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">是否显示:</label>
@@ -292,16 +239,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                            <!-- 普通输入框 -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">权限码:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="permisssion" id="PERMISSSION_SHOW" class="form-control" placeholder="权限码">
-                                        </div>
-                                    </div>
-                                </div>
-                                                                                                                                                                                                                  <!-- 下拉框 -->
+                                                                                                                                                                    <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">状态:</label>
@@ -310,7 +248,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                            <!-- 普通输入框 -->
+                                                                                                                                     <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">备注:</label>
@@ -319,7 +257,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                  <div class="clearfix"></div>
+                                                                                           <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -339,144 +277,36 @@
         </div>
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
+    <!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
+    <div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
-            <h4 class="modal-title" >菜单详情信息</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">导出EXCEL</h4>
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
-                <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="">
+                <form action="" class="form-horizontal" id="exportform">
                     <div class="form-body">
                         <div class="row norow">
-                                                                                                                                                            <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">菜单ID:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="menuId" id="MENU_ID_VIEW" class="form-control" disabled="disabled" placeholder="菜单ID">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">菜单名称:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="menuName" id="MENU_NAME_VIEW" class="form-control" disabled="disabled" placeholder="菜单名称">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">父节点:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="parentId" id="PARENT_ID_VIEW" class="form-control" disabled="disabled" placeholder="父节点">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">图标:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="icon" id="ICON_VIEW" class="form-control" disabled="disabled" placeholder="图标">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">排序:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="sort" id="SORT_VIEW" class="form-control" disabled="disabled" placeholder="排序">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                                                          <!-- 下拉框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">是否显示:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <select name="isShow" id="IS_SHOW_VIEW" class="bs-select form-control" data-show-subtext="true">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                            <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">权限码:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="permisssion" id="PERMISSSION_VIEW" class="form-control" disabled="disabled" placeholder="权限码">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                                                          <!-- 下拉框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">状态:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <select name="sts" id="STS_VIEW" class="bs-select form-control" data-show-subtext="true">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                            <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">备注:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="remarks" id="REMARKS_VIEW" class="form-control" disabled="disabled" placeholder="备注">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">更新人:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="uteUserNo" id="UTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="更新人">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">更新日期:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="uteDt" id="UTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="更新日期">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">创建人:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="cteUserNo" id="CTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="创建人">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">创建日期:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="cteDt" id="CTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="创建日期">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                   <div class="clearfix"></div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <input name="innerExcelType" class="col-md-12 text-center" id="innerExcelType">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-12" style="text-align:center;">
-                                        <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <button type="button" id="exportform_save_btn" class="btn btn-success">
+                                            <i class="fa fa-save"></i> 确认
+                                        </button>
+                                        <button type="button" id="exportform_cancel_btn" class="btn red">
+                                            <i class="fa fa-share"></i> 取消
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -490,34 +320,18 @@
 </div>
 
 <jsp:include page="common/footer.jsp" flush="true" />
-
 <script type="text/javascript">
     //分页功能
     //分页默认隐藏
     $("#pagination-bar").hide();
-    //每页多少条
-    var limit = 0;
-    //当前页
-    var page = 1;
-    //起始条
-    var start = 0;
-    //总页数
-    var toalPage;
-    //数据列表缓存
-    var tableData;
-
-    var importLimit = 0;
-
-    var importPage = 1;
-
-    var importStart = 0;
-
-    var importTotalPage;
-
+    var limit = 0; //每页多少条
+    var page = 1;//当前页
+    var start = 0;//起始条
+    var toalPage;//总页数
+    var tableData; //数据列表缓存
     function pageing(opp) {
         $(window.document).scrollTop(0, 500);
         limit = $("#limit  option:selected").text();
-
         if (opp == 'pro') {
             if (page > 1) {
                 page = page - 1;
@@ -546,7 +360,6 @@
                 bootbox.alert('对不起没有你要跳转的页面');
                 return;
             }
-
             start = (page - 1) * limit;
         } else {
             if (page == 1 && opp == 1) {
@@ -561,7 +374,6 @@
                 bootbox.alert('对不起没有你要跳转的页面');
                 return;
             }
-
             start = (page - 1) * limit;
         }
         $('#queryMecGrid > tbody').empty();
@@ -577,30 +389,34 @@
     }
     //初始化页面功能
     $(function(){
-    <!---------------------在此手动设置按钮的权限------------------------------->
         //if (!hasPermission(PERMISSSIONCONST.SES1002)) {$("#").hide();}
-        <!---------------------在此手动初始化页面表单审核状态数据源---------------------->
     <!--getComboStore系统表生成下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入key值，4传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--getCustomStore自定义下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--如果不需要回显第一个参数传入""，如果不需要设定disabled属性传入FALSE-->
-                    <!--列表下拉框-->
-                        getComboStore("","IS_SHOW", "MENU-IS_SHOW","");
-                    <!--添加获取修改下拉框-->
-                        getComboStore("","IS_SHOW_SHOW", "MENU-IS_SHOW","");
-                    <!--列表下拉框-->
-                        getComboStore("","STS", "MENU-STS","");
-                    <!--添加获取修改下拉框-->
-                        getComboStore("","STS_SHOW", "MENU-STS","");
+                        <!--添加获取修改下拉框-->
+        getComboStore("","TYPE_SHOW", "MENU-TYPE","");
+                        <!--添加获取修改下拉框-->
+        getComboStore("","IS_SHOW_SHOW", "MENU-IS_SHOW","");
+                        <!--添加获取修改下拉框-->
+        getComboStore("","STS_SHOW", "MENU-STS","");
         //初始化输入框时间默认值方法
         initDefaultDate();
         //重置按钮
         $("#reset_btn").on('click', function() {
-            $("#queryMecPanel_Form")[0].reset();
-            $("#queryMecPanel_Form .bs-select").selectpicker('val','');
+            $("#queryForm")[0].reset();
+            $("#queryForm .bs-select").selectpicker('val','');
+            $("#queryForm").data('bootstrapValidator').destroy();
+            $('#queryForm').data('bootstrapValidator', null);
+            queryFormValidator('#queryForm');
             initDefaultDate();
         });
+        queryFormValidator('#queryForm');
         //查询按钮
         $("#query_btn").on('click', function() {
+            $('#queryForm').data('bootstrapValidator').validate();
+            if(!$('#queryForm').data('bootstrapValidator').isValid()){
+                return ;
+            }
             page = 1;
             reloadGrid();
         });
@@ -632,22 +448,26 @@
         //添加保存按钮
         var param = {};
         $("#addform_save_btn").off('click').on('click', function() {
-                            param.menuId = $("#MENU_ID_SHOW").val();
-                            param.menuName = $("#MENU_NAME_SHOW").val();
-                            param.parentId = $("#PARENT_ID_SHOW").val();
-                            param.icon = $("#ICON_SHOW").val();
-                            param.sort = $("#SORT_SHOW").val();
-                            param.isShow = $("#IS_SHOW_SHOW").val();
-                            param.permisssion = $("#PERMISSSION_SHOW").val();
-                            param.sts = $("#STS_SHOW").val();
-                            param.remarks = $("#REMARKS_SHOW").val();
+            $('#addOrUpdateform').data('bootstrapValidator').validate();
+            if(!$('#addOrUpdateform').data('bootstrapValidator').isValid()){
+                return ;
+            }
+            param.menuId = $("#MENU_ID_SHOW").val();
+            param.menuName = $("#MENU_NAME_SHOW").val();
+            param.parentId = $("#PARENT_ID_SHOW").val();
+            param.type = $("#TYPE_SHOW").val();
+            param.sort = $("#SORT_SHOW").val();
+            param.icon = $("#ICON_SHOW").val();
+            param.isShow = $("#IS_SHOW_SHOW").val();
+            param.sts = $("#STS_SHOW").val();
+            param.remarks = $("#REMARKS_SHOW").val();
             var hiddenType = $("#hiddenType").val();
             var url = "";
             if("1" == hiddenType){
                 url = baseURL + "/system/menu/save";
             }else if ("2" == hiddenType){
                 url = baseURL + "/system/menu/update";
-                param.uuid = $("#hiddenUUid").val();
+                param.menuId = $("#hiddenKey").val();
             }else{
                 url = "";
             }
@@ -677,7 +497,7 @@
         //删除按钮
         $("#dele_btn").on('click', function() {
             var selectRocords = $("#queryMecGrid tbody input:checked");
-            var uuids = "";
+            var keys = "";
             if(selectRocords.length <= 0){
                 bootbox.alert(CONST.TIP001);
                 return;
@@ -685,16 +505,16 @@
                 for(i=0; i < selectRocords.length; i++){
                     var index = $(selectRocords[i]).attr("rownum");
                     record = tableData.items[index];
-                                uuids += record.menuId+",";
+                    keys += record.menuId+",";
                 }
-                uuids = uuids.substring(0, uuids.lastIndexOf(","));
+                keys = keys.substring(0, keys.lastIndexOf(","));
                 bootbox.confirm("选择了"+selectRocords.length+"条, 确认删除?", function(truthBeTold){
                     if(truthBeTold){
                         $.ajax({
                             type: "POST",
-                            url: baseURL + "/system/menu/deleteByUuid",
+                            url: baseURL + "/system/menu/deleteByKey",
                             data:{
-                                uuids:uuids
+                                keys:keys
                             },
                             contentType: "application/x-www-form-urlencoded;charset=utf-8",
                             dataType: "json",
@@ -724,11 +544,13 @@
     });
     //添加或者修改方法
     function addOrUpdate(type,record){
+        addOrUpdateFormValidator();
         if("add" == type){
+            document.getElementById('MENU_ID_SHOW').readOnly = false;
             $("#addOrUpdateWin").modal('show');
         }else if("update" == type){
             var param = {};
-                        param.menuId = record.menuId;
+             param.menuId = record.menuId;
             $.ajax({
                 type : "POST",
                 url : baseURL + "/system/menu/getDetail",
@@ -738,15 +560,18 @@
                 success:function(data){
                     <!--修改页面展示字段-->
                                 document.getElementById('MENU_ID_SHOW').value=data.data.menuId;
+                                if("update" == type){
+                                    document.getElementById('MENU_ID_SHOW').readOnly = true;
+                                 }
                                 document.getElementById('MENU_NAME_SHOW').value=data.data.menuName;
                                 document.getElementById('PARENT_ID_SHOW').value=data.data.parentId;
-                                document.getElementById('ICON_SHOW').value=data.data.icon;
+                                getComboStore(data.data.type,"TYPE_SHOW", "MENU-TYPE",false);
                                 document.getElementById('SORT_SHOW').value=data.data.sort;
+                                document.getElementById('ICON_SHOW').value=data.data.icon;
                                 getComboStore(data.data.isShow,"IS_SHOW_SHOW", "MENU-IS_SHOW",false);
-                                document.getElementById('PERMISSSION_SHOW').value=data.data.permisssion;
                                 getComboStore(data.data.sts,"STS_SHOW", "MENU-STS",false);
                                 document.getElementById('REMARKS_SHOW').value=data.data.remarks;
-                    document.getElementById('hiddenUUid').value=data.data.uuid;
+                                document.getElementById('hiddenKey').value=data.data.menuId;
                     $("#addOrUpdateWin").modal('show');
                 },
                 error:function(){
@@ -758,14 +583,18 @@
             return;
         }
     }
+    $('#addOrUpdateWin').on('hidden.bs.modal', function() {
+        $("#addOrUpdateform").data('bootstrapValidator').destroy();
+        $('#addOrUpdateform').data('bootstrapValidator', null);
+    });
     //下拉框码表中加载数据(使用系统表)
     function getComboStore(codeValue,element,codeKey,isdisabled) {
-        var param = {page:1,start:0,limit:1000};
+        var param = {};
         param.codeKey = codeKey;
         //param.codeValue = codeValue;
         $.ajax({
             type: "POST",
-            url: baseURL+"/system/dicCode/query",
+            url: baseURL+"/getDicCode",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -823,11 +652,6 @@
                         param.menuId = $("#MENU_ID").val();
                         param.menuName = $("#MENU_NAME").val();
                         param.parentId = $("#PARENT_ID").val();
-                        param.icon = $("#ICON").val();
-                        param.sort = $("#SORT").val();
-                        param.isShow = $("#IS_SHOW").val();
-                        param.permisssion = $("#PERMISSSION").val();
-                        param.sts = $("#STS").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -851,23 +675,22 @@
                 tableData = $.extend(true, {}, data);
                 $("#queryMecGrid").DataTable().clear().draw();
                 $.each(data.items,function(index,obj){
-                    var trData = [];
-                    trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
-                    trData.push(start + index + 1);
-                                        trData.push(obj.menuId);
-                                        trData.push(obj.menuName);
-                                        trData.push(obj.parentId);
-                                        trData.push(obj.icon);
-                                        trData.push(obj.sort);
-                                        trData.push(getCodeName("MENU-IS_SHOW"+ obj.isShow));
-                                        trData.push(obj.permisssion);
-                                        trData.push(getCodeName("MENU-STS"+ obj.sts));
-                                        trData.push(obj.remarks);
-                                        trData.push(obj.uteUserNo);
-                                trData.push(fromatDateYMDHMS(obj.uteDt));
-                                        trData.push(obj.cteUserNo);
-                                trData.push(fromatDateYMDHMS(obj.cteDt));
-                            trData.push("<a href='javascript:void(0)'  onclick=view('"+JSON.stringify(obj)+"')><i class='fa fa-search-plus'></i>查看</a>");
+                        var trData = [];
+                        trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
+                        trData.push(start + index + 1);
+                        trData.push(obj.menuId);
+                        trData.push(obj.menuName);
+                        trData.push(obj.parentId);
+                        trData.push(getCodeName("MENU-TYPE", obj.type));
+                        trData.push(obj.sort);
+                        trData.push(obj.icon);
+                        trData.push(getCodeName("MENU-IS_SHOW", obj.isShow));
+                        trData.push(getCodeName("MENU-STS", obj.sts));
+                        trData.push(obj.remarks);
+                        trData.push(obj.uteUserNo);
+                        trData.push(fromatDateYMDHMS(obj.uteDt));
+                        trData.push(obj.cteUserNo);
+                        trData.push(fromatDateYMDHMS(obj.cteDt));
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
                             trData[i] = '';
@@ -878,7 +701,6 @@
                 $("#queryMecGrid").DataTable().order([1, 'asc']).draw();
                 $("#pagination-bar").show();
                 if (page == 1) {
-                    //first page
                     $("#pagination .prev a").css({'color':'gray','cursor':'not-allowed'});
                 } else {
                     $("#pagination .prev a").css({'color':'#23527c','cursor':'pointer'});
@@ -889,9 +711,6 @@
                 } else {
                     $("#pagination .next a").css({'color':'#23527c','cursor':'pointer'});
                 }
-                //动态设置iframe高度
-                //var currentTabId = $("#tab-bar", parent.document).children('li.active').children('a').attr('href').replace('#tab_','');
-                //setIframeHeight($('#frame_'+currentTabId,parent.document)[0]);
             },
             error:function(error){
 
@@ -913,43 +732,187 @@
         var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);
         return Math.abs(cha);
     }
-        <!--操作链接点击事件-->
-        function view(info){
-            var param = {};
-            var obj= JSON.parse(info);
-             param.menuId = obj.menuId;
-            $.ajax({
-                type : "POST",
-                url : baseURL + "/system/menu/getDetail",
-                data :param,
-                contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                dataType : "json",
-                success:function(data){
-                            document.getElementById('MENU_ID_VIEW').value=data.data.menuId;
-                            document.getElementById('MENU_NAME_VIEW').value=data.data.menuName;
-                            document.getElementById('PARENT_ID_VIEW').value=data.data.parentId;
-                            document.getElementById('ICON_VIEW').value=data.data.icon;
-                            document.getElementById('SORT_VIEW').value=data.data.sort;
-                            getComboStore(data.data.isShow,"IS_SHOW_VIEW", "MENU-IS_SHOW",true);
-                            document.getElementById('PERMISSSION_VIEW').value=data.data.permisssion;
-                            getComboStore(data.data.sts,"STS_VIEW", "MENU-STS",true);
-                            document.getElementById('REMARKS_VIEW').value=data.data.remarks;
-                            document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
-                            document.getElementById('UTE_DT_VIEW').value=fromatDateYMDHMS(data.data.uteDt);
-                            document.getElementById('CTE_USER_NO_VIEW').value=data.data.cteUserNo;
-                            document.getElementById('CTE_DT_VIEW').value=fromatDateYMDHMS(data.data.cteDt);
-                    $("#viewWin").modal('show');
-
-                },
-                error:function(){
-                    alert("操作失败，请重新操作！")
-                }
-            });
-        }
-        //弹出页面取消按钮（详情）
-        $("#openform_cancel_btn").on('click',function(){
-            $("#viewWin").modal('hide');
+        //下载模板按钮
+        $("#download_template_btn").on('click', function() {
+            window.open(baseURL +'/system/menu/downloadTemplate');
         });
+
+        //导出按钮
+        $("#isExport_btn").on('click', function() {
+            var totalCount = $("#itemCount").text();
+            if(totalCount==0){
+                bootbox.alert("没有数据可以导出，请筛选数据!");
+                return ;
+            }
+            $("#exportExcelWin").modal('show');
+            $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
+            $("#innerExcelType").attr("disabled", "disabled");
+            $("#exportform_save_btn").off('click').on('click', function() {
+                window.open(baseURL +"/system/menu/export");
+                $("#exportExcelWin").modal('hide');
+            });
+            $("#exportform_cancel_btn").off('click').on('click', function() {
+                $("#exportExcelWin").modal('hide');
+            });
+        });
+    function addOrUpdateFormValidator(){
+        $('#addOrUpdateform').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            message: 'This value is not valid',
+            fields: {
+             menuId: {
+                    message: '菜单ID验证失败',
+                    validators: {
+                        notEmpty: {message: '菜单ID不能为空'},
+                         stringLength: {
+                             max: 8,
+                             message: '菜单ID长度超出范围，应在8之内！'
+                         }
+                        }
+                    },
+             menuName: {
+                    message: '菜单名称验证失败',
+                    validators: {
+                        notEmpty: {message: '菜单名称不能为空'},
+                         stringLength: {
+                             max: 40,
+                             message: '菜单名称长度超出范围，应在40之内！'
+                         }
+                        }
+                    },
+             parentId: {
+                    message: '父节点验证失败',
+                    validators: {
+                        notEmpty: {message: '父节点不能为空'},
+                         stringLength: {
+                             max: 8,
+                             message: '父节点长度超出范围，应在8之内！'
+                         }
+                        }
+                    },
+             type: {
+                    message: '目录类型验证失败',
+                    validators: {
+                        notEmpty: {message: '目录类型不能为空'},
+                         stringLength: {
+                             max: 1,
+                             message: '目录类型长度超出范围，应在1之内！'
+                         }
+                        }
+                    },
+             sort: {
+                    message: '排序验证失败',
+                    validators: {
+                        notEmpty: {message: '排序不能为空'},
+                         stringLength: {
+                             max: 10,
+                             digits: {message: '请输入正确的数字！'},//整数
+                             message: '排序大小超出范围，应在10之内！'
+                         }
+                        }
+                    },
+             icon: {
+                    message: '图标验证失败',
+                    validators: {
+                         stringLength: {
+                             max: 255,
+                             message: '图标长度超出范围，应在255之内！'
+                         }
+                        }
+                    },
+             isShow: {
+                    message: '是否显示验证失败',
+                    validators: {
+                        notEmpty: {message: '是否显示不能为空'},
+                         stringLength: {
+                             max: 1,
+                             message: '是否显示长度超出范围，应在1之内！'
+                         }
+                        }
+                    },
+             sts: {
+                    message: '状态验证失败',
+                    validators: {
+                        notEmpty: {message: '状态不能为空'},
+                         stringLength: {
+                             max: 1,
+                             message: '状态长度超出范围，应在1之内！'
+                         }
+                        }
+                    },
+             remarks: {
+                    message: '备注验证失败',
+                    validators: {
+                         stringLength: {
+                             max: 50,
+                             message: '备注长度超出范围，应在50之内！'
+                         }
+                        }
+                    },
+            }
+        }).on('success.form.bv', function(e) {//点击提交之后
+                    e.preventDefault();
+                    var $form = $(e.target);
+                    var bv = $form.data('bootstrapValidator');
+                    // Use Ajax to submit form data 提交至form标签中的action，result自定义
+                    $.post($form.attr('action'), $form.serialize(), function(result) {
+                        //恢复submit按钮disable状态。
+                        $('#addOrUpdateform').bootstrapValidator('disableSubmitButtons', false);
+                        //do something...
+                    });
+                });
+    };
+    function queryFormValidator(){
+        $('#queryForm').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            message: 'This value is not valid',
+            fields: {
+             menuId: {
+             message: '菜单ID验证失败',
+                     validators: {
+                 stringLength: {
+                     max: 8,
+                     message: '菜单ID长度超出范围，应在8之内！'
+                 }
+             }
+         },
+             menuName: {
+             message: '菜单名称验证失败',
+                     validators: {
+                 stringLength: {
+                     max: 40,
+                     message: '菜单名称长度超出范围，应在40之内！'
+                 }
+             }
+         },
+             parentId: {
+             message: '父节点验证失败',
+                     validators: {
+                 stringLength: {
+                     max: 8,
+                     message: '父节点长度超出范围，应在8之内！'
+                 }
+             }
+         },
+    }
+    }).on('success.form.bv', function(e) {//点击提交之后
+            e.preventDefault();
+            var $form = $(e.target);
+            var bv = $form.data('bootstrapValidator');
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                $('#queryForm').bootstrapValidator('disableSubmitButtons', false);
+                //do something...
+            });
+        });
+    };
 </script>
 
 </body>

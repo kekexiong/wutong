@@ -2,7 +2,9 @@ package com.wutong.wsk.controller.system;
 
 
 import com.wutong.wsk.controller.BaseController;
+import com.wutong.wsk.domain.system.DicCode;
 import com.wutong.wsk.domain.user.User;
+import com.wutong.wsk.service.system.DicCodeUtils;
 import com.wutong.wsk.service.system.LoginValidService;
 import com.wutong.wsk.service.system.MailService;
 import com.wutong.wsk.util.RandomValidateCodeUtil;
@@ -10,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -288,5 +291,19 @@ public class LoginController extends BaseController {
             }
         }
 
+    }
+
+    /**
+     * @param session
+     * @param paramVo
+     * @return map
+     * @description: 信息查询
+     * @author zhao_qg
+     * @date 20200220 18:44:20
+     */
+    @RequestMapping(value = "/getDicCode", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> getDicCode(HttpSession session, @ModelAttribute DicCode paramVo) {
+        return setResult(DicCodeUtils.DIC_CODE_MAP_KEY.get(paramVo.getCodeKey()), 1000);
     }
 }

@@ -305,9 +305,9 @@
             {"id":"03", "name":"Date"},{"id":"04", "name":"BigDecimal"},
             {"id":"05", "name":"text"},{"id":"06", "name":"Long"},
             {"id":"07", "name":"Float"}];
-var selectRuleData=[{"id":"03", "name":"输入框"},{"id":"04", "name":"下拉选择框"},{"id":"01", "name":"商编输入框"},
-            {"id":"02", "name":"日期区间查询"},
-            {"id":"05", "name":"自定义下拉选择框"},{"id":"06", "name":"日期输入框"}];
+var selectRuleData=[{"id":"01", "name":"商编输入框"}, {"id":"02", "name":"日期区间查询"},
+					{"id":"03", "name":"输入框"},{"id":"04", "name":"下拉选择框"},
+            		{"id":"05", "name":"自定义下拉选择框"},{"id":"06", "name":"日期输入框"}];
 var queryTypeData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var isPrimaryKeyData=[{"id":"PRI", "name":"是"},{"id":"", "name":"否"}];
 var selectShowData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];

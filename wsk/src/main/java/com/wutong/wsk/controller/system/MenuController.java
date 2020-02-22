@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * @description  菜单控制层
  * @author zhao_qg
- * @date   20200221 21:58:07
+ * @date   20200222 23:16:53
  */
 @Controller
 @RequestMapping("/system/menu")
@@ -42,7 +42,7 @@ public class MenuController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200221 21:58:07
+     * @date 20200222 23:16:53
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -72,7 +72,7 @@ public class MenuController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200221 21:58:07
+     * @date 20200222 23:16:53
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -96,7 +96,7 @@ public class MenuController extends BaseController {
      * @param menu
      * @return map
      * @author zhao_qg
-     * @date 20200221 21:58:07
+     * @date 20200222 23:16:53
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -122,7 +122,7 @@ public class MenuController extends BaseController {
      * @param menu
      * @return map
      * @author zhao_qg
-     * @date 20200221 21:58:07
+     * @date 20200222 23:16:53
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -148,20 +148,20 @@ public class MenuController extends BaseController {
      * @param uuids
      * @return map
      * @author zhao_qg
-     * @date 20200221 21:58:07
+     * @date 20200222 23:16:53
      */
-    @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteByKey", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> deleteByUuid(HttpSession session, @RequestParam(value = "uuids") String uuids) {
+    public Map<String, Object> deleteByKey(HttpSession session, @RequestParam(value = "keys") String keys) {
         String opNm = "菜单-删除";
-        if(uuids==null|| "".equals(uuids)){
-            return super.setFailure("错误：付款单号参数为空");
+        if(keys==null|| "".equals(keys)){
+            return super.setFailure("错误：主键参数为空");
         }
         // 参数map
         Map<String, Object> paramsMap = new HashMap<String, Object>();
-        paramsMap.put("uuids", uuids.split(","));//付款单号数组
+        paramsMap.put("keys", keys.split(","));//主键组
         try{
-            LOGGER.info(opNm, uuids, "--begin");
+            LOGGER.info(opNm, keys, "--begin");
             int num = menuService.delete(paramsMap);
             LOGGER.info(opNm, num, "--end");
             if(num>0){
@@ -174,5 +174,30 @@ public class MenuController extends BaseController {
             LOGGER.error(opNm, "--end,异常", e);
             return super.setFailure("删除失败!");
         }
+    }
+    
+    /**
+     * @description:主页面导出功能
+     * @param session
+     * @param response
+     * @return void
+     * @author zhao_qg
+     * @date 20200222 23:16:53
+     */
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    public void export(HttpSession session, HttpServletResponse response) {
+        String opNm = "菜单信息管理-导出";
+        String fileName = "菜单" + DateUtil.getCurDTTM() + ".xlsx";
+        Map<String, Object> paraMap = (Map<String, Object>) session.getAttribute("queryMenuParam");
+        long startTime = System.currentTimeMillis();
+        Map<String, Object> paramsMap = (Map<String, Object>) session.getAttribute("queryParams");
+        try {
+            SXSSFWorkbook swb = menuService.export(paraMap);
+            DownloadFileUtil.getInstance().downLoadExcel(swb, fileName, response);
+            LOGGER.info("导出收支明细--end" + DateUtil.getHaoShiTimeMsg(startTime));
+        } catch (Exception e) {
+            LOGGER.error("导出收支明细--exception", e);
+        }
+        LOGGER.info(opNm, "导出完毕", "fileName=" + fileName);
     }
 }

@@ -141,20 +141,22 @@ public class CodeController {
         // request.getParameter("list");
         String listString = request.getParameter("list");
         List<TableItem> list = JSON.parseArray(listString, TableItem.class);
+        TableDomain table = new TableDomain();
         List<TableItem> newList = new ArrayList<TableItem>();
         for (int i = 0; i < list.size(); i++) {
             TableItem item = list.get(i);
             newList.add(item);
             String queryRule = item.getQueryRule();
-            if (!"".equals(queryRule) && ("04".equals(queryRule) || "05".equals(queryRule))) {
-                TableItem item1 = new TableItem();
-                item1.setComments(item.getComments());
-                item1.setColumnName(item.getColumnName() + "_NAME");
-                item1.setDataType("String");
-                item1.setIsAddColumnName("1"); // 下拉菜单 描述
-                item1.setQueryShow("01");
-                newList.add(item1);
-            }
+//            if (!"".equals(queryRule) && ("04".equals(queryRule) || "05".equals(queryRule))) {
+//                TableItem item1 = new TableItem();
+//                item1.setComments(item.getComments());
+//                item1.setColumnName(item.getColumnName() + "_NAME");
+//                item1.setDataType("String");
+//                item1.setIsAddColumnName("1"); // 下拉菜单 描述
+//                item1.setQueryShow("01");
+//                newList.add(item1);
+//            }
+
             if ("√".equals(item.getQueryType())) {
                 item.setQueryType("01");
             } else {
@@ -189,8 +191,10 @@ public class CodeController {
                 item.setQueryAdd("02");
             }
             item.setIsAddColumnName("0");
+            if ("√".equals(item.getIsPrimaryKey())) {
+                table.setPrimaryKey(item);
+            }
         }
-        TableDomain table = new TableDomain();
         table.setTableName(tableName);
         table.setTableSchema(TABLE_SCHEMA);
         table.setDbType(DB_TYPE);
