@@ -213,7 +213,7 @@ public class ${classNameD}Controller extends BaseController {
     /**
      * 根据主键删除
      * @param session
-     * @param uuids
+     * @param keys
      * @return map
      * @author ${classAuthor}
      * @date ${classTime}

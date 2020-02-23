@@ -1,11 +1,13 @@
 package com.wutong.wsk.domain.system;
 import java.util.Date;
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * @description Menudomain
  * @author zhao_qg
- * @date 20200222 23:16:53
+ * @date 20200223 20:41:44
  */
 @Data
 public class Menu {
@@ -61,4 +63,8 @@ public class Menu {
      * 创建日期
      */
     private Date cteDt;
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }

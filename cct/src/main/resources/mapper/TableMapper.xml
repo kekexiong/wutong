@@ -23,6 +23,7 @@
 		Select
 			ORDINAL_POSITION AS "columnId",
 			COLUMN_NAME AS "columnName",
+			COLUMN_TYPE AS "columnType",
 			COLUMN_KEY AS "isPrimaryKey",
 			DATA_TYPE AS "dataType",
 			COLUMN_COMMENT AS "comments",

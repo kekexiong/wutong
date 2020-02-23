@@ -642,10 +642,10 @@
             $("#queryForm .bs-select").selectpicker('val','');
             $("#queryForm").data('bootstrapValidator').destroy();
             $('#queryForm').data('bootstrapValidator', null);
-            queryFormValidator('#queryForm');
+            queryFormValidator();
             initDefaultDate();
         });
-        queryFormValidator('#queryForm');
+        queryFormValidator();
         //查询按钮
         $("#query_btn").on('click', function() {
             $('#queryForm').data('bootstrapValidator').validate();
@@ -784,6 +784,9 @@
     });
     //添加或者修改方法
     function addOrUpdate(type,record){
+        addOrUpdateFormValidator();
+        $("#addOrUpdateform").data('bootstrapValidator').destroy();
+        $('#addOrUpdateform').data('bootstrapValidator', null);
         addOrUpdateFormValidator();
         if("add" == type){
             document.getElementById('${primaryKey.columnName}_SHOW').readOnly = false;
@@ -1220,33 +1223,33 @@
      <#list tableCarrays as tableCarray>
          <#if (tableCarray.queryAdd??) && (tableCarray.queryAdd == "01")>
              ${tableCarray.columnNameX}: {
-                    message: '${tableCarray.comments}验证失败',
-                    validators: {
-                        <#if (tableCarray.nullable??) && (tableCarray.nullable == "NO")>
-                        notEmpty: {message: '${tableCarray.comments}不能为空'},
-                        </#if>
-                        <#if tableCarray.dataType == "int">
-                         stringLength: {
-                             max: ${tableCarray.dataPrecision},
-                             digits: {message: '请输入正确的数字！'},//整数
-                             message: '${tableCarray.comments}大小超出范围，应在${tableCarray.dataPrecision}之内！'
-                         }
-                        <#elseif tableCarray.dataType == "BigDecimal">
-                         stringLength: {
-                             max: ${tableCarray.dataPrecision},
-                             regexp: { //正则表达式
-                                 regexp: ^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$,
-                                         message: '用户名只能包含大写、小写、数字和下划线'
-                             },
-                             message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataPrecision}之内！'
-                         }
-                        <#else>
-                         stringLength: {
-                             max: ${tableCarray.dataLength},
-                             message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataLength}之内！'
-                         }
-                        </#if>
-                        }
+                message: '${tableCarray.comments}验证失败',
+                validators: {
+                    <#if (tableCarray.nullable??) && (tableCarray.nullable == "NO")>
+                    notEmpty: {message: '${tableCarray.comments}不能为空'},
+                    </#if>
+                    <#if tableCarray.dataType == "int">
+                     digits: {message: '请输入正确的数字！'},//整数
+                     lessThan: {
+                        value : ${tableCarray.dataLength},
+                        message : '最大输入${tableCarray.dataLength}'
+                    }
+                    <#elseif tableCarray.dataType == "BigDecimal">
+                     stringLength: {
+                         max: ${tableCarray.dataPrecision},
+                         regexp: { //正则表达式
+                             regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
+                                     message: '用户名只能包含大写、小写、数字和下划线'
+                         },
+                         message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataPrecision}之内！'
+                     }
+                    <#else>
+                     stringLength: {
+                         max: ${tableCarray.dataLength},
+                         message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataLength}之内！'
+                     }
+                    </#if>
+                    }
                     },
          </#if>
      </#list>
@@ -1278,16 +1281,16 @@
              message: '${tableCarray.comments}验证失败',
                      validators: {
              <#if tableCarray.dataType == "int">
-                 stringLength: {
-                     max: ${tableCarray.dataPrecision},
-                     digits: {message: '请输入正确的数字！'}//整数
-                     message: '${tableCarray.comments}大小超出范围，应在${tableCarray.dataPrecision}之内！'
-                 }
+                 digits: {message: '请输入正确的数字！'},//整数
+                 lessThan: {
+                         value : ${tableCarray.dataLength},
+                         message : '最大输入${tableCarray.dataLength}'
+                     }//整数
              <#elseif tableCarray.dataType == "BigDecimal">
                  stringLength: {
                      max: ${tableCarray.dataPrecision},
                      regexp: { //正则表达式
-                         regexp: ^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$,
+                         regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
                          message: '用户名只能包含大写、小写、数字和下划线'
                      },
                      message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataPrecision}之内！'

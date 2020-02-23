@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,7 @@ public class TableService {
                 itemList.get(i).setQueryExport("√");
                 itemList.get(i).setQueryView("√");
             }
-            if ("PRI".equals(itemList.get(i).getIsPrimaryKey())){
+            if ("PRI".equals(itemList.get(i).getIsPrimaryKey())) {
                 itemList.get(i).setIsPrimaryKey("√");
             }
             if ("VARCHAR2".equals(itemList.get(i).getDataType()) || "varchar".equals(itemList.get(i).getDataType()) || "CHAR".equals(itemList.get(i).getDataType())) {
@@ -61,6 +62,39 @@ public class TableService {
                 } else {
                     itemList.get(i).setDataType("BigDecimal");
                 }
+            }
+            if ("decimal".equals(itemList.get(i).getDataType())) {
+                itemList.get(i).setDataType("BigDecimal");
+            }
+            if ("BigDecimal".equals(itemList.get(i).getDataType())) {
+                String intMax = "9";
+                int pr = Integer.valueOf(itemList.get(i).getDataPrecision());
+                int sc =Integer.valueOf(itemList.get(i).getDataScale());
+                int j = 1;
+                while (j < pr-sc) {
+                    intMax = intMax + "9";
+                    j++;
+                }
+                int g=0;
+                if (!"0".equals(itemList.get(i).getDataScale())) intMax=intMax+".";
+                while (g < Integer.valueOf(itemList.get(i).getDataScale())) {
+                    intMax = intMax + "9";
+                    g++;
+                }
+
+                itemList.get(i).setDataLength(intMax);
+            }
+
+            if ("int".equals(itemList.get(i).getDataType())) {
+                String intLength = subString(itemList.get(i).getColumnType(), "(", ")");
+                String intMax = "9";
+                int j = 1;
+                while (j < Integer.valueOf(intLength)) {
+                    intMax = intMax + "9";
+                    j++;
+                }
+                itemList.get(i).setDataLength(intMax);
+                itemList.get(i).setDataPrecision(intLength);
             }
 
             // 如果备注为空  字段名字
@@ -79,6 +113,29 @@ public class TableService {
     // 判断集合是否存在
     public boolean hasThis(String[] arr, String targetValue) {
         return Arrays.asList(arr).contains(targetValue);
+    }
+
+    /**
+     * 截取字符串str中指定字符 strStart、strEnd之间的字符串
+     *
+     * @return
+     */
+    public static String subString(String str, String strStart, String strEnd) {
+
+        /* 找出指定的2个字符在 该字符串里面的 位置 */
+        int strStartIndex = str.indexOf(strStart);
+        int strEndIndex = str.indexOf(strEnd);
+
+        /* index 为负数 即表示该字符串中 没有该字符 */
+        if (strStartIndex < 0) {
+            return "字符串 :---->" + str + "<---- 中不存在 " + strStart + ", 无法截取目标字符串";
+        }
+        if (strEndIndex < 0) {
+            return "字符串 :---->" + str + "<---- 中不存在 " + strEnd + ", 无法截取目标字符串";
+        }
+        /* 开始截取 */
+        String result = str.substring(strStartIndex, strEndIndex).substring(strStart.length());
+        return result;
     }
 
     public void process(List<TableItem> list, TableDomain table) {

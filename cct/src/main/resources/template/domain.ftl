@@ -3,6 +3,8 @@ package ${domainPackage};
 import ${importPackage};
 </#list>
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * @description ${classNameD}domain
@@ -23,4 +25,8 @@ public class ${classNameD} {
     private ${tableCarray.dataType} ${tableCarray.columnNameX};
     </#if>
 </#list>
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }

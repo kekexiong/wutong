@@ -4,7 +4,7 @@ public class TableItem {
 	private String columnId;
 	private String columnName;
 	private String isPrimaryKey;
-	private String dataType;
+	private String dataType;//字段类型int
 	private String comments;// 注释
 	private String dataLength;
 	private String nullable;
@@ -12,6 +12,7 @@ public class TableItem {
 	private String dataScale;
 	private String columnNameD;// 大写
 	private String columnNameX;// 小写
+	private String columnType; //字段类型int(2)
 	private String queryRule; // 查询规则
 	private String queryType; //查询类型
 	private String queryShow;//列表页面展示字段
@@ -170,5 +171,13 @@ public class TableItem {
 
 	public void setQueryImport(String queryImport) {
 		this.queryImport = queryImport;
+	}
+
+	public String getColumnType() {
+		return columnType;
+	}
+
+	public void setColumnType(String columnType) {
+		this.columnType = columnType;
 	}
 }

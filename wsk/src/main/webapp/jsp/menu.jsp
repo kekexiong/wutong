@@ -43,14 +43,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">父节点:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="parentId" id="PARENT_ID" class="form-control" placeholder="父节点">
-                                        </div>
-                                    </div>
-                                </div>
                                                         </div>
                             <div class="form-actions">
                                 <div class="row">
@@ -407,10 +399,10 @@
             $("#queryForm .bs-select").selectpicker('val','');
             $("#queryForm").data('bootstrapValidator').destroy();
             $('#queryForm').data('bootstrapValidator', null);
-            queryFormValidator('#queryForm');
+            queryFormValidator();
             initDefaultDate();
         });
-        queryFormValidator('#queryForm');
+        queryFormValidator();
         //查询按钮
         $("#query_btn").on('click', function() {
             $('#queryForm').data('bootstrapValidator').validate();
@@ -545,6 +537,9 @@
     //添加或者修改方法
     function addOrUpdate(type,record){
         addOrUpdateFormValidator();
+        $("#addOrUpdateform").data('bootstrapValidator').destroy();
+        $('#addOrUpdateform').data('bootstrapValidator', null);
+        addOrUpdateFormValidator();
         if("add" == type){
             document.getElementById('MENU_ID_SHOW').readOnly = false;
             $("#addOrUpdateWin").modal('show');
@@ -651,7 +646,6 @@
         var param = {page:page,start:start,limit:limit};
                         param.menuId = $("#MENU_ID").val();
                         param.menuName = $("#MENU_NAME").val();
-                        param.parentId = $("#PARENT_ID").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -765,93 +759,93 @@
             message: 'This value is not valid',
             fields: {
              menuId: {
-                    message: '菜单ID验证失败',
-                    validators: {
-                        notEmpty: {message: '菜单ID不能为空'},
-                         stringLength: {
-                             max: 8,
-                             message: '菜单ID长度超出范围，应在8之内！'
-                         }
-                        }
+                message: '菜单ID验证失败',
+                validators: {
+                    notEmpty: {message: '菜单ID不能为空'},
+                     stringLength: {
+                         max: 8,
+                         message: '菜单ID长度超出范围，应在8之内！'
+                     }
+                    }
                     },
              menuName: {
-                    message: '菜单名称验证失败',
-                    validators: {
-                        notEmpty: {message: '菜单名称不能为空'},
-                         stringLength: {
-                             max: 40,
-                             message: '菜单名称长度超出范围，应在40之内！'
-                         }
-                        }
+                message: '菜单名称验证失败',
+                validators: {
+                    notEmpty: {message: '菜单名称不能为空'},
+                     stringLength: {
+                         max: 40,
+                         message: '菜单名称长度超出范围，应在40之内！'
+                     }
+                    }
                     },
              parentId: {
-                    message: '父节点验证失败',
-                    validators: {
-                        notEmpty: {message: '父节点不能为空'},
-                         stringLength: {
-                             max: 8,
-                             message: '父节点长度超出范围，应在8之内！'
-                         }
-                        }
+                message: '父节点验证失败',
+                validators: {
+                    notEmpty: {message: '父节点不能为空'},
+                     stringLength: {
+                         max: 8,
+                         message: '父节点长度超出范围，应在8之内！'
+                     }
+                    }
                     },
              type: {
-                    message: '目录类型验证失败',
-                    validators: {
-                        notEmpty: {message: '目录类型不能为空'},
-                         stringLength: {
-                             max: 1,
-                             message: '目录类型长度超出范围，应在1之内！'
-                         }
-                        }
+                message: '目录类型验证失败',
+                validators: {
+                    notEmpty: {message: '目录类型不能为空'},
+                     stringLength: {
+                         max: 1,
+                         message: '目录类型长度超出范围，应在1之内！'
+                     }
+                    }
                     },
              sort: {
-                    message: '排序验证失败',
-                    validators: {
-                        notEmpty: {message: '排序不能为空'},
-                         stringLength: {
-                             max: 10,
-                             digits: {message: '请输入正确的数字！'},//整数
-                             message: '排序大小超出范围，应在10之内！'
-                         }
-                        }
+                message: '排序验证失败',
+                validators: {
+                    notEmpty: {message: '排序不能为空'},
+                     digits: {message: '请输入正确的数字！'},//整数
+                     lessThan: {
+                        value : 99,
+                        message : '最大输入99'
+                    }
+                    }
                     },
              icon: {
-                    message: '图标验证失败',
-                    validators: {
-                         stringLength: {
-                             max: 255,
-                             message: '图标长度超出范围，应在255之内！'
-                         }
-                        }
+                message: '图标验证失败',
+                validators: {
+                     stringLength: {
+                         max: 255,
+                         message: '图标长度超出范围，应在255之内！'
+                     }
+                    }
                     },
              isShow: {
-                    message: '是否显示验证失败',
-                    validators: {
-                        notEmpty: {message: '是否显示不能为空'},
-                         stringLength: {
-                             max: 1,
-                             message: '是否显示长度超出范围，应在1之内！'
-                         }
-                        }
+                message: '是否显示验证失败',
+                validators: {
+                    notEmpty: {message: '是否显示不能为空'},
+                     stringLength: {
+                         max: 1,
+                         message: '是否显示长度超出范围，应在1之内！'
+                     }
+                    }
                     },
              sts: {
-                    message: '状态验证失败',
-                    validators: {
-                        notEmpty: {message: '状态不能为空'},
-                         stringLength: {
-                             max: 1,
-                             message: '状态长度超出范围，应在1之内！'
-                         }
-                        }
+                message: '状态验证失败',
+                validators: {
+                    notEmpty: {message: '状态不能为空'},
+                     stringLength: {
+                         max: 1,
+                         message: '状态长度超出范围，应在1之内！'
+                     }
+                    }
                     },
              remarks: {
-                    message: '备注验证失败',
-                    validators: {
-                         stringLength: {
-                             max: 50,
-                             message: '备注长度超出范围，应在50之内！'
-                         }
-                        }
+                message: '备注验证失败',
+                validators: {
+                     stringLength: {
+                         max: 50,
+                         message: '备注长度超出范围，应在50之内！'
+                     }
+                    }
                     },
             }
         }).on('success.form.bv', function(e) {//点击提交之后
@@ -890,15 +884,6 @@
                  stringLength: {
                      max: 40,
                      message: '菜单名称长度超出范围，应在40之内！'
-                 }
-             }
-         },
-             parentId: {
-             message: '父节点验证失败',
-                     validators: {
-                 stringLength: {
-                     max: 8,
-                     message: '父节点长度超出范围，应在8之内！'
                  }
              }
          },
