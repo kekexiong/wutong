@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
+<html lang="en" class="ie8 no-js">
+<html lang="en" class="ie9 no-js">
 <html lang="zh-hans">
-<!--<![endif]-->
-
 <head>
     <meta charset="utf-8" />
     <title>梧桐管理系统</title>
@@ -17,26 +12,12 @@
     <meta content="" name="author" />
     <jsp:include page="common/resource.jsp" flush="true"/>
 </head>
-
-<!-- <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md"> -->
 <body class="iframe-body">
-
-<!-- BEGIN HEADER -->
 <jsp:include page="common/header.jsp" flush="true"/>
-<!-- END HEADER -->
-
-<!-- BEGIN CONTAINER -->
 <div class="clearfix"> </div>
 <div class="page-container">
-
-    <!-- BEGIN MENU -->
     <%-- <jsp:include page="../common/menu.jsp" flush="true"/> --%>
-    <!-- END MENU -->
-
-    <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
-        <!-- 主体-->
-        <!-- <div class="page-content"> -->
         <div class="">
         <!-- 右边开始 -->
         <div class="row">
@@ -44,33 +25,33 @@
                 <div class="portlet light bordered scaffold-list">
                     <!-- 查询信息 -->
                     <div class="portlet-body form">
-                        <form action="<%=request.getContextPath()%>/mec/queryData" class="form-horizontal" id="queryMecPanel_Form">
+                        <form action="" class="form-horizontal" id="queryForm">
                             <div class="row norow">
-                                                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">字典KEY:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="codeKey" id="CODE_KEY" class="form-control" placeholder="字典KEY">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">值:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="codeValue" id="CODE_VALUE" class="form-control" placeholder="值">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">名称:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="codeName" id="CODE_NAME" class="form-control" placeholder="名称">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                        </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">字典KEY:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="codeKey" id="CODE_KEY" class="form-control" placeholder="字典KEY"  onkeyup="this.value=this.value.replace(/[, ]/g,'')">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">值:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="codeValue" id="CODE_VALUE" class="form-control" placeholder="值"  onkeyup="this.value=this.value.replace(/[, ]/g,'')">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">名称:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="codeName" id="CODE_NAME" class="form-control" placeholder="名称"  onkeyup="this.value=this.value.replace(/[, ]/g,'')">
+                                        </div>
+                                    </div>
+                                </div>
+                                                        </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -91,9 +72,9 @@
                                                 <button type="button" id="dele_btn" class="btn tn btn btn-primary">
                                                     <i class="fa fa-trash-o fa-lg"></i> 删除
                                                 </button>
-                                                    <button type="button" id="isExport_btn" class="btn tn btn btn-primary">
-                                                        <i class="fa fa-download"></i> 导出
-                                                    </button>
+                                                <button type="button" id="isExport_btn" class="btn tn btn btn-primary">
+                                                    <i class="fa fa-download"></i> 导出
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -101,8 +82,6 @@
                             </div>
                         </form>
                     </div>
-
-
                 </div>
                 <div class="clearfix"></div>
                 <div class="portlet light bordered scaffold-list">
@@ -125,11 +104,11 @@
                                                     <th class="nowrap">字典KEY</th>
                                                     <th class="nowrap">值</th>
                                                     <th class="nowrap">名称</th>
+                                                    <th class="nowrap">状态</th>
                                                     <th class="nowrap">更新人</th>
                                                     <th class="nowrap">更新日期</th>
                                                     <th class="nowrap">创建人</th>
                                                     <th class="nowrap">创建日期</th>
-                                                <th class="nowrap">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -166,8 +145,7 @@
                                         </ul>
                                         <div class="input-group pull-right col-sm-2"  style="float: left;">
                                             <input min="1" class="form-control p" style="height: 31px; width: 80px;" type="number">
-                                            <a href="javascript:;" class="input-group-addon" onclick="javascript:pageing($('.p').val())">
-                                                <i class="fa fa-mail-forward brown"></i></a>
+                                            <a href="javascript:;" class="input-group-addon" onclick="javascript:pageing($('.p').val())"><i class="fa fa-mail-forward brown"></i></a>
                                         </div>
                                     </nobr>
                                 </div>
@@ -188,39 +166,48 @@
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
-                <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="addOrUpdateform">
+                <form action="" class="form-horizontal" id="addOrUpdateform">
                     <div class="form-body">
                         <div class="row norow">
                             <input type="hidden" value = "" id = "hiddenType"/>
-                            <input type="hidden" value = "" id = "hiddenUUid"/>
-                                                                                                         <!-- 普通输入框 -->
+                            <input type="hidden" value = "" id = "hiddenKey"/>
+                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">字典KEY:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="codeKey" id="CODE_KEY_SHOW" class="form-control" placeholder="字典KEY">
+                                            <input name="codeKey" id="CODE_KEY_SHOW" class="form-control" placeholder="字典KEY"  onkeyup="this.value=this.value.replace(/[, ]/g,'')">
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">值:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="codeValue" id="CODE_VALUE_SHOW" class="form-control" placeholder="值">
+                                            <input name="codeValue" id="CODE_VALUE_SHOW" class="form-control" placeholder="值"  onkeyup="this.value=this.value.replace(/[, ]/g,'')">
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">名称:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="codeName" id="CODE_NAME_SHOW" class="form-control" placeholder="名称">
+                                            <input name="codeName" id="CODE_NAME_SHOW" class="form-control" placeholder="名称"  onkeyup="this.value=this.value.replace(/[, ]/g,'')">
                                         </div>
                                     </div>
                                 </div>
-                                                                                                  <div class="clearfix"></div>
+                                                                                                                                                            <!-- 下拉框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">状态:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <select name="codeSts" id="CODE_STS_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -240,88 +227,36 @@
         </div>
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
+    <!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
+    <div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
-            <h4 class="modal-title" >菜单详情信息</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">导出EXCEL</h4>
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
-                <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="">
+                <form action="" class="form-horizontal" id="exportform">
                     <div class="form-body">
                         <div class="row norow">
-                                                                                                                                                            <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">字典KEY:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="codeKey" id="CODE_KEY_VIEW" class="form-control" disabled="disabled" placeholder="字典KEY">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">值:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="codeValue" id="CODE_VALUE_VIEW" class="form-control" disabled="disabled" placeholder="值">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">名称:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="codeName" id="CODE_NAME_VIEW" class="form-control" disabled="disabled" placeholder="名称">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">更新人:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="uteUserNo" id="UTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="更新人">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">更新日期:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="uteDt" id="UTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="更新日期">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">创建人:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="cteUserNo" id="CTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="创建人">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">创建日期:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="cteDt" id="CTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="创建日期">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                   <div class="clearfix"></div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <input name="innerExcelType" class="col-md-12 text-center" id="innerExcelType">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-12" style="text-align:center;">
-                                        <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <button type="button" id="exportform_save_btn" class="btn btn-success">
+                                            <i class="fa fa-save"></i> 确认
+                                        </button>
+                                        <button type="button" id="exportform_cancel_btn" class="btn red">
+                                            <i class="fa fa-share"></i> 取消
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -331,77 +266,22 @@
             </div>
         </div>
     </div>
-<!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
-<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">导出EXCEL</h4>
-    </div>
-    <div class="modal-body">
-        <div class="portlet-body form">
-            <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="exportform">
-                <div class="form-body">
-                    <div class="row norow">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <input name="innerExcelType" class="col-md-12 text-center" id="innerExcelType">
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12" style="text-align: center;">
-                                    <button type="button" id="exportform_save_btn" class="btn btn-success">
-                                        <i class="fa fa-save"></i> 确认
-                                    </button>
-                                    <button type="button" id="exportform_cancel_btn" class="btn red">
-                                        <i class="fa fa-share"></i> 取消
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 </div>
 </div>
 
 <jsp:include page="common/footer.jsp" flush="true" />
-
 <script type="text/javascript">
     //分页功能
     //分页默认隐藏
     $("#pagination-bar").hide();
-    //每页多少条
-    var limit = 0;
-    //当前页
-    var page = 1;
-    //起始条
-    var start = 0;
-    //总页数
-    var toalPage;
-    //数据列表缓存
-    var tableData;
-
-    var importLimit = 0;
-
-    var importPage = 1;
-
-    var importStart = 0;
-
-    var importTotalPage;
-
+    var limit = 0; //每页多少条
+    var page = 1;//当前页
+    var start = 0;//起始条
+    var toalPage;//总页数
+    var tableData; //数据列表缓存
     function pageing(opp) {
         $(window.document).scrollTop(0, 500);
         limit = $("#limit  option:selected").text();
-
         if (opp == 'pro') {
             if (page > 1) {
                 page = page - 1;
@@ -430,7 +310,6 @@
                 bootbox.alert('对不起没有你要跳转的页面');
                 return;
             }
-
             start = (page - 1) * limit;
         } else {
             if (page == 1 && opp == 1) {
@@ -445,7 +324,6 @@
                 bootbox.alert('对不起没有你要跳转的页面');
                 return;
             }
-
             start = (page - 1) * limit;
         }
         $('#queryMecGrid > tbody').empty();
@@ -461,22 +339,30 @@
     }
     //初始化页面功能
     $(function(){
-    <!---------------------在此手动设置按钮的权限------------------------------->
         //if (!hasPermission(PERMISSSIONCONST.SES1002)) {$("#").hide();}
-        <!---------------------在此手动初始化页面表单审核状态数据源---------------------->
     <!--getComboStore系统表生成下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入key值，4传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--getCustomStore自定义下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--如果不需要回显第一个参数传入""，如果不需要设定disabled属性传入FALSE-->
+                        <!--添加获取修改下拉框-->
+        getComboStore("","CODE_STS_SHOW", "DIC_CODE-CODE_STS","");
         //初始化输入框时间默认值方法
         initDefaultDate();
         //重置按钮
         $("#reset_btn").on('click', function() {
-            $("#queryMecPanel_Form")[0].reset();
-            $("#queryMecPanel_Form .bs-select").selectpicker('val','');
+            $("#queryForm")[0].reset();
+            $("#queryForm .bs-select").selectpicker('val','');
+            $("#queryForm").data('bootstrapValidator').destroy();
+            $('#queryForm').data('bootstrapValidator', null);
+            queryFormValidator();
             initDefaultDate();
         });
+        queryFormValidator();
         //查询按钮
         $("#query_btn").on('click', function() {
+            $('#queryForm').data('bootstrapValidator').validate();
+            if(!$('#queryForm').data('bootstrapValidator').isValid()){
+                return ;
+            }
             page = 1;
             reloadGrid();
         });
@@ -508,16 +394,21 @@
         //添加保存按钮
         var param = {};
         $("#addform_save_btn").off('click').on('click', function() {
-                            param.codeKey = $("#CODE_KEY_SHOW").val();
-                            param.codeValue = $("#CODE_VALUE_SHOW").val();
-                            param.codeName = $("#CODE_NAME_SHOW").val();
+            $('#addOrUpdateform').data('bootstrapValidator').validate();
+            if(!$('#addOrUpdateform').data('bootstrapValidator').isValid()){
+                return ;
+            }
+            param.codeKey = $("#CODE_KEY_SHOW").val();
+            param.codeValue = $("#CODE_VALUE_SHOW").val();
+            param.codeName = $("#CODE_NAME_SHOW").val();
+            param.codeSts = $("#CODE_STS_SHOW").val();
             var hiddenType = $("#hiddenType").val();
             var url = "";
             if("1" == hiddenType){
                 url = baseURL + "/system/dicCode/save";
             }else if ("2" == hiddenType){
                 url = baseURL + "/system/dicCode/update";
-                param.uuid = $("#hiddenUUid").val();
+                param.uuid = $("#hiddenKey").val();
             }else{
                 url = "";
             }
@@ -547,7 +438,7 @@
         //删除按钮
         $("#dele_btn").on('click', function() {
             var selectRocords = $("#queryMecGrid tbody input:checked");
-            var uuids = "";
+            var keys = "";
             if(selectRocords.length <= 0){
                 bootbox.alert(CONST.TIP001);
                 return;
@@ -555,16 +446,16 @@
                 for(i=0; i < selectRocords.length; i++){
                     var index = $(selectRocords[i]).attr("rownum");
                     record = tableData.items[index];
-                                uuids += record.uuid+",";
+                    keys += record.uuid+",";
                 }
-                uuids = uuids.substring(0, uuids.lastIndexOf(","));
+                keys = keys.substring(0, keys.lastIndexOf(","));
                 bootbox.confirm("选择了"+selectRocords.length+"条, 确认删除?", function(truthBeTold){
                     if(truthBeTold){
                         $.ajax({
                             type: "POST",
-                            url: baseURL + "/system/dicCode/deleteByUuid",
+                            url: baseURL + "/system/dicCode/deleteByKey",
                             data:{
-                                uuids:uuids
+                                keys:keys
                             },
                             contentType: "application/x-www-form-urlencoded;charset=utf-8",
                             dataType: "json",
@@ -594,11 +485,15 @@
     });
     //添加或者修改方法
     function addOrUpdate(type,record){
+        addOrUpdateFormValidator();
+        $("#addOrUpdateform").data('bootstrapValidator').destroy();
+        $('#addOrUpdateform').data('bootstrapValidator', null);
+        addOrUpdateFormValidator();
         if("add" == type){
             $("#addOrUpdateWin").modal('show');
         }else if("update" == type){
             var param = {};
-                        param.uuid = record.uuid;
+             param.uuid = record.uuid;
             $.ajax({
                 type : "POST",
                 url : baseURL + "/system/dicCode/getDetail",
@@ -610,7 +505,8 @@
                                 document.getElementById('CODE_KEY_SHOW').value=data.data.codeKey;
                                 document.getElementById('CODE_VALUE_SHOW').value=data.data.codeValue;
                                 document.getElementById('CODE_NAME_SHOW').value=data.data.codeName;
-                    document.getElementById('hiddenUUid').value=data.data.uuid;
+                                getComboStore(data.data.codeSts,"CODE_STS_SHOW", "DIC_CODE-CODE_STS",false);
+                                document.getElementById('hiddenKey').value=data.data.uuid;
                     $("#addOrUpdateWin").modal('show');
                 },
                 error:function(){
@@ -622,14 +518,18 @@
             return;
         }
     }
+    $('#addOrUpdateWin').on('hidden.bs.modal', function() {
+        $("#addOrUpdateform").data('bootstrapValidator').destroy();
+        $('#addOrUpdateform').data('bootstrapValidator', null);
+    });
     //下拉框码表中加载数据(使用系统表)
     function getComboStore(codeValue,element,codeKey,isdisabled) {
-        var param = {page:1,start:0,limit:1000};
+        var param = {};
         param.codeKey = codeKey;
-        param.codeValue = codeValue;
+        //param.codeValue = codeValue;
         $.ajax({
             type: "POST",
-            url: baseURL+"/system/dicCode/query",
+            url: baseURL+"/getDicCode",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -710,17 +610,17 @@
                 tableData = $.extend(true, {}, data);
                 $("#queryMecGrid").DataTable().clear().draw();
                 $.each(data.items,function(index,obj){
-                    var trData = [];
-                    trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
-                    trData.push(start + index + 1);
-                                trData.push(obj.codeKey);
-                                trData.push(obj.codeValue);
-                                trData.push(obj.codeName);
-                                trData.push(obj.uteUserNo);
-                                trData.push(obj.uteDt);
-                                trData.push(obj.cteUserNo);
-                                trData.push(obj.cteDt);
-                            trData.push("<a href='javascript:void(0)'  onclick=view('"+obj.uuid+"')><i class='fa fa-search-plus'></i>查看</a>");
+                        var trData = [];
+                        trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
+                        trData.push(start + index + 1);
+                        trData.push(obj.codeKey);
+                        trData.push(obj.codeValue);
+                        trData.push(obj.codeName);
+                        trData.push(getCodeName("DIC_CODE-CODE_STS", obj.codeSts));
+                        trData.push(obj.uteUserNo);
+                        trData.push(fromatDateYMDHMS(obj.uteDt));
+                        trData.push(obj.cteUserNo);
+                        trData.push(fromatDateYMDHMS(obj.cteDt));
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
                             trData[i] = '';
@@ -731,7 +631,6 @@
                 $("#queryMecGrid").DataTable().order([1, 'asc']).draw();
                 $("#pagination-bar").show();
                 if (page == 1) {
-                    //first page
                     $("#pagination .prev a").css({'color':'gray','cursor':'not-allowed'});
                 } else {
                     $("#pagination .prev a").css({'color':'#23527c','cursor':'pointer'});
@@ -742,9 +641,6 @@
                 } else {
                     $("#pagination .next a").css({'color':'#23527c','cursor':'pointer'});
                 }
-                //动态设置iframe高度
-                //var currentTabId = $("#tab-bar", parent.document).children('li.active').children('a').attr('href').replace('#tab_','');
-                //setIframeHeight($('#frame_'+currentTabId,parent.document)[0]);
             },
             error:function(error){
 
@@ -766,36 +662,6 @@
         var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);
         return Math.abs(cha);
     }
-        <!--操作链接点击事件-->
-        function view(uuid){
-            var param = {};
-            param.uuid = uuid;
-            $.ajax({
-                type : "POST",
-                url : baseURL + "/system/dicCode/getDetail",
-                data :param,
-                contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                dataType : "json",
-                success:function(data){
-                            document.getElementById('CODE_KEY_VIEW').value=data.data.codeKey;
-                            document.getElementById('CODE_VALUE_VIEW').value=data.data.codeValue;
-                            document.getElementById('CODE_NAME_VIEW').value=data.data.codeName;
-                            document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
-                            document.getElementById('UTE_DT_VIEW').value=data.data.uteDt;
-                            document.getElementById('CTE_USER_NO_VIEW').value=data.data.cteUserNo;
-                            document.getElementById('CTE_DT_VIEW').value=data.data.cteDt;
-                    $("#viewWin").modal('show');
-
-                },
-                error:function(){
-                    alert("操作失败，请重新操作！")
-                }
-            });
-        }
-        //弹出页面取消按钮（详情）
-        $("#openform_cancel_btn").on('click',function(){
-            $("#viewWin").modal('hide');
-        });
         //下载模板按钮
         $("#download_template_btn").on('click', function() {
             window.open(baseURL +'/system/dicCode/downloadTemplate');
@@ -819,6 +685,115 @@
                 $("#exportExcelWin").modal('hide');
             });
         });
+    function addOrUpdateFormValidator(){
+        $('#addOrUpdateform').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            message: 'This value is not valid',
+            fields: {
+             codeKey: {
+                message: '字典KEY验证失败',
+                validators: {
+                    notEmpty: {message: '字典KEY不能为空'},
+                     stringLength: {
+                         max: 20,
+                         message: '字典KEY长度超出范围，应在20之内！'
+                     }
+                    }
+                    },
+             codeValue: {
+                message: '值验证失败',
+                validators: {
+                    notEmpty: {message: '值不能为空'},
+                     stringLength: {
+                         max: 20,
+                         message: '值长度超出范围，应在20之内！'
+                     }
+                    }
+                    },
+             codeName: {
+                message: '名称验证失败',
+                validators: {
+                    notEmpty: {message: '名称不能为空'},
+                     stringLength: {
+                         max: 50,
+                         message: '名称长度超出范围，应在50之内！'
+                     }
+                    }
+                    },
+             codeSts: {
+                message: '状态验证失败',
+                validators: {
+                    notEmpty: {message: '状态不能为空'},
+                     stringLength: {
+                         max: 1,
+                         message: '状态长度超出范围，应在1之内！'
+                     }
+                    }
+                    },
+            }
+        }).on('success.form.bv', function(e) {//点击提交之后
+                    e.preventDefault();
+                    var $form = $(e.target);
+                    var bv = $form.data('bootstrapValidator');
+                    // Use Ajax to submit form data 提交至form标签中的action，result自定义
+                    $.post($form.attr('action'), $form.serialize(), function(result) {
+                        //恢复submit按钮disable状态。
+                        $('#addOrUpdateform').bootstrapValidator('disableSubmitButtons', false);
+                        //do something...
+                    });
+                });
+    };
+    function queryFormValidator(){
+        $('#queryForm').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            message: 'This value is not valid',
+            fields: {
+             codeKey: {
+             message: '字典KEY验证失败',
+                     validators: {
+                 stringLength: {
+                     max: 20,
+                     message: '字典KEY长度超出范围，应在20之内！'
+                 }
+             }
+         },
+             codeValue: {
+             message: '值验证失败',
+                     validators: {
+                 stringLength: {
+                     max: 20,
+                     message: '值长度超出范围，应在20之内！'
+                 }
+             }
+         },
+             codeName: {
+             message: '名称验证失败',
+                     validators: {
+                 stringLength: {
+                     max: 50,
+                     message: '名称长度超出范围，应在50之内！'
+                 }
+             }
+         },
+    }
+    }).on('success.form.bv', function(e) {//点击提交之后
+            e.preventDefault();
+            var $form = $(e.target);
+            var bv = $form.data('bootstrapValidator');
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                $('#queryForm').bootstrapValidator('disableSubmitButtons', false);
+                //do something...
+            });
+        });
+    };
 </script>
 
 </body>

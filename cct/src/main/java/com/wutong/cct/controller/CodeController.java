@@ -48,7 +48,7 @@ public class CodeController {
     // 作者
     private final String CLASS_AUTHOR = "zhao_qg";
     // 表名
-    private final String TABLE_NAME = "MENU";
+    private final String TABLE_NAME = "DIC_CODE";
     // 业务名称
     private final String BUSINESS_NAME = "菜单";
     // 工程目录 com.wutong.wsk.controller

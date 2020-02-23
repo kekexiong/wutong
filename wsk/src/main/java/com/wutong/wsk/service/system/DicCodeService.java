@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  DicCodeService
  * @author zhao_qg
- * @date   20200220 18:44:20
+ * @date   20200223 21:45:17
  */
  @Service
 public class DicCodeService {
@@ -45,7 +45,7 @@ public class DicCodeService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param map
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public class DicCodeService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param map
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class DicCodeService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param paramVo
 	 * @return
 	 */
@@ -76,31 +76,31 @@ public class DicCodeService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param dicCode
 	 * @return
 	 */
 	public int update(DicCode dicCode) {
         dicCode.setUteUserNo(LoginUtils.getLoginName());
-        dicCode.setUteDt(DateUtil.getCurDT());
+            dicCode.setUteDt(DateUtil.getDate());
 		return  dicCodeMapper.update(dicCode);
 	}
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param dicCode
 	 * @return
 	 */
 	public int insert(DicCode dicCode) {
                 dicCode.setCteUserNo(LoginUtils.getLoginName());
-                dicCode.setCteDt(DateUtil.getCurDT());
+                    dicCode.setCteDt(DateUtil.getDate());
 		return  dicCodeMapper.insert(dicCode);
 	}
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param map
 	 * @return
 	 */
@@ -112,14 +112,14 @@ public class DicCodeService {
 	 * @param paramMap
 	 * @return SXSSFWorkbook
 	 * @throws Exception
-     * @date:20200220 18:44:20
+     * @date:20200223 21:45:17
 	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);
         int pageSize = 10000; //每次查询10000条
         List<Map<String, Object>> infoList;
-        String[] tableName = {"字典KEY","值","名称","更新人","更新日期","创建人","创建日期"};
-        String[] tableValue = {"codeKey","codeValue","codeName","uteUserNo","uteDt","cteUserNo","cteDt"};
+        String[] tableName = {"字典KEY","值","名称","状态","更新人","更新日期","创建人","创建日期"};
+        String[] tableValue = {"codeKey","codeValue","codeName","codeSts","uteUserNo","uteDt","cteUserNo","cteDt"};
         SXSSFWorkbook swb = new SXSSFWorkbook(10000);
         int sheetContentCount = 1000000;
         int sheetCount = 0 == count % sheetContentCount ? count / sheetContentCount : count / sheetContentCount + 1;
@@ -146,7 +146,7 @@ public class DicCodeService {
                     int curRows = k * pageSize + l + 1;
                     Row row = sheet.createRow(curRows);
                     Map<String, Object> content = infoList.get(l);
-
+                    content.put("codeSts", DicCodeUtils.DIC_CODE_MAP.get("DIC_CODE-CODE_STS" + content.get("codeSts")));
                     for (int m = 0; m < tableValue.length; m++) {
                         row.createCell(m).setCellValue(String.valueOf(content.get(tableValue[m])));
                     }

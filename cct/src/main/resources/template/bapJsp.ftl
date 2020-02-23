@@ -53,16 +53,6 @@
                                     </div>
                                 </div>
                             </#if>
-                            <#if (tableCarray.queryRule??) && tableCarray.queryRule== "01">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
-                                        <div class="col-md-8 paddingnone">
-                                            <input name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_MNO" class="form-control" placeholder="${tableCarray.comments}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </#if>
                             <#if (tableCarray.queryRule??) && (tableCarray.queryRule == "04" || tableCarray.queryRule == "05")>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
@@ -228,29 +218,19 @@
                             <input type="hidden" value = "" id = "hiddenKey"/>
                        <#list tableCarrays as tableCarray>
                            <#if (tableCarray.queryAdd??) && (tableCarray.queryAdd == "01")>
-                                   <#if (tableCarray.queryRule??) && tableCarray.queryRule == "01"><!-- 商编输入 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_MNO_SHOW" class="form-control" placeholder="${tableCarray.comments}">
+                               <#if (tableCarray.queryRule??) && tableCarray.queryRule == "02"><!-- 时间区间值输入 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <div class="input-group input-daterange">
+                                                <input type="text" class="form-control col-md-3" name="${tableCarray.columnNameX}beginDt" id="${tableCarray.columnName}_beginDt_SHOW">
+                                                <span class="input-group-addon"> <i class="fa fa-exchange"></i></span>
+                                                <input type="text" class="form-control" name="${tableCarray.columnNameX}endDt" id="${tableCarray.columnName}_endDt_SHOW">
                                             </div>
                                         </div>
                                     </div>
-                               </#if>
-                                   <#if (tableCarray.queryRule??) && tableCarray.queryRule == "02"><!-- 时间区间值输入 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <div class="input-group input-daterange">
-                                                    <input type="text" class="form-control col-md-3" name="${tableCarray.columnNameX}beginDt" id="${tableCarray.columnName}_beginDt_SHOW">
-                                                    <span class="input-group-addon"> <i class="fa fa-exchange"></i></span>
-                                                    <input type="text" class="form-control" name="${tableCarray.columnNameX}endDt" id="${tableCarray.columnName}_endDt_SHOW">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
                                </#if>
                                <#if (tableCarray.queryRule)?? && tableCarray.queryRule == "03"><!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -789,7 +769,13 @@
         $('#addOrUpdateform').data('bootstrapValidator', null);
         addOrUpdateFormValidator();
         if("add" == type){
-            document.getElementById('${primaryKey.columnName}_SHOW').readOnly = false;
+            <#list tableCarrays as tableCarray>
+                <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01">
+                    <#if tableCarray.isPrimaryKey == "√">
+            document.getElementById('${tableCarray.columnName}_SHOW').readOnly = false;
+                    </#if>
+                </#if>
+            </#list>
             $("#addOrUpdateWin").modal('show');
         }else if("update" == type){
             var param = {};

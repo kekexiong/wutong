@@ -42,14 +42,8 @@ public class DicCodeUtils implements CommandLineRunner {
         return DateUtil.getCurTime("yyyyMMddHH");
     }
 
-    /**
-     * 创建付款方式，记账模式，tcd类型的缓存key
-     **/
-    private static String createKey(String t1, String t2, String t3) {
-        return new StringBuilder().append(t1).append("+").append(t2).append("+").append(t3).toString();
-    }
-
     public static String getCodeMap() {
+
         return JSON.toJSONString(DIC_CODE_MAP);
     }
 

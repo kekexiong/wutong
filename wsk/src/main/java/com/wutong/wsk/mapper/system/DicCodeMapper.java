@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @title  DicCodeMapper
  * @author zhao_qg
- * @date   20200220 18:44:20
+ * @date   20200223 21:45:17
  */
 @Component
 public interface DicCodeMapper {
@@ -16,7 +16,7 @@ public interface DicCodeMapper {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param map
 	 * @return
 	 */
@@ -24,7 +24,7 @@ public interface DicCodeMapper {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param map
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public interface DicCodeMapper {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param paramVo
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public interface DicCodeMapper {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param dicCode
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public interface DicCodeMapper {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date 20200220 18:44:20
+ 	 * @date 20200223 21:45:17
 	 * @param dicCode
 	 * @return
 	 */	public int insert(DicCode dicCode);
@@ -58,7 +58,7 @@ public interface DicCodeMapper {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200220 18:44:20
+ 	 * @date   20200223 21:45:17
 	 * @param map
 	 * @return
 	 */

@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * @description  菜单控制层
  * @author zhao_qg
- * @date   20200220 18:44:20
+ * @date   20200223 21:45:17
  */
 @Controller
 @RequestMapping("/system/dicCode")
@@ -42,7 +42,7 @@ public class DicCodeController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200220 18:44:20
+     * @date 20200223 21:45:17
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -72,7 +72,7 @@ public class DicCodeController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200220 18:44:20
+     * @date 20200223 21:45:17
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -96,7 +96,7 @@ public class DicCodeController extends BaseController {
      * @param dicCode
      * @return map
      * @author zhao_qg
-     * @date 20200220 18:44:20
+     * @date 20200223 21:45:17
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -123,7 +123,7 @@ public class DicCodeController extends BaseController {
      * @param dicCode
      * @return map
      * @author zhao_qg
-     * @date 20200220 18:44:20
+     * @date 20200223 21:45:17
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -146,23 +146,23 @@ public class DicCodeController extends BaseController {
     /**
      * 根据主键删除
      * @param session
-     * @param uuids
+     * @param keys
      * @return map
      * @author zhao_qg
-     * @date 20200220 18:44:20
+     * @date 20200223 21:45:17
      */
-    @RequestMapping(value = "/deleteByUuid", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteByKey", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> deleteByUuid(HttpSession session, @RequestParam(value = "uuids") String uuids) {
+    public Map<String, Object> deleteByKey(HttpSession session, @RequestParam(value = "keys") String keys) {
         String opNm = "菜单-删除";
-        if(uuids==null|| "".equals(uuids)){
-            return super.setFailure("错误：付款单号参数为空");
+        if(keys==null|| "".equals(keys)){
+            return super.setFailure("错误：主键参数为空");
         }
         // 参数map
         Map<String, Object> paramsMap = new HashMap<String, Object>();
-        paramsMap.put("uuids", uuids.split(","));//付款单号数组
+        paramsMap.put("keys", keys.split(","));//主键组
         try{
-            LOGGER.info(opNm, uuids, "--begin");
+            LOGGER.info(opNm, keys, "--begin");
             int num = dicCodeService.delete(paramsMap);
             LOGGER.info(opNm, num, "--end");
             if(num>0){
@@ -183,7 +183,7 @@ public class DicCodeController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200220 18:44:20
+     * @date 20200223 21:45:17
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {
