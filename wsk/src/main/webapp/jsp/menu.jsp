@@ -43,6 +43,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">父节点:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="parentId" id="PARENT_ID" class="form-control" placeholder="父节点">
+                                        </div>
+                                    </div>
+                                </div>
                                                         </div>
                             <div class="form-actions">
                                 <div class="row">
@@ -103,9 +111,9 @@
                                                     <th class="nowrap">状态</th>
                                                     <th class="nowrap">备注</th>
                                                     <th class="nowrap">更新人</th>
-                                                    <th class="nowrap">更新日期</th>
+                                                    <th class="nowrap">更新时间</th>
                                                     <th class="nowrap">创建人</th>
-                                                    <th class="nowrap">创建日期</th>
+                                                    <th class="nowrap">创建时间</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -168,7 +176,7 @@
                         <div class="row norow">
                             <input type="hidden" value = "" id = "hiddenType"/>
                             <input type="hidden" value = "" id = "hiddenKey"/>
-                                                                                                     <!-- 普通输入框 -->
+                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">菜单ID:</label>
@@ -177,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                    <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">菜单名称:</label>
@@ -186,7 +194,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                    <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">父节点:</label>
@@ -195,7 +203,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                                                   <!-- 下拉框 -->
+                                                                                                                                                            <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">目录类型:</label>
@@ -204,7 +212,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                     <!-- 普通输入框 -->
+                                                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">排序:</label>
@@ -213,7 +221,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                    <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">图标:</label>
@@ -222,7 +230,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                                                   <!-- 下拉框 -->
+                                                                                                                                                            <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">是否显示:</label>
@@ -231,7 +239,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                    <!-- 下拉框 -->
+                                                                                                                             <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">状态:</label>
@@ -240,7 +248,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                     <!-- 普通输入框 -->
+                                                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">备注:</label>
@@ -646,6 +654,7 @@
         var param = {page:page,start:start,limit:limit};
                         param.menuId = $("#MENU_ID").val();
                         param.menuName = $("#MENU_NAME").val();
+                        param.parentId = $("#PARENT_ID").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -761,53 +770,97 @@
              menuId: {
                 message: '菜单ID验证失败',
                 validators: {
-                    notEmpty: {message: '菜单ID不能为空'},
+                     notEmpty: {message: '菜单ID不能为空'},
                      stringLength: {
-                         max: 8,
-                         message: '菜单ID长度超出范围，应在8之内！'
+                         max: 9,
+                         message: '菜单ID长度超出范围，应在9之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
              menuName: {
                 message: '菜单名称验证失败',
                 validators: {
-                    notEmpty: {message: '菜单名称不能为空'},
+                     notEmpty: {message: '菜单名称不能为空'},
                      stringLength: {
-                         max: 40,
-                         message: '菜单名称长度超出范围，应在40之内！'
+                         max: 20,
+                         message: '菜单名称长度超出范围，应在20之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
              parentId: {
                 message: '父节点验证失败',
                 validators: {
-                    notEmpty: {message: '父节点不能为空'},
+                     notEmpty: {message: '父节点不能为空'},
                      stringLength: {
-                         max: 8,
-                         message: '父节点长度超出范围，应在8之内！'
+                         max: 9,
+                         message: '父节点长度超出范围，应在9之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
              type: {
                 message: '目录类型验证失败',
                 validators: {
-                    notEmpty: {message: '目录类型不能为空'},
+                     notEmpty: {message: '目录类型不能为空'},
                      stringLength: {
-                         max: 1,
-                         message: '目录类型长度超出范围，应在1之内！'
+                         max: 4,
+                         message: '目录类型长度超出范围，应在4之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
              sort: {
                 message: '排序验证失败',
                 validators: {
-                    notEmpty: {message: '排序不能为空'},
+                     notEmpty: {message: '排序不能为空'},
                      digits: {message: '请输入正确的数字！'},//整数
                      lessThan: {
                         value : 99,
                         message : '最大输入99'
                     }
-                    }
+                     }
                     },
              icon: {
                 message: '图标验证失败',
@@ -815,28 +868,61 @@
                      stringLength: {
                          max: 255,
                          message: '图标长度超出范围，应在255之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
              isShow: {
                 message: '是否显示验证失败',
                 validators: {
-                    notEmpty: {message: '是否显示不能为空'},
+                     notEmpty: {message: '是否显示不能为空'},
                      stringLength: {
                          max: 1,
                          message: '是否显示长度超出范围，应在1之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
              sts: {
                 message: '状态验证失败',
                 validators: {
-                    notEmpty: {message: '状态不能为空'},
+                     notEmpty: {message: '状态不能为空'},
                      stringLength: {
                          max: 1,
                          message: '状态长度超出范围，应在1之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
              remarks: {
                 message: '备注验证失败',
@@ -844,8 +930,19 @@
                      stringLength: {
                          max: 50,
                          message: '备注长度超出范围，应在50之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
-                    }
+                     }
                     },
             }
         }).on('success.form.bv', function(e) {//点击提交之后
@@ -873,8 +970,19 @@
              message: '菜单ID验证失败',
                      validators: {
                  stringLength: {
-                     max: 8,
-                     message: '菜单ID长度超出范围，应在8之内！'
+                     max: 9,
+                     message: '菜单ID长度超出范围，应在9之内！'
+                 },
+                 callback: {
+                     message: '填入值收尾含有空格！',
+                             callback: function (value, validator) {
+                         res = true;
+                         var val= value.replace(/^\s+|\s+$/g, '')
+                         if (value!=val) {
+                             res = false
+                         }
+                         return res;
+                     }
                  }
              }
          },
@@ -882,8 +990,39 @@
              message: '菜单名称验证失败',
                      validators: {
                  stringLength: {
-                     max: 40,
-                     message: '菜单名称长度超出范围，应在40之内！'
+                     max: 20,
+                     message: '菜单名称长度超出范围，应在20之内！'
+                 },
+                 callback: {
+                     message: '填入值收尾含有空格！',
+                             callback: function (value, validator) {
+                         res = true;
+                         var val= value.replace(/^\s+|\s+$/g, '')
+                         if (value!=val) {
+                             res = false
+                         }
+                         return res;
+                     }
+                 }
+             }
+         },
+             parentId: {
+             message: '父节点验证失败',
+                     validators: {
+                 stringLength: {
+                     max: 9,
+                     message: '父节点长度超出范围，应在9之内！'
+                 },
+                 callback: {
+                     message: '填入值收尾含有空格！',
+                             callback: function (value, validator) {
+                         res = true;
+                         var val= value.replace(/^\s+|\s+$/g, '')
+                         if (value!=val) {
+                             res = false
+                         }
+                         return res;
+                     }
                  }
              }
          },

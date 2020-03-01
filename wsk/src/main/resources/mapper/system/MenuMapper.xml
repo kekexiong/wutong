@@ -24,7 +24,10 @@
                 and MENU_ID=#{menu.menuId}
             </if>
             <if test="menu.menuName!= null and menu.menuName!= ''">
-                and MENU_NAME=#{menu.menuName}
+                and MENU_NAME like '%${menu.menuName}%'
+            </if>
+            <if test="menu.parentId!= null and menu.parentId!= ''">
+                and PARENT_ID=#{menu.parentId}
             </if>
         </where>
     </sql>

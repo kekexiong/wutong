@@ -1212,7 +1212,7 @@
                 message: '${tableCarray.comments}验证失败',
                 validators: {
                     <#if (tableCarray.nullable??) && (tableCarray.nullable == "NO")>
-                    notEmpty: {message: '${tableCarray.comments}不能为空'},
+                     notEmpty: {message: '${tableCarray.comments}不能为空'},
                     </#if>
                     <#if tableCarray.dataType == "int">
                      digits: {message: '请输入正确的数字！'},//整数
@@ -1221,21 +1221,32 @@
                         message : '最大输入${tableCarray.dataLength}'
                     }
                     <#elseif tableCarray.dataType == "BigDecimal">
-                     stringLength: {
-                         max: ${tableCarray.dataPrecision},
-                         regexp: { //正则表达式
-                             regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
-                                     message: '用户名只能包含大写、小写、数字和下划线'
-                         },
-                         message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataPrecision}之内！'
+                     regexp: { //正则表达式
+                        regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
+                                message: '用户名只能包含大写、小写、数字和下划线'
+                    },
+                     lessThan: {
+                         value : ${tableCarray.dataLength},
+                         message : '最大输入${tableCarray.dataLength}'
                      }
                     <#else>
                      stringLength: {
                          max: ${tableCarray.dataLength},
                          message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataLength}之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                             res = true;
+                             var val= value.replace(/^\s+|\s+$/g, '')
+                             if (value!=val) {
+                                 res = false
+                             }
+                             return res;
+                         }
                      }
                     </#if>
-                    }
+                     }
                     },
          </#if>
      </#list>
@@ -1267,24 +1278,35 @@
              message: '${tableCarray.comments}验证失败',
                      validators: {
              <#if tableCarray.dataType == "int">
-                 digits: {message: '请输入正确的数字！'},//整数
-                 lessThan: {
+                         digits: {message: '请输入正确的数字！'},//整数
+                         lessThan: {
                          value : ${tableCarray.dataLength},
                          message : '最大输入${tableCarray.dataLength}'
                      }//整数
              <#elseif tableCarray.dataType == "BigDecimal">
-                 stringLength: {
-                     max: ${tableCarray.dataPrecision},
-                     regexp: { //正则表达式
-                         regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
-                         message: '用户名只能包含大写、小写、数字和下划线'
-                     },
-                     message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataPrecision}之内！'
-                 }
+                         regexp: { //正则表达式
+                                regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
+                                message: '用户名只能包含大写、小写、数字和下划线'
+                            },
+                         lessThan: {
+                                value : ${tableCarray.dataLength},
+                                message : '最大输入${tableCarray.dataLength}'
+                            }
              <#else>
                  stringLength: {
                      max: ${tableCarray.dataLength},
                      message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataLength}之内！'
+                 },
+                 callback: {
+                     message: '填入值收尾含有空格！',
+                             callback: function (value, validator) {
+                         res = true;
+                         var val= value.replace(/^\s+|\s+$/g, '')
+                         if (value!=val) {
+                             res = false
+                         }
+                         return res;
+                     }
                  }
              </#if>
              }

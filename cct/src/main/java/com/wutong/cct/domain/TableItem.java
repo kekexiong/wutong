@@ -15,6 +15,7 @@ public class TableItem {
 	private String columnType; //字段类型int(2)
 	private String queryRule; // 查询规则
 	private String queryType; //查询类型
+	private String isLike; // 是否模糊查询
 	private String queryShow;//列表页面展示字段
 	private String queryAdd;//添加页面展示字段
 	private String queryView;//详情页面展示字段
@@ -179,5 +180,13 @@ public class TableItem {
 
 	public void setColumnType(String columnType) {
 		this.columnType = columnType;
+	}
+
+	public String getIsLike() {
+		return isLike;
+	}
+
+	public void setIsLike(String isLike) {
+		this.isLike = isLike;
 	}
 }

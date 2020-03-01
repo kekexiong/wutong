@@ -97,7 +97,7 @@ public class DicCodeUtils implements CommandLineRunner {
                 String codeKey = String.valueOf(tb.get("codeKey"));
                 String codeValue = String.valueOf(tb.get("codeValue"));
                 String codeName = String.valueOf(tb.get("codeName"));
-                tempMap.put(codeKey+codeValue, codeName);
+                tempMap.put(codeKey+""+codeValue, codeName);
                 if (DIC_CODE_MAP_KEY.get(codeKey)==null){
                     List<Map<String, Object>>  tempList = new ArrayList<>();
                     tempList.add(tb);

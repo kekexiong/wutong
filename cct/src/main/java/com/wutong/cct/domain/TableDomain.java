@@ -40,6 +40,7 @@ public class TableDomain {
 	private String stringCarrayNames7;// 分页开始
 	private String stringCarrayNames8;// 分页结束
 	private String specific = "#"; // 特殊符号
+	private String specific2 = "$"; // 特殊符号
 	private String dbUser; // 数据用户
 	private String isAdd; // 曾
 	private String isDetele; // 删
@@ -407,5 +408,13 @@ public class TableDomain {
 
 	public void setPrimaryKey(TableItem primaryKey) {
 		this.primaryKey = primaryKey;
+	}
+
+	public String getSpecific2() {
+		return specific2;
+	}
+
+	public void setSpecific2(String specific2) {
+		this.specific2 = specific2;
 	}
 }

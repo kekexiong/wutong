@@ -7,7 +7,6 @@
      <result column="ROLE_NAME" property="roleName"/>
      <result column="SCOPE" property="scope"/>
      <result column="STS" property="sts"/>
-     <result column="STS_NAME" property="stsName"/>
      <result column="DEPT_ID" property="deptId"/>
      <result column="REMARKS" property="remarks"/>
      <result column="CTE_USER_NO" property="cteUserNo"/>
@@ -22,16 +21,7 @@
                 and ROLE_ID=#{role.roleId}
             </if>
             <if test="role.roleName!= null and role.roleName!= ''">
-                and ROLE_NAME=#{role.roleName}
-            </if>
-            <if test="role.scope!= null and role.scope!= ''">
-                and SCOPE=#{role.scope}
-            </if>
-            <if test="role.sts!= null and role.sts!= ''">
-                and STS=#{role.sts}
-            </if>
-            <if test="role.deptId!= null and role.deptId!= ''">
-                and DEPT_ID=#{role.deptId}
+                and ROLE_NAME like '%${role.roleName}%'
             </if>
         </where>
     </sql>
@@ -42,7 +32,6 @@
                         t.ROLE_NAME as "roleName",
                         t.SCOPE as "scope",
                         t.STS as "sts",
-                        '' as "stsName",
                         t.DEPT_ID as "deptId",
                         t.REMARKS as "remarks",
                         t.CTE_USER_NO as "cteUserNo",
@@ -59,6 +48,28 @@
             COUNT(*) 
         FROM ROLE
         <include refid="whereQueryCondition"></include>
+    </select>
+
+    <select id="getMenu" parameterType="com.wutong.wsk.domain.system.Menu" resultType="com.wutong.wsk.domain.system.Menu">
+        SELECT
+        t.MENU_ID as "menuId",
+        t.MENU_NAME as "menuName",
+        t.PARENT_ID as "parentId",
+        t.TYPE as "type",
+        t.SORT as "sort",
+        t.ICON as "icon",
+        t.IS_SHOW as "isShow",
+        t.STS as "sts"
+        FROM MENU t
+        <where>
+            <if test="type!= null and type!= ''">
+                and TYPE=#{type}
+            </if>
+            <if test="parentId!= null and parentId!= ''">
+                and PARENT_ID=#{parentId}
+            </if>
+        </where>
+        order by t.SORT
     </select>
     <select id="getByKey" parameterType="com.wutong.wsk.domain.system.Role" resultMap="roleMap">
         SELECT
@@ -96,25 +107,33 @@
     <update id="update" parameterType="com.wutong.wsk.domain.system.Role">
         UPDATE ROLE
         SET
-                    ROLE_ID=#{roleId},
-                    ROLE_NAME=#{roleName},
-                    SCOPE=#{scope},
-                    STS=#{sts},
-                    DEPT_ID=#{deptId},
-                    REMARKS=#{remarks},
-                    UTE_USER_NO=#{uteUserNo},
-                    UTE_DT=#{uteDt}
+        <if test="roleName!= null and roleName!= ''">
+            ROLE_NAME=#{roleName},
+        </if>
+        <if test="scope!= null and scope!= ''">
+            SCOPE=#{scope},
+        </if>
+        <if test="sts!= null and sts!= ''">
+            STS=#{sts},
+        </if>
+        <if test="deptId!= null and deptId!= ''">
+            DEPT_ID=#{deptId},
+        </if>
+        <if test="remarks!= null and remarks!= ''">
+            REMARKS=#{remarks},
+        </if>
+            UTE_USER_NO=#{uteUserNo},
+            UTE_DT=#{uteDt}
         WHERE
-                      ROLE_ID=#{roleId}
-            
+            ROLE_ID=#{roleId}
     </update>
     <delete id="delete" parameterType="java.util.Map">
          delete from ROLE
-         where 
-                      ROLE_ID
+         where
+            ROLE_ID
            in 
-        <foreach item="item" index="index" collection="uuids" open="(" separator="," close=")">  
+        <foreach item="item" index="index" collection="keys" open="(" separator="," close=")">
               #{item}
-         </foreach>
+        </foreach>
     </delete>
 </mapper>

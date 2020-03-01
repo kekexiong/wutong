@@ -13,7 +13,11 @@
         <#list tableCarrays as tableCarray>
         <#if (tableCarray.queryType)?? && tableCarray.queryType == "01" && tableCarray.queryRule != "02">
             <if test="${classNameX}.${tableCarray.columnNameX}!= null and ${classNameX}.${tableCarray.columnNameX}!= ''">
+            <#if (tableCarray.isLike)?? && tableCarray.isLike == "01">
+                and ${tableCarray.columnName} like '%${specific2}{${classNameX}.${tableCarray.columnNameX}}%'
+            <#else>
                 and ${tableCarray.columnName}=${specific}{${classNameX}.${tableCarray.columnNameX}}
+            </#if>
             </if>
         </#if>
         <#if (tableCarray.queryType)?? && tableCarray.queryType == "01" && tableCarray.queryRule == "02">
@@ -63,11 +67,7 @@
         FROM 
             <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}
         WHERE
-            <#list tableCarrays as tableCarray>
-                <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√" || tableCarray.isPrimaryKey == "PRI")>
-              ${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}
-                  </#if>
-              </#list>
+            ${primaryKey.columnName}=${specific}{${primaryKey.columnNameX}}
     </select>
     </#if>
    <#if isAdd == "01">
@@ -111,7 +111,11 @@
         UPDATE <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName}
         SET
         <#list updateCarrays as tableCarray>
-            ${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}<#if (tableCarray_has_next)>,</#if>
+            <#if (tableCarray.isPrimaryKey??) || (tableCarray.isPrimaryKey != "√")>
+              <if test="${tableCarray.columnNameX}!= null and ${tableCarray.columnNameX}!= ''">
+                  ${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}<#if (tableCarray_has_next)>,</#if>
+              </if>
+            </#if>
         </#list>
         WHERE
             ${primaryKey.columnName}=${specific}{${primaryKey.columnNameX}}

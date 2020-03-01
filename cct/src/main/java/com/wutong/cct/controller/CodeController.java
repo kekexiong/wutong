@@ -48,7 +48,7 @@ public class CodeController {
     // 作者
     private final String CLASS_AUTHOR = "zhao_qg";
     // 表名
-    private final String TABLE_NAME = "DIC_CODE";
+    private final String TABLE_NAME = "MENU";
     // 业务名称
     private final String BUSINESS_NAME = "菜单";
     // 工程目录 com.wutong.wsk.controller
@@ -156,6 +156,11 @@ public class CodeController {
 //                item1.setQueryShow("01");
 //                newList.add(item1);
 //            }
+
+            if (("07".equals(queryRule))) {
+                item.setQueryRule("03");
+                item.setIsLike("01");
+            }
 
             if ("√".equals(item.getQueryType())) {
                 item.setQueryType("01");

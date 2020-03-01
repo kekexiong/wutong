@@ -17,13 +17,13 @@
     <sql id="whereQueryCondition">
         <where>
             <if test="dicCode.codeKey!= null and dicCode.codeKey!= ''">
-                and CODE_KEY=#{dicCode.codeKey}
+                and CODE_KEY like '%${dicCode.codeKey}%'
             </if>
             <if test="dicCode.codeValue!= null and dicCode.codeValue!= ''">
                 and CODE_VALUE=#{dicCode.codeValue}
             </if>
             <if test="dicCode.codeName!= null and dicCode.codeName!= ''">
-                and CODE_NAME=#{dicCode.codeName}
+                and CODE_NAME like '%${dicCode.codeName}%'
             </if>
         </where>
     </sql>

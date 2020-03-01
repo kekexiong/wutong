@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  MenuService
  * @author zhao_qg
- * @date   20200223 20:41:44
+ * @date   20200229 21:33:58
  */
  @Service
 public class MenuService {
@@ -45,7 +45,7 @@ public class MenuService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200223 20:41:44
+ 	 * @date   20200229 21:33:58
 	 * @param map
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public class MenuService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200223 20:41:44
+ 	 * @date   20200229 21:33:58
 	 * @param map
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class MenuService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200223 20:41:44
+ 	 * @date   20200229 21:33:58
 	 * @param paramVo
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class MenuService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200223 20:41:44
+ 	 * @date   20200229 21:33:58
 	 * @param menu
 	 * @return
 	 */
@@ -88,7 +88,7 @@ public class MenuService {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200223 20:41:44
+ 	 * @date   20200229 21:33:58
 	 * @param menu
 	 * @return
 	 */
@@ -100,7 +100,7 @@ public class MenuService {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200223 20:41:44
+ 	 * @date   20200229 21:33:58
 	 * @param map
 	 * @return
 	 */
@@ -112,13 +112,13 @@ public class MenuService {
 	 * @param paramMap
 	 * @return SXSSFWorkbook
 	 * @throws Exception
-     * @date:20200223 20:41:44
+     * @date:20200229 21:33:58
 	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);
         int pageSize = 10000; //每次查询10000条
         List<Map<String, Object>> infoList;
-        String[] tableName = {"菜单ID","菜单名称","父节点","目录类型","排序","图标","是否显示","状态","备注","更新人","更新日期","创建人","创建日期"};
+        String[] tableName = {"菜单ID","菜单名称","父节点","目录类型","排序","图标","是否显示","状态","备注","更新人","更新时间","创建人","创建时间"};
         String[] tableValue = {"menuId","menuName","parentId","type","sort","icon","isShow","sts","remarks","uteUserNo","uteDt","cteUserNo","cteDt"};
         SXSSFWorkbook swb = new SXSSFWorkbook(10000);
         int sheetContentCount = 1000000;

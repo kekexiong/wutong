@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * @description Menudomain
  * @author zhao_qg
- * @date 20200223 20:41:44
+ * @date 20200229 21:33:58
  */
 @Data
 public class Menu {
@@ -52,7 +52,7 @@ public class Menu {
      */
     private String uteUserNo;
     /**
-     * 更新日期
+     * 更新时间
      */
     private Date uteDt;
     /**
@@ -60,7 +60,7 @@ public class Menu {
      */
     private String cteUserNo;
     /**
-     * 创建日期
+     * 创建时间
      */
     private Date cteDt;
     @Override
