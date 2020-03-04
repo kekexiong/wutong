@@ -670,8 +670,11 @@
 <#list tableCarrays as tableCarray>
     <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01">
         <#if (tableCarray.queryRule??) && tableCarray.queryRule == "02">
-            param.${tableCarray.columnNameX}beginDt = $("#${tableCarray.columnName}_beginDt_SHOW").val().replace('/', '').replace('/', '');
-            param.${tableCarray.columnNameX}endDt = $("#${tableCarray.columnName}_endDt_SHOW").val().replace('/', '').replace('/', '');
+            param.${tableCarray.columnNameX}beginDt = $("#${tableCarray.columnName}_beginDt_SHOW").val();
+            param.${tableCarray.columnNameX}endDt = $("#${tableCarray.columnName}_endDt_SHOW").val();
+        </#if>
+        <#if (tableCarray.queryRule??) && tableCarray.queryRule == "06">
+            param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}_SHOW").val();
         </#if>
         <#if (tableCarray.queryRule??) && (tableCarray.queryRule == "03" || tableCarray.queryRule == "04" || tableCarray.queryRule == "05")>
             param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}_SHOW").val();
@@ -803,6 +806,10 @@
                                 if("update" == type){
                                     document.getElementById('${tableCarray.columnName}_SHOW').readOnly = true;
                                  }
+                            <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "03">
+                                document.getElementById('${tableCarray.columnName}_SHOW').value=fromatDateYMD(data.data.${tableCarray.columnNameX});
+                            <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "04">
+                                document.getElementById('${tableCarray.columnName}_SHOW').value=fromatDateYMDHMS(data.data.${tableCarray.columnNameX});
                             <#else>
                                 document.getElementById('${tableCarray.columnName}_SHOW').value=data.data.${tableCarray.columnNameX};
                             </#if>
@@ -928,7 +935,7 @@
         }
         start=(page-1)*limit;
             <#list tableCarrays as tableCarray>
-                <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "02"|| tableCarray.queryRule =="06")>
+                <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "02")>
                     var beginDt = $("#${tableCarray.columnName}_beginDt").val();
                     var endDt = $("#${tableCarray.columnName}_endDt").val();
                     if(daysBetween(beginDt, endDt) > 30){
@@ -1223,12 +1230,26 @@
                     <#elseif tableCarray.dataType == "BigDecimal">
                      regexp: { //正则表达式
                         regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
-                                message: '用户名只能包含大写、小写、数字和下划线'
+                        message: '用户名只能包含大写、小写、数字和下划线'
                     },
                      lessThan: {
                          value : ${tableCarray.dataLength},
                          message : '最大输入${tableCarray.dataLength}'
                      }
+                    <#elseif tableCarray.dataType == "Date" && (tableCarray.validatorType??) && tableCarray.validatorType == "03">
+                         date: {
+                             format: 'YYYY/MM/DD',
+                             message: '日期无效'
+                         }
+                    <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "05">
+                         regexp: {
+                             regexp: /^1\d{10}$/,
+                             message: '手机号格式错误'
+                         }
+                    <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "06">
+                         emailAddress : {
+                             message : '请输入正确的邮件地址'
+                         }
                     <#else>
                      stringLength: {
                          max: ${tableCarray.dataLength},
@@ -1237,17 +1258,12 @@
                      callback: {
                          message: '不允许有空格！',
                                  callback: function (value, validator) {
-                             res = true;
-                             var val= value.replace(/^\s+|\s+$/g, '')
-                             if (value!=val) {
-                                 res = false
-                             }
-                             return res;
-                         }
+                                        return hasBlankSpace(value);
+                                     }
                      }
                     </#if>
-                     }
-                    },
+                }
+            },
          </#if>
      </#list>
             }
@@ -1263,7 +1279,18 @@
                     });
                 });
     };
-    function queryFormValidator(){
+
+
+    // 验证是否包含空格
+    function hasBlankSpace(value) {
+        var val= value.replace(/^\s+|\s+$/g, '')
+        if (value!=val) {
+            res = false
+        }
+        return true;
+    }
+
+        function queryFormValidator(){
         $('#queryForm').bootstrapValidator({
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -1275,45 +1302,54 @@
      <#list tableCarrays as tableCarray>
          <#if (tableCarray.queryType??) && (tableCarray.queryType == "01")>
              ${tableCarray.columnNameX}: {
-             message: '${tableCarray.comments}验证失败',
+                message: '${tableCarray.comments}验证失败',
                      validators: {
-             <#if tableCarray.dataType == "int">
+                    <#if tableCarray.dataType == "int">
                          digits: {message: '请输入正确的数字！'},//整数
                          lessThan: {
                          value : ${tableCarray.dataLength},
                          message : '最大输入${tableCarray.dataLength}'
                      }//整数
-             <#elseif tableCarray.dataType == "BigDecimal">
+                    <#elseif tableCarray.dataType == "BigDecimal">
                          regexp: { //正则表达式
-                                regexp: "^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$",
+                                regexp: ^(([1-9]{1}\d*)|(0{1}))(\.\d{2})$,
                                 message: '用户名只能包含大写、小写、数字和下划线'
                             },
                          lessThan: {
                                 value : ${tableCarray.dataLength},
                                 message : '最大输入${tableCarray.dataLength}'
                             }
-             <#else>
-                 stringLength: {
-                     max: ${tableCarray.dataLength},
-                     message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataLength}之内！'
-                 },
-                 callback: {
-                     message: '填入值收尾含有空格！',
-                             callback: function (value, validator) {
-                         res = true;
-                         var val= value.replace(/^\s+|\s+$/g, '')
-                         if (value!=val) {
-                             res = false
+                    <#elseif tableCarray.dataType == "Date" && tableCarray.validatorType == "03">
+                         date: {
+                             format: 'YYYY/MM/DD',
+                             message: '日期无效'
                          }
-                         return res;
-                     }
-                 }
-             </#if>
-             }
-         },
+                    <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "05">
+                         regexp: {
+                             regexp: /^1\d{10}$/,
+                             message: '手机号格式错误'
+                         }
+                    <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "06">
+                         emailAddress : {
+                             message : '请输入正确的邮件地址'
+                         }
+                    <#else>
+                         stringLength: {
+                             max: ${tableCarray.dataLength},
+                             message: '${tableCarray.comments}长度超出范围，应在${tableCarray.dataLength}之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
+                         }
+                    </#if>
+                    }
+                },
          </#if>
      </#list>
-    }
+            }
     }).on('success.form.bv', function(e) {//点击提交之后
             e.preventDefault();
             var $form = $(e.target);

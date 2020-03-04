@@ -23,9 +23,7 @@
      <result column="CTE_USER_NO" property="cteUserNo"/>
      <result column="UTE_USER_NO" property="uteUserNo"/>
      <result column="UTE_DT" property="uteDt"/>
-     <result column="UTE_TM" property="uteTm"/>
      <result column="CTE_DT" property="cteDt"/>
-     <result column="CTE_TM" property="cteTm"/>
     </resultMap>
     
     <sql id="whereQueryCondition">
@@ -39,29 +37,11 @@
             <if test="user.realName!= null and user.realName!= ''">
                 and REAL_NAME=#{user.realName}
             </if>
-            <if test="user.birthdaybeginDt!= null and user.birthdaybeginDt!= ''">
-                and BIRTHDAY&gt;=#{user.birthdaybeginDt}
-            </if>
-            <if test="user.birthdayendDt!= null and user.birthdayendDt!= ''">
-                and BIRTHDAY&lt;=#{user.birthdayendDt}
+            <if test="user.sex!= null and user.sex!= ''">
+                and SEX=#{user.sex}
             </if>
             <if test="user.telNo!= null and user.telNo!= ''">
                 and TEL_NO=#{user.telNo}
-            </if>
-            <if test="user.mail!= null and user.mail!= ''">
-                and MAIL=#{user.mail}
-            </if>
-            <if test="user.idNumber!= null and user.idNumber!= ''">
-                and ID_NUMBER=#{user.idNumber}
-            </if>
-            <if test="user.deptNo!= null and user.deptNo!= ''">
-                and DEPT_NO=#{user.deptNo}
-            </if>
-            <if test="user.userSts!= null and user.userSts!= ''">
-                and USER_STS=#{user.userSts}
-            </if>
-            <if test="user.empowerRoles!= null and user.empowerRoles!= ''">
-                and EMPOWER_ROLES=#{user.empowerRoles}
             </if>
         </where>
     </sql>
@@ -88,9 +68,7 @@
                         t.CTE_USER_NO as "cteUserNo",
                         t.UTE_USER_NO as "uteUserNo",
                         t.UTE_DT as "uteDt",
-                        t.UTE_TM as "uteTm",
-                        t.CTE_DT as "cteDt",
-                        t.CTE_TM as "cteTm"
+                        t.CTE_DT as "cteDt"
             <!-- 请在此关联查询表 -->
             FROM USER t
             <include refid="whereQueryCondition"></include>
@@ -104,11 +82,11 @@
     </select>
     <select id="getByKey" parameterType="com.wutong.wsk.domain.user.User" resultMap="userMap">
         SELECT
-            USER_ID, USER_NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_NO, UTE_USER_NO, UTE_DT, UTE_TM, CTE_DT, CTE_TM
+            USER_ID, USER_NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_NO, UTE_USER_NO, UTE_DT, CTE_DT
         FROM 
             USER
         WHERE
-              USER_ID=#{userId}
+            USER_ID=#{userId}
     </select>
     <insert id="insert" parameterType="com.wutong.wsk.domain.user.User">
         INSERT INTO USER (
@@ -132,9 +110,7 @@
                 CTE_USER_NO,
                 UTE_USER_NO,
                 UTE_DT,
-                UTE_TM,
-                CTE_DT,
-                CTE_TM
+                CTE_DT
         ) VALUES (
                 #{userId,jdbcType=VARCHAR},
                 #{userName,jdbcType=VARCHAR},
@@ -156,48 +132,79 @@
                 #{cteUserNo,jdbcType=VARCHAR},
                 #{uteUserNo,jdbcType=VARCHAR},
                 #{uteDt,jdbcType=VARCHAR},
-                #{uteTm,jdbcType=VARCHAR},
-                #{cteDt,jdbcType=VARCHAR},
-                #{cteTm,jdbcType=VARCHAR}
+                #{cteDt,jdbcType=VARCHAR}
         )
     </insert>
     <update id="update" parameterType="com.wutong.wsk.domain.user.User">
         UPDATE USER
         SET
-                    USER_ID=#{userId},
-                    USER_NAME=#{userName},
-                    REAL_NAME=#{realName},
-                    SEX=#{sex},
-                    BIRTHDAY=#{birthday},
-                    TEL_NO=#{telNo},
-                    MAIL=#{mail},
-                    ID_NUMBER=#{idNumber},
-                    DEPT_NO=#{deptNo},
-                    USER_STS=#{userSts},
-                    LOGIN_PWD=#{loginPwd},
-                    UTE_USER_NO=#{uteUserNo},
-                    UTE_DT=#{uteDt},
-                    UTE_TM=#{uteTm}
+              <if test="userId!= null and userId!= ''">
+                  USER_ID=#{userId},
+              </if>
+              <if test="userName!= null and userName!= ''">
+                  USER_NAME=#{userName},
+              </if>
+              <if test="realName!= null and realName!= ''">
+                  REAL_NAME=#{realName},
+              </if>
+              <if test="sex!= null and sex!= ''">
+                  SEX=#{sex},
+              </if>
+              <if test="birthday!= null">
+                  BIRTHDAY=#{birthday},
+              </if>
+              <if test="telNo!= null and telNo!= ''">
+                  TEL_NO=#{telNo},
+              </if>
+              <if test="mail!= null and mail!= ''">
+                  MAIL=#{mail},
+              </if>
+              <if test="idNumber!= null and idNumber!= ''">
+                  ID_NUMBER=#{idNumber},
+              </if>
+              <if test="deptNo!= null and deptNo!= ''">
+                  DEPT_NO=#{deptNo},
+              </if>
+              <if test="userSts!= null and userSts!= ''">
+                  USER_STS=#{userSts},
+              </if>
+              <if test="loginPwd!= null and loginPwd!= ''">
+                  LOGIN_PWD=#{loginPwd},
+              </if>
+              <if test="loginTime!= null and loginTime!= ''">
+                  LOGIN_TIME=#{loginTime},
+              </if>
+              <if test="loginIp!= null and loginIp!= ''">
+                  LOGIN_IP=#{loginIp},
+              </if>
+              <if test="empowerRoles!= null and empowerRoles!= ''">
+                  EMPOWER_ROLES=#{empowerRoles},
+              </if>
+              <if test="isAllowLogin!= null and isAllowLogin!= ''">
+                  IS_ALLOW_LOGIN=#{isAllowLogin},
+              </if>
+              <if test="pwdErrCunt!= null and pwdErrCunt!= ''">
+                  PWD_ERR_CUNT=#{pwdErrCunt},
+              </if>
+              <if test="lastUptPwdTime!= null">
+                  LAST_UPT_PWD_TIME=#{lastUptPwdTime},
+              </if>
+              <if test="uteUserNo!= null and uteUserNo!= ''">
+                  UTE_USER_NO=#{uteUserNo},
+              </if>
+              <if test="uteDt!= null">
+                  UTE_DT=#{uteDt}
+              </if>
         WHERE
-                      USER_ID=#{userId}
-            
+            USER_ID=#{userId}
     </update>
     <delete id="delete" parameterType="java.util.Map">
          delete from USER
-         where 
-                      USER_ID
+         where
+            USER_ID
            in 
-        <foreach item="item" index="index" collection="uuids" open="(" separator="," close=")">  
+        <foreach item="item" index="index" collection="keys" open="(" separator="," close=")">
               #{item}
-         </foreach>
+        </foreach>
     </delete>
-
-    <select id="getByName" parameterType="com.wutong.wsk.domain.user.User" resultMap="userMap">
-        SELECT
-            USER_ID, USER_NAME, REAL_NAME, SEX, BIRTHDAY, TEL_NO, MAIL, ID_NUMBER, DEPT_NO, USER_STS, LOGIN_PWD, LOGIN_TIME, LOGIN_IP, EMPOWER_ROLES, IS_ALLOW_LOGIN, PWD_ERR_CUNT, LAST_UPT_PWD_TIME, CTE_USER_NO, UTE_USER_NO, UTE_DT, UTE_TM, CTE_DT, CTE_TM
-        FROM
-            USER
-        WHERE
-            USER_NAME=#{userName}
-    </select>
 </mapper>

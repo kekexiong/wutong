@@ -1,10 +1,13 @@
 package com.wutong.wsk.domain.user;
+import java.util.Date;
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * @description Userdomain
  * @author zhao_qg
- * @date 20200220 20:30:17
+ * @date 20200304 16:30:35
  */
 @Data
 public class User {
@@ -25,15 +28,9 @@ public class User {
      */
     private String sex;
     /**
-     * 性别
-     */
-    private String sexName;
-    /**
      * 出生年月日
      */
-    private String birthdaybeginDt;
-    private String birthdayendDt;
-    private String birthday;
+    private Date birthday;
     /**
      * 电话号码
      */
@@ -55,10 +52,6 @@ public class User {
      */
     private String userSts;
     /**
-     * 状态
-     */
-    private String userStsName;
-    /**
      * 登录密码
      */
     private String loginPwd;
@@ -75,25 +68,17 @@ public class User {
      */
     private String empowerRoles;
     /**
-     * 授权角色
-     */
-    private String empowerRolesName;
-    /**
      * 是否允许登录
      */
     private String isAllowLogin;
     /**
-     * 是否允许登录
-     */
-    private String isAllowLoginName;
-    /**
-     * 密码输入错误次数
+     * 密码错误次数
      */
     private String pwdErrCunt;
     /**
-     * 密码最后修改时间
+     * 密码修改时间
      */
-    private String lastUptPwdTime;
+    private Date lastUptPwdTime;
     /**
      * 创建人
      */
@@ -105,17 +90,13 @@ public class User {
     /**
      * 更新日期
      */
-    private String uteDt;
-    /**
-     * 更新时间
-     */
-    private String uteTm;
+    private Date uteDt;
     /**
      * 创建日期
      */
-    private String cteDt;
-    /**
-     * 创建时间
-     */
-    private String cteTm;
+    private Date cteDt;
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }

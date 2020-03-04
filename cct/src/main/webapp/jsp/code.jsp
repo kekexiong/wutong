@@ -127,6 +127,24 @@
 				<th data-options="field:'dataLength',width:60,editor:'numberbox'">长度</th>
 				<th data-options="field:'dataPrecision',width:70,editor:'numberbox'">数字长度</th>
 				<th data-options="field:'dataScale',width:50,editor:'numberbox'">小数点</th>
+                <th data-options="field:'validatorType',width:100,
+					formatter:function(value,row){
+					var propertyData=validatorTypeData
+					    for (var i = 0; i < propertyData.length; i++) {
+					        if (propertyData[i].id == value) {
+					            return propertyData[i].name
+					        }
+					   }      return value;
+					},
+					editor:{
+						type:'combobox',
+						options:{
+							valueField:'id',
+							textField:'name',
+							method:'get',
+							data:validatorTypeData
+						}
+					}">校验类型</th>
 				<th data-options="field:'queryType',width:100,align:'center',editor:{type:'checkbox',options:{on:'√',off:''}}">检索条件</th>
 				<th data-options="field:'queryRule',width:100,
 					formatter:function(value,row){
@@ -305,15 +323,24 @@
             {"id":"03", "name":"Date"},{"id":"04", "name":"BigDecimal"},
             {"id":"05", "name":"text"},{"id":"06", "name":"Long"},
             {"id":"07", "name":"Float"}];
-var selectRuleData=[{"id":"02", "name":"日期区间查询"},
-					{"id":"03", "name":"输入框"},{"id":"04", "name":"下拉选择框"},
-            		{"id":"05", "name":"自定义下拉选择框"},{"id":"06", "name":"日期输入框"},{"id":"07", "name":"模糊查询"}];
+var selectRuleData=[{"id":"02", "name":"日期区间"},
+					{"id":"03", "name":"输入框"},
+					{"id":"04", "name":"下拉选择框"},
+            		{"id":"05", "name":"自定义下拉选择框"},
+					{"id":"06", "name":"日期输入框"},
+					{"id":"07", "name":"模糊查询"}];
 var queryTypeData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var isPrimaryKeyData=[{"id":"PRI", "name":"是"},{"id":"", "name":"否"}];
 var selectShowData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var selectAddData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var selectViewData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var selectExportData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
+        var validatorTypeData=[{"id":"01", "name":"数字"},
+            {"id":"02", "name":"金额"},
+            {"id":"03", "name":"日期YMD"},
+            {"id":"04", "name":"日期时间YMDHMS"},
+            {"id":"05", "name":"电话"},
+            {"id":"06", "name":"邮箱"}];
 	</script>
 </body>
 </html>

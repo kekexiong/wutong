@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
+<html lang="en" class="ie8 no-js">
+<html lang="en" class="ie9 no-js">
 <html lang="zh-hans">
-<!--<![endif]-->
-
 <head>
     <meta charset="utf-8" />
     <title>梧桐管理系统</title>
@@ -17,26 +12,12 @@
     <meta content="" name="author" />
     <jsp:include page="common/resource.jsp" flush="true"/>
 </head>
-
-<!-- <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md"> -->
 <body class="iframe-body">
-
-<!-- BEGIN HEADER -->
 <jsp:include page="common/header.jsp" flush="true"/>
-<!-- END HEADER -->
-
-<!-- BEGIN CONTAINER -->
 <div class="clearfix"> </div>
 <div class="page-container">
-
-    <!-- BEGIN MENU -->
     <%-- <jsp:include page="../common/menu.jsp" flush="true"/> --%>
-    <!-- END MENU -->
-
-    <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
-        <!-- 主体-->
-        <!-- <div class="page-content"> -->
         <div class="">
         <!-- 右边开始 -->
         <div class="row">
@@ -44,95 +25,50 @@
                 <div class="portlet light bordered scaffold-list">
                     <!-- 查询信息 -->
                     <div class="portlet-body form">
-                        <form action="<%=request.getContextPath()%>/mec/queryData" class="form-horizontal" id="queryMecPanel_Form">
+                        <form action="" class="form-horizontal" id="queryForm">
                             <div class="row norow">
-                                                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">用户ID:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="userId" id="USER_ID" class="form-control" placeholder="用户ID">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">昵称:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="userName" id="USER_NAME" class="form-control" placeholder="昵称">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">真实姓名:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="realName" id="REAL_NAME" class="form-control" placeholder="真实姓名">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">出生年月日:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <div class="input-group input-daterange">
-                                                            <input type="text" class="form-control col-md-3" name="birthdaybeginDt" id="BIRTHDAY_beginDt">
-                                                            <span class="input-group-addon"> <i class="fa fa-exchange"></i></span>
-                                                            <input type="text" class="form-control" name="birthdayendDt" id="BIRTHDAY_endDt">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">用户ID:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="userId" id="USER_ID" class="form-control" placeholder="用户ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">昵称:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="userName" id="USER_NAME" class="form-control" placeholder="昵称">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">真实姓名:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="realName" id="REAL_NAME" class="form-control" placeholder="真实姓名">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">性别:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <select name="sex" id="SEX" class="bs-select form-control" data-show-subtext="true">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">电话号码:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="telNo" id="TEL_NO" class="form-control" placeholder="电话号码">
+                                        </div>
+                                    </div>
+                                </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">电话号码:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="telNo" id="TEL_NO" class="form-control" placeholder="电话号码">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">邮箱:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="mail" id="MAIL" class="form-control" placeholder="邮箱">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">身份证号:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="idNumber" id="ID_NUMBER" class="form-control" placeholder="身份证号">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">部门编号:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <input name="deptNo" id="DEPT_NO" class="form-control" placeholder="部门编号">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">状态:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <select name="userSts" id="USER_STS" class="bs-select form-control" data-show-subtext="true">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4 text-right">授权角色:</label>
-                                                    <div class="col-md-8 paddingnone">
-                                                        <select name="empowerRoles" id="EMPOWER_ROLES" class="bs-select form-control" data-show-subtext="true">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                                        </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -153,9 +89,6 @@
                                                 <button type="button" id="dele_btn" class="btn tn btn btn-primary">
                                                     <i class="fa fa-trash-o fa-lg"></i> 删除
                                                 </button>
-                                                    <button type="button" id="isExport_btn" class="btn tn btn btn-primary">
-                                                        <i class="fa fa-download"></i> 导出
-                                                    </button>
                                             </div>
                                         </div>
                                     </div>
@@ -163,15 +96,13 @@
                             </div>
                         </form>
                     </div>
-
-
                 </div>
                 <div class="clearfix"></div>
                 <div class="portlet light bordered scaffold-list">
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-search font-blue"></i>
-                            <span class="caption-subject font-blue bold uppercase">菜单信息列表</span>
+                            <span class="caption-subject font-blue bold uppercase">用户信息列表</span>
                         </div>
                         <div class="tools">
                             <a href="" class="fullscreen" data-original-title="全屏" title=""></a>
@@ -199,14 +130,12 @@
                                                     <th class="nowrap">登录IP</th>
                                                     <th class="nowrap">授权角色</th>
                                                     <th class="nowrap">是否允许登录</th>
-                                                    <th class="nowrap">密码输入错误次数</th>
-                                                    <th class="nowrap">密码最后修改时间</th>
+                                                    <th class="nowrap">密码错误次数</th>
+                                                    <th class="nowrap">密码修改时间</th>
                                                     <th class="nowrap">创建人</th>
                                                     <th class="nowrap">更新人</th>
                                                     <th class="nowrap">更新日期</th>
-                                                    <th class="nowrap">更新时间</th>
                                                     <th class="nowrap">创建日期</th>
-                                                    <th class="nowrap">创建时间</th>
                                                 <th class="nowrap">操作</th>
                                 </tr>
                                 </thead>
@@ -244,8 +173,7 @@
                                         </ul>
                                         <div class="input-group pull-right col-sm-2"  style="float: left;">
                                             <input min="1" class="form-control p" style="height: 31px; width: 80px;" type="number">
-                                            <a href="javascript:;" class="input-group-addon" onclick="javascript:pageing($('.p').val())">
-                                                <i class="fa fa-mail-forward brown"></i></a>
+                                            <a href="javascript:;" class="input-group-addon" onclick="javascript:pageing($('.p').val())"><i class="fa fa-mail-forward brown"></i></a>
                                         </div>
                                     </nobr>
                                 </div>
@@ -266,12 +194,12 @@
         </div>
         <div class="modal-body">
             <div class="portlet-body form">
-                <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="addOrUpdateform">
+                <form action="" class="form-horizontal" id="addOrUpdateform">
                     <div class="form-body">
                         <div class="row norow">
                             <input type="hidden" value = "" id = "hiddenType"/>
-                            <input type="hidden" value = "" id = "hiddenUUid"/>
-                                                                                                         <!-- 普通输入框 -->
+                            <input type="hidden" value = "" id = "hiddenKey"/>
+                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">用户ID:</label>
@@ -280,7 +208,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">昵称:</label>
@@ -289,7 +217,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">真实姓名:</label>
@@ -298,7 +226,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                                                                  <!-- 下拉框 -->
+                                                                                                                                                            <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">性别:</label>
@@ -307,20 +235,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                         <!-- 时间区间值输入 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">出生年月日:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <div class="input-group input-daterange">
-                                                    <input type="text" class="form-control col-md-3" name="birthdaybeginDt" id="BIRTHDAY_beginDt_SHOW">
-                                                    <span class="input-group-addon"> <i class="fa fa-exchange"></i></span>
-                                                    <input type="text" class="form-control" name="birthdayendDt" id="BIRTHDAY_endDt_SHOW">
-                                                </div>
+                                                                                                                                                             <!-- 时间输入框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">出生年月日:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <div class="input-group input-daterange">
+                                                <input type="text" class="form-control col-md-3" name="birthday" id="BIRTHDAY_SHOW">
                                             </div>
                                         </div>
                                     </div>
-                                                                                                                                                                                                                  <!-- 普通输入框 -->
+                                </div>
+                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">电话号码:</label>
@@ -329,7 +255,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">邮箱:</label>
@@ -338,7 +264,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">身份证号:</label>
@@ -347,7 +273,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                               <!-- 普通输入框 -->
+                                                                                                                             <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">部门编号:</label>
@@ -356,7 +282,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                                                                                  <!-- 下拉框 -->
+                                                                                                                                                            <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">状态:</label>
@@ -365,7 +291,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                            <!-- 普通输入框 -->
+                                                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">登录密码:</label>
@@ -374,7 +300,63 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                  <div class="clearfix"></div>
+                                                                                                                             <!-- 普通输入框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">登录时间:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="loginTime" id="LOGIN_TIME_SHOW" class="form-control" placeholder="登录时间">
+                                        </div>
+                                    </div>
+                                </div>
+                                                                                                                             <!-- 普通输入框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">登录IP:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="loginIp" id="LOGIN_IP_SHOW" class="form-control" placeholder="登录IP">
+                                        </div>
+                                    </div>
+                                </div>
+                                                                                                                             <!-- 普通输入框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">授权角色:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="empowerRoles" id="EMPOWER_ROLES_SHOW" class="form-control" placeholder="授权角色">
+                                        </div>
+                                    </div>
+                                </div>
+                                                                                                                                                            <!-- 下拉框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">是否允许登录:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <select name="isAllowLogin" id="IS_ALLOW_LOGIN_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                                              <!-- 普通输入框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">密码错误次数:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <input name="pwdErrCunt" id="PWD_ERR_CUNT_SHOW" class="form-control" placeholder="密码错误次数">
+                                        </div>
+                                    </div>
+                                </div>
+                                                                                                                                                                                            <!-- 时间输入框 -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 text-right">密码修改时间:</label>
+                                        <div class="col-md-8 paddingnone">
+                                            <div class="input-group input-daterange">
+                                                <input type="text" class="form-control col-md-3" name="lastUptPwdTime" id="LAST_UPT_PWD_TIME_SHOW">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -394,320 +376,250 @@
         </div>
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-    <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
-            <h4 class="modal-title" >菜单详情信息</h4>
-        </div>
-        <div class="modal-body">
-            <div class="portlet-body form">
-                <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="">
-                    <div class="form-body">
-                        <div class="row norow">
-                                                                                                                                                            <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">用户ID:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="userId" id="USER_ID_VIEW" class="form-control" disabled="disabled" placeholder="用户ID">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">昵称:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="userName" id="USER_NAME_VIEW" class="form-control" disabled="disabled" placeholder="昵称">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">真实姓名:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="realName" id="REAL_NAME_VIEW" class="form-control" disabled="disabled" placeholder="真实姓名">
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                                                          <!-- 下拉框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">性别:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <select name="sex" id="SEX_VIEW" class="bs-select form-control" data-show-subtext="true">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                              <!-- 时间区间值输入 -->
+        <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
+                <h4 class="modal-title" >用户详情信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="portlet-body form">
+                    <form action="" class="form-horizontal" id="">
+                        <div class="form-body">
+                            <div class="row norow">
+                                                                                                                                                                        <!-- 普通输入框 -->
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">出生年月日:</label>
+                                                <label class="control-label col-md-4 text-right">用户ID:</label>
                                                 <div class="col-md-8 paddingnone">
-                                                    <div class="input-group input-daterange">
-                                                        <input type="text" class="form-control col-md-3" disabled="disabled" name="birthdaybeginDt" id="BIRTHDAY_beginDt_VIEW">
-                                                        <span class="input-group-addon"> <iclass="fa fa-exchange"></i> </span>
-                                                        <input type="text" class="form-control" disabled="disabled" name="birthdayendDt" id="BIRTHDAY_endDt_VIEW">
-                                                    </div>
+                                                    <input name="userId" id="USER_ID_VIEW" class="form-control" disabled="disabled" placeholder="用户ID">
                                                 </div>
                                             </div>
                                         </div>
-                                                                                                                                                                                                                                                                                 <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">电话号码:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="telNo" id="TEL_NO_VIEW" class="form-control" disabled="disabled" placeholder="电话号码">
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">昵称:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="userName" id="USER_NAME_VIEW" class="form-control" disabled="disabled" placeholder="昵称">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">邮箱:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="mail" id="MAIL_VIEW" class="form-control" disabled="disabled" placeholder="邮箱">
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">真实姓名:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="realName" id="REAL_NAME_VIEW" class="form-control" disabled="disabled" placeholder="真实姓名">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">身份证号:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="idNumber" id="ID_NUMBER_VIEW" class="form-control" disabled="disabled" placeholder="身份证号">
+                                                                                                                                                                                                                                                              <!-- 下拉框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">性别:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <select name="sex" id="SEX_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">部门编号:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="deptNo" id="DEPT_NO_VIEW" class="form-control" disabled="disabled" placeholder="部门编号">
+                                                                                                                                 <!-- 时间值输入 -->
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 text-right">出生年月日:</label>
+                                                    <div class="col-md-8 paddingnone">
+                                                        <div class="input-group input-daterange">
+                                                            <input type="text" class="form-control col-md-3" disabled="disabled" name="birthday" id="BIRTHDAY_VIEW">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                                                                                                                                                                                          <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">电话号码:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="telNo" id="TEL_NO_VIEW" class="form-control" disabled="disabled" placeholder="电话号码">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                                                          <!-- 下拉框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">状态:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <select name="userSts" id="USER_STS_VIEW" class="bs-select form-control" data-show-subtext="true">
-                                                </select>
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">邮箱:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="mail" id="MAIL_VIEW" class="form-control" disabled="disabled" placeholder="邮箱">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                            <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">登录密码:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="loginPwd" id="LOGIN_PWD_VIEW" class="form-control" disabled="disabled" placeholder="登录密码">
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">身份证号:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="idNumber" id="ID_NUMBER_VIEW" class="form-control" disabled="disabled" placeholder="身份证号">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">登录时间:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="loginTime" id="LOGIN_TIME_VIEW" class="form-control" disabled="disabled" placeholder="登录时间">
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">部门编号:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="deptNo" id="DEPT_NO_VIEW" class="form-control" disabled="disabled" placeholder="部门编号">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">登录IP:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="loginIp" id="LOGIN_IP_VIEW" class="form-control" disabled="disabled" placeholder="登录IP">
+                                                                                                                                                                                                                                                              <!-- 下拉框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">状态:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <select name="userSts" id="USER_STS_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                                                          <!-- 下拉框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">授权角色:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <select name="empowerRoles" id="EMPOWER_ROLES_VIEW" class="bs-select form-control" data-show-subtext="true">
-                                                </select>
+                                                                                                                                                                        <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">登录密码:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="loginPwd" id="LOGIN_PWD_VIEW" class="form-control" disabled="disabled" placeholder="登录密码">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 下拉框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">是否允许登录:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <select name="isAllowLogin" id="IS_ALLOW_LOGIN_VIEW" class="bs-select form-control" data-show-subtext="true">
-                                                </select>
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">登录时间:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="loginTime" id="LOGIN_TIME_VIEW" class="form-control" disabled="disabled" placeholder="登录时间">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                            <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">密码输入错误次数:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="pwdErrCunt" id="PWD_ERR_CUNT_VIEW" class="form-control" disabled="disabled" placeholder="密码输入错误次数">
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">登录IP:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="loginIp" id="LOGIN_IP_VIEW" class="form-control" disabled="disabled" placeholder="登录IP">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">密码最后修改时间:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="lastUptPwdTime" id="LAST_UPT_PWD_TIME_VIEW" class="form-control" disabled="disabled" placeholder="密码最后修改时间">
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">授权角色:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="empowerRoles" id="EMPOWER_ROLES_VIEW" class="form-control" disabled="disabled" placeholder="授权角色">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">创建人:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="cteUserNo" id="CTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="创建人">
+                                                                                                                                                                                                                                                              <!-- 下拉框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">是否允许登录:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <select name="isAllowLogin" id="IS_ALLOW_LOGIN_VIEW" class="bs-select form-control" data-show-subtext="true">
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">更新人:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="uteUserNo" id="UTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="更新人">
+                                                                                                                                                                        <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">密码错误次数:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="pwdErrCunt" id="PWD_ERR_CUNT_VIEW" class="form-control" disabled="disabled" placeholder="密码错误次数">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">更新日期:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="uteDt" id="UTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="更新日期">
+                                                                                                                                                                            <!-- 时间值输入 -->
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 text-right">密码修改时间:</label>
+                                                    <div class="col-md-8 paddingnone">
+                                                        <div class="input-group input-daterange">
+                                                            <input type="text" class="form-control col-md-3" disabled="disabled" name="lastUptPwdTime" id="LAST_UPT_PWD_TIME_VIEW">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                                                                                                                                                                                          <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">创建人:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="cteUserNo" id="CTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="创建人">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">更新时间:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="uteTm" id="UTE_TM_VIEW" class="form-control" disabled="disabled" placeholder="更新时间">
+                                                                                                                                                                                                                   <!-- 普通输入框 -->
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 text-right">更新人:</label>
+                                                <div class="col-md-8 paddingnone">
+                                                    <input name="uteUserNo" id="UTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="更新人">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">创建日期:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="cteDt" id="CTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="创建日期">
+                                                                                                                                                                            <!-- 时间值输入 -->
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 text-right">更新日期:</label>
+                                                    <div class="col-md-8 paddingnone">
+                                                        <div class="input-group input-daterange">
+                                                            <input type="text" class="form-control col-md-3" disabled="disabled" name="uteDt" id="UTE_DT_VIEW">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 text-right">创建时间:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input name="cteTm" id="CTE_TM_VIEW" class="form-control" disabled="disabled" placeholder="创建时间">
+                                                                                                                                                                                                                   <!-- 时间值输入 -->
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 text-right">创建日期:</label>
+                                                    <div class="col-md-8 paddingnone">
+                                                        <div class="input-group input-daterange">
+                                                            <input type="text" class="form-control col-md-3" disabled="disabled" name="cteDt" id="CTE_DT_VIEW">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                                                   <div class="clearfix"></div>
+                                                                                                                  <div class="clearfix"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12" style="text-align:center;">
-                                        <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align:center;">
+                                            <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-<!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
-<div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">导出EXCEL</h4>
-    </div>
-    <div class="modal-body">
-        <div class="portlet-body form">
-            <form action="<%=request.getContextPath()%>/" class="form-horizontal" id="exportform">
-                <div class="form-body">
-                    <div class="row norow">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <input name="innerExcelType" class="col-md-12 text-center" id="innerExcelType">
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12" style="text-align: center;">
-                                    <button type="button" id="exportform_save_btn" class="btn btn-success">
-                                        <i class="fa fa-save"></i> 确认
-                                    </button>
-                                    <button type="button" id="exportform_cancel_btn" class="btn red">
-                                        <i class="fa fa-share"></i> 取消
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 </div>
 </div>
 
 <jsp:include page="common/footer.jsp" flush="true" />
-
 <script type="text/javascript">
     //分页功能
     //分页默认隐藏
     $("#pagination-bar").hide();
-    //每页多少条
-    var limit = 0;
-    //当前页
-    var page = 1;
-    //起始条
-    var start = 0;
-    //总页数
-    var toalPage;
-    //数据列表缓存
-    var tableData;
-
-    var importLimit = 0;
-
-    var importPage = 1;
-
-    var importStart = 0;
-
-    var importTotalPage;
-
+    var limit = 0; //每页多少条
+    var page = 1;//当前页
+    var start = 0;//起始条
+    var toalPage;//总页数
+    var tableData; //数据列表缓存
     function pageing(opp) {
         $(window.document).scrollTop(0, 500);
         limit = $("#limit  option:selected").text();
-
         if (opp == 'pro') {
             if (page > 1) {
                 page = page - 1;
@@ -736,7 +648,6 @@
                 bootbox.alert('对不起没有你要跳转的页面');
                 return;
             }
-
             start = (page - 1) * limit;
         } else {
             if (page == 1 && opp == 1) {
@@ -751,7 +662,6 @@
                 bootbox.alert('对不起没有你要跳转的页面');
                 return;
             }
-
             start = (page - 1) * limit;
         }
         $('#queryMecGrid > tbody').empty();
@@ -767,30 +677,36 @@
     }
     //初始化页面功能
     $(function(){
-    <!---------------------在此手动设置按钮的权限------------------------------->
         //if (!hasPermission(PERMISSSIONCONST.SES1002)) {$("#").hide();}
-        <!---------------------在此手动初始化页面表单审核状态数据源---------------------->
     <!--getComboStore系统表生成下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入key值，4传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--getCustomStore自定义下拉框    参数说明1：传入值，用于下拉框回显，2下拉夸ID，3传入FALSE或者TRUE用于下拉框可选或者可读状态，FALSE下拉框可以不是disabled，TRUE是disabled状态-->
     <!--如果不需要回显第一个参数传入""，如果不需要设定disabled属性传入FALSE-->
-                                        <!--添加获取修改下拉框-->
-                        getComboStore("","SEX_SHOW", "USER-SEX","");
-                    <!--列表下拉框-->
-                        getComboStore("","USER_STS", "USER-USER_STS","");
-                    <!--添加获取修改下拉框-->
-                        getComboStore("","USER_STS_SHOW", "USER-USER_STS","");
-                    <!--列表下拉框-->
-                        getComboStore("","EMPOWER_ROLES", "USER-EMPOWER_ROLES","");
-                                                                    //初始化输入框时间默认值方法
-        initDefaultDate();
+            <!--列表下拉框-->
+        getComboStore("","SEX", "USER-SEX","");
+            <!--添加获取修改下拉框-->
+        getComboStore("","SEX_SHOW", "USER-SEX","");
+                        <!--添加获取修改下拉框-->
+        getComboStore("","USER_STS_SHOW", "USER-USER_STS","");
+                        <!--添加获取修改下拉框-->
+        getComboStore("","IS_ALLOW_LOGIN_SHOW", "USER-IS_ALLOW_LOGIN","");
+        //初始化输入框时间默认值方法
+        //initDefaultDate();
         //重置按钮
         $("#reset_btn").on('click', function() {
-            $("#queryMecPanel_Form")[0].reset();
-            $("#queryMecPanel_Form .bs-select").selectpicker('val','');
-            initDefaultDate();
+            $("#queryForm")[0].reset();
+            $("#queryForm .bs-select").selectpicker('val','');
+            $("#queryForm").data('bootstrapValidator').destroy();
+            $('#queryForm').data('bootstrapValidator', null);
+            queryFormValidator();
+           // initDefaultDate();
         });
+        queryFormValidator();
         //查询按钮
         $("#query_btn").on('click', function() {
+            $('#queryForm').data('bootstrapValidator').validate();
+            if(!$('#queryForm').data('bootstrapValidator').isValid()){
+                return ;
+            }
             page = 1;
             reloadGrid();
         });
@@ -801,7 +717,7 @@
             $("#addOrUpdateform .bs-select").selectpicker('val','');
             document.getElementById("hiddenType").value = "1";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "菜单添加信息";
+            title.innerHTML = "用户添加信息";
             addOrUpdate("add","");
         });
         //修改按钮
@@ -816,31 +732,40 @@
             }
             document.getElementById("hiddenType").value = "2";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "菜单修改信息";
+            title.innerHTML = "用户修改信息";
             addOrUpdate("update",record);
         });
         //添加保存按钮
         var param = {};
         $("#addform_save_btn").off('click').on('click', function() {
-                            param.userId = $("#USER_ID_SHOW").val();
-                            param.userName = $("#USER_NAME_SHOW").val();
-                            param.realName = $("#REAL_NAME_SHOW").val();
-                            param.sex = $("#SEX_SHOW").val();
-                            param.birthdaybeginDt = $("#BIRTHDAY_beginDt_SHOW").val().replace('/', '').replace('/', '');
-                            param.birthdayendDt = $("#BIRTHDAY_endDt_SHOW").val().replace('/', '').replace('/', '');
-                            param.telNo = $("#TEL_NO_SHOW").val();
-                            param.mail = $("#MAIL_SHOW").val();
-                            param.idNumber = $("#ID_NUMBER_SHOW").val();
-                            param.deptNo = $("#DEPT_NO_SHOW").val();
-                            param.userSts = $("#USER_STS_SHOW").val();
-                            param.loginPwd = $("#LOGIN_PWD_SHOW").val();
+            $('#addOrUpdateform').data('bootstrapValidator').validate();
+            if(!$('#addOrUpdateform').data('bootstrapValidator').isValid()){
+                return ;
+            }
+            param.userId = $("#USER_ID_SHOW").val();
+            param.userName = $("#USER_NAME_SHOW").val();
+            param.realName = $("#REAL_NAME_SHOW").val();
+            param.sex = $("#SEX_SHOW").val();
+            param.birthday = $("#BIRTHDAY_SHOW").val();
+            param.telNo = $("#TEL_NO_SHOW").val();
+            param.mail = $("#MAIL_SHOW").val();
+            param.idNumber = $("#ID_NUMBER_SHOW").val();
+            param.deptNo = $("#DEPT_NO_SHOW").val();
+            param.userSts = $("#USER_STS_SHOW").val();
+            param.loginPwd = $("#LOGIN_PWD_SHOW").val();
+            param.loginTime = $("#LOGIN_TIME_SHOW").val();
+            param.loginIp = $("#LOGIN_IP_SHOW").val();
+            param.empowerRoles = $("#EMPOWER_ROLES_SHOW").val();
+            param.isAllowLogin = $("#IS_ALLOW_LOGIN_SHOW").val();
+            param.pwdErrCunt = $("#PWD_ERR_CUNT_SHOW").val();
+            param.lastUptPwdTime = $("#LAST_UPT_PWD_TIME_SHOW").val();
             var hiddenType = $("#hiddenType").val();
             var url = "";
             if("1" == hiddenType){
                 url = baseURL + "/user/user/save";
             }else if ("2" == hiddenType){
                 url = baseURL + "/user/user/update";
-                param.uuid = $("#hiddenUUid").val();
+                param.userId = $("#hiddenKey").val();
             }else{
                 url = "";
             }
@@ -870,7 +795,7 @@
         //删除按钮
         $("#dele_btn").on('click', function() {
             var selectRocords = $("#queryMecGrid tbody input:checked");
-            var uuids = "";
+            var keys = "";
             if(selectRocords.length <= 0){
                 bootbox.alert(CONST.TIP001);
                 return;
@@ -878,16 +803,16 @@
                 for(i=0; i < selectRocords.length; i++){
                     var index = $(selectRocords[i]).attr("rownum");
                     record = tableData.items[index];
-                                uuids += record.userId+",";
+                    keys += record.userId+",";
                 }
-                uuids = uuids.substring(0, uuids.lastIndexOf(","));
+                keys = keys.substring(0, keys.lastIndexOf(","));
                 bootbox.confirm("选择了"+selectRocords.length+"条, 确认删除?", function(truthBeTold){
                     if(truthBeTold){
                         $.ajax({
                             type: "POST",
-                            url: baseURL + "/user/user/deleteByUuid",
+                            url: baseURL + "/user/user/deleteByKey",
                             data:{
-                                uuids:uuids
+                                keys:keys
                             },
                             contentType: "application/x-www-form-urlencoded;charset=utf-8",
                             dataType: "json",
@@ -917,11 +842,16 @@
     });
     //添加或者修改方法
     function addOrUpdate(type,record){
+        addOrUpdateFormValidator();
+        $("#addOrUpdateform").data('bootstrapValidator').destroy();
+        $('#addOrUpdateform').data('bootstrapValidator', null);
+        addOrUpdateFormValidator();
         if("add" == type){
+            document.getElementById('USER_ID_SHOW').readOnly = false;
             $("#addOrUpdateWin").modal('show');
         }else if("update" == type){
             var param = {};
-                        param.userId = record.userId;
+             param.userId = record.userId;
             $.ajax({
                 type : "POST",
                 url : baseURL + "/user/user/getDetail",
@@ -931,17 +861,26 @@
                 success:function(data){
                     <!--修改页面展示字段-->
                                 document.getElementById('USER_ID_SHOW').value=data.data.userId;
+                                if("update" == type){
+                                    document.getElementById('USER_ID_SHOW').readOnly = true;
+                                 }
                                 document.getElementById('USER_NAME_SHOW').value=data.data.userName;
                                 document.getElementById('REAL_NAME_SHOW').value=data.data.realName;
-                                getComboStore(data.data.sex,"SEX_SHOW", "SEX",false);
-                                document.getElementById('BIRTHDAY_SHOW').value=data.data.birthday;
+                                getComboStore(data.data.sex,"SEX_SHOW", "USER-SEX",false);
+                                document.getElementById('BIRTHDAY_SHOW').value=fromatDateYMD(data.data.birthday);
                                 document.getElementById('TEL_NO_SHOW').value=data.data.telNo;
                                 document.getElementById('MAIL_SHOW').value=data.data.mail;
                                 document.getElementById('ID_NUMBER_SHOW').value=data.data.idNumber;
                                 document.getElementById('DEPT_NO_SHOW').value=data.data.deptNo;
-                                getComboStore(data.data.userSts,"USER_STS_SHOW", "USER_STS",false);
+                                getComboStore(data.data.userSts,"USER_STS_SHOW", "USER-USER_STS",false);
                                 document.getElementById('LOGIN_PWD_SHOW').value=data.data.loginPwd;
-                    document.getElementById('hiddenUUid').value=data.data.uuid;
+                                document.getElementById('LOGIN_TIME_SHOW').value=data.data.loginTime;
+                                document.getElementById('LOGIN_IP_SHOW').value=data.data.loginIp;
+                                document.getElementById('EMPOWER_ROLES_SHOW').value=data.data.empowerRoles;
+                                getComboStore(data.data.isAllowLogin,"IS_ALLOW_LOGIN_SHOW", "USER-IS_ALLOW_LOGIN",false);
+                                document.getElementById('PWD_ERR_CUNT_SHOW').value=data.data.pwdErrCunt;
+                                document.getElementById('LAST_UPT_PWD_TIME_SHOW').value=fromatDateYMDHMS(data.data.lastUptPwdTime);
+                                document.getElementById('hiddenKey').value=data.data.userId;
                     $("#addOrUpdateWin").modal('show');
                 },
                 error:function(){
@@ -953,14 +892,18 @@
             return;
         }
     }
+    $('#addOrUpdateWin').on('hidden.bs.modal', function() {
+        $("#addOrUpdateform").data('bootstrapValidator').destroy();
+        $('#addOrUpdateform').data('bootstrapValidator', null);
+    });
     //下拉框码表中加载数据(使用系统表)
     function getComboStore(codeValue,element,codeKey,isdisabled) {
-        var param = {page:1,start:0,limit:1000};
+        var param = {};
         param.codeKey = codeKey;
-        param.codeValue = codeValue;
+        //param.codeValue = codeValue;
         $.ajax({
             type: "POST",
-            url: baseURL+"/system/dicCode/query",
+            url: baseURL+"/getDicCode",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -1000,12 +943,78 @@
             tempDay = myDate.getDate();
         }
         var dateString = myDate.getFullYear()+"/"+tempMonth+"/"+tempDay;
-                        $("#BIRTHDAY_beginDt").datepicker('setStartDate', null);
-                        $("#BIRTHDAY_endDt").datepicker('setEndDate', null);
-                        $("#BIRTHDAY_beginDt").datepicker('update', dateString);
-                        $("#BIRTHDAY_endDt").datepicker('update', dateString);
+                        $("#BIRTHDAY").datepicker('setStartDate', null);
+                        $("#BIRTHDAY").datepicker('update', dateString);
+                        $("#LAST_UPT_PWD_TIME").datepicker('setStartDate', null);
+                        $("#LAST_UPT_PWD_TIME").datepicker('update', dateString);
+                        $("#UTE_DT").datepicker('setStartDate', null);
+                        $("#UTE_DT").datepicker('update', dateString);
+                        $("#CTE_DT").datepicker('setStartDate', null);
+                        $("#CTE_DT").datepicker('update', dateString);
     }
+    $(function () {
+//单个时间插件
+        $("#BIRTHDAY").daterangepicker(
+            {
+                singleDatePicker: true,//设置为单个的datepicker，而不是有区间的datepicker 默认false
+                showDropdowns: true,//当设置值为true的时候，允许年份和月份通过下拉框的形式选择 默认false
+                autoUpdateInput: false,//1.当设置为false的时候,不给与默认值(当前时间)2.选择时间时,失去鼠标焦点,不会给与默认值 默认true
+                timePicker24Hour : true,//设置小时为24小时制 默认false
+                timePicker : false,//可选中时分 默认false
+                locale: {
+                    format: "YYYY-MM-DD",
+                    separator: " - ",
+                    daysOfWeek: ["日","一","二","三","四","五","六"],
+                    monthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+                }
 
+            }
+        ).on('cancel.daterangepicker', function(ev, picker) {
+            $("#BIRTHDAY").val("请选择日期");
+            $("#submitDate").val("");
+            debugger;
+        }).on('apply.daterangepicker', function(ev, picker) {
+            $("#submitDate").val(picker.startDate.format('YYYY-MM-DD'));
+            $("#BIRTHDAY").val(picker.startDate.format('YYYY-MM-DD'));
+            debugger;
+        });
+
+// //区间时间插件
+//         $("input[name='date2']").daterangepicker(
+//             {
+// // autoApply: true,
+//                 autoUpdateInput: false,
+// // alwaysShowCalendars: true,
+//                 ranges: {
+//                     '今天': [moment(),moment()],
+//                     '昨天': [moment().subtract(1, 'days'),moment().subtract(1, 'days')],
+//                     '近7天': [moment().subtract(7, 'days'), moment()],
+//                     '这个月': [moment().startOf('month'), moment().endOf('month')],
+//                     '上个月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+//                 },
+//                 locale: {
+//                     format: "YYYY/MM/DD HH:MM:SS",
+//                     separator: " - ",
+//                     applyLabel: "确认",
+//                     cancelLabel: "清空",
+//                     fromLabel: "开始时间",
+//                     toLabel: "结束时间",
+//                     customRangeLabel: "自定义",
+//                     daysOfWeek: ["日","一","二","三","四","五","六"],
+//                     monthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+//                 }
+//             }
+//         ).on('cancel.daterangepicker', function(ev, picker) {
+//             $("#date2").val("请选择日期范围");
+//             $("#startTime").val("");
+//             $("#endTime").val("");
+//         }).on('apply.daterangepicker', function(ev, picker) {
+//             $("#startTime").val(picker.startDate.format('YYYY-MM-DD'));
+//             $("#endTime").val(picker.endDate.format('YYYY-MM-DD'));
+//             $("#date2").val(picker.startDate.format('YYYY-MM-DD')+" 至 "+picker.endDate.format('YYYY-MM-DD'));
+//         });
+
+    });
 
     var queryInner_Path = baseURL + "/user/user/query";
     //实现查询按钮方法
@@ -1016,26 +1025,14 @@
             limit=$("#limit").val();
         }
         start=(page-1)*limit;
-                    var beginDt = $("#BIRTHDAY_beginDt").val();
-                    var endDt = $("#BIRTHDAY_endDt").val();
-                    if(daysBetween(beginDt, endDt) > 30){
-                        bootbox.alert("起止时间的最大间隔为1个月");
-                        return;
-                    }
 
         //获取筛选条件输入值
         var param = {page:page,start:start,limit:limit};
                         param.userId = $("#USER_ID").val();
                         param.userName = $("#USER_NAME").val();
                         param.realName = $("#REAL_NAME").val();
-                        param.birthdaybeginDt = $("#BIRTHDAY_beginDt").val().replace('/', '').replace('/', '');
-                        param.birthdayendDt = $("#BIRTHDAY_endDt").val().replace('/', '').replace('/', '');
+                        param.sex = $("#SEX").val();
                         param.telNo = $("#TEL_NO").val();
-                        param.mail = $("#MAIL").val();
-                        param.idNumber = $("#ID_NUMBER").val();
-                        param.deptNo = $("#DEPT_NO").val();
-                        param.userSts = $("#USER_STS").val();
-                        param.empowerRoles = $("#EMPOWER_ROLES").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -1059,33 +1056,31 @@
                 tableData = $.extend(true, {}, data);
                 $("#queryMecGrid").DataTable().clear().draw();
                 $.each(data.items,function(index,obj){
-                    var trData = [];
-                    trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
-                    trData.push(start + index + 1);
-                                trData.push(obj.userId);
-                                trData.push(obj.userName);
-                                trData.push(obj.realName);
-                                trData.push(obj.sex);
-                                trData.push(obj.birthday);
-                                trData.push(obj.telNo);
-                                trData.push(obj.mail);
-                                trData.push(obj.idNumber);
-                                trData.push(obj.deptNo);
-                                trData.push(obj.userSts);
-                                trData.push(obj.loginPwd);
-                                trData.push(obj.loginTime);
-                                trData.push(obj.loginIp);
-                                trData.push(obj.empowerRoles);
-                                trData.push(obj.isAllowLogin);
-                                trData.push(obj.pwdErrCunt);
-                                trData.push(obj.lastUptPwdTime);
-                                trData.push(obj.cteUserNo);
-                                trData.push(obj.uteUserNo);
-                                trData.push(obj.uteDt);
-                                trData.push(obj.uteTm);
-                                trData.push(obj.cteDt);
-                                trData.push(obj.cteTm);
-                            trData.push("<a href='javascript:void(0)'  onclick=view('"+obj.uuid+"')><i class='fa fa-search-plus'></i>查看</a>");
+                        var trData = [];
+                        trData.push("<input type=\"checkbox\" class=\"checkboxes\" onclick=\"clickCheck(this)\" rownum=\""+index+"\" />");
+                        trData.push(start + index + 1);
+                        trData.push(obj.userId);
+                        trData.push(obj.userName);
+                        trData.push(obj.realName);
+                        trData.push(getCodeName("USER-SEX", obj.sex));
+                        trData.push(fromatDateYMDHMS(obj.birthday));
+                        trData.push(obj.telNo);
+                        trData.push(obj.mail);
+                        trData.push(obj.idNumber);
+                        trData.push(obj.deptNo);
+                        trData.push(getCodeName("USER-USER_STS", obj.userSts));
+                        trData.push(obj.loginPwd);
+                        trData.push(obj.loginTime);
+                        trData.push(obj.loginIp);
+                        trData.push(obj.empowerRoles);
+                        trData.push(getCodeName("USER-IS_ALLOW_LOGIN", obj.isAllowLogin));
+                        trData.push(obj.pwdErrCunt);
+                        trData.push(fromatDateYMDHMS(obj.lastUptPwdTime));
+                        trData.push(obj.cteUserNo);
+                        trData.push(obj.uteUserNo);
+                        trData.push(fromatDateYMDHMS(obj.uteDt));
+                        trData.push(fromatDateYMDHMS(obj.cteDt));
+                        trData.push("<a href='javascript:void(0)'  onclick=view('"+JSON.stringify(obj)+"')><i class='fa fa-search-plus'></i>查看</a>");
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
                             trData[i] = '';
@@ -1096,7 +1091,6 @@
                 $("#queryMecGrid").DataTable().order([1, 'asc']).draw();
                 $("#pagination-bar").show();
                 if (page == 1) {
-                    //first page
                     $("#pagination .prev a").css({'color':'gray','cursor':'not-allowed'});
                 } else {
                     $("#pagination .prev a").css({'color':'#23527c','cursor':'pointer'});
@@ -1107,9 +1101,6 @@
                 } else {
                     $("#pagination .next a").css({'color':'#23527c','cursor':'pointer'});
                 }
-                //动态设置iframe高度
-                //var currentTabId = $("#tab-bar", parent.document).children('li.active').children('a').attr('href').replace('#tab_','');
-                //setIframeHeight($('#frame_'+currentTabId,parent.document)[0]);
             },
             error:function(error){
 
@@ -1132,9 +1123,10 @@
         return Math.abs(cha);
     }
         <!--操作链接点击事件-->
-        function view(uuid){
+        function view(info){
             var param = {};
-            param.uuid = uuid;
+            var obj= JSON.parse(info);
+             param.userId = obj.userId;
             $.ajax({
                 type : "POST",
                 url : baseURL + "/user/user/getDetail",
@@ -1145,26 +1137,20 @@
                             document.getElementById('USER_ID_VIEW').value=data.data.userId;
                             document.getElementById('USER_NAME_VIEW').value=data.data.userName;
                             document.getElementById('REAL_NAME_VIEW').value=data.data.realName;
-                            getComboStore(data.data.sex,"SEX_VIEW", "SEX",true);
-                            document.getElementById('BIRTHDAY_VIEW').value=data.data.birthday;
+                            getComboStore(data.data.sex,"SEX_VIEW", "USER-SEX",true);
                             document.getElementById('TEL_NO_VIEW').value=data.data.telNo;
                             document.getElementById('MAIL_VIEW').value=data.data.mail;
                             document.getElementById('ID_NUMBER_VIEW').value=data.data.idNumber;
                             document.getElementById('DEPT_NO_VIEW').value=data.data.deptNo;
-                            getComboStore(data.data.userSts,"USER_STS_VIEW", "USER_STS",true);
+                            getComboStore(data.data.userSts,"USER_STS_VIEW", "USER-USER_STS",true);
                             document.getElementById('LOGIN_PWD_VIEW').value=data.data.loginPwd;
                             document.getElementById('LOGIN_TIME_VIEW').value=data.data.loginTime;
                             document.getElementById('LOGIN_IP_VIEW').value=data.data.loginIp;
-                            getComboStore(data.data.empowerRoles,"EMPOWER_ROLES_VIEW", "EMPOWER_ROLES",true);
-                            getComboStore(data.data.isAllowLogin,"IS_ALLOW_LOGIN_VIEW", "IS_ALLOW_LOGIN",true);
+                            document.getElementById('EMPOWER_ROLES_VIEW').value=data.data.empowerRoles;
+                            getComboStore(data.data.isAllowLogin,"IS_ALLOW_LOGIN_VIEW", "USER-IS_ALLOW_LOGIN",true);
                             document.getElementById('PWD_ERR_CUNT_VIEW').value=data.data.pwdErrCunt;
-                            document.getElementById('LAST_UPT_PWD_TIME_VIEW').value=data.data.lastUptPwdTime;
                             document.getElementById('CTE_USER_NO_VIEW').value=data.data.cteUserNo;
                             document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
-                            document.getElementById('UTE_DT_VIEW').value=data.data.uteDt;
-                            document.getElementById('UTE_TM_VIEW').value=data.data.uteTm;
-                            document.getElementById('CTE_DT_VIEW').value=data.data.cteDt;
-                            document.getElementById('CTE_TM_VIEW').value=data.data.cteTm;
                     $("#viewWin").modal('show');
 
                 },
@@ -1177,29 +1163,373 @@
         $("#openform_cancel_btn").on('click',function(){
             $("#viewWin").modal('hide');
         });
-        //下载模板按钮
-        $("#download_template_btn").on('click', function() {
-            window.open(baseURL +'/user/user/downloadTemplate');
-        });
-
-        //导出按钮
-        $("#isExport_btn").on('click', function() {
-            var totalCount = $("#itemCount").text();
-            if(totalCount==0){
-                bootbox.alert("没有数据可以导出，请筛选数据!");
-                return ;
+    function addOrUpdateFormValidator(){
+        $('#addOrUpdateform').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            message: 'This value is not valid',
+            fields: {
+             userId: {
+                message: '用户ID验证失败',
+                validators: {
+                     notEmpty: {message: '用户ID不能为空'},
+                     stringLength: {
+                         max: 10,
+                         message: '用户ID长度超出范围，应在10之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             userName: {
+                message: '昵称验证失败',
+                validators: {
+                     notEmpty: {message: '昵称不能为空'},
+                     stringLength: {
+                         max: 20,
+                         message: '昵称长度超出范围，应在20之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             realName: {
+                message: '真实姓名验证失败',
+                validators: {
+                     notEmpty: {message: '真实姓名不能为空'},
+                     stringLength: {
+                         max: 100,
+                         message: '真实姓名长度超出范围，应在100之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             sex: {
+                message: '性别验证失败',
+                validators: {
+                     notEmpty: {message: '性别不能为空'},
+                     stringLength: {
+                         max: 1,
+                         message: '性别长度超出范围，应在1之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             birthday: {
+                message: '出生年月日验证失败',
+                validators: {
+                     notEmpty: {message: '出生年月日不能为空'},
+                         date: {
+                             format: 'YYYY/MM/DD',
+                             message: '日期无效'
+                         }
+                }
+            },
+             telNo: {
+                message: '电话号码验证失败',
+                validators: {
+                     notEmpty: {message: '电话号码不能为空'},
+                         regexp: {
+                             regexp: /^1\d{10}$/,
+                             message: '手机号格式错误'
+                         }
+                }
+            },
+             mail: {
+                message: '邮箱验证失败',
+                validators: {
+                     notEmpty: {message: '邮箱不能为空'},
+                         emailAddress : {
+                             message : '请输入正确的邮件地址'
+                         }
+                }
+            },
+             idNumber: {
+                message: '身份证号验证失败',
+                validators: {
+                     stringLength: {
+                         max: 18,
+                         message: '身份证号长度超出范围，应在18之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             deptNo: {
+                message: '部门编号验证失败',
+                validators: {
+                     stringLength: {
+                         max: 10,
+                         message: '部门编号长度超出范围，应在10之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             userSts: {
+                message: '状态验证失败',
+                validators: {
+                     stringLength: {
+                         max: 2,
+                         message: '状态长度超出范围，应在2之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             loginPwd: {
+                message: '登录密码验证失败',
+                validators: {
+                     notEmpty: {message: '登录密码不能为空'},
+                     stringLength: {
+                         max: 255,
+                         message: '登录密码长度超出范围，应在255之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             loginTime: {
+                message: '登录时间验证失败',
+                validators: {
+                     stringLength: {
+                         max: 14,
+                         message: '登录时间长度超出范围，应在14之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             loginIp: {
+                message: '登录IP验证失败',
+                validators: {
+                     stringLength: {
+                         max: 20,
+                         message: '登录IP长度超出范围，应在20之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             empowerRoles: {
+                message: '授权角色验证失败',
+                validators: {
+                     stringLength: {
+                         max: 20,
+                         message: '授权角色长度超出范围，应在20之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             isAllowLogin: {
+                message: '是否允许登录验证失败',
+                validators: {
+                     notEmpty: {message: '是否允许登录不能为空'},
+                     stringLength: {
+                         max: 1,
+                         message: '是否允许登录长度超出范围，应在1之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             pwdErrCunt: {
+                message: '密码错误次数验证失败',
+                validators: {
+                     stringLength: {
+                         max: 3,
+                         message: '密码错误次数长度超出范围，应在3之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
+             lastUptPwdTime: {
+                message: '密码修改时间验证失败',
+                validators: {
+                     stringLength: {
+                         max: 20,
+                         message: '密码修改时间长度超出范围，应在20之内！'
+                     },
+                     callback: {
+                         message: '不允许有空格！',
+                                 callback: function (value, validator) {
+                                        return hasBlankSpace(value);
+                                     }
+                     }
+                }
+            },
             }
-            $("#exportExcelWin").modal('show');
-            $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
-            $("#innerExcelType").attr("disabled", "disabled");
-            $("#exportform_save_btn").off('click').on('click', function() {
-                window.open(baseURL +"/user/user/export");
-                $("#exportExcelWin").modal('hide');
-            });
-            $("#exportform_cancel_btn").off('click').on('click', function() {
-                $("#exportExcelWin").modal('hide');
+        }).on('success.form.bv', function(e) {//点击提交之后
+                    e.preventDefault();
+                    var $form = $(e.target);
+                    var bv = $form.data('bootstrapValidator');
+                    // Use Ajax to submit form data 提交至form标签中的action，result自定义
+                    $.post($form.attr('action'), $form.serialize(), function(result) {
+                        //恢复submit按钮disable状态。
+                        $('#addOrUpdateform').bootstrapValidator('disableSubmitButtons', false);
+                        //do something...
+                    });
+                });
+    };
+
+
+    // 验证是否包含空格
+    function hasBlankSpace(value) {
+        var val= value.replace(/^\s+|\s+$/g, '')
+        if (value!=val) {
+            res = false
+        }
+        return true;
+    }
+
+        function queryFormValidator(){
+        $('#queryForm').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            message: 'This value is not valid',
+            fields: {
+             userId: {
+                message: '用户ID验证失败',
+                     validators: {
+                         stringLength: {
+                             max: 10,
+                             message: '用户ID长度超出范围，应在10之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
+                         }
+                    }
+                },
+             userName: {
+                message: '昵称验证失败',
+                     validators: {
+                         stringLength: {
+                             max: 20,
+                             message: '昵称长度超出范围，应在20之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
+                         }
+                    }
+                },
+             realName: {
+                message: '真实姓名验证失败',
+                     validators: {
+                         stringLength: {
+                             max: 100,
+                             message: '真实姓名长度超出范围，应在100之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
+                         }
+                    }
+                },
+             sex: {
+                message: '性别验证失败',
+                     validators: {
+                         stringLength: {
+                             max: 1,
+                             message: '性别长度超出范围，应在1之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
+                         }
+                    }
+                },
+             telNo: {
+                message: '电话号码验证失败',
+                     validators: {
+                         regexp: {
+                             regexp: /^1\d{10}$/,
+                             message: '手机号格式错误'
+                         }
+                    }
+                },
+            }
+    }).on('success.form.bv', function(e) {//点击提交之后
+            e.preventDefault();
+            var $form = $(e.target);
+            var bv = $form.data('bootstrapValidator');
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                $('#queryForm').bootstrapValidator('disableSubmitButtons', false);
+                //do something...
             });
         });
+    };
 </script>
 
 </body>

@@ -16,6 +16,7 @@ import ${classPackage}.util.UuidUtil;
 import com.google.common.collect.Lists;
 import ${classPackage}.util.DateUtil;
 import ${classPackage}.util.LoginUtils;
+import com.wutong.wsk.service.system.DicCodeUtils;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -92,7 +93,7 @@ public class ${classNameD}Service {
 	}
 	</#if>
 
-	<#if isUpdate=="01">
+<#if isUpdate=="01">
 	/**
 	 * 更新
 	 * @author ${classAuthor}
@@ -101,26 +102,26 @@ public class ${classNameD}Service {
 	 * @return
 	 */
 	public int update(${classNameD} ${classNameX}) {
-        <#list tableCarrays as tableCarray>
-            <#if tableCarray.columnNameX == "uteDt">
-                <#if tableCarray.dataType == "String">
-            ${classNameX}.setUteDt(DateUtil.getCurDT());
-                </#if>
-                <#if tableCarray.dataType == "Date">
-            ${classNameX}.setUteDt(DateUtil.getDate());
-                </#if>
+    <#list tableCarrays as tableCarray>
+        <#if tableCarray.columnNameX == "uteDt">
+            <#if tableCarray.dataType == "String">
+                ${classNameX}.setUteDt(DateUtil.getCurDT());
             </#if>
-            <#if tableCarray.columnNameX == "uteTm">
-        ${classNameX}.setUteDt(DateUtil.getCurTM());
+            <#if tableCarray.dataType == "Date">
+                ${classNameX}.setUteDt(DateUtil.getDate());
             </#if>
-            <#if tableCarray.columnNameX == "uteUserNo">
-        ${classNameX}.setUteUserNo(LoginUtils.getLoginName());
-            </#if>
-        </#list>
+        </#if>
+        <#if tableCarray.columnNameX == "uteTm">
+            ${classNameX}.setUteDt(DateUtil.getCurTM());
+        </#if>
+        <#if tableCarray.columnNameX == "uteUserNo">
+            ${classNameX}.setUteUserNo(LoginUtils.getLoginName());
+        </#if>
+    </#list>
 		return  ${classNameX}Mapper.update(${classNameX});
 	}
-	</#if>
-	<#if isAdd == "01">
+</#if>
+<#if isAdd == "01">
 	/**
 	 * 插入
 	 * @author ${classAuthor}
@@ -129,26 +130,26 @@ public class ${classNameD}Service {
 	 * @return
 	 */
 	public int insert(${classNameD} ${classNameX}) {
-        <#list tableCarrays as tableCarray>
-            <#if tableCarray.columnNameX == "cteDt">
-                <#if tableCarray.dataType == "String">
-                    ${classNameX}.setCteDt(DateUtil.getCurDT());
-                </#if>
-                <#if tableCarray.dataType == "Date">
-                    ${classNameX}.setCteDt(DateUtil.getDate());
-                </#if>
+    <#list tableCarrays as tableCarray>
+        <#if tableCarray.columnNameX == "cteDt">
+            <#if tableCarray.dataType == "String">
+                ${classNameX}.setCteDt(DateUtil.getCurDT());
             </#if>
-            <#if tableCarray.columnNameX == "cteTm">
-                ${classNameX}.setCteDt(DateUtil.getCurTM());
+            <#if tableCarray.dataType == "Date">
+                ${classNameX}.setCteDt(DateUtil.getDate());
             </#if>
-            <#if tableCarray.columnNameX == "cteUserNo">
-                ${classNameX}.setCteUserNo(LoginUtils.getLoginName());
-            </#if>
-        </#list>
+        </#if>
+        <#if tableCarray.columnNameX == "cteTm">
+            ${classNameX}.setCteDt(DateUtil.getCurTM());
+        </#if>
+        <#if tableCarray.columnNameX == "cteUserNo">
+            ${classNameX}.setCteUserNo(LoginUtils.getLoginName());
+        </#if>
+    </#list>
 		return  ${classNameX}Mapper.insert(${classNameX});
 	}
-	</#if>
-	<#if isDetele=="01">
+</#if>
+<#if isDetele=="01">
 	/**
 	 * 根据主键删除
 	 * @author ${classAuthor}
@@ -156,10 +157,11 @@ public class ${classNameD}Service {
 	 * @param map
 	 * @return
 	 */
-	public int delete(Map<String,Object> map) {
+	public int delete(Map
+<String,Object> map) {
 		return  ${classNameX}Mapper.delete(map);
 	}
-	</#if>
+</#if>
 	<#if isImport == "01">
 	/**
      * @description:主页面导入功能

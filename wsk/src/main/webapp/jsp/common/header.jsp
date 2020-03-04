@@ -91,6 +91,15 @@
     /**
      * 日期转换
      */
+    function  fromatDateYMD(val){
+        if(val == null){
+            return "";
+        }
+        return new Date(val).Format("yyyy-MM-dd");
+    }
+    /**
+     * 日期转换
+     */
     function fromatDateTM(val){
         return new Date(val).Format("yyyy-MM-dd HH-mm-ss");
     }

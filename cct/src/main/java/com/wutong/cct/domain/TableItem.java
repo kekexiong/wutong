@@ -5,6 +5,7 @@ public class TableItem {
 	private String columnName;
 	private String isPrimaryKey;
 	private String dataType;//字段类型int
+	private String validatorType;//校验类型
 	private String comments;// 注释
 	private String dataLength;
 	private String nullable;
@@ -188,5 +189,13 @@ public class TableItem {
 
 	public void setIsLike(String isLike) {
 		this.isLike = isLike;
+	}
+
+	public String getValidatorType() {
+		return validatorType;
+	}
+
+	public void setValidatorType(String validatorType) {
+		this.validatorType = validatorType;
 	}
 }

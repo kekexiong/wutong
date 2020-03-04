@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +35,7 @@ public class TableService {
             } else {
                 itemList.get(i).setQueryRule("03");//默认输入框
                 itemList.get(i).setQueryShow("√");
-                if (!hasThis(innt_selectArray, itemList.get(i).getColumnName())) {
+                if (!hasThis(innt_selectArray, itemList.get(i).getColumnName()) && i < 4) {// 默认前四个为查询项
                     itemList.get(i).setQueryType("√");
                 }
                 if (!hasThis(innt_insertArray, itemList.get(i).getColumnName())) {
@@ -55,10 +54,24 @@ public class TableService {
             if ("datetime".equals(itemList.get(i).getDataType())) {
                 itemList.get(i).setDataType("Date");
                 itemList.get(i).setDataLength("20");
+                itemList.get(i).setQueryRule("06");//
+                itemList.get(i).setValidatorType("04");// YMDHMS
+            }
+            if ("date".equals(itemList.get(i).getDataType())) {
+                itemList.get(i).setDataType("Date");
+                itemList.get(i).setDataLength("20");
+                itemList.get(i).setQueryRule("06");//默认输入框
+                itemList.get(i).setValidatorType("03");// YMD
+            }
+            if (itemList.get(i).getColumnName().contains("TEL") || itemList.get(i).getComments().contains("电话")){
+                itemList.get(i).setValidatorType("05");// 电话
+            }else if(itemList.get(i).getColumnName().contains("MAIL")  || itemList.get(i).getComments().contains("邮箱")){
+                itemList.get(i).setValidatorType("06");// 邮箱
             }
             if ("NUMBER".equals(itemList.get(i).getDataType())) {
                 if ("0".equals(itemList.get(i).getDataScale())) {
                     itemList.get(i).setDataType("int");
+                    itemList.get(i).setValidatorType("01");
                 } else {
                     itemList.get(i).setDataType("BigDecimal");
                 }
@@ -69,20 +82,21 @@ public class TableService {
             if ("BigDecimal".equals(itemList.get(i).getDataType())) {
                 String intMax = "9";
                 int pr = Integer.valueOf(itemList.get(i).getDataPrecision());
-                int sc =Integer.valueOf(itemList.get(i).getDataScale());
+                int sc = Integer.valueOf(itemList.get(i).getDataScale());
                 int j = 1;
-                while (j < pr-sc) {
+                while (j < pr - sc) {
                     intMax = intMax + "9";
                     j++;
                 }
-                int g=0;
-                if (!"0".equals(itemList.get(i).getDataScale())) intMax=intMax+".";
+                int g = 0;
+                if (!"0".equals(itemList.get(i).getDataScale())) intMax = intMax + ".";
                 while (g < Integer.valueOf(itemList.get(i).getDataScale())) {
                     intMax = intMax + "9";
                     g++;
                 }
 
                 itemList.get(i).setDataLength(intMax);
+                itemList.get(i).setValidatorType("02");
             }
 
             if ("int".equals(itemList.get(i).getDataType())) {
@@ -93,6 +107,7 @@ public class TableService {
                     intMax = intMax + "9";
                     j++;
                 }
+                itemList.get(i).setValidatorType("01");
                 itemList.get(i).setDataLength(intMax);
                 itemList.get(i).setDataPrecision(intLength);
             }
@@ -102,8 +117,11 @@ public class TableService {
                 itemList.get(i).setComments(itemList.get(i).getColumnName());
             }
             if (itemList.get(i).getComments().contains(" ")) {
+                // 含有空格 且有：视为下拉选
+                if (itemList.get(i).getComments().contains(":") || itemList.get(i).getComments().contains("：")) {
+                    itemList.get(i).setQueryRule("04");
+                }
                 itemList.get(i).setComments(itemList.get(i).getComments().substring(0, itemList.get(i).getComments().indexOf(" ")));
-                itemList.get(i).setQueryRule("04");
             }
         }
         return itemList;

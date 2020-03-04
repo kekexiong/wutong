@@ -48,13 +48,13 @@ public class CodeController {
     // 作者
     private final String CLASS_AUTHOR = "zhao_qg";
     // 表名
-    private final String TABLE_NAME = "MENU";
+    private final String TABLE_NAME = "USER";
     // 业务名称
-    private final String BUSINESS_NAME = "菜单";
+    private final String BUSINESS_NAME = "用户";
     // 工程目录 com.wutong.wsk.controller
     private final String CLASS_PACKAGE = "com.wutong.wsk";
     // 业务包 com.wutong.wsk.controller.BUS_PACKAGE
-    private final String BUS_PACKAGE = "system";
+    private final String BUS_PACKAGE = "user";
 
 
     /**

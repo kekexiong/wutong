@@ -112,7 +112,7 @@
         SET
         <#list updateCarrays as tableCarray>
             <#if (tableCarray.isPrimaryKey??) || (tableCarray.isPrimaryKey != "√")>
-              <if test="${tableCarray.columnNameX}!= null and ${tableCarray.columnNameX}!= ''">
+              <if test="${tableCarray.columnNameX}!= null<#if (tableCarray.dataType??) && (tableCarray.dataType != "Date")> and ${tableCarray.columnNameX}!= ''</#if>">
                   ${tableCarray.columnName}=${specific}{${tableCarray.columnNameX}}<#if (tableCarray_has_next)>,</#if>
               </if>
             </#if>
