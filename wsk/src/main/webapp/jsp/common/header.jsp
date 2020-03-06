@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"%>
-<%@ page import="com.wutong.wsk.*"%>
 <%@ page import="com.wutong.wsk.domain.SystemAuthorizingRealm.Principal"%>
-<%@ page import="com.wutong.wsk.service.system.DicCodeUtils" %>
-<%@ page import="java.util.Map" %>
+<%@ page import="com.wutong.wsk.service.system.DicCodeUtils"%>
 
 <%
 	Principal principal=null;
@@ -79,42 +77,29 @@
             });
         }
     });
+
     /**
      * 日期转换
      */
-    function  fromatDateYMDHMS(val){
-        if(val == null){
-            return "";
-		}
-        return new Date(val).Format("yyyy-MM-dd hh:mm:ss");
-    }
-    /**
-     * 日期转换
-     */
-    function  fromatDateYMD(val){
-        if(val == null){
+    function fromatDate(val, fmt) {
+        if (val == null) {
             return "";
         }
-        return new Date(val).Format("yyyy-MM-dd");
+        return new Date(val).Format(fmt);
     }
-    /**
-     * 日期转换
-     */
-    function fromatDateTM(val){
-        return new Date(val).Format("yyyy-MM-dd HH-mm-ss");
-    }
+
     /**
      * 获取字典名称
      */
-    function getCodeName(key, val){
-        if(val==null){
+    function getCodeName(key, val) {
+        if (val == null) {
             return "";
-		}
-       var dicCodeMap='<%=dicCodeMap%>';
+        }
+        var dicCodeMap = '<%=dicCodeMap%>';
         var json = JSON.parse(dicCodeMap);
-       if(json[key + val]!=undefined){
-			return json[key + val]
-	   }
+        if (json[key + val] != undefined) {
+            return json[key + val]
+        }
         return val;
     }
 </script>

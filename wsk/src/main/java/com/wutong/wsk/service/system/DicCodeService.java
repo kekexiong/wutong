@@ -16,6 +16,7 @@ import com.wutong.wsk.util.UuidUtil;
 import com.google.common.collect.Lists;
 import com.wutong.wsk.util.DateUtil;
 import com.wutong.wsk.util.LoginUtils;
+import com.wutong.wsk.service.system.DicCodeUtils;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  DicCodeService
  * @author zhao_qg
- * @date   20200228 18:30:58
+ * @date   20200305 18:43:03
  */
  @Service
 public class DicCodeService {
@@ -45,7 +46,7 @@ public class DicCodeService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200228 18:30:58
+ 	 * @date   20200305 18:43:03
 	 * @param map
 	 * @return
 	 */
@@ -55,7 +56,7 @@ public class DicCodeService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200228 18:30:58
+ 	 * @date   20200305 18:43:03
 	 * @param map
 	 * @return
 	 */
@@ -65,7 +66,7 @@ public class DicCodeService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200228 18:30:58
+ 	 * @date   20200305 18:43:03
 	 * @param paramVo
 	 * @return
 	 */
@@ -76,35 +77,36 @@ public class DicCodeService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200228 18:30:58
+ 	 * @date   20200305 18:43:03
 	 * @param dicCode
 	 * @return
 	 */
 	public int update(DicCode dicCode) {
-        dicCode.setUteUserNo(LoginUtils.getLoginName());
-            dicCode.setUteDt(DateUtil.getDate());
+            dicCode.setUteUserNo(LoginUtils.getLoginName());
+                dicCode.setUteDt(DateUtil.getDate());
 		return  dicCodeMapper.update(dicCode);
 	}
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200228 18:30:58
+ 	 * @date   20200305 18:43:03
 	 * @param dicCode
 	 * @return
 	 */
 	public int insert(DicCode dicCode) {
-                dicCode.setCteUserNo(LoginUtils.getLoginName());
-                    dicCode.setCteDt(DateUtil.getDate());
+            dicCode.setCteUserNo(LoginUtils.getLoginName());
+                dicCode.setCteDt(DateUtil.getDate());
 		return  dicCodeMapper.insert(dicCode);
 	}
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200228 18:30:58
+ 	 * @date   20200305 18:43:03
 	 * @param map
 	 * @return
 	 */
-	public int delete(Map<String,Object> map) {
+	public int delete(Map
+<String,Object> map) {
 		return  dicCodeMapper.delete(map);
 	}
 	/**
@@ -112,7 +114,7 @@ public class DicCodeService {
 	 * @param paramMap
 	 * @return SXSSFWorkbook
 	 * @throws Exception
-     * @date:20200228 18:30:58
+     * @date:20200305 18:43:03
 	 */
 	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
         int count = findByConditionCount(paramMap);

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * @description DicCodedomain
  * @author zhao_qg
- * @date 20200228 18:30:58
+ * @date 20200305 18:43:03
  */
 @Data
 public class DicCode {

@@ -12,7 +12,7 @@
         <where>
         <#list tableCarrays as tableCarray>
         <#if (tableCarray.queryType)?? && tableCarray.queryType == "01" && tableCarray.queryRule != "02">
-            <if test="${classNameX}.${tableCarray.columnNameX}!= null and ${classNameX}.${tableCarray.columnNameX}!= ''">
+            <if test="${classNameX}.${tableCarray.columnNameX}!= null<#if (tableCarray.dataType??) && (tableCarray.dataType != "Date")> and  ${classNameX}.${tableCarray.columnNameX}!= ''</#if>">
             <#if (tableCarray.isLike)?? && tableCarray.isLike == "01">
                 and ${tableCarray.columnName} like '%${specific2}{${classNameX}.${tableCarray.columnNameX}}%'
             <#else>
@@ -21,11 +21,11 @@
             </if>
         </#if>
         <#if (tableCarray.queryType)?? && tableCarray.queryType == "01" && tableCarray.queryRule == "02">
-            <if test="${classNameX}.${tableCarray.columnNameX}beginDt!= null and ${classNameX}.${tableCarray.columnNameX}beginDt!= ''">
-                and ${tableCarray.columnName}&gt;=${specific}{${classNameX}.${tableCarray.columnNameX}beginDt}
+            <if test="${classNameX}.${tableCarray.columnNameX}BeginDt!= null">
+                and ${tableCarray.columnName}&gt;=${specific}{${classNameX}.${tableCarray.columnNameX}BeginDt}
             </if>
-            <if test="${classNameX}.${tableCarray.columnNameX}endDt!= null and ${classNameX}.${tableCarray.columnNameX}endDt!= ''">
-                and ${tableCarray.columnName}&lt;=${specific}{${classNameX}.${tableCarray.columnNameX}endDt}
+            <if test="${classNameX}.${tableCarray.columnNameX}EndDt!= null">
+                and ${tableCarray.columnName}&lt;=${specific}{${classNameX}.${tableCarray.columnNameX}EndDt}
             </if>
         </#if>
         </#list>
@@ -36,16 +36,16 @@
     <select id="findByCondition" parameterType="java.util.Map" resultType="Map">
         <#--${stringCarrayNames7}-->
         SELECT
-            <#list tableCarrays as tableCarray> 
-                <#if (tableCarray.columnName??)>
-                    <#if (tableCarray.isAddColumnName??) && tableCarray.isAddColumnName == "0">
-                        t.${tableCarray.columnName} as "${tableCarray.columnNameX}"<#if (tableCarray_has_next)>,</#if>
-                    </#if>
-                    <#if (tableCarray.isAddColumnName??) && tableCarray.isAddColumnName == "1">
-                        '' as "${tableCarray.columnNameX}"<#if (tableCarray_has_next)>,</#if>
-                    </#if>
-                </#if>
-            </#list>
+<#list tableCarrays as tableCarray>
+    <#if (tableCarray.columnName??)>
+        <#if (tableCarray.isAddColumnName??) && tableCarray.isAddColumnName == "0">
+            t.${tableCarray.columnName} as "${tableCarray.columnNameX}"<#if (tableCarray_has_next)>,</#if>
+        </#if>
+        <#if (tableCarray.isAddColumnName??) && tableCarray.isAddColumnName == "1">
+            '' as "${tableCarray.columnNameX}"<#if (tableCarray_has_next)>,</#if>
+        </#if>
+    </#if>
+</#list>
             <!-- 请在此关联查询表 -->
             FROM <#if dbType = 'ORACLE'>${dbUser}.</#if>${tableName} t
             <include refid="whereQueryCondition"></include>

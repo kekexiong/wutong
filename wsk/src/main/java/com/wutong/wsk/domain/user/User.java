@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * @description Userdomain
  * @author zhao_qg
- * @date 20200304 16:30:35
+ * @date 20200306 18:06:20
  */
 @Data
 public class User {
@@ -30,6 +30,8 @@ public class User {
     /**
      * 出生年月日
      */
+    private Date birthdayBeginDt;
+    private Date birthdayEndDt;
     private Date birthday;
     /**
      * 电话号码

@@ -22,9 +22,9 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 
 /**
- * @description  菜单控制层
+ * @description  系统字典控制层
  * @author zhao_qg
- * @date   20200228 18:30:58
+ * @date   20200305 18:43:03
  */
 @Controller
 @RequestMapping("/system/dicCode")
@@ -42,7 +42,7 @@ public class DicCodeController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200228 18:30:58
+     * @date 20200305 18:43:03
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -50,7 +50,7 @@ public class DicCodeController extends BaseController {
             @RequestParam(value = "start", defaultValue = START) int start,
             @RequestParam(value = "limit", defaultValue = LIMIT) int limit,
             @ModelAttribute DicCode paramVo) {
-        String opNm = "菜单-查询";
+        String opNm = "系统字典-查询";
             try {
                 LOGGER.info(opNm, paramVo.toString(), "--begin");
                 Map<String, Object> map = setParams(start, limit);
@@ -72,12 +72,12 @@ public class DicCodeController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200228 18:30:58
+     * @date 20200305 18:43:03
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> getByKey(HttpSession session, @ModelAttribute DicCode paramVo) {
-        String opNm = "菜单-详细";
+        String opNm = "系统字典-详细";
             try {
                 LOGGER.info(opNm, paramVo.toString(), "--begin");
     DicCode detail= dicCodeService.getByKey(paramVo);
@@ -96,12 +96,12 @@ public class DicCodeController extends BaseController {
      * @param dicCode
      * @return map
      * @author zhao_qg
-     * @date 20200228 18:30:58
+     * @date 20200305 18:43:03
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> save( @ModelAttribute DicCode dicCode) {
-        String opNm = "菜单-保存";
+        String opNm = "系统字典-保存";
         try{
             LOGGER.info(opNm, dicCode.toString(), "--begin");
             dicCode.setUuid(UuidUtil.getUUID());
@@ -123,12 +123,12 @@ public class DicCodeController extends BaseController {
      * @param dicCode
      * @return map
      * @author zhao_qg
-     * @date 20200228 18:30:58
+     * @date 20200305 18:43:03
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> udpate( @ModelAttribute DicCode dicCode) {
-        String opNm = "菜单-更新";
+        String opNm = "系统字典-更新";
         try{
             LOGGER.info(opNm, dicCode.toString(), "--begin");
             int num = dicCodeService.update(dicCode);
@@ -149,12 +149,12 @@ public class DicCodeController extends BaseController {
      * @param keys
      * @return map
      * @author zhao_qg
-     * @date 20200228 18:30:58
+     * @date 20200305 18:43:03
      */
     @RequestMapping(value = "/deleteByKey", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> deleteByKey(HttpSession session, @RequestParam(value = "keys") String keys) {
-        String opNm = "菜单-删除";
+        String opNm = "系统字典-删除";
         if(keys==null|| "".equals(keys)){
             return super.setFailure("错误：主键参数为空");
         }
@@ -183,12 +183,12 @@ public class DicCodeController extends BaseController {
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200228 18:30:58
+     * @date 20200305 18:43:03
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {
-        String opNm = "菜单信息管理-导出";
-        String fileName = "菜单" + DateUtil.getCurDTTM() + ".xlsx";
+        String opNm = "系统字典信息管理-导出";
+        String fileName = "系统字典" + DateUtil.getCurDTTM() + ".xlsx";
         Map<String, Object> paraMap = (Map<String, Object>) session.getAttribute("queryDicCodeParam");
         long startTime = System.currentTimeMillis();
         Map<String, Object> paramsMap = (Map<String, Object>) session.getAttribute("queryParams");

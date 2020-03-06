@@ -88,7 +88,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-search font-blue"></i>
-                            <span class="caption-subject font-blue bold uppercase">菜单信息列表</span>
+                            <span class="caption-subject font-blue bold uppercase">系统字典信息列表</span>
                         </div>
                         <div class="tools">
                             <a href="" class="fullscreen" data-original-title="全屏" title=""></a>
@@ -109,7 +109,6 @@
                                                     <th class="nowrap">更新日期</th>
                                                     <th class="nowrap">创建人</th>
                                                     <th class="nowrap">创建日期</th>
-                                                <th class="nowrap">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -172,7 +171,7 @@
                         <div class="row norow">
                             <input type="hidden" value = "" id = "hiddenType"/>
                             <input type="hidden" value = "" id = "hiddenKey"/>
-                                                              <!-- 普通输入框 -->
+                               <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">字典KEY:</label>
@@ -181,7 +180,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                             <!-- 普通输入框 -->
+                                                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">值:</label>
@@ -190,7 +189,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                             <!-- 普通输入框 -->
+                                                                                              <!-- 普通输入框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">名称:</label>
@@ -199,7 +198,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                                                                                                            <!-- 下拉框 -->
+                                                                                                                             <!-- 下拉框 -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">状态:</label>
@@ -228,107 +227,6 @@
         </div>
     </div>
     <!-- ---------------------------------------详情页面展示(获取输入值的输入框后缀统一增加_VIEW标识符)------------------------------------------------------------ -->
-        <div class="modal fade" id="viewWin" tabindex="-1" role="dialog" data-backdrop="static" data-width="700px" data-height="450px">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
-                <h4 class="modal-title" >菜单详情信息</h4>
-            </div>
-            <div class="modal-body">
-                <div class="portlet-body form">
-                    <form action="" class="form-horizontal" id="">
-                        <div class="form-body">
-                            <div class="row norow">
-                                                                                                                                                                        <!-- 普通输入框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">字典KEY:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <input name="codeKey" id="CODE_KEY_VIEW" class="form-control" disabled="disabled" placeholder="字典KEY">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">值:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <input name="codeValue" id="CODE_VALUE_VIEW" class="form-control" disabled="disabled" placeholder="值">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">名称:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <input name="codeName" id="CODE_NAME_VIEW" class="form-control" disabled="disabled" placeholder="名称">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                                                                                                                                                                                                              <!-- 下拉框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">状态:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <select name="codeSts" id="CODE_STS_VIEW" class="bs-select form-control" data-show-subtext="true">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                                                                                                                        <!-- 普通输入框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">更新人:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <input name="uteUserNo" id="UTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="更新人">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">更新日期:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <input name="uteDt" id="UTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="更新日期">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">创建人:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <input name="cteUserNo" id="CTE_USER_NO_VIEW" class="form-control" disabled="disabled" placeholder="创建人">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                                                                                                                                                                   <!-- 普通输入框 -->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 text-right">创建日期:</label>
-                                                <div class="col-md-8 paddingnone">
-                                                    <input name="cteDt" id="CTE_DT_VIEW" class="form-control" disabled="disabled" placeholder="创建日期">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                           <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12" style="text-align:center;">
-                                            <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     <!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
     <div class="modal fade" id="exportExcelWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
@@ -475,7 +373,7 @@
             $("#addOrUpdateform .bs-select").selectpicker('val','');
             document.getElementById("hiddenType").value = "1";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "菜单添加信息";
+            title.innerHTML = "系统字典添加信息";
             addOrUpdate("add","");
         });
         //修改按钮
@@ -490,7 +388,7 @@
             }
             document.getElementById("hiddenType").value = "2";
             var title = document.getElementById("addOrUpdateWin_title");
-            title.innerHTML = "菜单修改信息";
+            title.innerHTML = "系统字典修改信息";
             addOrUpdate("update",record);
         });
         //添加保存按钮
@@ -671,6 +569,10 @@
             tempDay = myDate.getDate();
         }
         var dateString = myDate.getFullYear()+"/"+tempMonth+"/"+tempDay;
+                        $("#UTE_DT").datepicker('setStartDate', null);
+                        $("#UTE_DT").datepicker('update', dateString);
+                        $("#CTE_DT").datepicker('setStartDate', null);
+                        $("#CTE_DT").datepicker('update', dateString);
     }
 
 
@@ -683,12 +585,11 @@
             limit=$("#limit").val();
         }
         start=(page-1)*limit;
-
         //获取筛选条件输入值
         var param = {page:page,start:start,limit:limit};
-                        param.codeKey = $("#CODE_KEY").val();
-                        param.codeValue = $("#CODE_VALUE").val();
-                        param.codeName = $("#CODE_NAME").val();
+            param.codeKey = $("#CODE_KEY").val();
+            param.codeValue = $("#CODE_VALUE").val();
+            param.codeName = $("#CODE_NAME").val();
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
@@ -720,10 +621,9 @@
                         trData.push(obj.codeName);
                         trData.push(getCodeName("DIC_CODE-CODE_STS", obj.codeSts));
                         trData.push(obj.uteUserNo);
-                        trData.push(fromatDateYMDHMS(obj.uteDt));
+                        trData.push(fromatDate(obj.uteDt, "yyyy/MM/dd hh:mm:ss"));
                         trData.push(obj.cteUserNo);
-                        trData.push(fromatDateYMDHMS(obj.cteDt));
-                        trData.push("<a href='javascript:void(0)'  onclick=view('"+JSON.stringify(obj)+"')><i class='fa fa-search-plus'></i>查看</a>");
+                        trData.push(fromatDate(obj.cteDt, "yyyy/MM/dd hh:mm:ss"));
                     for(i=0; i < trData.length; i++){
                         if(trData[i] == undefined){
                             trData[i] = '';
@@ -765,38 +665,6 @@
         var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);
         return Math.abs(cha);
     }
-        <!--操作链接点击事件-->
-        function view(info){
-            var param = {};
-            var obj= JSON.parse(info);
-             param.uuid = obj.uuid;
-            $.ajax({
-                type : "POST",
-                url : baseURL + "/system/dicCode/getDetail",
-                data :param,
-                contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                dataType : "json",
-                success:function(data){
-                            document.getElementById('CODE_KEY_VIEW').value=data.data.codeKey;
-                            document.getElementById('CODE_VALUE_VIEW').value=data.data.codeValue;
-                            document.getElementById('CODE_NAME_VIEW').value=data.data.codeName;
-                            getComboStore(data.data.codeSts,"CODE_STS_VIEW", "DIC_CODE-CODE_STS",true);
-                            document.getElementById('UTE_USER_NO_VIEW').value=data.data.uteUserNo;
-                            document.getElementById('UTE_DT_VIEW').value=fromatDateYMDHMS(data.data.uteDt);
-                            document.getElementById('CTE_USER_NO_VIEW').value=data.data.cteUserNo;
-                            document.getElementById('CTE_DT_VIEW').value=fromatDateYMDHMS(data.data.cteDt);
-                    $("#viewWin").modal('show');
-
-                },
-                error:function(){
-                    alert("操作失败，请重新操作！")
-                }
-            });
-        }
-        //弹出页面取消按钮（详情）
-        $("#openform_cancel_btn").on('click',function(){
-            $("#viewWin").modal('hide');
-        });
         //下载模板按钮
         $("#download_template_btn").on('click', function() {
             window.open(baseURL +'/system/dicCode/downloadTemplate');
@@ -840,16 +708,11 @@
                      callback: {
                          message: '不允许有空格！',
                                  callback: function (value, validator) {
-                             res = true;
-                             var val= value.replace(/^\s+|\s+$/g, '')
-                             if (value!=val) {
-                                 res = false
-                             }
-                             return res;
-                         }
+                                        return hasBlankSpace(value);
+                                     }
                      }
-                     }
-                    },
+                }
+            },
              codeValue: {
                 message: '值验证失败',
                 validators: {
@@ -861,16 +724,11 @@
                      callback: {
                          message: '不允许有空格！',
                                  callback: function (value, validator) {
-                             res = true;
-                             var val= value.replace(/^\s+|\s+$/g, '')
-                             if (value!=val) {
-                                 res = false
-                             }
-                             return res;
-                         }
+                                        return hasBlankSpace(value);
+                                     }
                      }
-                     }
-                    },
+                }
+            },
              codeName: {
                 message: '名称验证失败',
                 validators: {
@@ -882,16 +740,11 @@
                      callback: {
                          message: '不允许有空格！',
                                  callback: function (value, validator) {
-                             res = true;
-                             var val= value.replace(/^\s+|\s+$/g, '')
-                             if (value!=val) {
-                                 res = false
-                             }
-                             return res;
-                         }
+                                        return hasBlankSpace(value);
+                                     }
                      }
-                     }
-                    },
+                }
+            },
              codeSts: {
                 message: '状态验证失败',
                 validators: {
@@ -903,16 +756,11 @@
                      callback: {
                          message: '不允许有空格！',
                                  callback: function (value, validator) {
-                             res = true;
-                             var val= value.replace(/^\s+|\s+$/g, '')
-                             if (value!=val) {
-                                 res = false
-                             }
-                             return res;
-                         }
+                                        return hasBlankSpace(value);
+                                     }
                      }
-                     }
-                    },
+                }
+            },
             }
         }).on('success.form.bv', function(e) {//点击提交之后
                     e.preventDefault();
@@ -926,8 +774,19 @@
                     });
                 });
     };
-    function queryFormValidator(){
-        $('#queryForm').bootstrapValidator({
+
+
+    // 验证是否包含空格
+    function hasBlankSpace(value) {
+        var val= value.replace(/^\s+|\s+$/g, '')
+        if (value!=val) {
+            return false
+        }
+        return true;
+    }
+
+        function queryFormValidator(){
+            $('#queryForm').bootstrapValidator({
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
                 invalid: 'glyphicon glyphicon-remove',
@@ -936,66 +795,51 @@
             message: 'This value is not valid',
             fields: {
              codeKey: {
-             message: '字典KEY验证失败',
+                message: '字典KEY验证失败',
                      validators: {
-                 stringLength: {
-                     max: 20,
-                     message: '字典KEY长度超出范围，应在20之内！'
-                 },
-                 callback: {
-                     message: '不允许有空格！',
-                             callback: function (value, validator) {
-                         res = true;
-                         var val= value.replace(/^\s+|\s+$/g, '')
-                         if (value!=val) {
-                             res = false
+                         stringLength: {
+                             max: 20,
+                             message: '字典KEY长度超出范围，应在20之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
                          }
-                         return res;
-                     }
-                 }
-             }
-         },
+                    }
+                },
              codeValue: {
-             message: '值验证失败',
+                message: '值验证失败',
                      validators: {
-                 stringLength: {
-                     max: 20,
-                     message: '值长度超出范围，应在20之内！'
-                 },
-                 callback: {
-                     message: '不允许有空格！',
-                             callback: function (value, validator) {
-                         res = true;
-                         var val= value.replace(/^\s+|\s+$/g, '')
-                         if (value!=val) {
-                             res = false
+                         stringLength: {
+                             max: 20,
+                             message: '值长度超出范围，应在20之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
                          }
-                         return res;
-                     }
-                 }
-             }
-         },
+                    }
+                },
              codeName: {
-             message: '名称验证失败',
+                message: '名称验证失败',
                      validators: {
-                 stringLength: {
-                     max: 50,
-                     message: '名称长度超出范围，应在50之内！'
-                 },
-                 callback: {
-                     message: '不允许有空格！',
-                             callback: function (value, validator) {
-                         res = true;
-                         var val= value.replace(/^\s+|\s+$/g, '')
-                         if (value!=val) {
-                             res = false
+                         stringLength: {
+                             max: 50,
+                             message: '名称长度超出范围，应在50之内！'
+                         },
+                         callback: {
+                             message: '填入值首尾含有空格！',
+                                     callback: function (value, validator) {
+                                                return hasBlankSpace(value);
+                                     }
                          }
-                         return res;
-                     }
-                 }
-             }
-         },
-    }
+                    }
+                },
+            }
     }).on('success.form.bv', function(e) {//点击提交之后
             e.preventDefault();
             var $form = $(e.target);

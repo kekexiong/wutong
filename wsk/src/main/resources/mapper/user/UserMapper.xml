@@ -28,47 +28,50 @@
     
     <sql id="whereQueryCondition">
         <where>
-            <if test="user.userId!= null and user.userId!= ''">
+            <if test="user.userId!= null and  user.userId!= ''">
                 and USER_ID=#{user.userId}
             </if>
-            <if test="user.userName!= null and user.userName!= ''">
+            <if test="user.userName!= null and  user.userName!= ''">
                 and USER_NAME=#{user.userName}
             </if>
-            <if test="user.realName!= null and user.realName!= ''">
-                and REAL_NAME=#{user.realName}
+            <if test="user.realName!= null and  user.realName!= ''">
+                and REAL_NAME like '%${user.realName}%'
             </if>
-            <if test="user.sex!= null and user.sex!= ''">
+            <if test="user.sex!= null and  user.sex!= ''">
                 and SEX=#{user.sex}
             </if>
-            <if test="user.telNo!= null and user.telNo!= ''">
-                and TEL_NO=#{user.telNo}
+            <if test="user.birthdayBeginDt!= null">
+                and BIRTHDAY&gt;=#{user.birthdayBeginDt}
+            </if>
+            <if test="user.birthdayEndDt!= null">
+                and BIRTHDAY&lt;=#{user.birthdayEndDt}
             </if>
         </where>
     </sql>
     
     <select id="findByCondition" parameterType="java.util.Map" resultType="Map">
         SELECT
-                        t.USER_ID as "userId",
-                        t.USER_NAME as "userName",
-                        t.REAL_NAME as "realName",
-                        t.SEX as "sex",
-                        t.BIRTHDAY as "birthday",
-                        t.TEL_NO as "telNo",
-                        t.MAIL as "mail",
-                        t.ID_NUMBER as "idNumber",
-                        t.DEPT_NO as "deptNo",
-                        t.USER_STS as "userSts",
-                        t.LOGIN_PWD as "loginPwd",
-                        t.LOGIN_TIME as "loginTime",
-                        t.LOGIN_IP as "loginIp",
-                        t.EMPOWER_ROLES as "empowerRoles",
-                        t.IS_ALLOW_LOGIN as "isAllowLogin",
-                        t.PWD_ERR_CUNT as "pwdErrCunt",
-                        t.LAST_UPT_PWD_TIME as "lastUptPwdTime",
-                        t.CTE_USER_NO as "cteUserNo",
-                        t.UTE_USER_NO as "uteUserNo",
-                        t.UTE_DT as "uteDt",
-                        t.CTE_DT as "cteDt"
+            t.USER_ID as "userId",
+            t.USER_NAME as "userName",
+            t.REAL_NAME as "realName",
+            t.SEX as "sex",
+            t.BIRTHDAY as "birthday",
+            t.TEL_NO as "telNo",
+            t.MAIL as "mail",
+            t.ID_NUMBER as "idNumber",
+            t.DEPT_NO as "deptNo",
+            t.USER_STS as "userSts",
+            t.LOGIN_PWD as "loginPwd",
+            t.LOGIN_TIME as "loginTime",
+            t.LOGIN_IP as "loginIp",
+            t.EMPOWER_ROLES as "empowerRoles",
+            t.IS_ALLOW_LOGIN as "isAllowLogin",
+            t.PWD_ERR_CUNT as "pwdErrCunt",
+            t.LAST_UPT_PWD_TIME as "lastUptPwdTime",
+            t.CTE_USER_NO as "cteUserNo",
+            t.UTE_USER_NO as "uteUserNo",
+            t.UTE_DT as "uteDt",
+            t.CTE_DT as "cteDt"
             <!-- 请在此关联查询表 -->
             FROM USER t
             <include refid="whereQueryCondition"></include>

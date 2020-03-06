@@ -75,6 +75,7 @@ public class DicCodeUtils implements CommandLineRunner {
     public void init() throws Exception {
         loadCode();
         upFlg = getCur();
+        LOGGER.info("{}加载加载字典表", DIC_CODE_MAP);
         LOGGER.info("字典加载完成！");
     }
 

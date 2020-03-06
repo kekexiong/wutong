@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @title  UserService
  * @author zhao_qg
- * @date   20200304 16:30:35
+ * @date   20200306 18:06:20
  */
  @Service
 public class UserService {
@@ -46,7 +46,7 @@ public class UserService {
 	/**
 	 * 根据条件查询
 	 * @author zhao_qg
- 	 * @date   20200304 16:30:35
+ 	 * @date   20200306 18:06:20
 	 * @param map
 	 * @return
 	 */
@@ -56,7 +56,7 @@ public class UserService {
 	/**
 	 * 根据条件查询总数
 	 * @author zhao_qg
- 	 * @date   20200304 16:30:35
+ 	 * @date   20200306 18:06:20
 	 * @param map
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public class UserService {
 	/**
 	 * 根据主键查询详细
 	 * @author zhao_qg
- 	 * @date   20200304 16:30:35
+ 	 * @date   20200306 18:06:20
 	 * @param paramVo
 	 * @return
 	 */
@@ -77,7 +77,7 @@ public class UserService {
 	/**
 	 * 更新
 	 * @author zhao_qg
- 	 * @date   20200304 16:30:35
+ 	 * @date   20200306 18:06:20
 	 * @param user
 	 * @return
 	 */
@@ -89,7 +89,7 @@ public class UserService {
 	/**
 	 * 插入
 	 * @author zhao_qg
- 	 * @date   20200304 16:30:35
+ 	 * @date   20200306 18:06:20
 	 * @param user
 	 * @return
 	 */
@@ -101,12 +101,66 @@ public class UserService {
 	/**
 	 * 根据主键删除
 	 * @author zhao_qg
- 	 * @date   20200304 16:30:35
+ 	 * @date   20200306 18:06:20
 	 * @param map
 	 * @return
 	 */
 	public int delete(Map
 <String,Object> map) {
 		return  userMapper.delete(map);
+	}
+	/**
+	 * 导出
+	 * @param paramMap
+	 * @return SXSSFWorkbook
+	 * @throws Exception
+     * @date:20200306 18:06:20
+	 */
+	public SXSSFWorkbook export(Map<String, Object> paramMap) throws Exception{
+        int count = findByConditionCount(paramMap);
+        int pageSize = 10000; //每次查询10000条
+        List<Map<String, Object>> infoList;
+        String[] tableName = {"用户ID","昵称","真实姓名","性别","出生年月日","电话号码","邮箱","身份证号","部门编号","状态","登录密码","登录时间","登录IP","授权角色","是否允许登录","密码错误次数","密码修改时间","创建人","更新人","更新日期","创建日期"};
+        String[] tableValue = {"userId","userName","realName","sex","birthday","telNo","mail","idNumber","deptNo","userSts","loginPwd","loginTime","loginIp","empowerRoles","isAllowLogin","pwdErrCunt","lastUptPwdTime","cteUserNo","uteUserNo","uteDt","cteDt"};
+        SXSSFWorkbook swb = new SXSSFWorkbook(10000);
+        int sheetContentCount = 1000000;
+        int sheetCount = 0 == count % sheetContentCount ? count / sheetContentCount : count / sheetContentCount + 1;
+
+        for (int i = 0; i < sheetCount; i++) {
+            Sheet sheet = swb.createSheet("Sheet" + (i + 1));
+            Row tableNameRow = sheet.createRow(0);
+            for (int j = 0; j < tableName.length; j++) {
+                tableNameRow.createCell(j).setCellValue(tableName[j]);
+            }
+
+            int queryCount = 0 == sheetContentCount % pageSize ? sheetContentCount / pageSize : sheetContentCount / pageSize + 1;
+            for (int k = 0; k < queryCount; k++) {
+                //循环查询
+                paramMap.put("pageNumber", i * queryCount + k + 1);
+                paramMap.put("pageSize", pageSize);
+                infoList = findByCondition(paramMap);
+                if (infoList.isEmpty()) {
+                    break;
+                }
+
+                for (int l = 0; l < infoList.size(); l++) {
+
+                    int curRows = k * pageSize + l + 1;
+                    Row row = sheet.createRow(curRows);
+                    Map<String, Object> content = infoList.get(l);
+                    content.put("sex", DicCodeUtils.DIC_CODE_MAP.get("USER-SEX" + content.get("sex")));
+                    content.put("userSts", DicCodeUtils.DIC_CODE_MAP.get("USER-USER_STS" + content.get("userSts")));
+                    content.put("isAllowLogin", DicCodeUtils.DIC_CODE_MAP.get("USER-IS_ALLOW_LOGIN" + content.get("isAllowLogin")));
+                    for (int m = 0; m < tableValue.length; m++) {
+                        row.createCell(m).setCellValue(String.valueOf(content.get(tableValue[m])));
+                    }
+                    if (0 == curRows % pageSize) {
+                        LOGGER.info("SXSSF已处理数据条数" + (curRows + i * sheetContentCount));
+                    }
+                }
+                infoList.clear();
+            }
+        }
+        return swb;
 	}
 }

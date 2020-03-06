@@ -18,8 +18,8 @@ public class ${classNameD} {
      * <#if tableCarray.comments??>${tableCarray.comments}</#if>
      */
     <#if (tableCarray.queryType)?? && tableCarray.queryType == "01" && tableCarray.queryRule == "02">
-    private ${tableCarray.dataType} ${tableCarray.columnNameX}beginDt;
-    private ${tableCarray.dataType} ${tableCarray.columnNameX}endDt;
+    private ${tableCarray.dataType} ${tableCarray.columnNameX}BeginDt;
+    private ${tableCarray.dataType} ${tableCarray.columnNameX}EndDt;
     private ${tableCarray.dataType} ${tableCarray.columnNameX};
     <#else>
     private ${tableCarray.dataType} ${tableCarray.columnNameX};

@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * @description  用户控制层
  * @author zhao_qg
- * @date   20200304 16:30:35
+ * @date   20200306 18:06:20
  */
 @Controller
 @RequestMapping("/user/user")
@@ -42,7 +42,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200304 16:30:35
+     * @date 20200306 18:06:20
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -72,7 +72,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200304 16:30:35
+     * @date 20200306 18:06:20
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -96,7 +96,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200304 16:30:35
+     * @date 20200306 18:06:20
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -122,7 +122,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200304 16:30:35
+     * @date 20200306 18:06:20
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -148,7 +148,7 @@ public class UserController extends BaseController {
      * @param keys
      * @return map
      * @author zhao_qg
-     * @date 20200304 16:30:35
+     * @date 20200306 18:06:20
      */
     @RequestMapping(value = "/deleteByKey", method = RequestMethod.POST)
     @ResponseBody
@@ -174,5 +174,30 @@ public class UserController extends BaseController {
             LOGGER.error(opNm, "--end,异常", e);
             return super.setFailure("删除失败!");
         }
+    }
+    
+    /**
+     * @description:主页面导出功能
+     * @param session
+     * @param response
+     * @return void
+     * @author zhao_qg
+     * @date 20200306 18:06:20
+     */
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    public void export(HttpSession session, HttpServletResponse response) {
+        String opNm = "用户信息管理-导出";
+        String fileName = "用户" + DateUtil.getCurDTTM() + ".xlsx";
+        Map<String, Object> paraMap = (Map<String, Object>) session.getAttribute("queryUserParam");
+        long startTime = System.currentTimeMillis();
+        Map<String, Object> paramsMap = (Map<String, Object>) session.getAttribute("queryParams");
+        try {
+            SXSSFWorkbook swb = userService.export(paraMap);
+            DownloadFileUtil.getInstance().downLoadExcel(swb, fileName, response);
+            LOGGER.info("导出收支明细--end" + DateUtil.getHaoShiTimeMsg(startTime));
+        } catch (Exception e) {
+            LOGGER.error("导出收支明细--exception", e);
+        }
+        LOGGER.info(opNm, "导出完毕", "fileName=" + fileName);
     }
 }

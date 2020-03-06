@@ -16,13 +16,13 @@
     
     <sql id="whereQueryCondition">
         <where>
-            <if test="dicCode.codeKey!= null and dicCode.codeKey!= ''">
-                and CODE_KEY like '%${dicCode.codeKey}%'
+            <if test="dicCode.codeKey!= null and  dicCode.codeKey!= ''">
+                and CODE_KEY=#{dicCode.codeKey}
             </if>
-            <if test="dicCode.codeValue!= null and dicCode.codeValue!= ''">
+            <if test="dicCode.codeValue!= null and  dicCode.codeValue!= ''">
                 and CODE_VALUE=#{dicCode.codeValue}
             </if>
-            <if test="dicCode.codeName!= null and dicCode.codeName!= ''">
+            <if test="dicCode.codeName!= null and  dicCode.codeName!= ''">
                 and CODE_NAME like '%${dicCode.codeName}%'
             </if>
         </where>
@@ -56,7 +56,7 @@
         FROM 
             DIC_CODE
         WHERE
-              UUID=#{uuid}
+            UUID=#{uuid}
     </select>
     <insert id="insert" parameterType="com.wutong.wsk.domain.system.DicCode">
         INSERT INTO DIC_CODE (
@@ -84,12 +84,24 @@
     <update id="update" parameterType="com.wutong.wsk.domain.system.DicCode">
         UPDATE DIC_CODE
         SET
-            CODE_KEY=#{codeKey},
-            CODE_VALUE=#{codeValue},
-            CODE_NAME=#{codeName},
-            CODE_STS=#{codeSts},
-            UTE_USER_NO=#{uteUserNo},
-            UTE_DT=#{uteDt}
+              <if test="codeKey!= null and codeKey!= ''">
+                  CODE_KEY=#{codeKey},
+              </if>
+              <if test="codeValue!= null and codeValue!= ''">
+                  CODE_VALUE=#{codeValue},
+              </if>
+              <if test="codeName!= null and codeName!= ''">
+                  CODE_NAME=#{codeName},
+              </if>
+              <if test="codeSts!= null and codeSts!= ''">
+                  CODE_STS=#{codeSts},
+              </if>
+              <if test="uteUserNo!= null and uteUserNo!= ''">
+                  UTE_USER_NO=#{uteUserNo},
+              </if>
+              <if test="uteDt!= null">
+                  UTE_DT=#{uteDt}
+              </if>
         WHERE
             UUID=#{uuid}
     </update>
