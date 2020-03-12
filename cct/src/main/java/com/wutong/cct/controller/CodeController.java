@@ -227,7 +227,7 @@ public class CodeController {
         table.setIsExport(isExport);
         table.setIsImport(isImport);
         table.setIsOperation(isOperation);
-        tableService.process(newList, table);
+            tableService.process(newList, table);
         return JSON.toJSONString("代码生成成功！");
     }
 }

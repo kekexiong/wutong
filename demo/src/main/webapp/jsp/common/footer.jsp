@@ -29,10 +29,20 @@ $('.input-daterange input').each(function(index, input) {
     	}
     });
 });
+/* 日期range汉化 最大可选日期和最小可选日期*/
+$('.input-date input').each(function(index, input) {
+    $(this).datepicker({
+        language: 'zh-CN',
+        autoclose: true,
+        todayHighlight: true,
+        todayBtn:'linked',
+        orientation:'left bottom'
+    });
+});
 
 $('.form_datetime').datetimepicker({
 	autoclose:true,
-    format:"yyyy/mm/dd hh:ii:ss",
+    format:"yyyy-mm-dd hh:ii:ss",
     language: 'zh-CN'
 });
 //$('.form_datetime input').datetimepicker('update', new Date());
@@ -102,9 +112,9 @@ function ajaxTimeout() {
 /*动态设置iframe高度*/
 function setIframeHeight(obj) 
 {
-	var cwin=obj; 
+	var cwin=obj;
 	if (document.getElementById) {
-		if (cwin && !window.opera) { 
+		if (cwin && !window.opera) {
 			if (cwin.contentDocument && cwin.contentDocument.body.offsetHeight)  {
 				cwin.style.height = cwin.contentDocument.body.offsetHeight + 70 + "px"; //FF NS
 				//cwin.style.width = window.innerWidth - 280 + "px"; //FF NS

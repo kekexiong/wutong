@@ -15,6 +15,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/takin_theme/assets/global/plugins/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/permisssionConstant.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/js/common.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/jsp/common/page/page-table.js"></script>
 <script type="text/javascript">
     var baseURL = "<%=request.getContextPath()%>";
     // if (window == top) {
@@ -63,9 +64,7 @@
         }
         return flag;
     }
-</script>
 
-<script type="text/javascript">
     /**
      * ajax异步请求时，如果session超时，则跳转到登录页面
      */
@@ -78,15 +77,6 @@
         }
     });
 
-    /**
-     * 日期转换
-     */
-    function fromatDate(val, fmt) {
-        if (val == null) {
-            return "";
-        }
-        return new Date(val).Format(fmt);
-    }
 
     /**
      * 获取字典名称
@@ -101,6 +91,73 @@
             return json[key + val]
         }
         return val;
+    }
+
+    //下拉框码表中加载数据(使用系统表)
+    function getComboStore(codeValue, element, codeKey, isdisabled) {
+        var param = {};
+        param.codeKey = codeKey;
+        //param.codeValue = codeValue;
+        $.ajax({
+            type: "POST",
+            url: baseURL + "/getDicCode",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            data: param,
+            dataType: "json",
+            success: function (data) {
+                if (data.timeout) {
+                    ajaxTimeout();
+                }
+                $("#" + element).empty();
+                $("#" + element).append($("<option></option>").val("").text("全部"));
+                $.each(data.items, function (index, obj) {
+                    $("#" + element).append($("<option></option>").val(obj.codeValue).text(obj.codeName));
+                });
+                //更新内容刷新到相应的位置
+                $("#" + element).selectpicker('render');
+                $("#" + element).selectpicker('refresh');
+                $("#" + element).selectpicker('val', codeValue);
+                if (isdisabled) {
+                    $("#" + element).attr('disabled', true);
+                }
+            },
+            error: function (error) {
+            }
+        });
+    }
+
+
+    /**
+     * 日期转换
+     */
+    function fromatDate(val, fmt) {
+        if (val == null) {
+            return "";
+        }
+        return new Date(val).Format(fmt);
+    }
+
+    // 验证是否包含空格
+    function hasBlankSpace(value) {
+        var val= value.replace(/^\s+|\s+$/g, '')
+        if (value!=val) {
+            return false
+        }
+        return true;
+    }
+
+    //验证时间间隔方法
+    function daysBetween(DateOne, DateTwo) {
+        var OneMonth = DateOne.substring(5, DateOne.lastIndexOf('/'));
+        var OneDay = DateOne.substring(DateOne.length, DateOne.lastIndexOf('/') + 1);
+        var OneYear = DateOne.substring(0, DateOne.indexOf('/'));
+
+        var TwoMonth = DateTwo.substring(5, DateTwo.lastIndexOf('/'));
+        var TwoDay = DateTwo.substring(DateTwo.length, DateTwo.lastIndexOf('/') + 1);
+        var TwoYear = DateTwo.substring(0, DateTwo.indexOf('/'));
+
+        var cha = ((Date.parse(OneMonth + '/' + OneDay + '/' + OneYear) - Date.parse(TwoMonth + '/' + TwoDay + '/' + TwoYear)) / 86400000);
+        return Math.abs(cha);
     }
 </script>
 <%-- 

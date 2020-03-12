@@ -30,7 +30,7 @@
                     <#list tableCarrays as tableCarray>
                         <#if (tableCarray.queryType??) && tableCarray.queryType == "01">
                             <#if (tableCarray.queryRule??) && tableCarray.queryRule == "03">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
                                         <div class="col-md-8 paddingnone">
@@ -40,21 +40,21 @@
                                 </div>
                             </#if>
                             <#if (tableCarray.queryRule??) && tableCarray.queryRule == "02">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
                                         <div class="col-md-8 paddingnone">
                                             <div class="input-group input-daterange">
-                                                <input type="text" class="form-control col-md-3" name="${tableCarray.columnNameX}beginDt" id="${tableCarray.columnName}_beginDt">
+                                                <input type="text" class="form-control col-md-3" name="${tableCarray.columnNameX}Start" id="${tableCarray.columnName}_Start">
                                                 <span class="input-group-addon"> <i class="fa fa-exchange"></i></span>
-                                                <input type="text" class="form-control" name="${tableCarray.columnNameX}endDt" id="${tableCarray.columnName}_endDt">
+                                                <input type="text" class="form-control" name="${tableCarray.columnNameX}End" id="${tableCarray.columnName}_End">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </#if>
                             <#if (tableCarray.queryRule??) && (tableCarray.queryRule == "04" || tableCarray.queryRule == "05")>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
                                         <div class="col-md-8 paddingnone">
@@ -64,8 +64,8 @@
                                     </div>
                                 </div>
                             </#if>
-                            <#if (tableCarray.queryRule??) && tableCarray.queryRule == "06"><!-- 时间输入框 -->
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <#if (tableCarray.queryRule??) && tableCarray.queryRule == "06">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
                                         <div class="col-md-8 paddingnone">
@@ -146,14 +146,14 @@
                                 <tr>
                                     <th><input type="checkbox" class="group-checkable" onclick="checkAll(this.checked)" /></th>
                                     <th class="nowrap">序号</th>
-                                            <#list tableCarrays as tableCarray>
-                                                <#if (tableCarray.queryShow??) && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "1">
-                                                    <th class="nowrap">${tableCarray.comments}</th>
-                                                </#if>
-                                            </#list>
-                                            <#if isOperation == "01">
-                                                <th class="nowrap">操作</th>
-                                            </#if>
+                            <#list tableCarrays as tableCarray>
+                                <#if (tableCarray.queryShow??) && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "1">
+                                    <th class="nowrap">${tableCarray.comments}</th>
+                                </#if>
+                            </#list>
+                                <#if isOperation == "01">
+                                    <th class="nowrap">操作</th>
+                                </#if>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -162,41 +162,7 @@
                         </div>
                     </div>
                     <!-- 分页开始 -->
-                    <div class="row no-margin" id="pagination-bar">
-                        <div class="col-sm-12 left no-padding">
-                            <div class="inline fl">
-                                记录数共:<span id="itemCount"></span>条 当前第<span id="nowpage"></span>/<span id="toalPage"></span>页 每页显示:
-                            </div>
-                            <div class="inline fl">
-                                <select id="limit" class="form-control" onchange="onChange4PageSize(this)">
-                                    <option value="10">10</option>
-                                    <option value="20" selected="selected">20</option>
-                                    <option value="30">30</option>
-                                    <option value="50">50</option>
-                                    <option value="80">80</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </div>
-                            <div class="inline fl">条</div>
-
-                            <div class="col-sm-6 pull-right no-padding">
-                                <div id="pagination" class="dataTables_paginate paging_simple_numbers clearfix pull-right">
-                                    <nobr>
-                                        <ul class="pagination no-padding" style="float: left">
-                                            <li class="prev "><a href="javascript:;" onclick="javascript:pageing(1)"> 首页</a></li>
-                                            <li class="prev "><a href="javascript:;" onclick="javascript:pageing('pro')"> 上一页</a></li>
-                                            <li class="next "><a href="javascript:;" onclick="javascript:pageing('next')">下一页</a></li>
-                                            <li class="next "><a href="javascript:;" onclick="javascript:pageing('last')">末页</a></li>
-                                        </ul>
-                                        <div class="input-group pull-right col-sm-2"  style="float: left;">
-                                            <input min="1" class="form-control p" style="height: 31px; width: 80px;" type="number">
-                                            <a href="javascript:;" class="input-group-addon" onclick="javascript:pageing($('.p').val())"><i class="fa fa-mail-forward brown"></i></a>
-                                        </div>
-                                    </nobr>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <jsp:include page="common/page/pagination.jsp" flush="true"/>
                 </div>
             </div>
         </div>
@@ -218,33 +184,33 @@
                             <input type="hidden" value = "" id = "hiddenKey"/>
                        <#list tableCarrays as tableCarray>
                            <#if (tableCarray.queryAdd??) && (tableCarray.queryAdd == "01")>
-                               <#if (tableCarray.queryRule)?? && tableCarray.queryRule == "03"><!-- 普通输入框 -->
+                               <#if (tableCarray.queryRule)?? && tableCarray.queryRule == "03">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <input name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_SHOW" class="form-control" placeholder="${tableCarray.comments}">
+                                            <input name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_EDIT" class="form-control" placeholder="${tableCarray.comments}">
                                         </div>
                                     </div>
                                 </div>
                                </#if>
-                               <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "04" || tableCarray.queryRule == "05")><!-- 下拉框 -->
+                               <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "04" || tableCarray.queryRule == "05")>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
                                         <div class="col-md-8 paddingnone">
-                                            <select name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_SHOW" class="bs-select form-control" data-show-subtext="true"> </select>
+                                            <select name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_EDIT" class="bs-select form-control" data-show-subtext="true"> </select>
                                         </div>
                                     </div>
                                 </div>
                                </#if>
-                                <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "06" || tableCarray.queryRule == "02")><!-- 时间输入框 -->
+                                <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "06" || tableCarray.queryRule == "02")>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 text-right">${tableCarray.comments}:</label>
                                         <div class="col-md-8 paddingnone">
                                             <div class="input-group input-daterange">
-                                                <input type="text" class="form-control col-md-3" name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_SHOW">
+                                                <input type="text" class="form-control col-md-3" name="${tableCarray.columnNameX}" id="${tableCarray.columnName}_EDIT">
                                             </div>
                                         </div>
                                     </div>
@@ -328,7 +294,7 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-12" style="text-align:center;">
-                                            <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-share"></i> 取消</button>
+                                            <button type="button" id="openform_cancel_btn" class="btn red"> <i class="fa fa-remove"></i> 关闭</button>
                                         </div>
                                     </div>
                                 </div>
@@ -340,105 +306,8 @@
         </div>
     </#if>
     <#if isImport == "01">
-    <!-- ---------------------------------------------导出弹出页面----------------------------------------------------- -->
-    <div class="modal fade" id="importOpenWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="200px" data-width="500px" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="Select_title">文件</h4>
-        </div>
-        <div class="modal-body">
-            <div class="portlet-body form">
-                <div class="form-body">
-                    <div class="row norow">
-                        <div class="panel panel-primary">
-                            <form action="" class="form-horizontal" id="importOpenWinform" enctype="multipart/form-data">
-                                <div class="panel-body">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 text-right">请选择文件:</label>
-                                            <div class="col-md-8 paddingnone">
-                                                <input id="importFile" name="file" type="file" class="file"> <input type="hidden" id="type" name="type">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-12" style="text-align: center;">
-                                                        <button type="button" id="importOpenform_save_btn" class="btn btn-success">
-                                                            <i class="fa fa-save"></i> 确认
-                                                        </button>
-                                                        <button type="button" id="importOpenform_cancel_btn" class="btn red">
-                                                            <i class="fa fa-refresh"></i> 关闭
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ----------------------------------------导入结果弹出框-------------------------------------------------- -->
-    <div class="modal fade" id="ResultWin" tabindex="-1" role="dialog" data-backdrop="static" data-height="500px" data-width="750px" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="Resulttitle">批量导入操作结果</h4>
-        </div>
-        <div class="modal-body">
-            <div class="portlet-body form">
-                <div class="form-body">
-                    <div class="row norow">
-                        <div class="panel panel-primary">
-                            <div class="row norow">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title" id="importResult"></h4>
-                                    </div>
-                                    <input type="hidden" name="errorCount" id="errorCount" value="" />
-                                    <div class="portlet-body wheel height-auto">
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="importResultPanel">
-                                            <thead style="font-size: 2px">
-                                            <tr>
-                                                <th>序号</th>
-                                                <th>错误位置</th>
-                                                <th>导入值</th>
-                                                <th>错误原因</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <div class="form-actions">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-12" style="text-align: center;">
-                                                <button type="button" id="errorImExcel" class="btn red">
-                                                    <i class="fa fa-share"></i> 导出excel
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- ---------------------------------------------导入弹出页面----------------------------------------------------- -->
+    <jsp:include page="common/page/fileupload.jsp" flush="true"/>
     </#if>
     <#if isExport == "01">
     <!-- -----------------------------------------导出弹出页面--------------------------------------------------------------- -->
@@ -486,72 +355,6 @@
 
 <jsp:include page="common/footer.jsp" flush="true" />
 <script type="text/javascript">
-    //分页功能
-    //分页默认隐藏
-    $("#pagination-bar").hide();
-    var limit = 0; //每页多少条
-    var page = 1;//当前页
-    var start = 0;//起始条
-    var toalPage;//总页数
-    var tableData; //数据列表缓存
-    function pageing(opp) {
-        $(window.document).scrollTop(0, 500);
-        limit = $("#limit  option:selected").text();
-        if (opp == 'pro') {
-            if (page > 1) {
-                page = page - 1;
-                start = (page - 1) * limit;
-            } else {
-                bootbox.alert('已经是第一页');
-                return;
-            }
-        } else if (opp == 'next') {
-            if (page == toalPage) {
-                bootbox.alert('已经是最后一页');
-                return;
-            }
-            page = page + 1;
-            start = (page - 1) * limit;
-        } else if (opp == 'last') {
-            if (page == toalPage) {
-                bootbox.alert('已经是最后一页');
-                return;
-            }
-            page = $("#toalPage").text();
-            if (page > toalPage) {
-                bootbox.alert('对不起没有你要跳转的页面');
-                return;
-            } else if (page < 1) {
-                bootbox.alert('对不起没有你要跳转的页面');
-                return;
-            }
-            start = (page - 1) * limit;
-        } else {
-            if (page == 1 && opp == 1) {
-                bootbox.alert('已经是第一页');
-                return;
-            }
-            page = opp * 1;
-            if (page > toalPage) {
-                bootbox.alert('对不起没有你要跳转的页面');
-                return;
-            } else if (page < 1) {
-                bootbox.alert('对不起没有你要跳转的页面');
-                return;
-            }
-            start = (page - 1) * limit;
-        }
-        $('#queryMecGrid > tbody').empty();
-        reloadGrid();
-    }
-    //全选列表数据
-    function checkAll(checked) {
-        $("#queryMecGrid tbody :checkbox").prop('checked', checked);
-    }
-    function onChange4PageSize(select) {
-        limit = select.value;
-        reloadGrid();
-    }
     //初始化页面功能
     $(function(){
         //if (!hasPermission(PERMISSSIONCONST.SES1002)) {$("#").hide();}
@@ -561,7 +364,7 @@
         getComboStore("","${tableCarray.columnName}", "${tableName}-${tableCarray.columnName}","");
             </#if>
             <#if tableCarray.queryAdd?? && tableCarray.queryAdd == "01">
-        getComboStore("","${tableCarray.columnName}_SHOW", "${tableName}-${tableCarray.columnName}","");
+        getComboStore("","${tableCarray.columnName}_EDIT", "${tableName}-${tableCarray.columnName}","");
             </#if>
         </#if>
         <#if (tableCarray.queryRule??) && tableCarray.queryRule == "05">
@@ -623,32 +426,29 @@
         var param = {};
         $("#addform_save_btn").off('click').on('click', function() {
             $('#addOrUpdateform').data('bootstrapValidator').validate();
-            if(!$('#addOrUpdateform').data('bootstrapValidator').isValid()){
-                return ;
+            if (!$('#addOrUpdateform').data('bootstrapValidator').isValid()) {
+                return;
             }
 <#list tableCarrays as tableCarray>
     <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01">
         <#if (tableCarray.dataType)?? && tableCarray.dataType == "Date">
-            if($("#${tableCarray.columnName}").val() != undefined && $("#${tableCarray.columnName}").val() != "") {
-                param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}_SHOW").val();
+            if ($("#${tableCarray.columnName}_EDIT").val() != undefined && $("#${tableCarray.columnName}_EDIT").val() != "") {
+                param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}_EDIT").val().replace("-", "/").replace("-", "/");
             }
         </#if>
         <#if (tableCarray.queryRule??) && (tableCarray.queryRule == "03" || tableCarray.queryRule == "04" || tableCarray.queryRule == "05")>
-            param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}_SHOW").val();
-        </#if>
-        <#if (tableCarray.queryRule??) && tableCarray.queryRule == "01">
-            param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}_MNO_SHOW").val().replace(/^\s+|\s+$/g, "");
+            param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}_EDIT").val();
         </#if>
     </#if>
 </#list>
             var hiddenType = $("#hiddenType").val();
             var url = "";
-            if("1" == hiddenType){
+            if ("1" == hiddenType) {
                 url = baseURL + "/${busPackage}/${classNameX}/save";
-            }else if ("2" == hiddenType){
+            } else if ("2" == hiddenType) {
                 url = baseURL + "/${busPackage}/${classNameX}/update";
                 param.${primaryKey.columnNameX} = $("#hiddenKey").val();
-            }else{
+            } else {
                 url = "";
             }
             $.ajax({
@@ -657,15 +457,15 @@
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 data: param,
                 dataType: "json",
-                success:function(data){
-                    if(data.timeout){
+                success: function (data) {
+                    if (data.timeout) {
                         ajaxTimeout();
                     }
                     bootbox.alert(data.msg);
                     $("#addOrUpdateWin").modal('hide');
                     reloadGrid();
                 },
-                error:function(){
+                error: function () {
 
                 }
             });
@@ -728,22 +528,22 @@
         $("#addOrUpdateform").data('bootstrapValidator').destroy();
         $('#addOrUpdateform').data('bootstrapValidator', null);
         addOrUpdateFormValidator();
-        if("add" == type){
+        if ("add" == type) {
+    <#list tableCarrays as tableCarray>
+        <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01">
+            <#if tableCarray.isPrimaryKey == "√">
+            document.getElementById('${tableCarray.columnName}_EDIT').readOnly = false;
+            </#if>
+        </#if>
+    </#list>
+            $("#addOrUpdateWin").modal('show');
+        } else if ("update" == type) {
+            var param = {};
             <#list tableCarrays as tableCarray>
-                <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01">
-                    <#if tableCarray.isPrimaryKey == "√">
-            document.getElementById('${tableCarray.columnName}_SHOW').readOnly = false;
-                    </#if>
+                <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√")>
+                param.${tableCarray.columnNameX} = record.${tableCarray.columnNameX};
                 </#if>
             </#list>
-            $("#addOrUpdateWin").modal('show');
-        }else if("update" == type){
-            var param = {};
-                <#list tableCarrays as tableCarray>
-                    <#if (tableCarray.isPrimaryKey??) && (tableCarray.isPrimaryKey == "√")>
-             param.${tableCarray.columnNameX} = record.${tableCarray.columnNameX};
-                    </#if>
-                </#list>
             $.ajax({
                 type : "POST",
                 url : baseURL + "/${busPackage}/${classNameX}/getDetail",
@@ -752,34 +552,34 @@
                 dataType : "json",
                 success:function(data){
                     <!--修改页面展示字段-->
-                    <#list tableCarrays as tableCarray>
-                        <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01">
-                            <#if tableCarray.queryRule == "04">
-                                getComboStore(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_SHOW", "${tableName}-${tableCarray.columnName}",false);
-                            <#elseif (tableCarray.queryRule??) && tableCarray.queryRule == "05">
-                                get${tableCarray.columnNameD}(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_SHOW",false);
-                            <#elseif tableCarray.isPrimaryKey == "√">
-                                document.getElementById('${tableCarray.columnName}_SHOW').value=data.data.${tableCarray.columnNameX};
-                                if("update" == type){
-                                    document.getElementById('${tableCarray.columnName}_SHOW').readOnly = true;
-                                 }
-                            <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "03">
-                                document.getElementById('${tableCarray.columnName}_SHOW').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy/MM/dd");
-                            <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "04">
-                                document.getElementById('${tableCarray.columnName}_SHOW').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy/MM/dd hh:mm:ss");
-                            <#else>
-                                document.getElementById('${tableCarray.columnName}_SHOW').value=data.data.${tableCarray.columnNameX};
-                            </#if>
-                        </#if>
-                    </#list>
-                                document.getElementById('hiddenKey').value=data.data.${primaryKey.columnNameX};
+        <#list tableCarrays as tableCarray>
+            <#if (tableCarray.queryAdd??) && tableCarray.queryAdd == "01">
+                <#if tableCarray.queryRule == "04">
+                    getComboStore(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_EDIT", "${tableName}-${tableCarray.columnName}", false);
+                <#elseif (tableCarray.queryRule??) && tableCarray.queryRule == "05">
+                    get${tableCarray.columnNameD}(data.data.${tableCarray.columnNameX}, "${tableCarray.columnName}_EDIT", false);
+                <#elseif tableCarray.isPrimaryKey == "√">
+                    document.getElementById('${tableCarray.columnName}_EDIT').value=data.data.${tableCarray.columnNameX};
+                    if ("update" == type) {
+                        document.getElementById('${tableCarray.columnName}_EDIT').readOnly = true;
+                    }
+                <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "03">
+                    document.getElementById('${tableCarray.columnName}_EDIT').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy-MM-dd");
+                <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "04">
+                    document.getElementById('${tableCarray.columnName}_EDIT').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy-MM-dd hh:mm:ss");
+                <#else>
+                    document.getElementById('${tableCarray.columnName}_EDIT').value=data.data.${tableCarray.columnNameX};
+                </#if>
+            </#if>
+        </#list>
+                    document.getElementById('hiddenKey').value=data.data.${primaryKey.columnNameX};
                     $("#addOrUpdateWin").modal('show');
                 },
-                error:function(){
+                error: function(){
                     alert("操作失败，请重新操作！")
                 }
             });
-        }else{
+        } else{
             bootbox.alert("操作错误，请重新操作！");
             return;
         }
@@ -788,101 +588,51 @@
         $("#addOrUpdateform").data('bootstrapValidator').destroy();
         $('#addOrUpdateform').data('bootstrapValidator', null);
     });
-    //下拉框码表中加载数据(使用系统表)
-    function getComboStore(codeValue,element,codeKey,isdisabled) {
-        var param = {};
-        param.codeKey = codeKey;
-        //param.codeValue = codeValue;
+    <#list tableCarrays as tableCarray>
+    <#if (tableCarray.queryRule??) && tableCarray.queryRule == "05">
+    function get${tableCarray.columnNameD}(value, element, isdisabled) {
+        <!--请在此处实现自定义下拉框选项-->
         $.ajax({
-            type: "POST",
-            url: baseURL+"/getDicCode",
-            contentType: "application/x-www-form-urlencoded;charset=utf-8",
-            data: param,
+            type: "GET",
+            url: baseURL + "/${busPackage}/${classNameX}/get${tableCarray.columnNameD}",
+            contentType: "application/json;charset=utf-8",
             dataType: "json",
-            success: function(data) {
-                if(data.timeout){
+            success: function (data) {
+                if (data.timeout) {
                     ajaxTimeout();
                 }
                 $("#" + element).empty();
                 $("#" + element).append($("<option></option>").val("").text("全部"));
-                $.each(data.items, function(index, obj) {
-                    $("#" + element).append($("<option></option>").val(obj.codeValue).text(obj.codeName));
+                $.each(data, function (index, obj) {
+                    $("#" + element).append($("<option></option>").val(obj.${tableCarray.columnNameX}_Code).text(obj.${tableCarray.columnNameX}_Name));
                 });
                 //更新内容刷新到相应的位置
                 $("#" + element).selectpicker('render');
                 $("#" + element).selectpicker('refresh');
-                $("#" + element).selectpicker('val', codeValue);
-                if(isdisabled){
+                $("#" + element).selectpicker('val', value);
+                if (isdisabled) {
                     $("#" + element).attr('disabled', true);
                 }
             },
-            error: function(error) {
+            error: function (error) {
             }
         });
     }
-        <#list tableCarrays as tableCarray>
-            <#if (tableCarray.queryRule??) && tableCarray.queryRule == "05">
-        function get${tableCarray.columnNameD}(value,element,isdisabled){
-            <!--请在此处实现自定义下拉框选项-->
-            $.ajax({
-                type: "GET",
-                url: baseURL+"/${busPackage}/${classNameX}/get${tableCarray.columnNameD}",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                success: function(data) {
-                    if(data.timeout){
-                        ajaxTimeout();
-                    }
-                    $("#" + element).empty();
-                    $("#" + element).append($("<option></option>").val("").text("全部"));
-                    $.each(data, function(index, obj) {
-                        $("#" + element).append($("<option></option>").val(obj.${tableCarray.columnNameX}_Code).text(obj.${tableCarray.columnNameX}_Name));
-                    });
-                    //更新内容刷新到相应的位置
-                    $("#" + element).selectpicker('render');
-                    $("#" + element).selectpicker('refresh');
-                    $("#" + element).selectpicker('val', value);
-                    if(isdisabled){
-                        $("#" + element).attr('disabled', true);
-                    }
-                },
-                error: function(error) {
-                }
-            });
-        }
-            </#if>
-        </#list>
-    function initDefaultDate(){
-        var myDate = new Date();
-        var tempMonth;
-        if(myDate.getMonth()<9){
-            tempMonth = '0'+ (myDate.getMonth() + 1);
-        }else{
-            tempMonth = myDate.getMonth() + 1;
-        }
-        var tempDay;
-        if(myDate.getDate()<=9){
-            tempDay = '0'+ myDate.getDate();
-        }else{
-            tempDay = myDate.getDate();
-        }
-        var dateString = myDate.getFullYear()+"/"+tempMonth+"/"+tempDay;
-                <#list tableCarrays as tableCarray>
-                    <#if (tableCarray.queryRule)?? && tableCarray.queryRule == "02">
-                        $("#${tableCarray.columnName}_beginDt").datepicker('setStartDate', null);
-                        $("#${tableCarray.columnName}_endDt").datepicker('setEndDate', null);
-                        $("#${tableCarray.columnName}_beginDt").datepicker('update', dateString);
-                        $("#${tableCarray.columnName}_endDt").datepicker('update', dateString);
-                    </#if>
-                    <#if (tableCarray.queryRule)?? && tableCarray.queryRule == "06">
-                        $("#${tableCarray.columnName}").datepicker('setStartDate', null);
-                        $("#${tableCarray.columnName}").datepicker('update', dateString);
-                    </#if>
-                </#list>
+    </#if>
+    </#list>
+    // 初始化查询日期
+    function initDefaultDate() {
+<#list tableCarrays as tableCarray>
+    <#if (tableCarray.queryRule)?? && tableCarray.queryRule == "02" && tableCarray.queryType == "01">
+        $("#${tableCarray.columnName}_Start").datepicker('update', new Date(new Date().setMonth(new Date().getMonth() - 1)).Format('yyyy-MM-dd'));
+        $("#${tableCarray.columnName}_End").datepicker('update', new Date().Format('yyyy-MM-dd'));
+    </#if>
+    <#if (tableCarray.queryRule)?? && tableCarray.queryRule == "06" && tableCarray.queryType == "01">
+        $("#${tableCarray.columnName}").datepicker('update', new Date().Format('yyyy-MM-dd'));
+    </#if>
+</#list>
     }
 
-
-    var queryInner_Path = baseURL + "/${busPackage}/${classNameX}/query";
     //实现查询按钮方法
     function reloadGrid(){
         $('#queryMecGrid > tbody').empty();
@@ -893,27 +643,27 @@
         start=(page-1)*limit;
 <#list tableCarrays as tableCarray>
     <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "02")>
-        var beginDt = $("#${tableCarray.columnName}_beginDt").val();
-        var endDt = $("#${tableCarray.columnName}_endDt").val();
-        if(daysBetween(beginDt, endDt) > 30){
+        var Start = $("#${tableCarray.columnName}_Start").val();
+        var End = $("#${tableCarray.columnName}_End").val();
+        if(daysBetween(Start, End) > 30){
             bootbox.alert("起止时间的最大间隔为1个月");
             return;
         }
     </#if>
 </#list>
         //获取筛选条件输入值
-        var param = {page:page,start:start,limit:limit};
+        var param = {page: page, start: start, limit: limit};
 <#list tableCarrays as tableCarray>
     <#if (tableCarray.queryType)?? && tableCarray.queryType == "01">
         <#if tableCarray.queryRule?? && tableCarray.queryRule == "02">
-            param.${tableCarray.columnNameX}BeginDt = $("#${tableCarray.columnName}_beginDt").val();
-            param.${tableCarray.columnNameX}EndDt = $("#${tableCarray.columnName}_endDt").val();
+            param.${tableCarray.columnNameX}Start = $("#${tableCarray.columnName}_Start").val().replace("-", "/").replace("-", "/");
+            param.${tableCarray.columnNameX}End = $("#${tableCarray.columnName}_End").val().replace("-", "/").replace("-", "/");
         </#if>
         <#if (tableCarray.queryRule)?? && (tableCarray.queryRule == "03" || tableCarray.queryRule == "04"
         || tableCarray.queryRule == "05" || tableCarray.queryRule == "06")>
             <#if (tableCarray.dataType)?? && tableCarray.dataType == "Date">
             if($("#${tableCarray.columnName}").val() != undefined && $("#${tableCarray.columnName}").val() != "") {
-            param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}").val();
+            param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}").val().replace("-", "/").replace("-", "/");
             }
             <#else>
             param.${tableCarray.columnNameX} = $("#${tableCarray.columnName}").val();
@@ -927,7 +677,7 @@
         App.blockUI({target:"body",boxed:!0,message:"查询中，请稍后...",zIndex:12000});
         $.ajax({
             type: "POST",
-            url: queryInner_Path,
+            url: baseURL + "/${busPackage}/${classNameX}/query",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             data: param,
             dataType: "json",
@@ -953,9 +703,9 @@
                 <#list tableCarrays as tableCarray>
                     <#if tableCarray.queryShow?? && tableCarray.queryShow == "01" && tableCarray.isAddColumnName != "1">
                         <#if tableCarray.validatorType?? && tableCarray.validatorType == "03" >
-                        trData.push(fromatDate(obj.${tableCarray.columnNameX}, "yyyy/MM/dd"));
+                        trData.push(fromatDate(obj.${tableCarray.columnNameX}, "yyyy-MM-dd"));
                         <#elseif tableCarray.validatorType?? && tableCarray.validatorType == "04" >
-                        trData.push(fromatDate(obj.${tableCarray.columnNameX}, "yyyy/MM/dd hh:mm:ss"));
+                        trData.push(fromatDate(obj.${tableCarray.columnNameX}, "yyyy-MM-dd hh:mm:ss"));
                         <#else>
                             <#if tableCarray.queryRule == "04">
                         trData.push(getCodeName("${tableName}-${tableCarray.columnName}", obj.${tableCarray.columnNameX}));
@@ -994,23 +744,8 @@
 
             }
         });
-
     }
-    //验证时间间隔方法
-    function daysBetween(DateOne,DateTwo)
-    {
-        var OneMonth = DateOne.substring(5,DateOne.lastIndexOf ('/'));
-        var OneDay = DateOne.substring(DateOne.length,DateOne.lastIndexOf ('/')+1);
-        var OneYear = DateOne.substring(0,DateOne.indexOf ('/'));
-
-        var TwoMonth = DateTwo.substring(5,DateTwo.lastIndexOf ('/'));
-        var TwoDay = DateTwo.substring(DateTwo.length,DateTwo.lastIndexOf ('/')+1);
-        var TwoYear = DateTwo.substring(0,DateTwo.indexOf ('/'));
-
-        var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);
-        return Math.abs(cha);
-    }
-        <#if isOperation == "01">
+    <#if isOperation == "01">
     <!--操作链接点击事件-->
     function view(info){
         var param = {};
@@ -1034,9 +769,9 @@
                         <#elseif (tableCarray.queryRule??) && tableCarray.queryRule == "05">
                         get${tableCarray.columnNameD}(data.data.${tableCarray.columnNameX},"${tableCarray.columnName}_VIEW",true);
                         <#elseif  (tableCarray.validatorType??) && tableCarray.validatorType == "03">
-                        document.getElementById('${tableCarray.columnName}_VIEW').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy/MM/dd");
+                        document.getElementById('${tableCarray.columnName}_VIEW').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy-MM-dd");
                         <#elseif  (tableCarray.validatorType??) && tableCarray.validatorType == "04">
-                        document.getElementById('${tableCarray.columnName}_VIEW').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy/MM/dd hh:mm:ss");
+                        document.getElementById('${tableCarray.columnName}_VIEW').value=fromatDate(data.data.${tableCarray.columnNameX}, "yyyy-MM-dd hh:mm:ss");
                         <#else>
                         document.getElementById('${tableCarray.columnName}_VIEW').value=data.data.${tableCarray.columnNameX};
                         </#if>
@@ -1069,73 +804,52 @@
         $("#importOpenWin").modal('hide');
     });
     //导入弹出页面确定按钮
-    $("#importOpenform_save_btn").on('click', function(){
-        var file=$("#importFile").val();
-        if(file != null && $.trim(file) != ''){
-            if (file.lastIndexOf('.') != -1) {
-                var index = file.lastIndexOf(".");
-                var ext = file.substring(index + 1, file.length);
-                if(ext =="xlsx"){
-                    App.blockUI({target:"body",boxed:!0,message:"导入中，请稍后...",zIndex:12000});
-                    $("#importOpenWinform").ajaxSubmit({
-                        type: 'post',
-                        url : baseURL +'/${busPackage}/${classNameX}/importExcel',
-                        dataType: "json",
-                        success: function(data){
-                            if (data.msgCd == 'FILE0000') {
-                                var type = $("#type").val();
-                                $('#importResultPanel > tbody').empty();
-                                var successCount = data.successCount;
-                                var failureCount = data.failureCount;
-                                $("#ResultWin").modal('show');
-                                if(data.errorList == null){
-                                    $("#errorCount").val("1");
-                                }
-                                if(data.hasError == true) {
-                                    $("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-                                    $.each(data.errorList, function(index, obj) {
-                                        var tr = $("<tr></tr>").append($("<td></td>").text(index + 1));
-                                        tr.append($("<td></td>").text(obj.position));
-                                        tr.append($("<td></td>").text(obj.importValue));
-                                        tr.append($("<td></td>").text(obj.failReason));
-                                        $("#importResultPanel > tbody").append(tr);
-                                    });
-                                }else{
-                                    $("#importResult").html(getInfo(successCount,failureCount,"条，失败信息及原因如下："));
-                                }
-                            }else{
-                                bootbox.alert("导入文件错误，原因："+data.msgInfo);
-                            }
-                            reloadGrid();
-                            $("#importOpenWin").modal('hide');
-                        },
-                        error: function(data){
-                            bootbox.alert( "导入失败..."+data.msgInfo);
-                        }
-                    });
-
-                }else{
-                    bootbox.alert("文件格式不正确，请使用07版的excel!");
-                    return false;
-                }
-
-            }else{
-                bootbox.alert("文件格式不正确，请使用07版的excel!");
-                return false;
-            }
-        }else{
-            bootbox.alert("文件格式不正确，请使用07版的excel!");
+    $("#importOpenform_save_btn").on('click', function () {
+        var file = $("#importFile").val();
+        if (file == null || $.trim(file) == '') {
+            bootbox.alert("请选择导入文件!");
             return false;
         }
+        App.blockUI({target: "body", boxed: !0, message: "导入中，请稍后...", zIndex: 12000});
+        $("#importOpenWinform").ajaxSubmit({
+            type: 'post',
+            url: baseURL + '/${busPackage}/${classNameX}/importExcel',
+            dataType: "json",
+            success: function (data) {
+                $('#importResultPanel > tbody').empty();
+                $("#ResultWin").modal('show');
+                if (data.errorList == null) {
+                    $("#errorCount").val("1");
+                }
+                if(data.failureCount>0){
+                    $("#importResult").html("<font>本次导入共成功" + data.successCount + "条，失败" + data.failureCount + "条，失败信息及原因如下：");
+                    $.each(data.errorList, function (index, obj) {
+                        var tr = $("<tr></tr>").append($("<td></td>").text(index + 1));
+                        tr.append($("<td></td>").text(obj.position));
+                        tr.append($("<td></td>").text(obj.importValue));
+                        tr.append($("<td></td>").text(obj.failCode));
+                        tr.append($("<td></td>").text(obj.failReason));
+                        $("#importResultPanel > tbody").append(tr);
+                    });
+                }else{
+                    $("#importResult").html("<font>本次导入全部成功共" + data.successCount + "条");
+                }
+                $("#importOpenWin").modal('hide');
+                reloadGrid();
+            },
+            error: function (data) {
+                bootbox.alert("导入失败..." + data.msgInfo);
+            }
+        });
     });
-    function getInfo(successCount,failureCount,msg) {
-        var info = "<font>本次批量导入操作共成功" +successCount + "条，失败" + failureCount + msg;
+    function getInfo(successCount, failureCount, msg) {
+        var info = "<font>本次批量导入操作共成功" + successCount + "条，失败" + failureCount + msg;
         return info;
     }
     //导入完毕之后弹出结果页面点击导入Excel按钮
-    $("#errorImExcel").off('click').on('click', function() {
+    $("#errorImExcel").off('click').on('click', function () {
         var errorCount = $("#errorCount").val();
-        if(errorCount == '1'){
+        if (errorCount == '1') {
             bootbox.alert("没数据要导出！");
             return;
         }
@@ -1145,25 +859,25 @@
     </#if>
     <#if isExport == "01">
     //下载模板按钮
-    $("#download_template_btn").on('click', function() {
-        window.open(baseURL +'/${busPackage}/${classNameX}/downloadTemplate');
+    $("#download_template_btn").on('click', function () {
+        window.open(baseURL + '/${busPackage}/${classNameX}/downloadTemplate');
     });
 
     //导出按钮
-    $("#isExport_btn").on('click', function() {
+    $("#isExport_btn").on('click', function () {
         var totalCount = $("#itemCount").text();
-        if(totalCount==0){
+        if (totalCount == 0) {
             bootbox.alert("没有数据可以导出，请筛选数据!");
-            return ;
+            return;
         }
         $("#exportExcelWin").modal('show');
-        $("#innerExcelType").val("总共"+totalCount+"条数据， 确定导出? ")
+        $("#innerExcelType").val("总共" + totalCount + "条数据， 确定导出? ")
         $("#innerExcelType").attr("disabled", "disabled");
-        $("#exportform_save_btn").off('click').on('click', function() {
-            window.open(baseURL +"/${busPackage}/${classNameX}/export");
+        $("#exportform_save_btn").off('click').on('click', function () {
+            window.open(baseURL + "/${busPackage}/${classNameX}/export");
             $("#exportExcelWin").modal('hide');
         });
-        $("#exportform_cancel_btn").off('click').on('click', function() {
+        $("#exportform_cancel_btn").off('click').on('click', function () {
             $("#exportExcelWin").modal('hide');
         });
     });
@@ -1202,7 +916,7 @@
                          }
                     <#elseif tableCarray.dataType == "Date" && (tableCarray.validatorType??) && tableCarray.validatorType == "03">
                          date: {
-                             format: 'YYYY/MM/DD',
+                             format: 'YYYY-MM-DD',
                              message: '日期无效'
                          }
                     <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "05">
@@ -1242,17 +956,7 @@
                     //do something...
                 });
             });
-        };
-
-
-    // 验证是否包含空格
-    function hasBlankSpace(value) {
-        var val= value.replace(/^\s+|\s+$/g, '')
-        if (value!=val) {
-            return false
-        }
-        return true;
-    }
+    };
 
     function queryFormValidator() {
         $('#queryForm').bootstrapValidator({
@@ -1263,8 +967,50 @@
             },
             message: 'This value is not valid',
             fields: {
- <#list tableCarrays as tableCarray>
-     <#if (tableCarray.queryType??) && (tableCarray.queryType == "01")>
+    <#list tableCarrays as tableCarray>
+        <#if (tableCarray.queryType??) && (tableCarray.queryType == "01")>
+            <#if (tableCarray.queryRule??) && tableCarray.queryRule == "02">
+                ${tableCarray.columnNameX}Start: {
+                    message: '${tableCarray.comments}开始验证失败',
+                    trigger: "change",
+                    validators: {
+                        notEmpty: {
+                            message: '请选择开始时间'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: '日期无效'
+                        }
+                    }
+                 },
+                ${tableCarray.columnNameX}End: {
+                    message: '${tableCarray.comments}结束验证失败',
+                    trigger: "change",
+                    validators: {
+                        notEmpty: {
+                            message: '请选择结束时间'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: '日期无效'
+                        },
+                        callback: {
+                            message: '开始时间必须小于结束时间',
+                            callback: function (value, validator, $field) {
+                                var other = validator.getFieldElements('${tableCarray.columnNameX}Start').val();//获得另一个的值
+
+                                var start = new Date(other.replace("-", "/").replace("-", "/"));
+                                var end = new Date(value.replace("-", "/").replace("-", "/"));
+
+                                if (start <= end) {
+                                    return true;
+                                }
+                                return false;
+                            }
+                        }
+                    }
+                },
+        <#else >
                 ${tableCarray.columnNameX}: {
                     message: '${tableCarray.comments}验证失败',
                     validators: {
@@ -1285,7 +1031,7 @@
                             }
                     <#elseif tableCarray.dataType == "Date" && tableCarray.validatorType == "03">
                          date: {
-                             format: 'YYYY/MM/DD',
+                             format: 'YYYY-MM-DD',
                              message: '日期无效'
                          }
                     <#elseif (tableCarray.validatorType??) && tableCarray.validatorType == "05">
@@ -1311,8 +1057,9 @@
                     </#if>
                     }
                 },
-     </#if>
- </#list>
+            </#if>
+        </#if>
+    </#list>
             }
         }).on('success.form.bv', function (e) {//点击提交之后
                 e.preventDefault();
@@ -1323,7 +1070,7 @@
                     //do something...
                 });
             });
-        };
+    };
 </script>
 </body>
 </html>

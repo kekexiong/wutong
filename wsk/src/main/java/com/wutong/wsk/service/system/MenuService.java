@@ -8,7 +8,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import com.wutong.wsk.util.FileUtil;
 import com.wutong.wsk.domain.ImportError;
 import com.wutong.wsk.util.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

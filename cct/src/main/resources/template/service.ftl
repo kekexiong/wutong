@@ -1,24 +1,23 @@
 package ${servicePackage};
-import java.util.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ${domainPackage}.${classNameD};
 import ${mapperPackage}.${classNameD}Mapper;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import ${classPackage}.domain.ImportError;
+import ${classPackage}.util.DateUtil;
+import ${classPackage}.util.ExcelModle;
+import ${classPackage}.util.ExcelUtils;
+import ${classPackage}.util.LoginUtils;
+import ${classPackage}.util.ObjectUtils;
+import ${classPackage}.service.system.DicCodeUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import ${classPackage}.util.FileUtil;
-import ${classPackage}.domain.ImportError;
-import ${classPackage}.util.ExcelUtils;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ${classPackage}.util.UuidUtil;
-import com.google.common.collect.Lists;
-import ${classPackage}.util.DateUtil;
-import ${classPackage}.util.LoginUtils;
-import com.wutong.wsk.service.system.DicCodeUtils;
-import java.io.File;
-import java.io.InputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -157,8 +156,7 @@ public class ${classNameD}Service {
 	 * @param map
 	 * @return
 	 */
-	public int delete(Map
-<String,Object> map) {
+	public int delete(Map<String,Object> map) {
 		return  ${classNameX}Mapper.delete(map);
 	}
 </#if>
@@ -173,17 +171,26 @@ public class ${classNameD}Service {
 	public Map<String, Object> batchOperate (HttpServletRequest request){
 		LOGGER.info("批量添加${businessName}信息", "", "批量添加${businessName}信息开始");
 		Map<String, Object> resultMap = new HashMap<String, Object>();//返回结果map
-		//设置表头信息
-		String[] fields = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">"${tableCarray.comments}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
-		//设置表头对应字段
-		String [] columnName = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">"${tableCarray.columnNameX}"<#if (tableCarray_has_next)>, </#if></#if></#list>};
-		//字段对应的长度限制
-		int [] sizeLimit = {<#list exprotCarrays as tableCarray><#if tableCarray.queryImport == "01">${tableCarray.dataLength}<#if (tableCarray_has_next)>, </#if></#if></#list>};
-        List<Map<String, Object>> readDataList = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
+
+        // 配置导入模板
+        List<ExcelModle> excelModleList = getExcelModles();
+		List<Map<String, Object>> readDataList = new ArrayList<Map<String, Object>>();//创建一个存放读取Excel内容的list
         resultMap.put("msgCd", "FILE0000");
-        this.fileValid(request, fields, columnName, sizeLimit, readDataList, resultMap);
         resultMap.put("successCount", 0);
-        if (!resultMap.get("msgCd").equals("FILE0000") || !Lists.newArrayList(resultMap.get("errorList")).isEmpty()) {
+        resultMap.put("failureCount", 0);
+         // 读取excel
+        MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
+        List<ImportError> errorList = ExcelUtils.readExcel(mulRequest.getFile("file"), excelModleList, readDataList);
+        if (errorList.size() > 0) {
+            resultMap.put("msgCd", "FILE0000");
+            resultMap.put("msgInfo", "读取文件错误");
+            resultMap.put("errorList", errorList);
+            resultMap.put("failureCount", errorList.size());
+            return resultMap;
+        }
+        if (readDataList.size() == 0) {
+            resultMap.put("msgCd", "FILE9004");
+            resultMap.put("msgInfo", "导入excel文件无数据，请核对后再做操作！");
             return resultMap;
         }
         //遍历读取数据
@@ -193,7 +200,7 @@ public class ${classNameD}Service {
         int result = 0;
         int insertSum = (readDataList.size() % insertCount == 0) ? (readDataList.size() / insertCount) : (readDataList.size() / insertCount + 1);
         for (int i = 0; i < insertSum; i++) {
-            subList = ExcelUtils.getChildList(i, insertSum, insertCount, insertList);
+            subList = ObjectUtils.getChildList(i, insertSum, insertCount, insertList);
             result = i;
             LOGGER.info("批量添加${businessName}信息", "", "批量添加用户信息结束");
             result = result + ${classNameX}Mapper.insertBatch(subList);
@@ -203,53 +210,22 @@ public class ${classNameD}Service {
         LOGGER.info("#批量添加${businessName}信息#批量导入添加成功#map:{}", resultMap);
         return resultMap;
     }
-
     /**
-     * @description:读取Excel
-     * @param request
-     * @return:List<TUser>
-     * @author:zhao_qg
-     * @date:${classTime}
+     * 配置导入模板
+     * @return
      */
-    public Map<String, Object> fileValid(HttpServletRequest request, String[] fields, String[] columnName, int[] sizeLimit, List<Map<String, Object>> readDataList,
-                                         Map<String, Object> resultMap) {
-        //获取上传文件
-        FileUtil fileUtil = new FileUtil();
-        InputStream input = fileUtil.getUploadInputStream(request, resultMap);
-        if (input == null) {
-            LOGGER.info("批量操作${businessName}信息", "", "获取上传的文件流失败");
-            resultMap.put("msgCd", "FILE9901");
-            resultMap.put("msgInfo", resultMap.get("msg"));
-            return resultMap;
-        }
-        //检查文件是否超出范围
-        XSSFWorkbook xwb = ExcelUtils.checkUploadExcel(input, resultMap);
-        if (xwb == null) {
-            LOGGER.info("批量操作${businessName}信息", "", "上传的文件有问题");
-            resultMap.put("msgCd", "FILE9902");
-            resultMap.put("msgInfo", resultMap.get("msg"));
-            return resultMap;
-        }
-
-        // 读取excel
-        List<ImportError> errorList = ExcelUtils.readExcel(xwb, fields, columnName, sizeLimit, readDataList);
-        if (errorList.size() > 0) {
-            resultMap.put("msgCd", "FILE0000");
-            resultMap.put("msgInfo", "读取文件错误");
-            if (!errorList.isEmpty()) {
-                resultMap.put("errorList", errorList);
-                resultMap.put("failureCount", errorList.size());
-                resultMap.put("hasError", true);
-            }
-            return resultMap;
-        }
-        if (readDataList.size() == 0) {
-            resultMap.put("msgCd", "FILE9904");
-            resultMap.put("msgInfo", "导入excel文件无数据，请核对后再做操作！");
-            return resultMap;
-        }
-        return resultMap;
+    private List<ExcelModle> getExcelModles() {
+        List<ExcelModle> excelModleList = new ArrayList<>();
+    <#list exprotCarrays as tableCarray>
+        <#if tableCarray.queryImport == "01" && tableCarray.queryRule == "04">
+        excelModleList.add(new ExcelModle("${tableCarray.comments}", "${tableCarray.columnNameX}", "${tableCarray.dataType}", ${tableCarray.dataLength}, <#if tableCarray.nullable == "YES">true<#else>false</#if>, "${tableName}-${tableCarray.columnName}"));
+        <#elseif tableCarray.queryImport == "01">
+        excelModleList.add(new ExcelModle("${tableCarray.comments}", "${tableCarray.columnNameX}", "${tableCarray.dataType}", ${tableCarray.dataLength}, <#if tableCarray.nullable == "YES">true<#else>false</#if>));
+        </#if>
+    </#list>
+        return excelModleList;
     }
+
 	/**
      * @description:读取Excel之后，保存数据
      * @param dataMaps
@@ -275,7 +251,13 @@ public class ${classNameD}Service {
             po.set${tableCarray.columnNameD}(BigDecimal.valueOf(dataMap.get("${tableCarray.columnNameX}")));
                 </#if>
                 <#if tableCarray.dataType == "int">
-            po.set${tableCarray.columnNameD}(Integer.valueOf(dataMap.geget("${tableCarray.columnNameX}")));
+            po.set${tableCarray.columnNameD}(Integer.valueOf(dataMap.get("${tableCarray.columnNameX}")));
+                </#if>
+                <#if tableCarray.dataType == "Date" && tableCarray.validatorType=="03">
+            po.set${tableCarray.columnNameD}(DateUtil.getDate(String.valueOf(dataMap.get("${tableCarray.columnNameX}")), "yyyy-MM-dd"));
+                </#if>
+                <#if tableCarray.dataType == "Date" && tableCarray.validatorType=="04">
+            po.set${tableCarray.columnNameD}(DateUtil.getDate(String.valueOf(dataMap.get("${tableCarray.columnNameX}")), "yyyy-MM-dd HH:mm:ss"));
                 </#if>
             </#if>
          </#list>
@@ -296,8 +278,8 @@ public class ${classNameD}Service {
 		int count = erroList.size();
         int pageSize = 10000;
         List<Map<String, Object>> infoList;
-        String[] tableName = {"错误位置","插入值","错误原因"};
-        String[] tableValue = {"position","importValue","failReason"};
+        String[] tableName = {"位置","插入值","失败编码","失败原因"};
+        String[] tableValue = {"position","importValue","failCode","failReason"};
         SXSSFWorkbook swb = new SXSSFWorkbook(10000);
             Sheet sheet = swb.createSheet("Sheet");
             Row tableNameRow = sheet.createRow(0);

@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * @description  用户控制层
  * @author zhao_qg
- * @date   20200306 18:06:20
+ * @date   20200311 21:17:04
  */
 @Controller
 @RequestMapping("/user/user")
@@ -42,7 +42,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200306 18:06:20
+     * @date 20200311 21:17:04
      */
     @RequestMapping(value ="/query", method = RequestMethod.POST)
     @ResponseBody
@@ -72,7 +72,7 @@ public class UserController extends BaseController {
      * @param paramVo
      * @return map
      * @author zhao_qg
-     * @date 20200306 18:06:20
+     * @date 20200311 21:17:04
      */
     @RequestMapping(value = "/getDetail", method = RequestMethod.POST)
     @ResponseBody
@@ -96,7 +96,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200306 18:06:20
+     * @date 20200311 21:17:04
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -122,7 +122,7 @@ public class UserController extends BaseController {
      * @param user
      * @return map
      * @author zhao_qg
-     * @date 20200306 18:06:20
+     * @date 20200311 21:17:04
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
@@ -148,7 +148,7 @@ public class UserController extends BaseController {
      * @param keys
      * @return map
      * @author zhao_qg
-     * @date 20200306 18:06:20
+     * @date 20200311 21:17:04
      */
     @RequestMapping(value = "/deleteByKey", method = RequestMethod.POST)
     @ResponseBody
@@ -177,12 +177,98 @@ public class UserController extends BaseController {
     }
     
     /**
+     * @description:下载导入模板
+     * @param request
+     * @param response
+     * @return map
+     * @author zhao_qg
+     * @date 20200311 21:17:04
+     */
+    @RequestMapping(value = "/downloadTemplate")
+    public void downloadBatchTemplate(HttpServletRequest request, HttpServletResponse response) {
+        String opNm = "用户-下载导入模板";
+        LOGGER.info(opNm, "==开始");
+        String    fileName = "userTemplate.xlsx";
+        try {
+            LOGGER.info(opNm, fileName, "begin");
+            String path = UserController.class.getResource("/").getPath()+ "/template/" + fileName;
+            File file = new File(path);
+            DownloadFileUtil.getInstance().downLoad(file, response);
+            LOGGER.info(opNm, fileName, "end");
+        } catch (Exception e) {
+            LOGGER.error(opNm, fileName, e);
+        }
+    }
+    
+    /**
+     * @description:主页面导入功能
+     * @param session
+     * @param request
+     * @return map
+     * @author zhao_qg
+     * @date 20200311 21:17:04
+     */
+    @RequestMapping(value = "importExcel", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> UserimportExcel (HttpSession session, HttpServletRequest request){
+        String opNm = "用户-导入";
+         LOGGER.info(opNm, "==开始");
+        Map<String, Object> rsMap = null;
+        try {
+            rsMap = userService.batchOperate(request);
+            session.setAttribute("user+Errlist", rsMap.get("errorList"));
+            return rsMap;
+        } catch (Exception e) {
+            LOGGER.error(opNm, "异常原因是：", e);
+            rsMap = new HashMap<String, Object>();
+            rsMap.put("success", false);
+            rsMap.put("msgInfo", "系统异常！");
+            return rsMap;
+        }
+    }
+    
+    /**
+     * @description:导出错误信息
+     * @param session
+     * @param response
+     * @return void
+     * @author zhao_qg
+     * @date 20200311 21:17:04
+     */
+    @RequestMapping(value = "getFailExport", method = RequestMethod.GET)
+    @ResponseBody
+    public void getBnkBinFailExport(HttpSession session, HttpServletResponse response) {
+        try{
+            //从session中获取错误信息list
+            @SuppressWarnings("unchecked")
+            List<ImportError> erroList = (List<ImportError>) session.getAttribute("user+Errlist");
+            List<Map<String, Object>> inList = null;
+            if(erroList.size()>0){inList = new ArrayList<Map<String, Object>>();
+                for (int i = 0; i < erroList.size(); i++) {
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    ImportError po = erroList.get(i);
+                    map.put("position", po.getPosition());
+                    map.put("importValue", po.getImportValue());
+                    map.put("failCode", po.getFailCode());
+                    map.put("failReason", po.getFailReason());
+                    inList.add(map);
+                }
+                String fileName = "导入错误信息-" + DateUtil.getCurDTTM() + ".xlsx";
+                SXSSFWorkbook swb = userService.exportExcelFail(inList, LoginUtils.getLoginName());
+                DownloadFileUtil.getInstance().downLoadExcel(swb, fileName, response);
+            }
+        } catch (Exception e){
+            LOGGER.error("验证失败结果导出异常，", e);
+        }
+    }
+    
+    /**
      * @description:主页面导出功能
      * @param session
      * @param response
      * @return void
      * @author zhao_qg
-     * @date 20200306 18:06:20
+     * @date 20200311 21:17:04
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(HttpSession session, HttpServletResponse response) {

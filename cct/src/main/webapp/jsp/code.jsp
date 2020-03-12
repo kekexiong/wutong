@@ -335,12 +335,12 @@ var selectShowData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var selectAddData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var selectViewData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
 var selectExportData=[{"id":"01", "name":"是"},{"id":"02", "name":"否"}];
-        var validatorTypeData=[{"id":"01", "name":"数字"},
-            {"id":"02", "name":"金额"},
-            {"id":"03", "name":"日期YMD"},
-            {"id":"04", "name":"日期时间YMDHMS"},
-            {"id":"05", "name":"电话"},
-            {"id":"06", "name":"邮箱"}];
+var validatorTypeData= [{"id":"01", "name":"数字"},
+            			{"id":"02", "name":"金额"},
+            			{"id":"03", "name":"日期YMD"},
+            			{"id":"04", "name":"日期时间YMDHMS"},
+            			{"id":"05", "name":"电话"},
+            			{"id":"06", "name":"邮箱"}];
 	</script>
 </body>
 </html>

@@ -15,10 +15,6 @@ import java.util.Date;
 public class DateUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(DateUtil.class);
 
-    public static final String YYYY_MM_DD = "yyyy-MM-dd";
-    public static final String YYYYMMDD = "yyyyMMdd";
-    public static final String HHMMSS = "HHmmss";
-
     /**
      * 得到当前时间 格式  yyyyMMddHHmmss
      * 创 建 人:  wenc
@@ -49,6 +45,25 @@ public class DateUtil {
 
     public static Date getDate() {
         return new Date();
+    }
+
+
+    /**
+     * String 转 Date
+     *
+     * @param dateStr
+     * @param fmt
+     * @return
+     */
+    public static Date getDate(String dateStr, String fmt) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(fmt);//注意月份是MM
+        Date dt;
+        try {
+            dt = simpleDateFormat.parse(dateStr);
+        } catch (Exception e) {
+            return null;
+        }
+        return dt;
     }
 
     /**
@@ -107,5 +122,22 @@ public class DateUtil {
     public static String formatDate(Date d) {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd");
         return sf.format(d);
+    }
+
+    /**
+     * 校验日期格式
+     *
+     * @param str
+     * @param fmt
+     * @return
+     */
+    public static boolean validDateYMD(String str, String fmt) {
+        try {
+            SimpleDateFormat sf = new SimpleDateFormat(fmt);
+            Date date = (Date) sf.parse(str);
+            return str.equals(sf.format(date));
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

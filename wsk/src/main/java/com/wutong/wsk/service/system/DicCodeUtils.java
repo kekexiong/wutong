@@ -29,7 +29,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class DicCodeUtils implements CommandLineRunner {
     static final Logger LOGGER = LoggerFactory.getLogger(DicCodeUtils.class);
     /**
-     * 基于模式记账的tcd码值集合
+     *
      */
     public static HashMap<String, String> DIC_CODE_MAP = new HashMap<>();
     public static HashMap<String, List<Map<String, Object>>> DIC_CODE_MAP_KEY = new HashMap<>();

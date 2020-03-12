@@ -5,7 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * All rights Reserved, Designed By Suixingpay.
@@ -16,7 +18,7 @@ import java.util.Date;
  * @Copyright 2019 Suixingpay. All rights reserved.
  * 注意：本内容仅限于随行付支付有限公司内部传阅，禁止外泄以及用于其他的商业用途。
  */
-public class StringUtils {
+public class ObjectUtils {
 
     /**
      * 字符判空 空格不算空那个
@@ -79,7 +81,27 @@ public class StringUtils {
             return false;
         }
     }
+    /**
+     * 获取对应的子List
+     *
+     * @param i
+     * @param insertSum
+     * @param insertCount
+     * @param list
+     * @return
+     * @author liudong[liu_dong@suixingpay.com]
+     * @date 20180130
+     */
+    public static <T> List<T> getChildList(int i, int insertSum, int insertCount, List<T> list) {
 
+        List<T> childList = new ArrayList<T>();
+        if (i == (insertSum - 1)) {
+            childList = list.subList(i * insertCount, list.size());
+        } else {
+            childList = list.subList(i * insertCount, (i + 1) * insertCount);
+        }
+        return childList;
+    }
     /**
      * 判断字符串是否为合法的金额格式12位整数小数点2位
      * @param bigDecimal

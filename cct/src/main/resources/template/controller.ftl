@@ -319,6 +319,7 @@ public class ${classNameD}Controller extends BaseController {
                     ImportError po = erroList.get(i);
                     map.put("position", po.getPosition());
                     map.put("importValue", po.getImportValue());
+                    map.put("failCode", po.getFailCode());
                     map.put("failReason", po.getFailReason());
                     inList.add(map);
                 }

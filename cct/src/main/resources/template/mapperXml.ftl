@@ -21,11 +21,11 @@
             </if>
         </#if>
         <#if (tableCarray.queryType)?? && tableCarray.queryType == "01" && tableCarray.queryRule == "02">
-            <if test="${classNameX}.${tableCarray.columnNameX}BeginDt!= null">
-                and ${tableCarray.columnName}&gt;=${specific}{${classNameX}.${tableCarray.columnNameX}BeginDt}
+            <if test="${classNameX}.${tableCarray.columnNameX}Start!= null">
+                and ${tableCarray.columnName}&gt;=${specific}{${classNameX}.${tableCarray.columnNameX}Start}
             </if>
-            <if test="${classNameX}.${tableCarray.columnNameX}EndDt!= null">
-                and ${tableCarray.columnName}&lt;=${specific}{${classNameX}.${tableCarray.columnNameX}EndDt}
+            <if test="${classNameX}.${tableCarray.columnNameX}End!= null">
+                and ${tableCarray.columnName}&lt;=${specific}{${classNameX}.${tableCarray.columnNameX}End}
             </if>
         </#if>
         </#list>

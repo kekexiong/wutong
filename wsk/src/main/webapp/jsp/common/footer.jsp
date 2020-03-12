@@ -74,6 +74,7 @@
         $(this).datepicker({
             language: 'zh-CN',
             autoclose: true,
+            format:"yyyy-mm-dd",
             todayHighlight: true,
             todayBtn:'linked',
             orientation:'left bottom'
@@ -100,11 +101,7 @@
             App.unblockUI("body");
         }
     );
-    /* ie兼容placeholder */
-    if ((navigator.userAgent.indexOf('MSIE') >= 0)
-        && (navigator.userAgent.indexOf('Opera') < 0)){
-        $('input, textarea').removeAttr('placeholder');
-    }
+
     /* 多选下拉列表初始化 */
     $(".bs-select").each(function(index,element) {
         if(typeof($(element).attr("multiple"))=="undefined") {
@@ -217,12 +214,7 @@
         }
         console.log('modal position={modalHeight:'+modalHeight+',top offset:'+mt+'}');
     }
-    /* draggable modal */
-    /* $(".modal").draggable({
-        handle: ".modal-header",
-        cursor: 'move',
-        refreshPositions: false
-    }); */
+
     //表格的项取消选择时，整个表格的表头的复选框也要取消check
     function clickCheck(box) {
         if(!$(box).prop('checked')) {

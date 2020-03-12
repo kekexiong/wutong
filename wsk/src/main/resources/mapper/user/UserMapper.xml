@@ -35,16 +35,10 @@
                 and USER_NAME=#{user.userName}
             </if>
             <if test="user.realName!= null and  user.realName!= ''">
-                and REAL_NAME like '%${user.realName}%'
+                and REAL_NAME=#{user.realName}
             </if>
             <if test="user.sex!= null and  user.sex!= ''">
                 and SEX=#{user.sex}
-            </if>
-            <if test="user.birthdayBeginDt!= null">
-                and BIRTHDAY&gt;=#{user.birthdayBeginDt}
-            </if>
-            <if test="user.birthdayEndDt!= null">
-                and BIRTHDAY&lt;=#{user.birthdayEndDt}
             </if>
         </where>
     </sql>
@@ -137,6 +131,56 @@
                 #{uteDt,jdbcType=VARCHAR},
                 #{cteDt,jdbcType=VARCHAR}
         )
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO USER(
+                    USER_ID,
+                                USER_NAME,
+                                REAL_NAME,
+                                SEX,
+                                BIRTHDAY,
+                                TEL_NO,
+                                MAIL,
+                                ID_NUMBER,
+                                DEPT_NO,
+                                USER_STS,
+                                LOGIN_PWD,
+                                LOGIN_TIME,
+                                LOGIN_IP,
+                                EMPOWER_ROLES,
+                                IS_ALLOW_LOGIN,
+                                PWD_ERR_CUNT,
+                                LAST_UPT_PWD_TIME,
+                                CTE_USER_NO,
+                                UTE_USER_NO,
+                                UTE_DT,
+                                CTE_DT
+            )
+        <foreach collection="list" item="item" index="index" separator="union all">
+            SELECT
+                    #{item.userId,jdbcType=VARCHAR},
+                    #{item.userName,jdbcType=VARCHAR},
+                    #{item.realName,jdbcType=VARCHAR},
+                    #{item.sex,jdbcType=VARCHAR},
+                    #{item.birthday,jdbcType=VARCHAR},
+                    #{item.telNo,jdbcType=VARCHAR},
+                    #{item.mail,jdbcType=VARCHAR},
+                    #{item.idNumber,jdbcType=VARCHAR},
+                    #{item.deptNo,jdbcType=VARCHAR},
+                    #{item.userSts,jdbcType=VARCHAR},
+                    #{item.loginPwd,jdbcType=VARCHAR},
+                    #{item.loginTime,jdbcType=VARCHAR},
+                    #{item.loginIp,jdbcType=VARCHAR},
+                    #{item.empowerRoles,jdbcType=VARCHAR},
+                    #{item.isAllowLogin,jdbcType=VARCHAR},
+                    #{item.pwdErrCunt,jdbcType=VARCHAR},
+                    #{item.lastUptPwdTime,jdbcType=VARCHAR},
+                    #{item.cteUserNo,jdbcType=VARCHAR},
+                    #{item.uteUserNo,jdbcType=VARCHAR},
+                    #{item.uteDt,jdbcType=VARCHAR},
+                    #{item.cteDt,jdbcType=VARCHAR}
+            FROM DUAL
+        </foreach>
     </insert>
     <update id="update" parameterType="com.wutong.wsk.domain.user.User">
         UPDATE USER
